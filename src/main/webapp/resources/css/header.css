@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+#mainHeader{
+	background: #f8f7c5;
+}
+#navHeader{
+	background: #0ee8ed;
+	font-size: 15px;
+}
