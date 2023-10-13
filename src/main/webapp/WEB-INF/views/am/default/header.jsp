@@ -13,8 +13,8 @@
 <body>
 
 <div id="mainHeader">
-	<div>
-		<h1>이미지 로고</h1>
+	<div id="imgHeader">
+		<a href="/am/main"><img src="/am/resources/img/logo_header.png" width="80px" height="80px"></a>
 	</div>
 	<div id="navHeader">
 		<ul id="navHeader" class="nav justify-content-end">

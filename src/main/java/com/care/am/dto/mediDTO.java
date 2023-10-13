@@ -6,7 +6,15 @@ public class mediDTO {
 	String mTel;
 	String mId;
 	String mPw;
+	String mPhoto;
 	
+	
+	public String getmPhoto() {
+		return mPhoto;
+	}
+	public void setmPhoto(String mPhoto) {
+		this.mPhoto = mPhoto;
+	}
 	public String getmName() {
 		return mName;
 	}
