@@ -8,7 +8,15 @@ public class petDTO {
     int pAge;
     String pSex;
     String cId;
+    String pPhoto;
     
+    
+	public String getpPhoto() {
+		return pPhoto;
+	}
+	public void setpPhoto(String pPhoto) {
+		this.pPhoto = pPhoto;
+	}
 	public int getpNum() {
 		return pNum;
 	}
