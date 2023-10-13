@@ -15,7 +15,7 @@
 	
 	<div>
 		<div id="reservationSearchWindow">
-			<input class="reservationSearch" type="text" placeholder="병원검색">
+			<input class="reservationSearch" type="text" placeholder="예약할 병원 이름 검색">
 			<a href="#"><img src="/am/resources/img/searchIcon.png" width="25px" height="25px"></a>
 		</div>
 	</div>
