@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+#reservationSearchWindow {
+	background-color: #A6C5E2;
+	margin: auto;
+	margin-top: 50px;
+  	width: 500px;
+  	height: 40px;
+  	padding-top: 6.5px;
+}
+
+.reservationSearch{
+	background-color: #A6C5E2;
+	border: none;
+	width: 460px;
+	outline: none;
+	padding-left: 15px;
+	font-weight : bold;
+}
