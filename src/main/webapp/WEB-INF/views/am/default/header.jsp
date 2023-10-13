@@ -18,11 +18,9 @@
 	</div>
 	<div id="navHeader">
 		<ul id="navHeader" class="nav justify-content-end">
-			<li class="nav-item"><a class="nav-link active text-dark"
-				aria-current="page" href="#">Main</a></li>
 			<li class="nav-item"><a class="nav-link text-dark" href="#">마이페이지</a></li>
-			<li class="nav-item"><a class="nav-link text-dark" href="#">로그인</a></li>
-			<li class="nav-item"><a class="nav-link disabled text-dark">Disabled</a></li>
+			<li class="nav-item"><a class="nav-link text-dark" href="/am/login">로그인</a></li>
+			<li class="nav-item"><a class="nav-link text-dark" href="/am/logout">로그아웃</a></li>
 		</ul>
 	</div>
 </div>
