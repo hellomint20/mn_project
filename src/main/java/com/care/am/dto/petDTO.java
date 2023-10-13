@@ -8,6 +8,7 @@ public class petDTO {
     int pAge;
     String pSex;
     String cId;
+    String pPhoto;
     
 	public int getpNum() {
 		return pNum;
@@ -50,5 +51,11 @@ public class petDTO {
 	}
 	public void setcId(String cId) {
 		this.cId = cId;
+	}
+	public String getpPhoto() {
+		return pPhoto;
+	}
+	public void setpPhoto(String pPhoto) {
+		this.pPhoto = pPhoto;
 	}
 }

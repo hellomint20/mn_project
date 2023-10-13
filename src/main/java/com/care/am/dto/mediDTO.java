@@ -6,12 +6,19 @@ public class mediDTO {
 	String mTel;
 	String mId;
 	String mPw;
+	String mPhoto;
 	
 	public String getmName() {
 		return mName;
 	}
 	public void setmName(String mName) {
 		this.mName = mName;
+	}
+	public String getmPhoto() {
+		return mPhoto;
+	}
+	public void setmPhoto(String mPhoto) {
+		this.mPhoto = mPhoto;
 	}
 	public String getmAddr() {
 		return mAddr;
