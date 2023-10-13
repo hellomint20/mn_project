@@ -8,6 +8,7 @@ public class mediDTO {
 	String mPw;
 	String mPhoto;
 	
+	
 	public String getmName() {
 		return mName;
 	}
