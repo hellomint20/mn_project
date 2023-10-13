@@ -4,9 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>보호자 정보</title>  
 </head>
 <body>
+
+	<%@ include file = "../common/sidebar.jsp" %>
 
 </body>
 </html>

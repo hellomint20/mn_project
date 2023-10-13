@@ -1,0 +1,49 @@
+.menu {
+    display: block;
+    overflow: hidden;
+    width: 200px;
+    background-color: #FEFCEF;
+    color: #000;
+    transition: all 0.5s ease;
+    border-radius: 20px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.menu a {
+    display: block;
+    height: 25px;
+    padding: 8px;
+    cursor: pointer;
+    color: #000;
+    text-decoration: none;
+}
+
+.menu a:hover {
+    color: #000;
+}
+.menu ul li:hover {
+    background-color: #D7E6F4;
+    color: #000;
+    border-radius: 10px;
+}
+.menu div {
+    position: absolute;
+    left: 50px;
+    line-height: 1.5;
+    font-size: 1em;
+    padding: 0 0 0 20px;
+}
+
+.menu ::before {
+    font-size: 1.5em;
+    float: left;
+    clear: left;
+}
+
+
+}
