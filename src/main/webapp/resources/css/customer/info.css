@@ -1,0 +1,36 @@
+.all{
+	display: flex;
+	position: relative;
+}
+
+.all #info {
+	table-layout: fixed;
+	display: block;
+    width: 45%;
+    margin-left: 10%;
+    margin-top: 40px;
+    margin-bottom: -40px;
+    background-color: #D7E6F4;
+    border-radius: 20px;
+}
+
+.all #info table{
+	font-size: 1.3em;
+	text-align: center;
+	margin: auto;
+	margin-top: 7%;
+	width: 400px;
+	line-height: 50px;
+}
+
+.modi-b {
+	font-size: 1.3em;
+	text-align: center;
+	width: 70px;
+	height: 30px;
+	margin-top: 55px;
+	margin-left: 68%;
+	background-color: #1b4c68;
+    color: #fff;
+    border-radius: 50px;
+}

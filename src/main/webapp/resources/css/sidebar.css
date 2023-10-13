@@ -1,12 +1,23 @@
+.title{
+	text-align: center;
+	width: 220px;
+	height: 50px;
+	margin-top: 70px;
+	margin-left: 43%;
+	padding-top: 5px;
+	background-color: #1b4c68;
+    color: #fff;
+    border-radius: 50px;
+}
+
 .menu {
     display: block;
-    overflow: hidden;
-    width: 200px;
+    width: 15%;
     background-color: #FEFCEF;
     color: #000;
     border-radius: 20px;
-    padding: 25px;
-    margin-top: 160px;
+    padding: 20px;
+    margin-top: 50px;
     margin-left: 50px;
     box-sizing: border-box;
 }
@@ -16,12 +27,11 @@
     padding: 0;
 }
 .menu ul> li {
-    padding: 10px;
+    padding: 15px;
 }
 .menu a {
     display: block;
     height: 25px;
-    cursor: pointer;
     color: #000;
     text-decoration: none;
 }
@@ -48,7 +58,4 @@
     font-size: 1.5em;
     float: left;
     clear: left;
-}
-
-
 }
