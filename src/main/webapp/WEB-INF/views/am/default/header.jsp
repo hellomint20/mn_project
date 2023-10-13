@@ -6,6 +6,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+<link href="https://cdn.jsdelivr.net/gh/sunn-us/SUITE/fonts/static/woff2/SUITE.css" rel="stylesheet">
+	<style>
+		* {
+		font-family: 'SUITE', sans-serif !important;
+		}
+	</style>
+
 <link href="/am/css/bootstrap/bootstrap.css" rel="stylesheet">
 <link href="/am/css/header.css" rel="stylesheet">
 
