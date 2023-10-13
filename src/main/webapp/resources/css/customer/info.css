@@ -4,13 +4,14 @@
 }
 
 .all #info {
+	border-style: solid;
+	border-color: #1b4c68;
 	table-layout: fixed;
 	display: block;
     width: 45%;
     margin-left: 10%;
     margin-top: 40px;
     margin-bottom: -40px;
-    background-color: #D7E6F4;
     border-radius: 20px;
 }
 
@@ -24,13 +25,22 @@
 }
 
 .modi-b {
+	border: none;
 	font-size: 1.3em;
 	text-align: center;
 	width: 70px;
 	height: 30px;
 	margin-top: 55px;
 	margin-left: 68%;
+	line-height: 10px;
 	background-color: #1b4c68;
     color: #fff;
     border-radius: 50px;
+    text-decoration: none;
 }
+
+.modi-b:hover {
+   background: #1b4c68;
+   opacity: 0.6;
+}
+

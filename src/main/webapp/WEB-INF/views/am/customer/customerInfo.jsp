@@ -38,7 +38,7 @@
 		</div>
 	</div>
 	
-	<div class="modi-b">수정</div>
+	<button class="modi-b" onclick="#">수정</button>
 
 
 </body>
