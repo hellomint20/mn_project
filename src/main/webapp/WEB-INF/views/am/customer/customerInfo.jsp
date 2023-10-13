@@ -7,7 +7,7 @@
 <title>보호자 정보</title>  
 </head>
 <body>
-
+	<%@ include file = "../default/header.jsp" %>
 	<%@ include file = "../common/sidebar.jsp" %>
 
 </body>
