@@ -39,7 +39,6 @@
 	</div>
 	
 	<button class="modi-b" onclick="#">수정</button>
-
-
+		
 </body>
 </html>
