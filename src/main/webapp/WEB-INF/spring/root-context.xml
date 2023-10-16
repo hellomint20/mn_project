@@ -10,7 +10,7 @@
 	<!-- DB연결하기 위한 기본 설정해주는 빈 -->
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 	   <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-	   <property name="jdbcUrl" value="jdbc:mysql://192.168.0.34:3306/mn_test" />
+	   <property name="jdbcUrl" value="jdbc:mysql://192.168.0.13:3306/mn_test" />
 	   <property name="username" value="choi" />
 	   <property name="password" value="wodus00!@" />
 	</bean>

@@ -18,21 +18,15 @@
 
 </head>
 <body>
-
-<div id="mainHeader">
-	<div id="imgHeader">
-		<a href="/am/main"><img src="/am/resources/img/logo_header.png" width="80px" height="80px"></a>
+	<div>
+		<div id="imgHeader">
+			<img src="/am/resources/img/cat.jpg" width="100%" height="250px">
+			
+			<span id="headerText"><a href="#" id="text">마이페이지</a> | <a href="#" id="text">로그아웃</a></span>
+		</div>
+		<div id="headerLogo">
+			<img src="/am/resources/img/logo.png" width="200px" height="100px">
+		</div>
 	</div>
-	<div id="navHeader">
-		<ul id="navHeader" class="nav justify-content-end">
-			<li class="nav-item"><a class="nav-link active text-dark"
-				aria-current="page" href="#">Main</a></li>
-			<li class="nav-item"><a class="nav-link text-dark" href="#">마이페이지</a></li>
-			<li class="nav-item"><a class="nav-link text-dark" href="#">로그인</a></li>
-			<li class="nav-item"><a class="nav-link disabled text-dark">Disabled</a></li>
-		</ul>
-	</div>
-</div>
-
 </body>
 </html>

@@ -26,4 +26,6 @@ public class commonController {
 	public String logout() {
 		return "am/common/login";
 	}
+	
+
 }
