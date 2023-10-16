@@ -17,7 +17,7 @@
 function reservationPopup(){
 	var popupURI1='http://localhost:8085/am/reservationPopup';
 	var reserv = encodeURI(popupURI1);
-    var popup = window.open(reserv, '예약확인', 'width=400px,height=500px,scrollbars=yes,resizable=no');
+    var popup = window.open(reserv, '예약확인', 'width=510px,height=600px,scrollbars=yes,resizable=no');
 }
 </script>
 <body>
