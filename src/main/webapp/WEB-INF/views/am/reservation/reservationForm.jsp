@@ -5,79 +5,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="https://cdn.jsdelivr.net/gh/sunn-us/SUITE/fonts/static/woff2/SUITE.css"
-	rel="stylesheet">
+
 <title>예약 페이지</title>
+<link href="/am/css/bootstrap/bootstrap.css" rel="stylesheet">
+<link href="/am/css/reservation/reservationForm.css" rel="stylesheet">
 <style>
-.box-container {
-	display: flex;
-	justify-content: center;
-	font-family: 'SUITE', sans-serif;
-}
-.reservation-form {
-	margin: 150px 0 0 0;
-	width: 500px;
-	height: 500px;
-	border: 2px solid #d7e6f4;
-	align-items: center;
-	padding: 60px 100px 100px 50px;
-	font-size:22px;
-	line-height: 50px;
-}
-.box-container-left{
-	display: flex;
-}
-.calendar {
-	margin: 150px 0 0 20px;
-	width: 500px;
-	height: 500px;
-	border: 2px solid #d7e6f4;
-	align-items: center;
-	padding: 100px 100px 100px 130px;
-	font-size:30px
-}
-.label{
-	width: 150px;
-}
-.input-form{
-	width: 200px;	
-}
-.content{
-	line-height: 45px;
-	word-spacing: 0.5cm;
-}
-#name{
-	height: 35px;
-}
-#phone{
-	height: 35px;
-}
-.reservation-submit{
-  width: 130px;
-  height: 40px;
-  color: #fff;
-  border-radius: 5px;
-  padding: 10px 25px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  display: inline-block;
-   box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
-   					7px 7px 20px 0px rgba(0,0,0,.1),
-  					 4px 4px 5px 0px rgba(0,0,0,.1);
-  outline: none;
-  background: linear-gradient(0deg, #1b4c68 0%, #1b4c68 100%);
-  border: none;
-}
-.reservation-submit:hover {
-	background: linear-gradient(0deg, #2E82B3 0%, #2E82B3 100%);
-}
 
 </style>
 </head>
 <script type="text/javascript">
-
+function reservationPopup(){
+	var popupURI1='http://localhost:8085/am/reservationPopup';
+	var reserv = encodeURI(popupURI1);
+    var popup = window.open(reserv, '예약확인', 'width=400px,height=500px,scrollbars=yes,resizable=no');
+}
 </script>
 <body>
 	<%@ include file="/WEB-INF/views/am/default/header.jsp"%>
@@ -114,34 +55,65 @@
   </div>
   <div class="box-container-right">
 		<div class="calendar">
-			<table>
+			<table id="calendar_tb">
 				<tr>
 					<td align="center"><label onclick="prevCalendar()"> ◀
 					</label></td>
-					<td colspan="5" align="center" id="calendarTitle">yyyy년 m월</td>
+					<td colspan="5" align="center" id="calendarTitle">2023년 11월</td>
 					<td align="center"><label onclick="nextCalendar()"> ▶
 					</label></td>
 				</tr>
 				<tr>
-					<td align="center"><font color="#F79DC2">일</td>
+					<td align="center"><font color="red">일</td>
 					<td align="center">월</td>
 					<td align="center">화</td>
 					<td align="center">수</td>
 					<td align="center">목</td>
 					<td align="center">금</td>
-					<td align="center"><font color="skyblue">토</td>
+					<td align="center"><font color="blue">토</td>
 				</tr>
 				<tr>
 					<td></td><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td>
 				</tr>
+				<tr>
+					<td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td>
+				</tr>
 			</table>
-		</div>
-		<div class="timeList">
-			<table>
-			</table>
-		</div>
-			<button class="reservation-submit" onclick="#">예약하기</button>
+			</div>
+			
+			<div class="timeList" >
+				<div class="btn-group-vertical btn-group-lg" role="group" aria-label="Vertical radio toggle button group">
+				  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio1" autocomplete="off" checked>
+				  <label class="btn btn-outline-dark" for="vbtn-radio1">9:00</label>
+				  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio2" autocomplete="off">
+				  <label class="btn btn-outline-dark" for="vbtn-radio2">10:00</label>
+				  <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio3" autocomplete="off">
+				  <label class="btn btn-outline-dark" for="vbtn-radio3">11:00</label>
+				</div>
+				<div class="btn-group-vertical btn-group-lg" role="group" aria-label="Vertical radio toggle button group">
+					 <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio4" autocomplete="off">
+				 	 <label class="btn btn-outline-dark" for="vbtn-radio4">13:00</label>
+				 	 <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio5" autocomplete="off">
+					 <label class="btn btn-outline-dark" for="vbtn-radio5">14:00</label>
+					 <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio6" autocomplete="off">
+					 <label class="btn btn-outline-dark" for="vbtn-radio6">15:00</label>
+				</div>
+				<div class="btn-group-vertical btn-group-lg" role="group" aria-label="Vertical radio toggle button group">
+				   <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio7" autocomplete="off">
+				   <label class="btn btn-outline-dark" for="vbtn-radio7">16:00</label>
+				   <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio8" autocomplete="off">
+				   <label class="btn btn-outline-dark" for="vbtn-radio8">17:00</label>
+				   <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio9" autocomplete="off">
+				   <label class="btn btn-outline-dark" for="vbtn-radio9">18:00</label>
+				</div>
+  	  	</div>
+  	  	
 	</div>
 </div>
+	<div class="box-container-bottom">
+			<button class="reservation-submit" onclick="reservationPopup()">예약하기</button>
+	</div>
+	
+	
 </body>
 </html>
