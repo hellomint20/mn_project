@@ -27,5 +27,10 @@ public class commonController {
 		return "am/common/login";
 	}
 	
+	@GetMapping("reservationPage")
+	public String reservationPage() {
+		return "am/reservation/reservationPage";
+	}
+	
 
 }

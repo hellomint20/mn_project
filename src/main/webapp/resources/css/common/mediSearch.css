@@ -1,22 +1,25 @@
 @charset "UTF-8";
 
 #searchWindow {
-	background-color: #A6C5E2;
+	border: 3px solid #3F4F78;
 	margin: auto;
-	margin-top: 50px;
-  	width: 500px;
+	margin-top: 70px;
+  	width: 650px;
   	height: 40px;
-  	padding-top: 6.5px;
+  	padding-top: 5px;
 }
 
 .search{
-	background-color: #A6C5E2;
 	border: none;
-	width: 460px;
+	width: 610px;
 	outline: none;
 	padding-left: 15px;
 	font-weight : bold;
 }
+
+
+
+
 
 
 
