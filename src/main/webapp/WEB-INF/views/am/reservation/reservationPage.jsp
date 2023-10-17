@@ -5,8 +5,160 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="/am/css/reservation/reservationPage.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript">
+window.onload = function() {
+
+    $("#table2").show();
+    $("#table3").hide();
+}
+$(document).ready(function() {
+   
+    $("#btn_2").click(function() {
+
+        $("#table1").hide();
+        $("#table2").show();
+        $("#table3").hide();
+        $("#table4").hide();
+    })
+    $("#btn_3").click(function() {
+
+        $("#table1").hide();
+        $("#table2").hide();
+        $("#table3").show();
+        $("#table4").hide();
+    })
+   
+})
+
+ </script>
+ 
 </head>
 <body>
+
+
+ <div class="buttonbox">
+        <button type="button" id="btn_2">새로운접수</button>
+        <button type="button" id="btn_3">승인/취소</button>
+
+    </div>
+    <div style="clear:both;"></div>
+    <div style="width : 800px; height: 300px;">
+        
+		<!-- 새로운 접수 테이블 -->
+        <div id="table2" width="800px">
+            <table class="col-100 col" >
+                <colgroup>
+                    <col width="30%">
+                    <col width="20%">
+                    <col width="20%">
+                    <col width="20%">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>날짜</th>
+                        <th>시간</th>
+                        <th>과</th>
+                        <th>접수내용</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2023-10-16</td>
+                        <td>16:00</td>
+                        <td>개</td>
+                        <td>접종</td>
+                        
+                    </tr>
+                    <tr>
+                       <td>2023-10-17</td>
+                        <td>13:00</td>
+                        <td>고양이</td>
+                        <td>검진</td>
+                       
+                    </tr>
+                    <tr>
+                        <td>2023-10-20</td>
+                        <td>9:00</td>
+                        <td>개</td>
+                        <td>접종</td>
+                        
+                    </tr>
+                    <tr>
+                        <td>2023-10-20</td>
+                        <td>11:00</td>
+                        <td>앵무</td>
+                        <td>진료</td>
+                       
+                    </tr>
+                    <tr>
+                        <td>2023-10-21</td>
+                        <td>17:00</td>
+                        <td>고양이</td>
+                        <td>진료</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+		<!-- 승인/취소 테이블 -->
+		<!-- 접수상태에 '취소'들어올 시 그 열 글씨 색 gray로 변경 -->
+        <div id="table3" width="800px">
+            <table class="col-100 col">
+                 <colgroup>
+                    <col width="30%">
+                    <col width="20%">
+                    <col width="20%">
+                    <col width="20%">
+                    <col width="20%">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>날짜</th>
+                        <th>시간</th>
+                        <th>과</th>
+                        <th>접수내용</th>
+                        <th>접수상태</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2023-10-01</td>
+                        <td>11:00</td>
+                        <td>개</td>
+                        <td>검진</td>
+                        <td>승인</td>
+                    </tr>
+                    <tr>
+                        <td>2023-10-01</td>
+                        <td>14:00</td>
+                        <td>개</td>
+                        <td>접종</td>
+                        <td>승인</td>
+                    </tr>
+                    <tr>
+                        <td>2023-10-02</td>
+                        <td>16:00</td>
+                        <td>고양이</td>
+                        <td>진료</td>
+                        <td>취소</td>
+                    </tr>
+                    <tr>
+                        <td>2023-10-02</td>
+                        <td>17:00</td>
+                        <td>앵무</td>
+                        <td>검진</td>
+                        <td>승인</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+
 
 </body>
 </html>
