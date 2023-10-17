@@ -1,57 +1,59 @@
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body{
-            margin-top: 200px;
-            margin-left: 300px;
-            background-color : white;
-        }
-        .col {
-            border-collapse: collapse;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* body{
+    margin-top: 200px;
+    margin-left: 300px;
+    background-color : white;
+} */
+.col {
+    border-collapse: collapse;
+}
 
-        button {
-            background-color: #0B1F54;
-            padding: 8px 30px !important;
-            width: 150px;
-            font-size: 14px;
-            font-weight : bold;
-            color: white;
-            border-top-left-radius: 20px;
-            border-top-right-radius: 20px;
-            border: 1px solid black;
-            float: left;
-        }
+button {
+    background-color: #0B1F54;
+    padding: 8px 30px !important;
+    width: 150px;
+    font-size: 14px;
+    font-weight : bold;
+    color: white;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border: 1px solid black;
+    float: left;
+}
 
-        button:hover {
-            background-color: #0b1f5430;
-            color : black;
-        }
+button:hover {
+    background-color: #0b1f5430;
+    color : black;
+}
 
-        .col-100 {
-            width: 100%;
-        }
+.col-100 {
+    width: 100%;
+}
 
-        table {
-            text-align: center;
-            font-size: 14px;
-            background-color : white;
-        }
-        
+table {
+    text-align: center;
+    font-size: 14px;
+    background-color : white;
+    border-style: solid black;
+    border-width: 1px;
+}
 
-        th {
-            background-color: #0b1f5430;
-            height: 34px;
-            color: black;
-            font-size: 12px;
-            border : 1px solid black;
-        }
 
-        tr,
-        td {
-            padding: 4px 0px;
-            border: 1px solid black;
-            font-size: 12px;
-        }
+th {
+    background-color: #0b1f5430;
+    height: 34px;
+    color: black;
+    font-size: 12px;
+    border : 1px solid black;
+}
+
+tr,
+td {
+    padding: 4px 0px;
+    border: 1px solid black;
+    font-size: 12px;
+}

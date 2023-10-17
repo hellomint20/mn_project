@@ -5,7 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/am/css/medi/info.css">
+<link rel="stylesheet" href="/am/css/reservation/reservationState.css">
+
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
 window.onload = function() {
@@ -36,6 +37,7 @@ $(document).ready(function() {
  
 </head>
 <body>
+<%@ include file = "../default/header_page.jsp" %>
 
 
  <div class="buttonbox">

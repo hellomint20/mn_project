@@ -9,7 +9,7 @@
 </head>
 <body>
 
-	<%@ include file = "../default/header.jsp" %>
+	<%@ include file = "../default/header_page.jsp" %>
 	
 	<div class="title"><h2>회원 정보</h2></div>
 	
