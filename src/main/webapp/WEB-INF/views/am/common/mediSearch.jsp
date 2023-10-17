@@ -12,10 +12,11 @@
 </head>
 <body>
 
-	<%@ include file="/WEB-INF/views/am/default/header.jsp" %>
+	<%@ include file="/WEB-INF/views/am/default/header_mediSearch.jsp" %>
 	
 	<div>
 		<div id="searchWindow">
+			
 			<input class="search" type="text" placeholder="지역 검색">
 			<a href="#"><img src="/am/resources/img/searchIcon.png" width="25px" height="25px"></a>
 		</div>
