@@ -22,20 +22,8 @@
 		</div>
 	</div>
 	
-		<table>
-	    	<thead>
-		      <tr>
-		        <th>병원이름</th> 
-		      </tr>
-	   		</thead>
-	    	<tbody>
-		      <tr>
-		        <td>예시) 튼튼병원</td>
-		      </tr>
-		      
-	    	</tbody>
-	  	</table> 
-
+	<br>
+	
 	
 	
 	
