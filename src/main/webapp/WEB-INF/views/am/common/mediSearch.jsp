@@ -12,7 +12,7 @@
 </head>
 <body>
 
-	<%@ include file="/WEB-INF/views/am/default/header_mediSearch.jsp" %>
+	<%@ include file="../default/header_mediSearch.jsp" %>
 	
 	<div>
 		<div id="searchWindow">

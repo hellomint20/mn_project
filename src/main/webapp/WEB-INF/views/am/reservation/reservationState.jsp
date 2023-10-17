@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<%@ include file="../default/header_reservationPage.jsp"%>
+	예약상태
 </body>
 </html>

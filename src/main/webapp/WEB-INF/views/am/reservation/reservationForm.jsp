@@ -9,9 +9,7 @@
 <title>예약 페이지</title>
 <link href="/am/css/bootstrap/bootstrap.css" rel="stylesheet">
 <link href="/am/css/reservation/reservationForm.css" rel="stylesheet">
-<style>
-
-</style>
+<link href="/am/css/bootstrap/bootstrap.css" rel="stylesheet">
 </head>
 <script type="text/javascript">
 function reservationPopup(){
@@ -21,11 +19,12 @@ function reservationPopup(){
 }
 </script>
 <body>
-	<%@ include file="/WEB-INF/views/am/default/header.jsp"%>
+	<%@ include file="../default/header_reservationPage.jsp"%>
 
 	<div class="box-container">
 		 <div class="reservation-form">
-			<h2> 튼튼병원 예약 </h2><br>
+		 <div class="box-hospital-name">
+			<h2> 튼튼병원 예약 </h2></div>
 			<div class="box-container-left">
 				<div class="label">
 					<label for="name">예약자 성함</label><br>
