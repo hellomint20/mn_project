@@ -1,0 +1,40 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="canonical"
+	href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
+
+<!-- Bootstrap core CSS -->
+<link href="/am/resources/css/common/bootstrap.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="/am/resources/css/common/login.css" rel="stylesheet">
+
+</head>
+<body class="text-center">
+	<form class="form-signin">
+		<img class="mb-2" src="/am/resources/img/common/logoLogin.png" alt=""
+			width="270px" height="110px">
+		<h2 class="h3 mb-3 font-weight-normal">로그인</h2>
+		<label for="inputId" class="sr-only">id</label> 
+		<input type="text"
+			id="inputId" class="form-control" placeholder="input id" required
+			autofocus>
+			<label for="inputPassword" class="sr-only">Password</label>
+		<input type="password" id="inputPassword" class="form-control"
+			placeholder="input Password" required>
+		<button class="btn btn-lg btn-block" style="background-color: #0B1F54; color: white;" type="submit">
+			Sign in</button><br>
+		<div class="checkbox mb-3">
+			<a class="loginAtag" href="mediRegister">회원가입</a> &nbsp; | &nbsp; 
+			<a class="loginAtag" href="#">아이디/비밀번호 찾기</a>
+		</div>
+		<hr>
+		간편 로그인
+	</form>
+</body>
+</html>

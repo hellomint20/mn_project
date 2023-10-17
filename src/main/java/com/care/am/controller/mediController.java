@@ -18,6 +18,11 @@ public class mediController {
 		
 	}
 	
+	@GetMapping("mediLogin") //로그인 페이지
+	public String mediLogin() {
+		return "am/medi/mediLogin";
+	}
+	
 	@PostMapping("mediLogin") //병원 로그인 확인
 	public void loginChk() {
 		
