@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	<link rel="stylesheet" href="/am/css/customer/modi.css">
+	<link rel="stylesheet" href="/am/css/pet/register.css">
 </head>
 <body>
 	<%@ include file = "../default/header_page.jsp" %>
@@ -26,8 +26,10 @@
 			<div class="info-content">
 		   		<input type="text" id="t_b" name="pName" placeholder="이름"><br>
 		   		<input type="text" id="t_b" name="pAge" placeholder="나이"><br>
-		   		<input type="radio" name="pSex">남
-		   		<input type="radio" name="pSex">여<br>
+		   		<div class="rb">
+			   		<input type="radio" id="m" name="pSex">남
+			   		<input type="radio" id="f" name="pSex">여<br>
+		   		</div>
 				<select id="pSection" name="pSection" required>
 					<option value="">선택하세요</option>
 					<option value="value">개</option>
@@ -42,10 +44,12 @@
 				</select><br>
 		   	</div>
 		   	
-		   	<div class="info-pic">
-				<input type="file">
+	
+			<div class="info-pic">
+				사진
+				<input type="file" class="pic-btn">
 			</div>
-			
+		
 		</div>
 	    
 	    <div class="btn_a">
