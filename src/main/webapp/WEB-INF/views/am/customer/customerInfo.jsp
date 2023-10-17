@@ -10,35 +10,29 @@
 <body>
 
 	<%@ include file = "../default/header_page.jsp" %>
-	
-	<div class="title"><h2>회원 정보</h2></div>
-	
-	<div class="all">
 	<%@ include file = "../common/sidebar.jsp" %>
 	
-		<div id="info">
-			<table>
-				<tr>
-					<th>ID</th>
-					<td>angduzzang</td>
-				</tr>
-				<tr>
-					<th>이름</th>
-					<td>앵두맘</td>
-				</tr>
-				<tr>
-					<th>email</th>
-					<td>angdu@naver.com</td>
-				</tr>
-				<tr>
-					<th>Tel</th>
-					<td>010-1234-1234</td>
-				</tr>
-			</table>
+	<div class="all">
+	<h1>회원 정보</h1>
+	
+	<div class="info">
+		<div class="info-title">
+	    		아이디 : <br>
+	    		이름 : <br>
+	    		전화번호 :<br>
+	    		e-mail : <br>
 		</div>
+		
+  		<div class="info-content">
+  			angduzzang<br>
+  			최재연<br>
+  			010-1234-5543<br>
+  			angdu@naver.com<br>
+  		</div>
+	</div>
+   
+    <button type="button" class="modi-b" onclick="#">수정</button>
 	</div>
 	
-	<button class="modi-b" onclick="#">수정</button>
-		
 </body>
 </html>

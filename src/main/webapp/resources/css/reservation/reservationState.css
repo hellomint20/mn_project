@@ -7,7 +7,7 @@
     margin-top: 200px;
     margin-left: 300px;
     background-color : white;
-} */
+}  */
 .col {
     border-collapse: collapse;
 }
@@ -34,6 +34,11 @@ button:hover {
     width: 100%;
 }
 
+.r_table{
+	 margin-top: 80px;
+	 margin-left : 340px;
+}
+
 table {
     text-align: center;
     font-size: 14px;
@@ -45,15 +50,15 @@ table {
 
 th {
     background-color: #0b1f5430;
-    height: 34px;
+    height: 50px;
     color: black;
-    font-size: 12px;
+    font-size: 17px;
     border : 1px solid black;
 }
 
 tr,
 td {
-    padding: 4px 0px;
+    padding: 23px 0px;
     border: 1px solid black;
-    font-size: 12px;
+    font-size: 15px;
 }

@@ -40,16 +40,17 @@ $(document).ready(function() {
 <%@ include file = "../default/header_page.jsp" %>
 
 
+<div class="r_table">
  <div class="buttonbox">
         <button type="button" id="btn_2">새로운접수</button>
         <button type="button" id="btn_3">승인/취소</button>
 
     </div>
     <div style="clear:both;"></div>
-    <div style="width : 800px; height: 300px;">
+    <div style="width : 800px; height: 400px;">
         
       <!-- 새로운 접수 테이블 -->
-        <div id="table2" width="800px">
+        <div id="table2" width="900px">
             <table class="col-100 col" >
                 <colgroup>
                     <col width="30%">
@@ -159,6 +160,7 @@ $(document).ready(function() {
         </div>
 
     </div>
+  </div>
 
 
 
