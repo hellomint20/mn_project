@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<%@ include file="/WEB-INF/views/am/default/header.jsp" %>
+<%@ include file="/WEB-INF/views/am/default/header_reservationPage.jsp" %>
 	
 	<div>
 		<div id="reservationSearchWindow">
