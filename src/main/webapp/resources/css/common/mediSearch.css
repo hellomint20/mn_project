@@ -1,0 +1,31 @@
+@charset "UTF-8";
+
+#searchWindow {
+	border: 3px solid #3F4F78;
+	margin: auto;
+	margin-top: 70px;
+  	width: 650px;
+  	height: 40px;
+  	padding-top: 5px;
+}
+
+.search{
+	border: none;
+	width: 610px;
+	outline: none;
+	padding-left: 15px;
+	font-weight : bold;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
