@@ -5,11 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>AniMedi</title>
+
 	<link rel="stylesheet" href="/am/css/customer/info.css">
 </head>
 <body>
 
-	<%@ include file = "../default/header.jsp" %>
+	<%@ include file = "../default/header_page.jsp" %>
 	<%@ include file = "../common/sidebar.jsp" %>
 	
 	<div class="all">
@@ -31,7 +32,7 @@
   		</div>
 	</div>
    
-    <button type="button" class="modi-b" onclick="#">수정</button>
+    <button type="button" class="b" onclick="#">수정</button>
 	</div>
 	
 </body>

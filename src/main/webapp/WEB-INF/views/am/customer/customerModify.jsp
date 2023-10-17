@@ -5,11 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 	<link rel="stylesheet" href="/am/css/customer/modi.css">
 </head>
 <body>
 
-	<%@ include file = "../default/header.jsp" %>
+	<%@ include file = "../default/header_page.jsp" %>
 	<%@ include file = "../common/sidebar.jsp" %>
 	
 	<div class="all">

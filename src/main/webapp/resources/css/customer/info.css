@@ -33,7 +33,7 @@ h1 {
 }
 
 
-.modi-b {
+.b {
 	border: none;
 	width: 70px;
 	height: 40px;
@@ -44,8 +44,9 @@ h1 {
     text-decoration: none;
 }
 
-.modi-b:hover {
+.b:hover {
    background: #1b4c68;
    opacity: 0.6;
 }
+
 

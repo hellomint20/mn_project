@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>side bar</title>
 
+	<link href="/am/css/bootstrap/bootstrap.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="/am/css/sidebar.css">
     
