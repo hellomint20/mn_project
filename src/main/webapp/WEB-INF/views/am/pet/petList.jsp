@@ -27,9 +27,9 @@ function delPet(){
 	<%-- 등록된 펫 없을경우 --%>
 <%-- 
 	 <div class ="add-pet-box">
-	<a href="petRegister" class="addButton"> + </a>
-	<div class ="addText">등록하기</div>
-</div>
+		<a href="petRegister" class="addButton"> + </a>
+		<div class ="addText">등록하기</div>
+	</div>
 --%>
 
 	<%-- 등록된 펫 있는경우 --%>
