@@ -11,7 +11,6 @@
 
 </head>
 <body>
-
 	<%@ include file="/WEB-INF/views/am/default/header_reservationPage.jsp"%>
 
 	<script>

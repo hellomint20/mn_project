@@ -54,18 +54,18 @@ public class reservationDTO {
 	public void setrApply(String rApply) {
 		this.rApply = rApply;
 	}
+
 	public String getrName() {
 		return rName;
 	}
 	public void setrName(String rName) {
 		this.rName = rName;
 	}
+
 	public String getrTel() {
 		return rTel;
 	}
 	public void setrTel(String rTel) {
 		this.rTel = rTel;
 	}
-	
-	
 }

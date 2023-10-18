@@ -1,61 +1,100 @@
-.title{
-	text-align: center;
-	width: 220px;
-	height: 50px;
-	margin-top: 70px;
-	margin-left: 43%;
-	padding-top: 5px;
-	background-color: #1b4c68;
-    color: #fff;
-    border-radius: 50px;
+* {
+	margin : 0;
+	padding : 0;
+	box-sizing: border-box;
 }
+
 
 .menu {
-    display: block;
-    width: 15%;
-    background-color: #FEFCEF;
-    color: #000;
-    border-radius: 20px;
-    padding: 20px;
-    margin-top: 50px;
-    margin-left: 50px;
-    box-sizing: border-box;
-}
-.menu ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-.menu ul> li {
-    padding: 15px;
-}
-.menu a {
-    display: block;
-    height: 25px;
-    color: #000;
-    text-decoration: none;
+	position: fixed;
+	width: 60px;
+	height: 100%;
+	background: #1b4c68;
+	opacity: 0.8;
+	transition: 0.5s;
+	overflow: hidden;
 }
 
-.menu a:hover {
-    color: #000;
+.menu:hover,
+.menu.active {
+	width : 300px;
+}
+
+.menu ul {
+	position : absolute;
+	padding-left: 0rem;
+	top : 0;
+	left : 0;
+	width: 100%;
+}
+
+.menu ul li {
+	position : relative;
+	width : 100%;
+	list-style : none;
 }
 
 .menu ul li:hover {
-    background-color: #D7E6F4;
-    color: #000;
-    border-radius: 10px;
-}
-.menu div {
-    position: absolute;
-    left: 50px;
-    line-height: 1.5;
-    font-size: 1.2em;
-    margin: auto;
-    padding: 0 0 0 65px;
+	background : #7a96f3;
+	width: 100%;
 }
 
+.menu ul li a {
+	position : relative;
+	display : block;
+	width : 100%;
+	display : flex;
+	text-decoration : none;
+	color : #fff;
+}
+
+.menu ul li a .icon {
+	position : relative;
+	display : block;
+	min-width : 60px;
+	height : 60px;
+	line-height : 60px;
+	text-align : center;
+}
+
+
+.menu ul li a .title {
+	position : relative;
+	display : block;
+	height : 60px;
+	line-height : 60px;
+	text-align : start;
+	white-space : nowrap;
+}
+
+
+@media (max-width : 767px) {
+	.menu {
+		left : -60px;
+	}
+	.menu.active {
+		left : 0px;
+		width : 100%;
+	}
+}
+
+
 .menu ::before {
+    font-family: 'Material Icons';
     font-size: 1.5em;
+    margin-top: 12px;
+    padding-left: 20px;
     float: left;
     clear: left;
 }
+
+.menu li:nth-child(1) a::before{ content: '\e5d2'; }
+.menu li:nth-child(2) a::before{ content: '\f02e'; }
+.menu li:nth-child(3) a::before{ content: '\e91d'; }
+.menu li:nth-child(4) a::before{ content: '\e614'; }
+.menu li:nth-child(5) a::before{ content: '\e9ba'; }
+
+
+
+
+

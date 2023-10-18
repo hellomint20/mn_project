@@ -6,13 +6,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+<link href="/am/css/bootstrap/bootstrap.css" rel="stylesheet">
 <link href="/am/css/common/mediSearch.css" rel="stylesheet">
 <link href="/am/css/common/mediSearch_table.css" rel="stylesheet">
 
 </head>
 <body>
 
-	<%@ include file="/WEB-INF/views/am/default/header_mediSearch.jsp" %>
+	<%@ include file="../default/header_mediSearch.jsp" %>
 	
 	<div>
 		<div id="searchWindow">

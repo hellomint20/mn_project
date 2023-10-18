@@ -16,16 +16,17 @@
 
 </head>
 <body>
-	<div>
+	<div class="all-h">
 		<div id="imgHeader">			
 			<span id="headerText"><a href="#" id="text">마이페이지</a> | <a href="#" id="text">로그아웃</a></span>
 		</div>
 		<div id="headerLogo">
 			<a href="#"><img src="/am/resources/img/logo2.png" width="250px" height="100px"></a>
 		</div>
+	
+		<br><br><br><br><br>
+		<hr>
 	</div>
-	<br><br><br><br><br>
-	<hr>
 
 </body>
 </html>

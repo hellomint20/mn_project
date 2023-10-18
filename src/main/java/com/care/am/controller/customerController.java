@@ -18,9 +18,18 @@ public class customerController {
 		
 	}
 	
+	@GetMapping("customerLogin") //로그인 페이지
+	public String login() {
+		return "am/customer/customerLogin";
+	}
+	
 	@PostMapping("customerLogin") //손님 로그인 확인
 	public void loginChk() {
 		
+	}
+	@GetMapping("customerSearchIdPw") //아이디/비밀번호 찾기 페이지
+	public String SearchIdPw() {
+		return "am/customer/customerSearchIdPw";
 	}
 	
 	//손님정보 관련
@@ -39,8 +48,13 @@ public class customerController {
 		
 	}
 	
+	@GetMapping("customerDelete") //손님 탈퇴 페이지
+	public String delete() {
+		return "am/customer/customerDelete";
+	}
+	
 	@PostMapping("customerDelete") //손님 탈퇴
-	public void delete() {
-		
+	public void delete(String id, String pw) {
+		// 매개변수 임의로 넣어 둠
 	}
 }

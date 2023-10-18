@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title></title>
+<title>side bar</title>
 
-	<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="/am/css/bootstrap/bootstrap.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="/am/css/sidebar.css">
     
 </head>
@@ -15,13 +15,39 @@
 
 <div class="menu">
     <ul>
-        <li><a href="#" class="item"><div>회원 정보</div></a></li>
-        <li><a href="#" class="item"><div>펫 관리</div></a></li>
-        <li><a href="#" class="item"><div>예약 관리</div></a></li>
-        <li><a href="#" class="item"><div>회원 탈퇴</div></a></li>
+		<li>
+        	<a href="/am/customerInfo">
+        		<span class="icon"></span>
+        		<span class="title">마이페이지</span>
+        	</a>
+        </li>
+        <li>
+        	<a href="/am/customerInfo">
+        		<span class="icon"></span>
+        		<span class="title">회원 정보</span>
+        	</a>
+        </li>
+        <li>
+        	<a href="/am/pet/petList">
+        		<span class="icon"></span>
+        		<span class="title">펫 관리</span>
+        	</a>
+        </li>
+        <li>
+        	<a href="/am/reservationList">
+        		<span class="icon"></span>
+        		<span class="title">예약 관리</span>
+        	</a>
+        </li>
+        <li>
+        	<a href="/am/customerDelete">
+        		<span class="icon"></span>
+        		<span class="title">회원 탈퇴</span>
+        	</a>
+        </li>
     </ul>
-
 </div>
+
 	
 </body>
 </html>

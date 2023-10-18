@@ -1,5 +1,10 @@
-@charset "UTF-8";
+.all-h hr {
+	margin: 0;
+}
 
+hr{
+	margin: 0;
+}
 #imgHeader{
    position: relative; 
    text-align: center;
