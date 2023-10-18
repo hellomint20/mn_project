@@ -16,7 +16,7 @@ function reservationChk(){
 	alert('예약이 접수되었습니다');
 }
 function reservationPopup(){
-	var popupURI1='http://localhost:8085/am/reservationPopup';
+	var popupURI1='/am/reservationPopup';
 	var reserv = encodeURI(popupURI1);
     var popup = window.open(reserv, '예약확인', 'width=510px,height=600px,scrollbars=yes,resizable=no');
 }
@@ -27,9 +27,14 @@ function reservationPopup(){
 	<%@ include file="../default/header_reservationPage.jsp"%>
 
 	<div class="box-container">
+	
 		 <div class="reservation-form">
+		 
 		 <div class="box-hospital-name">
-			<strong> 튼튼병원 예약 </strong></div>
+			<strong>병원 예약</strong>
+			<p>튼튼병원 예약 페이지입니다</p>
+		</div>
+		
 			<div class="box-container-left">
 				<div class="label">
 					<label for="name">예약자 성함</label><br>
@@ -48,13 +53,10 @@ function reservationPopup(){
 			    </div>
 			    </div>
 	<div class="content">
-    <label for="rContent">접수내용</label><br>
-    <input type="checkbox" value="" id="clinic" checked>
-  	<label for="rContent">진료</label>
-  	<input type="checkbox" value="" id="check">
-  	<label for="rContent">검진</label>
-  	<input type="checkbox" value="" id="vaccin">
-  	<label for="rContent">접종</label>
+	    <label for="rContent">접수내용</label><br>
+	    <input type="radio" name="rContent" id="clinic">진료
+	  	<input type="radio" name="rContent" id="check">검진
+	  	<input type="radio" name="rContent" id="vaccin">접종
   	</div>
   </div>
   <div class="box-container-right">

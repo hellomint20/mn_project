@@ -53,7 +53,7 @@
 		</div>
 	    
 	    <div class="btn_a">
-		    <button type="button" class="cancel" onclick="#">취소</button>
+		    <button type="button" class="cancel" onclick="location.href='/am/pet/petList'">취소</button>
 		    <button type="button" class="completed" onclick="#">수정</button>
 	    </div>
 	    

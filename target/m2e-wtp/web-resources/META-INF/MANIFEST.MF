@@ -1,5 +1,9 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: tjgml
+=======
+Built-By: User
+>>>>>>> 53ae221d2493d14e4cb9f83539d9787a0c9dd769
 Build-Jdk: 11.0.19
 Created-By: Maven Integration for Eclipse
 

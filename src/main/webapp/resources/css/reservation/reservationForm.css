@@ -1,46 +1,47 @@
-@charset "UTF-8";
-
 .box-container {
 	display: flex;
-	justify-content: center;
+	width: 70%;
+	margin : 50px 250px;
 }
 
 .reservation-form {
-	margin: 80px 0 0 100px;
 	width: 500px;
 	height: 500px;
-	/* border: 2px solid #35457E; */
-	align-items: center;
-	padding: 60px 100px 100px 50px;
-	font-size: 25px;
+	padding: 60px 0;
+	font-size: 1.2rem;
 	line-height: 50px;
 	
 }
+
+
 .box-hospital-name{
-	width: 500px;
-	padding: 0 0 20px 0;
-	border-bottom: 2px solid black;
-	`
+	font-size: 3rem;
+	border-bottom: 2px solid #000;
+	width: 450px;
 }
+
+p {
+	font-size: 1rem;
+}
+
 .box-container-left {
 	display: flex;
 	
 }
 
 .box-container-right {
-	margin-top: 160px;
+	margin-top: 100px;
     width: 600px;
-    height: 600px;
-   	/* border: 2px solid #35457E; */
-    padding: 50px 100px 100px 100px;
+    padding: 50px 0 0 50px;
 }
 
 .calendar {
+	margin-top:25px;
 	border: 1px dotted;
     width: 300px;
     height: 300px;
     text-align: center;
-    font-size: 25px;
+    font-size: 1.5rem;
 }
 
 #calendar_tb{
@@ -51,12 +52,12 @@
 	display: flex;
 	padding-top:20px;
 	width: 300px;
-	height: 250px;
 	display: inline-block;
     text-align: center;
 
 }
 .label {
+	margin-left: 20px;
 	margin-top:40px;
 	width: 150px;
 }
@@ -68,6 +69,7 @@
 .content {
 	line-height: 45px;
 	word-spacing: 0.5cm;
+	margin-left: 20px;
 }
 
 #name {
@@ -80,24 +82,18 @@
 }
 
 .box-container-bottom{
-	text-align: center;
-	margin-bottom: 50px;
+	margin: 0 0 50px 600px;
 }
 .reservation-submit {
-	
-	width: 130px;
+	width: 110px;
 	height: 40px;
 	color: #fff;
 	border-radius: 5px;
-	padding: 10px 25px;
-	font-weight: 500;
-	cursor: pointer;
 	transition: all 0.3s ease;
 	position: relative;
 	display: inline-block;
 	box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5), 7px 7px 20px
 		0px rgba(0, 0, 0, .1), 4px 4px 5px 0px rgba(0, 0, 0, .1);
-	outline: none;
 	background: linear-gradient(0deg, #1b4c68 0%, #1b4c68 100%);
 	border: none;
 }
@@ -114,21 +110,25 @@
 #title{
 	margin-top:70px;
 	text-align: center;
+	
 }
 
 .popup-main-box{
-	
-	padding-top: 60px;
+	border-top :2px solid #000;
+	margin-top:30px;
+	padding-top:20px;
     display: flex;
     height: 300px;
-    width: 500px;
+    width: 350px;
     font-size: 20px;
     line-height: 40px;
+    margin-left: 80px;
 }
 .info-title{
+	margin-left: 20px;
 	text-align: left;
     width: 130px;
-    margin-left: 100px;
+   
 }
 .info-content{
 	width:auto;
