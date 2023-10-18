@@ -11,6 +11,7 @@ p {
 	font-size: 1rem;
 }
 
+
 .info {
 	font-size: 1.2rem;
 	display: flex;
@@ -28,6 +29,10 @@ p {
 	line-height: 50px;
 }
 
+#t_b {
+	height: 35px;
+}
+
 .info .info-content{
 	display: flex;
 	display: inline-block;
@@ -37,19 +42,39 @@ p {
 }
 
 
-.b {
+.btn_a {
+	margin-top: 20px;
+	margin-left: 120px;
+}
+
+.btn_a .cancel{
+	margin-right: 50px;
+	display: inline-block;
 	border: none;
 	width: 70px;
 	height: 40px;
-	margin-left: 200px;
+	background-color: #0B1F54;
+    color: #fff;
+    text-decoration: none;
+}
+.btn_a .completed{
+	margin-left: 50px;
+	display: inline-block;
+	border: none;
+	width: 70px;
+	height: 40px;
 	background-color: #0B1F54;
     color: #fff;
     text-decoration: none;
 }
 
-.b:hover {
+.btn_a .cancel:hover {
    background: #1b4c68;
    opacity: 0.6;
 }
 
+.btn_a .completed:hover {
+   background: #1b4c68;
+   opacity: 0.6;
+}
 

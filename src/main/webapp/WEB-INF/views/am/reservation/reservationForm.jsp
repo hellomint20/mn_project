@@ -12,19 +12,24 @@
 <link href="/am/css/bootstrap/bootstrap.css" rel="stylesheet">
 </head>
 <script type="text/javascript">
+function reservationChk(){
+	alert('예약이 접수되었습니다');
+}
 function reservationPopup(){
 	var popupURI1='http://localhost:8085/am/reservationPopup';
 	var reserv = encodeURI(popupURI1);
     var popup = window.open(reserv, '예약확인', 'width=510px,height=600px,scrollbars=yes,resizable=no');
 }
+
 </script>
+
 <body>
 	<%@ include file="../default/header_reservationPage.jsp"%>
 
 	<div class="box-container">
 		 <div class="reservation-form">
 		 <div class="box-hospital-name">
-			<h2> 튼튼병원 예약 </h2></div>
+			<strong> 튼튼병원 예약 </strong></div>
 			<div class="box-container-left">
 				<div class="label">
 					<label for="name">예약자 성함</label><br>
@@ -110,7 +115,7 @@ function reservationPopup(){
 	</div>
 </div>
 	<div class="box-container-bottom">
-			<button class="reservation-submit" onclick="reservationPopup()">예약하기</button>
+			<button class="reservation-submit" onclick="reservationChk();reservationPopup()">예약하기</button>
 	</div>
 	
 	

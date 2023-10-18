@@ -48,8 +48,13 @@ public class customerController {
 		
 	}
 	
+	@GetMapping("customerDelete") //¼Õ´Ô Å»Åğ ÆäÀÌÁö
+	public String delete() {
+		return "am/customer/customerDelete";
+	}
+	
 	@PostMapping("customerDelete") //¼Õ´Ô Å»Åğ
-	public void delete() {
-		
+	public void delete(String id, String pw) {
+		// ¸Å°³º¯¼ö ÀÓÀÇ·Î ³Ö¾î µÒ
 	}
 }
