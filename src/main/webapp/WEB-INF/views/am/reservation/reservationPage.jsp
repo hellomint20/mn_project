@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+<link href="/am/css/bootstrap/bootstrap.css" rel="stylesheet">
 <link href="/am/css/reservation/reservationPage.css" rel="stylesheet">
 
 </head>
