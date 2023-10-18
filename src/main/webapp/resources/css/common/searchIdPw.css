@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+#searchIdPwFormBody{
+	background: #0B1F54;
+	margin-top: 3.5%;
+}
+
+#searchIdPwForm{
+	background:white;
+	margin: 20px 35%;
+	padding: 10px 50px;
+	text-align: center;
+}
+img{
+	margin: 0 auto;
+	width: 200px;
+	height: 80px;
+}
+#searchIdPwFormContent{
+	margin-top: 15px;
+}

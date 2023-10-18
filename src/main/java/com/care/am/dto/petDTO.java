@@ -10,13 +10,6 @@ public class petDTO {
     String cId;
     String pPhoto;
     
-    
-	public String getpPhoto() {
-		return pPhoto;
-	}
-	public void setpPhoto(String pPhoto) {
-		this.pPhoto = pPhoto;
-	}
 	public int getpNum() {
 		return pNum;
 	}
@@ -58,5 +51,11 @@ public class petDTO {
 	}
 	public void setcId(String cId) {
 		this.cId = cId;
+	}
+	public String getpPhoto() {
+		return pPhoto;
+	}
+	public void setpPhoto(String pPhoto) {
+		this.pPhoto = pPhoto;
 	}
 }
