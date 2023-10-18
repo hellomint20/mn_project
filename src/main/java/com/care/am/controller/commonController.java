@@ -24,6 +24,13 @@ public class commonController {
 	
 	@PostMapping("logout") //·Î±×¾Æ¿ô
 	public String logout() {
-		return "am/common/login";
+		return "am/common/main";
 	}
+	
+	@GetMapping("reservationPage")
+	public String reservationPage() {
+		return "am/reservation/reservationPage";
+	}
+	
+
 }
