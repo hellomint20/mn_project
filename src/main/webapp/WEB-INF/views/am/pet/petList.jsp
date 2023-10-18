@@ -7,7 +7,12 @@
 <title>Insert title here</title>
 <link href="/am/css/pet/petList.css" rel="stylesheet">
 <link href="/am/css/bootstrap/bootstrap.css" rel="stylesheet">
+<script type="text/javascript">
+function delPet(){
+	alert('정말로 삭제하시겠습니까?');	
+}
 
+</script>
 </head>
 
 <body>
@@ -41,7 +46,7 @@
 
 			</div>
 			<div class="pet-list-del">
-			<button onclick="del()" class="delBtn">삭제</button>
+			<button onclick="delPet()" class="delBtn">삭제</button>
 			</div>
 		</div>
 		<div class="pet-info-image">
@@ -61,7 +66,7 @@
 
 			</div>
 			<div class="pet-list-del">
-			<button onclick="del()" class="delBtn">삭제</button>
+			<button onclick="delPet()" class="delBtn">삭제</button>
 			</div>
 		</div>
 		<div class="pet-info-image">

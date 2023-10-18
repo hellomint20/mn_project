@@ -20,6 +20,7 @@
 	width: 500px;
 	padding: 0 0 20px 0;
 	border-bottom: 2px solid black;
+	`
 }
 .box-container-left {
 	display: flex;
