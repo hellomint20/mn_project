@@ -1,0 +1,88 @@
+@charset "UTF-8";
+
+html,body {
+	margin: 0;
+	height: 100%;
+}
+
+#containertMain{
+	margin: auto;
+	height: 100%;
+}
+
+#contentMain{
+	display : flex;
+	width: 100%;
+	height: 100%;
+}
+#leftMain{
+	display: inline-block;
+	width: 35%;
+	text-align: center;
+	height: 100%;
+}
+#leftMainContent{
+	margin-top: 45%;
+}
+#rightMain{
+	display: inline-block;
+	background: #0B1F54;
+	width: 65%;
+	text-align: center;
+	height: 100%;
+}
+#rightMaincontainer{
+	margin-top: 15%;
+	width: 100%;
+}
+#rightMainContent{
+	display: flex;
+	display: inline-block;
+	width: 700px;
+	height: 320px;
+}
+#rightMainContentFirst{
+	display: inline-block;
+	background: white;
+	height: 300px;
+	width: 300px;
+	margin-right: 20px;
+}
+
+#rightMaincontainer2{
+	margin-top: 10px;
+	width: 100%;
+}
+#rightMainContent2{
+	display: flex;
+	display: inline-block;
+	width: 700px;
+	height: 200px;
+}
+#rightMainContentSecond{
+	display: inline-block;
+	height: 150px;
+	width: 300px;
+	margin-right: 20px;
+}
+b.mainBtag{
+	font-size: 35px;
+}
+
+/*mypage 관련 css*/
+#rightMainMypage{
+	margin-top: 20px;
+	width: 100%;
+}
+#rightMainMypageCotainer{
+	display: flex;
+	display: inline-block;
+	width: 700px;
+	height: 200px;
+}
+#rightMainMypageContent{
+	display: inline-block;
+	height: 150px;
+	width: 300px;
+	margin-right: 20px;
+}
