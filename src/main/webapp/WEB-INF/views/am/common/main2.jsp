@@ -24,7 +24,7 @@
 		<div id="contentMain">
 			<div id="leftMain">
 				<div id="leftMainContent">
-					<img src="/am/resources/img/main/logoMain.png" class="rounded mx-auto d-block" width="350px"
+					<img src="/am/resources/img/main/logoMain.png" class="rounded mx-auto d-block" width="430px"
 						height="200px"><br> <b>동물병원예약통합시스템</b>
 				</div>
 			</div>
