@@ -11,29 +11,30 @@ p {
 	font-size: 1rem;
 }
 
+
 .info {
 	font-size: 1.2rem;
 	display: flex;
 	width: 100%;
-	padding: 20px 0;
+	padding: 30px 0;
 	border-top: 2px solid #000;
    	width: 530px;
 }
 
 .info .info-title{
-	display: flex;
 	display: inline-block;
-	margin: auto;
-	width: 200px;
 	line-height: 50px;
 }
 
+#t_b {
+	height: 35px;
+}
+
 .info .info-content{
-	display: flex;
 	display: inline-block;
 	margin: auto;
-	width: 200px;
 	line-height: 50px;
+	margin-left: 100px;
 }
 
 
@@ -41,7 +42,7 @@ p {
 	border: none;
 	width: 70px;
 	height: 40px;
-	margin-left: 200px;
+	margin-left: 450px;
 	background-color: #0B1F54;
     color: #fff;
     text-decoration: none;
