@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>보호자 예약확인</title>
 		<link rel="stylesheet" href="/am/css/reservation/c_reservation.css">
 </head>
 <body>

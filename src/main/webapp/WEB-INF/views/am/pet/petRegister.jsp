@@ -4,15 +4,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>펫 등록</title>
 	<link rel="stylesheet" href="/am/css/pet/register.css">
 </head>
 <body>
 	<%@ include file = "../default/header_page.jsp" %>
 	<%@ include file = "../common/sidebar.jsp" %>
 
+
 	<div class="all">
-		<h1>펫 등록</h1>
+		<div class="all_title">
+			<strong>펫 등록</strong>
+			<p>반려동물을 등록해주세요</p>
+		</div>
 		
 		<div class="info">
 			<div class="info-title">
@@ -53,7 +57,7 @@
 		</div>
 	    
 	    <div class="btn_a">
-		    <button type="button" class="cancel" onclick="#">취소</button>
+		    <button type="button" class="cancel" onclick="location.href='/am/pet/petList'">취소</button>
 		    <button type="button" class="completed" onclick="#">등록</button>
 	    </div>
 	    

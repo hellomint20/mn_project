@@ -14,8 +14,11 @@
 	<%@ include file = "../common/sidebar.jsp" %>
 	
 	<div class="all">
-	<h1>회원 정보</h1>
-	
+	<div class="all_title">
+		<strong>회원 정보</strong>
+		<p>회원님의 정보입니다</p>
+	</div>
+
 	<div class="info">
 		<div class="info-title">
 	    		아이디 : <br>
@@ -32,7 +35,7 @@
   		</div>
 	</div>
    
-    <button type="button" class="b" onclick="#">수정</button>
+    <button type="button" class="b" onclick="location.href='/am/customerModify'">수정</button>
 	</div>
 	
 </body>

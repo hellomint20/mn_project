@@ -1,22 +1,28 @@
 .all {
-	text-align : center;
-	margin-top : 5%;
-	margin-left: 4%;
+	width: 70%;
+	margin : 100px 350px;
 }
 
-h1 {
-	margin-right: 25%;
+.all_title {
+    font-size: 3rem;
+}
+
+p {
+	font-size: 1rem;
 }
 
 .info {
-	margin-top: 5%;
-	margin-right: 13%;
+	font-size: 1.2rem;
+	display: flex;
+	width: 100%;
+	padding: 20px 0;
+	border-top: 2px solid #000;
+   	width: 530px;
 }
 
 .info .info-title{
 	display: flex;
 	display: inline-block;
-	font-size: 1.5em;
 	margin: auto;
 	width: 200px;
 	line-height: 50px;
@@ -25,8 +31,6 @@ h1 {
 .info .info-content{
 	display: flex;
 	display: inline-block;
-	font-size: 1.3em;
-	text-align: center;
 	margin: auto;
 	width: 200px;
 	line-height: 50px;
@@ -37,8 +41,7 @@ h1 {
 	border: none;
 	width: 70px;
 	height: 40px;
-	margin-top: 55px;
-	margin-left: 25%;
+	margin-left: 200px;
 	background-color: #0B1F54;
     color: #fff;
     text-decoration: none;
