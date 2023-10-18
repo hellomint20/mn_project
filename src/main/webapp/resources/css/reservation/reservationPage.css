@@ -1,12 +1,16 @@
 @charset "UTF-8";
 
+#searchDiv{
+	margin-bottom: 100px;
+}
+
 #reservationSearchWindow {
 	border: 3px solid #3F4F78;
 	margin: auto;
 	margin-top: 70px;
   	width: 650px;
-  	height: 40px;
-  	padding-top: 5px;
+  	height: 50px;
+  	padding-top: 7px;
 }
 
 .reservationSearch{
@@ -15,4 +19,85 @@
 	outline: none;
 	padding-left: 15px;
 	font-weight : bold;
+	font-size: 20px;
 }
+ #tableDiv{
+ 	margin: 0;
+ }
+#centerDiv{
+	text-align:center;
+	margin:0 20%;
+	
+}
+#contentDiv{
+	display: flex;
+	text-align: center;
+}
+ #tableDivContent{
+ display: inline-block;
+ width: 100%;
+ }
+#listDiv{
+	display: inline-block;	
+	text-align: center;
+	font-size: 20px;
+	width: 60%;
+}
+table.listTable{
+	margin: auto;
+	width: 80%;
+}
+
+#detailDiv{
+	display: inline-block;
+	width : 40%;
+	border: 2px solid black;
+	text-align: center;
+	display: none;
+	font-size: 20px;
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+td.reservationList{
+	border-bottom: 2px solid lightgray;
+	height: 50px;
+}
+tr.listTr{
+	margin: auto;
+}
+table.reservationDetail{
+	margin: auto;
+}
+td.reservationList:hover{
+	background-color: #EAEAEA;
+}
+
+a{
+	text-decoration: none;
+	color: black;
+}
+td.detailTd{
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+button {
+	color: #fff;
+	border-radius: 5px;
+	padding: 7px 12.5px;
+	font-weight: 500;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	position: relative;
+	display: inline-block;
+	box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5), 7px 7px 20px
+		0px rgba(0, 0, 0, .1), 4px 4px 5px 0px rgba(0, 0, 0, .1);
+	outline: none;
+	background: linear-gradient(0deg, #1b4c68 0%, #1b4c68 100%);
+	border: none;
+}
+button:hover {
+	background: linear-gradient(0deg, #73b4db 0%, #73b4db 100%);
+	opacity: 0.8;
+	
+}
+

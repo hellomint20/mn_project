@@ -14,7 +14,7 @@
 	   <property name="username" value="root" />
 	   <property name="password" value="0000" />
 
-	</bean>
+</bean>
 	
 	<!-- hikariConfig를 설정된 값을 토대로 DB에 연결된 bean얻어옴 -->
 	<bean id="ds" class="com.zaxxer.hikari.HikariDataSource">
