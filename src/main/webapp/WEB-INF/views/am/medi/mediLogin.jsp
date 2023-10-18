@@ -19,7 +19,7 @@
 	<form class="form-signin">
 		<img class="mb-2" src="/am/resources/img/common/logoLogin.png" alt=""
 			width="270px" height="110px">
-		<h2 class="h3 mb-3 font-weight-normal">로그인</h2>
+		<h2 class="h3 mb-3 font-weight-normal">병원 로그인</h2>
 		<label for="inputId" class="sr-only">id</label> 
 		<input type="text"
 			id="inputId" class="form-control" placeholder="input id" required
@@ -31,7 +31,7 @@
 			Sign in</button><br>
 		<div class="checkbox mb-3">
 			<a class="loginAtag" href="mediRegister">회원가입</a> &nbsp; | &nbsp; 
-			<a class="loginAtag" href="#">아이디/비밀번호 찾기</a>
+			<a class="loginAtag" href="mediSearchIdPw">아이디/비밀번호 찾기</a>
 		</div>
 		<hr>
 		간편 로그인

@@ -27,6 +27,10 @@ public class mediController {
 	public void loginChk() {
 		
 	}
+	@GetMapping("mediSearchIdPw") //아이디/비밀번호 찾기 페이지
+	public String SearchIdPw() {
+		return "am/medi/mediSearchIdPw";
+	}
 	
 	//개인정보 관련
 	@GetMapping("mediInfo") // 병원 개인정보 페이지

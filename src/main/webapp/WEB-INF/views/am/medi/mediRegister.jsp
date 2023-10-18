@@ -14,7 +14,7 @@
 <body id="registerFormBody">
 	<div id="registerForm">
 		<img src="/am/resources/img/common/logoLogin.png">
-		<h3 style="text-align: left;">회원가입</h3>
+		<h3 style="text-align: left;">병원 회원가입</h3>
 		<hr>
 		<form>
 			<div id="registerFormContent" class="form-group row">

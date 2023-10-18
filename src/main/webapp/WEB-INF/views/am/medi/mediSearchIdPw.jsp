@@ -14,7 +14,7 @@
 <body id="searchIdPwFormBody">
 	<div id="searchIdPwForm">
 		<img src="/am/resources/img/common/logoLogin.png">
-		<h4 style="text-align: left; margin-bottom: 20px;">보호자 아이디 찾기</h4>
+		<h4 style="text-align: left; margin-bottom: 20px;">병원 아이디 찾기</h4>
 			<form>
 				<div id="searchIdPwFormContent" class="form-group row">
 					<label for="inputName" class="col-sm-3 col-form-label">이름</label>
@@ -44,7 +44,7 @@
 				</div>
 			</form>
 			<hr>
-			<h4 style="text-align: left; margin-bottom: 20px;">보호자 비밀번호 찾기</h4>
+			<h4 style="text-align: left; margin-bottom: 20px;">병원 비밀번호 찾기</h4>
 			<form>
 				<div id="searchIdPwFormContent" class="form-group row" >
 					<label for="inputId" class="col-sm-3 col-form-label">아이디</label>

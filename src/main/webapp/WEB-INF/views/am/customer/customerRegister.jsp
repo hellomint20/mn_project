@@ -14,7 +14,7 @@
 <body id="registerFormBody">
 	<div id="registerForm">
 		<img src="/am/resources/img/common/logoLogin.png">
-		<h3 style="text-align: left;">회원가입</h3><hr>
+		<h3 style="text-align: left;">보호자 회원가입</h3><hr>
 			<form>
 				<div id="registerFormContent" class="form-group row" >
 					<label for="inputId" class="col-sm-3 col-form-label">아이디</label>

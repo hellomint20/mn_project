@@ -19,7 +19,7 @@
 	<form class="form-signin">
 		<img class="mb-2" src="/am/resources/img/common/logoLogin.png"
 			width="270px" height="110px">
-		<h2 class="h3 mb-3 font-weight-normal">로그인</h2>
+		<h2 class="h3 mb-3 font-weight-normal">보호자 로그인</h2>
 		<label for="inputId" class="sr-only">id</label> <input type="text"
 			id="inputId" class="form-control" placeholder="input id" required
 			autofocus> <label for="inputPassword" class="sr-only">Password</label>
