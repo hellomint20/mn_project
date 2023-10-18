@@ -5,8 +5,8 @@
 	margin: auto;
 	margin-top: 70px;
   	width: 650px;
-  	height: 40px;
-  	padding-top: 5px;
+  	height: 50px;
+  	padding-top: 7px;
 }
 
 .search{
@@ -15,6 +15,12 @@
 	outline: none;
 	padding-left: 15px;
 	font-weight : bold;
+	font-size: 20px;
+}
+
+#table{
+	position: relative;
+	margin-right: 100px;
 }
 
 
