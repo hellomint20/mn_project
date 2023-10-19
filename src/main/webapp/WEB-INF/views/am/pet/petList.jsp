@@ -50,7 +50,7 @@ function delPet(){
 		
 		
 		
-		<div class="box1">
+		<div class="box2">
 			<div class="pet-List-box">
 				<a href="petModify" class="petNameBtn">아이바오</a>
 				<div class="pet-info-box">
