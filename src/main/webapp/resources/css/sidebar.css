@@ -6,9 +6,10 @@
 
 
 .menu {
+	top: 240px;
 	position: fixed;
 	width: 60px;
-	height: 100%;
+	height: 300px;
 	background: #1b4c68;
 	opacity: 0.8;
 	transition: 0.5s;
@@ -17,7 +18,7 @@
 
 .menu:hover,
 .menu.active {
-	width : 300px;
+	width : 250px;
 }
 
 .menu ul {
@@ -82,7 +83,7 @@
 .menu ::before {
     font-family: 'Material Icons';
     font-size: 1.5em;
-    margin-top: 12px;
+    margin: 12px 0;
     padding-left: 20px;
     float: left;
     clear: left;
