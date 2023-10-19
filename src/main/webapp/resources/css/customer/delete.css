@@ -23,6 +23,7 @@ p {
 
 .info .info-title{
 	display: inline-block;
+	margin-left: 20px;
 	line-height: 50px;
 }
 
@@ -40,17 +41,23 @@ p {
 
 .b {
 	border: none;
-	width: 70px;
+	margin-left: 410px;
+	width: 110px;
 	height: 40px;
-	margin-left: 450px;
-	background-color: #0B1F54;
-    color: #fff;
-    text-decoration: none;
+	color: #fff;
+	border-radius: 5px;
+	font-weight: 500;
+	transition: all 0.3s ease;
+	position: relative;
+	display: inline-block;
+	box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5), 7px 7px 20px
+		0px rgba(0, 0, 0, .1), 4px 4px 5px 0px rgba(0, 0, 0, .1);
+	background: linear-gradient(0deg, #1b4c68 0%, #1b4c68 100%);
 }
 
 .b:hover {
-   background: #1b4c68;
-   opacity: 0.6;
+	background: linear-gradient(0deg, #73b4db 0%, #73b4db 100%);
+	opacity: 0.8;
 }
 
 

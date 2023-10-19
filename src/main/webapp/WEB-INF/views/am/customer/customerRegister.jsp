@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <link href="/am/resources/css/common/register.css" rel="stylesheet">
 
 <!-- Bootstrap CSS -->
