@@ -4,18 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Insert title here</title>	
+<link href="/am/resources/css/common/register.css" rel="stylesheet">
+<link href="/am/css/bootstrap/bootstrap.css" rel="stylesheet">
 
-</head>
-<body>
 	<%@ include file = "../default/header_page.jsp" %>
 	<%@ include file = "../common/sidebar.jsp" %>
 
-
-<link href="/am/resources/css/common/register.css" rel="stylesheet">
-
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="/am/resources/css/bootstrap/bootstrap.css">
 </head>
 <body id="registerFormBody">
 	<div id="registerForm">

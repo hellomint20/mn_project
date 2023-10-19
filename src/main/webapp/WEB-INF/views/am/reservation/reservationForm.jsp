@@ -9,7 +9,6 @@
 <title>예약 페이지</title>
 <link href="/am/css/bootstrap/bootstrap.css" rel="stylesheet">
 <link href="/am/css/reservation/reservationForm.css" rel="stylesheet">
-<link href="/am/css/bootstrap/bootstrap.css" rel="stylesheet">
 </head>
 <script type="text/javascript">
 function reservationChk(){

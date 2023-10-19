@@ -9,7 +9,7 @@
 }
 
 .board_title {
-    margin-bottom: 30px;
+    margin-bottom: 18px;
 }
 
 .board_title strong {
@@ -17,7 +17,6 @@
 }
 
 .board_title p {
-    margin-top: 5px;
     font-size: 1rem;
 }
 
