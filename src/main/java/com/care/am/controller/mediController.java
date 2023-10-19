@@ -18,9 +18,18 @@ public class mediController {
 		
 	}
 	
+	@GetMapping("mediLogin") //로그인 페이지
+	public String mediLogin() {
+		return "am/medi/mediLogin";
+	}
+	
 	@PostMapping("mediLogin") //병원 로그인 확인
 	public void loginChk() {
 		
+	}
+	@GetMapping("mediSearchIdPw") //아이디/비밀번호 찾기 페이지
+	public String SearchIdPw() {
+		return "am/medi/mediSearchIdPw";
 	}
 	
 	//개인정보 관련

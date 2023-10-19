@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+<link href="/am/css/bootstrap/bootstrap.css" rel="stylesheet">
 <link href="/am/css/common/mediSearch.css" rel="stylesheet">
 <link href="/am/css/common/mediSearch_table.css" rel="stylesheet">
 
@@ -22,20 +23,8 @@
 		</div>
 	</div>
 	
-		<table>
-	    	<thead>
-		      <tr>
-		        <th>병원이름</th> 
-		      </tr>
-	   		</thead>
-	    	<tbody>
-		      <tr>
-		        <td>예시) 튼튼병원</td>
-		      </tr>
-		      
-	    	</tbody>
-	  	</table> 
-
+	<br>
+	
 	
 	
 	

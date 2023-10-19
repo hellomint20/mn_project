@@ -1,62 +1,114 @@
-@charset "UTF-8";
-
 .box-container {
 	display: flex;
-	justify-content: center;
+	width: 70%;
+	margin: 50px 250px;
 }
 
 .reservation-form {
-	margin: 80px 0 0 100px;
 	width: 500px;
 	height: 500px;
-	/* border: 2px solid #35457E; */
-	align-items: center;
-	padding: 60px 100px 100px 50px;
-	font-size: 25px;
+	padding: 60px 0;
+	font-size: 1.2rem;
 	line-height: 50px;
-	
 }
-.box-hospital-name{
-	width: 500px;
-	padding: 0 0 20px 0;
-	border-bottom: 2px solid black;
+
+.box-hospital-name {
+	font-size: 3rem;
+	border-bottom: 2px solid #000;
+	width: 450px;
 }
+
+p {
+	font-size: 1rem;
+}
+
 .box-container-left {
 	display: flex;
-	
 }
 
 .box-container-right {
-	margin-top: 160px;
-    width: 600px;
-    height: 600px;
-   	/* border: 2px solid #35457E; */
-    padding: 50px 100px 100px 100px;
+	margin-top: 100px;
+	width: 600px;
+	padding: 50px 0 0 50px;
 }
 
-.calendar {
-	border: 1px dotted;
-    width: 300px;
-    height: 300px;
-    text-align: center;
-    font-size: 25px;
+.cal-all {
+    margin: 25px -30px;
+    border: 1px solid #000;
+    height: auto;
+    width: 400px;
+    padding: 20px;
+
 }
 
-#calendar_tb{
-	margin : auto;
-	width:100%;
+td {
+	width: 50px;
+	height: 50px;
 }
+
+.Calendar {
+	text-align: center;
+}
+
+.Calendar>thead>tr:first-child>td {
+	font-size: 1.1em;
+	font-weight: bold;
+}
+
+.Calendar>thead>tr:last-child>td {
+	font-weight: 600;
+}
+
+.Calendar>tbody>tr>td>p { /*생략가능한지 알아보기 */
+	height:45px;
+	width: 45px;
+	border-radius: 45px;
+	transition-duration: .2s;
+	line-height: 45px;
+	margin: 2.5px;
+	display: block;
+	text-align: center;
+}
+
+.pastDay {
+	color: lightgray;
+}
+
+.today {
+	background-color: #F5D042;
+	color: #fff;
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.futureDay {
+	background-color: #FFFFFF;
+	cursor: pointer;
+}
+
+.futureDay:hover {
+	background: #eee;
+}
+
+.futureDay.choiceDay, 
+.today.choiceDay {
+	background: #0A174E;
+	color: #fff;
+	font-weight: 600;
+	cursor: pointer;
+}
+
 .timeList {
-	display: flex;
-	padding-top:20px;
 	width: 300px;
-	height: 250px;
 	display: inline-block;
-    text-align: center;
-
+	text-align: center;
+	margin-left: 20px;
+	
 }
+
 .label {
-	margin-top:40px;
+	margin-left: 20px;
+	margin-top: 40px;
 	width: 150px;
 }
 
@@ -67,10 +119,11 @@
 .content {
 	line-height: 45px;
 	word-spacing: 0.5cm;
+	margin-left: 20px;
 }
 
 #name {
-	margin-top:50px;
+	margin-top: 50px;
 	height: 35px;
 }
 
@@ -78,12 +131,63 @@
 	height: 35px;
 }
 
-.box-container-bottom{
-	text-align: center;
-	margin-bottom: 50px;
+.box-container-bottom {
+	margin: 0 0 50px 600px;
 }
+
 .reservation-submit {
-	
+	width: 110px;
+	height: 40px;
+	color: #fff;
+	border-radius: 5px;
+	transition: all 0.3s ease;
+	position: relative;
+	display: inline-block;
+	box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5), 7px 7px 20px
+		0px rgba(0, 0, 0, .1), 4px 4px 5px 0px rgba(0, 0, 0, .1);
+	background: linear-gradient(0deg, #1b4c68 0%, #1b4c68 100%);
+	border: none;
+}
+
+.reservation-submit:hover {
+	background: linear-gradient(0deg, #73b4db 0%, #73b4db 100%);
+	opacity: 0.8;
+}
+
+/*popup css*/
+#title {
+	margin-top: 70px;
+	text-align: center;
+}
+
+.popup-main-box {
+	border-top: 2px solid #000;
+	margin-top: 30px;
+	padding-top: 20px;
+	display: flex;
+	height: 300px;
+	width: 350px;
+	font-size: 20px;
+	line-height: 40px;
+	margin-left: 80px;
+}
+
+.info-title {
+	margin-left: 20px;
+	text-align: left;
+	width: 130px;
+}
+
+.info-content {
+	width: auto;
+}
+
+.popup-bottom-box {
+	padding-top: 20px;
+	text-align: center;
+}
+
+#btn-close {
 	width: 130px;
 	height: 40px;
 	color: #fff;
@@ -101,63 +205,7 @@
 	border: none;
 }
 
-.reservation-submit:hover {
+#btn-close:hover {
 	background: linear-gradient(0deg, #73b4db 0%, #73b4db 100%);
 	opacity: 0.8;
-	
 }
-
-
-/*popup css*/
-
-#title{
-	margin-top:70px;
-	text-align: center;
-}
-
-.popup-main-box{
-	
-	padding-top: 60px;
-    display: flex;
-    height: 300px;
-    width: 500px;
-    font-size: 20px;
-    line-height: 40px;
-}
-.info-title{
-	text-align: left;
-    width: 130px;
-    margin-left: 100px;
-}
-.info-content{
-	width:auto;
-}
-.popup-bottom-box{
-	padding-top : 20px;
-	text-align:center;
-}
-#btn-close{
-	width: 130px;
-	height: 40px;
-	color: #fff;
-	border-radius: 5px;
-	padding: 10px 25px;	
-	font-weight: 500;
-	cursor: pointer;
-	transition: all 0.3s ease;
-	position: relative;
-	display: inline-block;
-	box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5), 7px 7px 20px
-		0px rgba(0, 0, 0, .1), 4px 4px 5px 0px rgba(0, 0, 0, .1);
-	outline: none;
-	background: linear-gradient(0deg, #1b4c68 0%, #1b4c68 100%);
-	border: none;
-}
-#btn-close:hover{
-	background: linear-gradient(0deg, #73b4db 0%, #73b4db 100%);
-	opacity: 0.8;
-	
-}
-
-
-

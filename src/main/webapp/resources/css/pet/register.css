@@ -11,41 +11,56 @@ p {
 	font-size: 1rem;
 }
 
-
 .info {
-	font-size: 1.2rem;
+	text-align : center;
 	display: flex;
 	width: 100%;
-	padding: 20px 0;
+	padding: 30px 0;
 	border-top: 2px solid #000;
    	width: 530px;
 }
 
 .info .info-title{
-	display: flex;
 	display: inline-block;
-	margin: auto;
-	width: 200px;
+	font-size: 1.2rem;
 	line-height: 50px;
 }
 
 #t_b {
 	height: 35px;
 }
+.rb {
+	word-spacing: 50px;
+}
+
 
 .info .info-content{
-	display: flex;
 	display: inline-block;
-	margin: auto;
-	width: 200px;
+	font-size: 1rem;
 	line-height: 50px;
+	margin-left: 50px;
 }
+
+
+.info-pic {
+	display: inline-block;
+	width: 180px;
+	height: 200px;
+	border: 1px solid black;
+	margin-left: 50px;
+}
+
+.pic-btn {
+	margin-top: 185px;
+}
+
 
 
 .btn_a {
 	margin-top: 20px;
 	margin-left: 120px;
 }
+
 .btn_a .cancel{
 	margin-right: 50px;
 	border: none;

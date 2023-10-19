@@ -18,6 +18,7 @@ public class reservationController {
 	public String reservationForm() {
 		return "am/reservation/reservationForm";
 	}
+	
 	@GetMapping("reservationPopup")//예약완료후팝업창
 	public String reservationPopup() {
 		return "am/reservation/reservationPopup";
