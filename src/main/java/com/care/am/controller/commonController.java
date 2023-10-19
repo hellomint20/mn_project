@@ -3,6 +3,7 @@ package com.care.am.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class commonController {
@@ -22,7 +23,7 @@ public class commonController {
 		return "am/common/mediSearch";
 	}
 	
-	@PostMapping("logout") //·Î±×¾Æ¿ô
+	@RequestMapping("logout") //·Î±×¾Æ¿ô
 	public String logout() {
 		return "am/common/main";
 	}
