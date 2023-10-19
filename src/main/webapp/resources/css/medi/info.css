@@ -1,0 +1,60 @@
+.all {
+	text-align : center;
+	margin-top : 5%;
+	margin-left: 4%;
+}
+
+h1 {
+	margin-right: 25%;
+}
+
+.info {
+	margin-top: 5%;
+	margin-right: 5%;
+	display:flex;
+}
+
+.info .info-title{
+	display: inline-block;
+	font-size: 1.5em;
+	margin-right : -269px;
+	margin-left : 260px;
+	width:30%;
+	line-height: 50px;
+}
+
+.info .info-content{
+	display: inline-block;
+	font-size: 1.3em;
+	text-align: center;
+	margin-right : -292px;
+	width:30%;
+	line-height: 50px;
+}
+
+
+.modi-b {
+	border: none;
+	width: 70px;
+	height: 40px;
+	margin-top: 55px;
+	margin-left: 25%;
+	background-color: #0B1F54;
+    color: #fff;
+    text-decoration: none;
+}
+
+.modi-b:hover {
+   background: #1b4c68;
+   opacity: 0.6;
+}
+
+.pic{
+	display:inline-block;
+	width:200px;
+	height: 200px;
+	border : 1px solid black;
+	margin: auto;	
+
+}
+
