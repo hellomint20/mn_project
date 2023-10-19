@@ -18,10 +18,10 @@
 <body>
 	<div class="all-h">
 		<div id="imgHeader">			
-			<span id="headerText"><a href="#" id="text">마이페이지</a> | <a href="#" id="text">로그아웃</a></span>
+			<span id="headerText"><a href="/am/customerInfo" id="text">마이페이지</a> | <a href="/am/logout" id="text">로그아웃</a></span>
 		</div>
 		<div id="headerLogo">
-			<a href="#"><img src="/am/resources/img/logo2.png" width="250px" height="100px"></a>
+			<a href="/am"><img src="/am/resources/img/logo2.png" width="250px" height="100px"></a>
 		</div>
 	
 		<br><br><br><br><br>

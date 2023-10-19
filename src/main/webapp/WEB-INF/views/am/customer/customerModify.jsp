@@ -8,7 +8,6 @@
 	<link rel="stylesheet" href="/am/css/customer/modi.css">
 </head>
 <body>
-
 	<%@ include file = "../default/header_page.jsp" %>
 	<%@ include file = "../common/sidebar.jsp" %>
 	
