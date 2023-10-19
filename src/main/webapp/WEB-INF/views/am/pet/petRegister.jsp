@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="/am/css/pet/register.css">
 </head>
 <body>
-	<%@ include file="../default/header_page.jsp"%>
+	<%@ include file = "../default/header_page.jsp" %>
 	<%@ include file = "../common/sidebar.jsp" %>
 	
 	<div>

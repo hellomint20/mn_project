@@ -6,6 +6,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+</head>
+<body>
+	<%@ include file = "../default/header_page.jsp" %>
+	<%@ include file = "../common/sidebar.jsp" %>
+
+
 <link href="/am/resources/css/common/register.css" rel="stylesheet">
 
 <!-- Bootstrap CSS -->

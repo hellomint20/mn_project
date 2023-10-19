@@ -1,3 +1,4 @@
+
 @charset "UTF-8";
 
 #searchDiv{
@@ -65,6 +66,7 @@ td.reservationList{
 tr.listTr{
 	margin: auto;
 }
+
 table.reservationDetail{
 	margin: auto;
 }
@@ -100,4 +102,5 @@ button:hover {
 	opacity: 0.8;
 	
 }
+
 
