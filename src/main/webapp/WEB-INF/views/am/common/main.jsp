@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>AniMedi</title>
 
 <link href="/am/resources/css/common/main.css" rel="stylesheet">
 <link href="/am/resources/css/bootstrap/bootstrap.css" rel="stylesheet">
