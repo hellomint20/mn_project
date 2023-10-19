@@ -34,7 +34,7 @@ $(document).ready(function() {
 })
 
 function Popup(){
-	var popupURI1='http://localhost:8090/am/reservationApplyPopup';
+	var popupURI1='/am/reservationApplyPopup';
 	var reserv = encodeURI(popupURI1);
     var popup = window.open(reserv, '예약수락', 'width=510px,height=700px,scrollbars=yes,resizable=no');
 }
