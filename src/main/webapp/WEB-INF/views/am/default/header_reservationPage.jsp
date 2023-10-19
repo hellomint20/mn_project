@@ -13,7 +13,6 @@
 		}
 	</style>
 
-<link href="/am/css/bootstrap/bootstrap.css" rel="stylesheet">
 <link href="/am/css/header.css" rel="stylesheet">
 
 </head>

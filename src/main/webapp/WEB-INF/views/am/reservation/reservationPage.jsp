@@ -11,8 +11,7 @@
 </head>
 <body>
 
-<%@ include file="/WEB-INF/views/am/default/header_reservationPage.jsp" %>
-	
+	<%@ include file="../default/header_reservationPage.jsp"%>
 	<div>
 		<div id="reservationSearchWindow">
 			<input class="reservationSearch" type="text" placeholder="예약할 병원 이름 검색">

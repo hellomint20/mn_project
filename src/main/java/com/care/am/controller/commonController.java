@@ -19,6 +19,8 @@ public class commonController {
 	
 	@GetMapping("login") //로그인 페이지
 	public String login() {
+		
+		
 		return "am/common/login";
 	}
 	

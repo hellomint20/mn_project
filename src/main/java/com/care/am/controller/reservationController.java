@@ -3,6 +3,7 @@ package com.care.am.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 @Controller
 public class reservationController {
@@ -16,6 +17,10 @@ public class reservationController {
 	@GetMapping("reservationForm") //병원 예약 하기 페이지
 	public String reservationForm() {
 		return "am/reservation/reservationForm";
+	}
+	@GetMapping("reservationPopup")//예약완료후팝업창
+	public String reservationPopup() {
+		return "am/reservation/reservationPopup";
 	}
 	
 	@PostMapping("reservationRegister") //병원 예약 DB 등록
@@ -39,4 +44,9 @@ public class reservationController {
 		
 	}
 
+	@GetMapping("reservationApplyPopup") 
+	public String reservationApplyPopup(String id) {
+		return "am/reservation/reservationApplyPopup";
+	}
+	
 }

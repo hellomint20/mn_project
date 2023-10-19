@@ -33,10 +33,18 @@ $(document).ready(function() {
    
 })
 
+function Popup(){
+	var popupURI1='http://localhost:8090/am/reservationApplyPopup';
+	var reserv = encodeURI(popupURI1);
+    var popup = window.open(reserv, '예약수락', 'width=510px,height=700px,scrollbars=yes,resizable=no');
+}
+
  </script>
  
+
 </head>
 <body>
+
 <%@ include file = "../default/header_page.jsp" %>
 
 
@@ -51,7 +59,7 @@ $(document).ready(function() {
         
       <!-- 새로운 접수 테이블 -->
         <div id="table2" width="900px">
-            <table class="col-100 col" >
+            <table class="col-100 col">
                 <colgroup>
                     <col width="30%">
                     <col width="20%">
@@ -68,7 +76,7 @@ $(document).ready(function() {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>2023-10-16</td>
+                        <td> <a href="#" onclick="Popup()" >2023-10-16</a></td>
                         <td>16:00</td>
                         <td>개</td>
                         <td>접종</td>
@@ -161,8 +169,5 @@ $(document).ready(function() {
 
     </div>
   </div>
-
-
-
 </body>
 </html>
