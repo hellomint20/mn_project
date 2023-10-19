@@ -16,7 +16,7 @@ function reservationChk(){
 	alert('예약이 접수되었습니다');
 }
 function reservationPopup(){
-	var popupURI1='http://localhost:8085/am/reservationPopup';
+	var popupURI1='/am/reservationPopup';
 	var reserv = encodeURI(popupURI1);
     var popup = window.open(reserv, '예약확인', 'width=510px,height=600px,scrollbars=yes,resizable=no');
 }
