@@ -55,6 +55,13 @@ p {
 	padding-bottom: 50px;
 	border-bottom: solid 1px black;
 }
+.box2{
+	width: 700px;
+	display: flex;
+	margin: 50px 0;
+	padding-bottom: 50px;
+	border-bottom: solid 1px black;
+}
 
 .pet-List-box{
 	width: 300px;
@@ -75,7 +82,9 @@ p {
 	display: flex;
 	line-height :50px;
 }
-
+.pet-info-title{
+	
+}
 .pet-info-content{
 	margin-left : 30px;
 	
