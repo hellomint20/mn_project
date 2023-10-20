@@ -14,10 +14,9 @@ p {
 .info {
 	text-align : center;
 	display: flex;
-	width: 100%;
-	padding: 30px 0;
+	padding: 30px 0 30px 70px;
 	border-top: 2px solid #000;
-   	width: 530px;
+   	width: 700px;
 }
 
 .info .info-title{
@@ -38,7 +37,7 @@ p {
 	display: inline-block;
 	font-size: 1rem;
 	line-height: 50px;
-	margin-left: 50px;
+	margin-left: 40px;
 }
 
 
@@ -47,7 +46,7 @@ p {
 	width: 180px;
 	height: 200px;
 	border: 1px solid black;
-	margin-left: 50px;
+	margin-left: 70px;
 }
 
 .pic-btn {
@@ -58,7 +57,7 @@ p {
 
 .btn_a {
 	margin-top: 20px;
-	margin-left: 120px;
+	margin-left: 180px;
 }
 
 .btn_a .cancel{

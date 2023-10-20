@@ -13,12 +13,16 @@
 <body>
 	<%@ include file="/WEB-INF/views/am/default/header_reservationPage.jsp"%>
 
-	<script>
-		$(document).ready(function() {
-			$("a.reservationList").click(function() {
-				$("#detailDiv").show();
-			});
-		});
+
+	<script type="text/javascript">
+	function detailView() {
+		$("#detailDiv").css("display", "block");
+	}
+	
+	function Xclose(){
+		console.log("X")
+		$("#detailDiv").css("display", "none");
+	}
 	</script>
 
 
@@ -34,38 +38,44 @@
 			<div id="contentDiv">
 				<div id="listDiv">
 					<table class="listTable">
+						<tr class="trCla">
+							<th>번호</th><th>병원명</th>
+						</tr>
 						<tr class="listTr">
-							<td class="reservationList"><a class="reservationList" href="#">이리온 동물병원</a></td>
+							<td>1</td>
+							<td><button class="listBtn" type="button" onclick="detailView()">이리온 동물병원</button></td>
 						</tr>
-						<tr>
-							<td class="reservationList"><a class="reservationList" href="#">메디컬 최 동물병원</a></td>
+						<tr class="listTr">
+							<td>2</td>
+							<td><button class="listBtn" type="button" onclick="detailView()">가 동물병원</button></td>
 						</tr>
-						<tr>
-							<td class="reservationList"><a class="reservationList" href="#">24시 메디컬센터</a></td>
+						<tr class="listTr">
+							<td>3</td>
+							<td><button class="listBtn" type="button" onclick="detailView()">나 동물병원</button></td>
 						</tr>
-						<tr>
-							<td class="reservationList"><a class="reservationList" href="#">이리온 동물병원</a></td>
+						<tr class="listTr">
+							<td>4</td>
+							<td><button class="listBtn" type="button" onclick="detailView()">다 동물병원</button></td>
 						</tr>
 					</table>
 				</div>
 				
-				<div id="detailDiv">
+				<div id="detailDiv" style="display: none;">
 					<table class="reservationDetail">
-					<tr></tr>
+					<tr><td class="Xcla"><button id="X" type="button" onclick="Xclose()" >X</button></td></tr>
 					<tr><td class="detailTd">튼튼병원 상세 정보</td></tr>
 					<tr><td class="detailTd"><img src="/am/resources/img/medi.jpeg"></td></tr>
 					<tr><td class="detailTd">이름 : 튼튼병원</td></tr>
 					<tr><td class="detailTd">주소 : 서울시</td></tr>
+					<tr><td class="detailTd">영업시간 : 09:00 - 18:00</td></tr>
 					<tr><td class="detailTd">전화번호 : 010 - 0000 - 0000</td></tr>
-					<tr><td class="detailTd"><button type="button">예약</button></td></tr>
+					<tr><td class="detailTd"><button class="re" type="button" onclick="location.href='/am/reservationForm'">예약</button></td></tr>
 					<tr></tr>
 				</table>
 				</div>
 			</div>
 		</div>
 	</div>
-	<br><br><br>
-
 
 
 </body>

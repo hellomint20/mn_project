@@ -4,10 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
 <title>Register</title>
-
 <link href="/am/resources/css/common/register.css" rel="stylesheet">
-
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="/am/resources/css/bootstrap/bootstrap.css">
 </head>

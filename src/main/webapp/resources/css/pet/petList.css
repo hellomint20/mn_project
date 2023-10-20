@@ -6,7 +6,7 @@
 .all_title {
     font-size: 3rem;
     border-bottom: 2px solid #000;
-    width: 530px;
+    width: 700px;
 }
 
 p {
@@ -17,7 +17,7 @@ p {
 .add-pet-box{
 	font-size:25px;
 	width: 530px;
-	margin : 50px 235px;
+	margin :50px 0 0 300px;
 	
 }	
 .addButton {
@@ -45,9 +45,18 @@ p {
   display: block;
 }
 
-
+.box-all{
+	display: flex;
+}
 .box1{
-	width: 530px;
+	width: 700px;
+	display: flex;
+	margin: 50px 0;
+	padding-bottom: 50px;
+	border-bottom: solid 1px black;
+}
+.box2{
+	width: 700px;
 	display: flex;
 	margin: 50px 0;
 	padding-bottom: 50px;
@@ -56,7 +65,7 @@ p {
 
 .pet-List-box{
 	width: 300px;
-    margin-left: 20px;
+    margin-left: 70px;
 
 }
 .petNameBtn{

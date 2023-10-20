@@ -1,6 +1,6 @@
 .all {
 	width: 70%;
-	margin : 100px 350px;
+	margin : 100px 400px;
 }
 
 .all_title {
@@ -11,37 +11,55 @@ p {
 	font-size: 1rem;
 }
 
-
 .info {
-	font-size: 1.2rem;
+	text-align : center;
 	display: flex;
-	padding: 20px 0 20px 60px;
+	padding: 30px 0 30px 70px;
 	border-top: 2px solid #000;
    	width: 700px;
 }
 
 .info .info-title{
 	display: inline-block;
-	margin-left: 80px;
-	width: 200px;
+	font-size: 1.2rem;
 	line-height: 50px;
 }
 
 #t_b {
 	height: 35px;
 }
+.rb {
+	word-spacing: 50px;
+}
+
 
 .info .info-content{
 	display: inline-block;
-	width: 200px;
+	font-size: 1rem;
 	line-height: 50px;
+	margin-left: 40px;
 }
+
+
+.info-pic {
+	display: inline-block;
+	width: 180px;
+	height: 200px;
+	border: 1px solid black;
+	margin-left: 70px;
+}
+
+.pic-btn {
+	margin-top: 185px;
+}
+
 
 
 .btn_a {
 	margin-top: 20px;
-	margin-left: 170px;
+	margin-left: 180px;
 }
+
 .btn_a .cancel{
 	margin-right: 50px;
 	border: none;

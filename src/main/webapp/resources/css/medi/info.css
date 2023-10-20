@@ -1,6 +1,6 @@
 .all {
 	width: 70%;
-	margin : 100px 350px;
+	margin : 100px 400px;
 }
 
 .all_title {
@@ -15,7 +15,7 @@ p {
 .info {
 	font-size: 1.2rem;
 	display: flex;
-	padding:20px 0 0 180px;
+	padding:20px 50px;
 	border-top: 2px solid #000;
    	width: 700px;
    	margin-bottom:30px;
@@ -55,3 +55,13 @@ p {
 	background: linear-gradient(0deg, #73b4db 0%, #73b4db 100%);
 	opacity: 0.8;
 }
+
+.pic{
+	display:inline-block;
+	width:200px;
+	height: 200px;
+	border : 1px solid black;
+	margin: auto;	
+
+}
+
