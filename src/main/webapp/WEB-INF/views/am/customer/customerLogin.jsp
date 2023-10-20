@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Login</title>
 <link rel="canonical"
 	href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
 
@@ -17,8 +17,8 @@
 </head>
 <body class="text-center">
 	<form class="form-signin">
-		<img class="mb-2" src="/am/resources/img/common/logoLogin.png"
-			width="270px" height="110px">
+		<a href="/am"><img class="mb-2" src="/am/resources/img/common/logoLogin.png"
+			width="270px" height="110px"></a>
 		<h2 class="h3 mb-3 font-weight-normal">보호자 로그인</h2>
 		<label for="inputId" class="sr-only">id</label> <input type="text"
 			id="inputId" class="form-control" placeholder="input id" required

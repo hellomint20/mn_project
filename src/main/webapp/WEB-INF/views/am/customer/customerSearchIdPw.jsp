@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Info Search</title>
 
 <link href="/am/resources/css/common/searchIdPw.css" rel="stylesheet">
 
@@ -13,7 +13,7 @@
 </head>
 <body id="searchIdPwFormBody">
 	<div id="searchIdPwForm">
-		<img src="/am/resources/img/common/logoLogin.png">
+		<a href="/am"><img src="/am/resources/img/common/logoLogin.png"></a>
 		<h4 style="text-align: left; margin-bottom: 20px;">보호자 아이디 찾기</h4>
 			<form>
 				<div id="searchIdPwFormContent" class="form-group row">

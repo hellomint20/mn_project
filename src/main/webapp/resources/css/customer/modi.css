@@ -15,16 +15,14 @@ p {
 .info {
 	font-size: 1.2rem;
 	display: flex;
-	width: 100%;
-	padding: 20px 0;
+	padding: 20px 0 20px 60px;
 	border-top: 2px solid #000;
-   	width: 530px;
+   	width: 700px;
 }
 
 .info .info-title{
-	display: flex;
 	display: inline-block;
-	margin: auto;
+	margin-left: 80px;
 	width: 200px;
 	line-height: 50px;
 }
@@ -34,9 +32,7 @@ p {
 }
 
 .info .info-content{
-	display: flex;
 	display: inline-block;
-	margin: auto;
 	width: 200px;
 	line-height: 50px;
 }
@@ -44,7 +40,7 @@ p {
 
 .btn_a {
 	margin-top: 20px;
-	margin-left: 120px;
+	margin-left: 170px;
 }
 .btn_a .cancel{
 	margin-right: 50px;

@@ -4,22 +4,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 
-</head>
-<body>
-	<%@ include file = "../default/header_page.jsp" %>
-	<%@ include file = "../common/sidebar.jsp" %>
-
-
+<title>Register</title>
 <link href="/am/resources/css/common/register.css" rel="stylesheet">
-
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="/am/resources/css/bootstrap/bootstrap.css">
 </head>
 <body id="registerFormBody">
 	<div id="registerForm">
-		<img src="/am/resources/img/common/logoLogin.png">
+		<a href="/am"><img src="/am/resources/img/common/logoLogin.png"></a>
 		<h3 style="text-align: left;">보호자 회원가입</h3><hr>
 			<form>
 				<div id="registerFormContent" class="form-group row" >
@@ -61,6 +54,7 @@
 				<div class="form-group row">
 					<div class="col-sm-12">
 						<button type="submit" class="btn" style="background-color: #0B1F54; color: white;">회원가입</button>
+						<button type="button" onclick="location.href='/am/customerLogin';" class="btn" style="background-color: #0B1F54; color: white;">로그인</button>
 					</div>
 				</div>
 			</form>
