@@ -1,17 +1,35 @@
 package com.care.am.controller;
 
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.care.am.service.reservation.reservationService;
 
 @Controller
 public class reservationController {
+	@Autowired
+	reservationService rs;
 	
 	//병원 예약 관련(손님 기준)
 	@GetMapping("reservation") //병원 예약 기본 페이지
-	public String reservation() {
+	public String reservation(Model model) {
+		model.addAttribute("list", rs.mediList()); //medi List 가져오기
 		return "am/reservation/reservationPage";
+	}
+	
+	@ResponseBody
+	@PostMapping("reservation/mediInfo")
+	public Map<String, Object> mediInfo(@RequestBody String mediName){
+		System.out.println("con"+mediName);
+		System.out.println("con"+rs.mediInfo(mediName));
+		return rs.mediInfo(mediName);
 	}
 	
 	@GetMapping("reservationForm") //병원 예약 하기 페이지
