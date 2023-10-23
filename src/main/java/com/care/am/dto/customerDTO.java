@@ -6,7 +6,14 @@ public class customerDTO {
 	String cTel;
 	String cId;
 	String cPw;
+	String cSessionId;
 	
+	public String getcSession() {
+		return cSessionId;
+	}
+	public void setcSession(String cSessionId) {
+		this.cSessionId = cSessionId;
+	}
 	public String getcName() {
 		return cName;
 	}

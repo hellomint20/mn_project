@@ -1,11 +1,30 @@
 package com.care.am.controller;
 
+import java.io.PrintWriter;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.care.am.common.LoginSession;
+import com.care.am.dto.customerDTO;
+import com.care.am.service.customer.customerService;
 
 @Controller
 public class customerController {
+	
+	@Autowired customerService cs;
 	
 	//로그인 관련
 	@GetMapping("customerRegister") //손님 회원가입 페이지
@@ -14,8 +33,11 @@ public class customerController {
 	}
 	
 	@PostMapping("customerRegister") //손님 회원가입 적용
-	public void register(String id) {
-		
+	public void register(customerDTO dto, HttpServletResponse res) throws Exception{
+	      String msg = cs.register(dto);
+	      res.setContentType("text/html; charset=utf-8");
+	      PrintWriter out = res.getWriter();
+	      out.print( msg );
 	}
 	
 	@GetMapping("customerLogin") //로그인 페이지
@@ -24,7 +46,41 @@ public class customerController {
 	}
 	
 	@PostMapping("customerLogin") //손님 로그인 확인
-	public void loginChk() {
+	public String loginChk(HttpSession session, 
+						@RequestParam String id, 
+						@RequestParam String pw,
+						@RequestParam(required=false, defaultValue="off")String autoLogin,
+						RedirectAttributes rs,
+						HttpServletResponse res) throws Exception {
+		
+		int result = cs.logChk(id,pw);
+		if(result == 0) {
+			rs.addAttribute("id",id);
+			rs.addAttribute("autoLogin",autoLogin);
+			return "redirect:successLogin";
+		}
+		return "redirect:customerLogin";
+	}
+	@RequestMapping("successLogin")
+	public String successLogin(@RequestParam String id, 
+								@RequestParam String autoLogin,
+								HttpSession session,
+								HttpServletResponse res) {
+		
+		System.out.println("autologin:"+autoLogin);
+		if(autoLogin.equals("on")) {
+			int limitTime = 60*60*24*90; //세달
+			Cookie loginCookie = new Cookie("loginCookie",session.getId());
+			loginCookie.setPath("/");
+			loginCookie.setMaxAge(limitTime);
+			res.addCookie(loginCookie);
+			cs.keepLogin(session.getId(),id);
+			System.out.println("자동로그인쿠키생성");
+			
+		}
+		session.setAttribute(LoginSession.LOGIN, id);
+		System.out.println(LoginSession.LOGIN);
+		return "redirect:/";
 		
 	}
 	@GetMapping("customerSearchIdPw") //아이디/비밀번호 찾기 페이지
