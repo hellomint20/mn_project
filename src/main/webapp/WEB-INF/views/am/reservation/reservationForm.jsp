@@ -83,6 +83,7 @@ function choiceDate(newDIV) {
     newDIV.classList.add("choiceDay");           // 선택된 날짜에 "choiceDay" class 추가
 }
 
+
 // 이전달 버튼 클릭
 function prevCalendar() {
     nowMonth = new Date(nowMonth.getFullYear(), nowMonth.getMonth() - 1, nowMonth.getDate());   // 현재 달을 1 감소
