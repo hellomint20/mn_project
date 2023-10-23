@@ -51,7 +51,6 @@
 					</div>
 				</div>
 				<c:choose>
-					<c:when >
 				<div id="rightMaincontainer2">
 					<div id="rightMainContent2">
 						<div id="rightMainContentSecond">
