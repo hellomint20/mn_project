@@ -7,19 +7,15 @@ public class mediDTO {
 	String mId;
 	String mPw;
 	String mPhoto;
-	
+	String openTime;
+	String launchTime;
+	String closeTime;
 	
 	public String getmName() {
 		return mName;
 	}
 	public void setmName(String mName) {
 		this.mName = mName;
-	}
-	public String getmPhoto() {
-		return mPhoto;
-	}
-	public void setmPhoto(String mPhoto) {
-		this.mPhoto = mPhoto;
 	}
 	public String getmAddr() {
 		return mAddr;
@@ -44,5 +40,29 @@ public class mediDTO {
 	}
 	public void setmPw(String mPw) {
 		this.mPw = mPw;
+	}
+	public String getmPhoto() {
+		return mPhoto;
+	}
+	public void setmPhoto(String mPhoto) {
+		this.mPhoto = mPhoto;
+	}
+	public String getOpenTime() {
+		return openTime;
+	}
+	public void setOpenTime(String openTime) {
+		this.openTime = openTime;
+	}
+	public String getLaunchTime() {
+		return launchTime;
+	}
+	public void setLaunchTime(String launchTime) {
+		this.launchTime = launchTime;
+	}
+	public String getCloseTime() {
+		return closeTime;
+	}
+	public void setCloseTime(String closeTime) {
+		this.closeTime = closeTime;
 	}
 }
