@@ -9,15 +9,16 @@
 <title>예약 페이지</title>
 <link href="/am/css/bootstrap/bootstrap.css" rel="stylesheet">
 <link href="/am/css/reservation/reservationForm.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 </head>
 <script type="text/javascript">
-function reservationChk(){
-	alert('예약이 접수되었습니다');
-}
 function reservationPopup(){
+	console.log($("#calYear").text())
+	console.log($("#calMonth").text())
+	console.log($(".futureDay.choiceDay").text());
 	var popupURI1='/am/reservationPopup';
 	var reserv = encodeURI(popupURI1);
-    var popup = window.open(reserv, '예약확인', 'width=510px,height=600px,scrollbars=yes,resizable=no');
+    window.open(reserv, '예약확인', 'width=510px,height=600px,scrollbars=yes,resizable=no');
 }
 
 window.onload = function () { 
@@ -102,6 +103,7 @@ function leftPad(value) {
     }
     return value;
 }
+ 
 
 </script>
 
@@ -213,7 +215,7 @@ function leftPad(value) {
 	</div>
 	<div class="box-container-bottom">
 		<button class="reservation-submit"
-			onclick="reservationChk();reservationPopup()">예약하기</button>
+			onclick="reservationPopup()">예약하기</button>
 	</div>
 
 
