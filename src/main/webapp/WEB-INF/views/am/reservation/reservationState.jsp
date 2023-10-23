@@ -5,7 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/am/css/reservation/reservationState.css">
+	<link href="/am/css/bootstrap/bootstrap.css" rel="stylesheet">
+	<link rel="stylesheet" href="/am/css/reservation/reservationState.css">
 
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
