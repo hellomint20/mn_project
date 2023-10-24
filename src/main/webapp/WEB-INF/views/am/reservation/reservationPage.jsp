@@ -86,7 +86,6 @@
 					<tr><td id="mediTime" class="detailTd"></td></tr>
 					<tr><td id="mediTel" class="detailTd"></td></tr>
 					<tr><td class="detailTd"><button class="re" type="button" onclick="location.href='/am/reservationForm'">예약</button></td></tr>
-					<tr></tr>
 				</table>
 				</div>
 			</div>
