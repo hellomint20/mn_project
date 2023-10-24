@@ -42,7 +42,8 @@ public class mediController {
 	
 	//개인정보 관련
 	@GetMapping("mediInfo") // 병원 개인정보 페이지
-	public String info(@RequestParam String id, Model model) {
+	//public String info(@RequestParam String id, Model model) {
+	public String info(String id, Model model) {
 		model.addAttribute("info", ms.getMedi(id));
 		return "am/medi/mediInfo";
 	}

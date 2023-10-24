@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +18,7 @@
 	<div class="all">
 		<div class="all_title">
 			<strong>병원 정보</strong>
-			<p>(병원 이름) 정보입니다</p>
+			<p>${medi.dto.name } 정보입니다</p>
 		</div>
 	<div class="info">
 		<div class="info-title">
