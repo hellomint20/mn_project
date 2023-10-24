@@ -22,14 +22,20 @@
 <body>
 	<div class="all-h">
 		<div id="imgHeader">
-			<c:if test="${userId == null }">
-				<span id="headerText"><a href="/am/customerInfo" id="text">마이페이지</a>
-					| <a href="/am/customerLogin" id="text">로그인</a></span>
-			</c:if>
-			<c:if test="${userId != null }">
-				<span id="headerText"><a href="/am/customerInfo?id=${userId}"
+		<c:choose>
+			<c:when test="${mediId != null}">
+				<span id="headerText"><a href="/am/mediInfo"
 					id="text">마이페이지</a> | <a href="/am/logout" id="text">로그아웃</a></span>
-			</c:if>
+			</c:when>
+			<c:when test="${userId != null}">
+				<span id="headerText"><a href="/am/customerInfo"
+					id="text">마이페이지</a> | <a href="/am/logout" id="text">로그아웃</a></span>
+			</c:when>
+			<c:otherwise>
+				<span id="headerText"><a href="/am/customerInfo" id="text">마이페이지</a>
+					| <a href="/am/main" id="text">로그인</a></span>
+			</c:otherwise>
+		</c:choose>
 		</div>
 		<div id="headerLogo">
 			<a href="/am"><img src="/am/resources/img/logo2.png"
