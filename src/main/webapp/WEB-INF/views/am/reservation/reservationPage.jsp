@@ -18,7 +18,6 @@
 	<script type="text/javascript">
 	
 	function detailView(mediName) {
-		//let mediName = document.getElementById("mediList").innerText;
 		console.log(mediName);	
 		
 		$.ajax({
@@ -28,20 +27,26 @@
 			success : (mediInfo) => {
 				console.log("통신 성공")
 				console.log(mediInfo)
+				let name = mediInfo['m_name'];
+				
 				document.getElementById("mediDetail").innerHTML ="{ "+mediInfo['m_name'] + " } 상세 정보";
-				document.getElementById("mediName").innerHTML = "이름 : "+mediInfo['m_name'];
-				document.getElementById("mediAddr").innerHTML = "주소 : "+mediInfo['m_addr'];
-				document.getElementById("mediTime").innerHTML = "영업시간 : "+mediInfo['open_time']+" - "+mediInfo['close_time'];
-				document.getElementById("mediTel").innerHTML = "전화번호 : "+mediInfo['m_tel']
+				document.getElementById("mediName").innerHTML = mediInfo['m_name'];
+				document.getElementById("mediAddr").innerHTML = mediInfo['m_addr'];
+				document.getElementById("mediTime").innerHTML = mediInfo['open_time']+" - "+mediInfo['close_time'];
+				document.getElementById("mediTel").innerHTML = mediInfo['m_tel'];
 			},
 			error : () => {
 				console.log("문제 발생")
 			}
 		})
 		
-		
-		
 		$("#detailDiv").css("display", "block");
+	}
+	
+	function choiceMedi(){
+		console.log(document.getElementById("mediName").innerText)
+		let a = document.getElementById("mediName").innerText;
+		location.href = "/am/reservationForm/page/"+a
 	}
 	
 	function Xclose(){
@@ -78,14 +83,15 @@
 				
 				<div id="detailDiv" style="display: none;">
 					<table class="reservationDetail">
-					<tr><td class="Xcla"><button id="X" type="button" onclick="Xclose()" >X</button></td></tr>
-					<tr><td id="mediDetail" class="detailTd"></td></tr>
-					<tr><td id="mediPhoto" class="detailTd"><img src="/am/resources/img/medi.jpeg"></td></tr>
-					<tr><td id="mediName" class="detailTd"></td></tr>
-					<tr><td id="mediAddr" class="detailTd"></td></tr>
-					<tr><td id="mediTime" class="detailTd"></td></tr>
-					<tr><td id="mediTel" class="detailTd"></td></tr>
-					<tr><td class="detailTd"><button class="re" type="button" onclick="location.href='/am/reservationForm'">예약</button></td></tr>
+					<tr><td colspan="2" class="Xcla"><button id="X" type="button" onclick="Xclose()" >X</button></td></tr>
+						<tr><td id="mediDetail"></td></tr>
+						<tr><td id="mediPhoto"><img src="/am/resources/img/medi.jpeg"></td></tr>
+						<tr><td>이름 :</td><td id="mediName" ></td></tr>
+						<tr><td>주소 :</td><td id="mediAddr" ></td></tr>
+						<tr><td>영업시간 :</td><td id="mediTime" ></td></tr>
+						<tr><td>전화번호 :</td><td id="mediTel" ></td></tr>
+						<tr><td id="reBtn" ><button class="re" type="button" onclick="choiceMedi()">예약</button></td></tr>
+
 				</table>
 				</div>
 			</div>
