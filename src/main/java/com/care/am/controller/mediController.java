@@ -48,7 +48,7 @@ public class mediController {
 		if(result==0) {
 			rs.addAttribute("id", id);
 			rs.addAttribute("autoLogin", autoLogin);
-			return "redirect:sucessMLogin";
+			return "redirect:successMLogin";
 		}
 		
 		return "redirect:mediLogin";
@@ -56,7 +56,7 @@ public class mediController {
 	}
 		
 	@RequestMapping("successMLogin")
-	public String sucessMLogin(@RequestParam String id, 
+	public String successMLogin(@RequestParam String id, 
 			@RequestParam String autoLogin,
 			HttpSession session,
 			HttpServletResponse res) {
@@ -74,7 +74,8 @@ public class mediController {
 			}
 		session.setAttribute(LoginSession.LOGIN, id); // 체크안했으면 그냥 세션만 만들어줘
 		System.out.println(LoginSession.LOGIN);
-		return "/am/medi/mediInfo";
+		
+		return "redirect:mediInfo";
 		
 	}
 	@GetMapping("mediSearchIdPw") //아이디/비밀번호 찾기 페이지

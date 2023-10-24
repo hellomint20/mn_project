@@ -61,6 +61,7 @@ public class customerController {
 		}
 		return "redirect:customerLogin";
 	}
+	
 	@RequestMapping("successLogin")
 	public String successLogin(@RequestParam String id, 
 								@RequestParam String autoLogin,
