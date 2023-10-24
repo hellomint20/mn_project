@@ -1,7 +1,6 @@
 package com.care.am.controller;
 
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -9,23 +8,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.care.am.common.LoginSession;
 import com.care.am.service.customer.customerService;
-import com.mysql.cj.Session;
+import com.care.am.service.medi.mediService;
 
 @Controller
 public class commonController {
 	
 	@Autowired customerService cs;
+	@Autowired mediService ms;
 	
 	@GetMapping("/") //메인 홈페이지
 	public String main() {
 		return "am/common/main";
 	}
-
 	//css 확인 때문에 만듦 & 삭제 예정	
 //	@GetMapping("/main2") //메인 홈페이지2
 //	public String main2() {
@@ -38,20 +37,21 @@ public class commonController {
 	}
 	
 	@RequestMapping("logout") //로그아웃
-	public String logout(HttpSession session,
-			@CookieValue(value="loginCookie", required=false)Cookie cookie,
-			HttpServletResponse res) {
-		System.out.println("logout: "+ session.getAttribute(LoginSession.LOGIN));
-		
+	public String logout(HttpSession session, 
+						@CookieValue(value="loginCookie",required=false)Cookie cookie,
+						HttpServletResponse res){
 		if(cookie != null) {
 			cookie.setMaxAge(0);
 			cookie.setPath("/");
 			res.addCookie(cookie);
-			cs.keepLogin("nan", (String)session.getAttribute(LoginSession.LOGIN));
-		}
+			cs.keepLogin("nan", 
+					(String)session.getAttribute(LoginSession.LOGIN));
+			System.out.println("로그아웃완료인뎅");
+		}	
+		session.removeAttribute(LoginSession.LOGIN);
 		session.invalidate();
+	
 		return "redirect:/";
 	}
-
 
 }

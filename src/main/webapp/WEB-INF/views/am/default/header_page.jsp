@@ -1,7 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
+<<<<<<< HEAD
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+=======
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+>>>>>>> 749d3afb9dc81727c76a8d98fb12d66cfe09af69
 <!DOCTYPE html>
+
 <html>
 <head>
 <meta charset="EUC-KR">
@@ -20,6 +26,7 @@
 </head>
 <body>
 	<div class="all-h">
+<<<<<<< HEAD
 		<div id="imgHeader">
 			<c:if test="${userId == null }">
 				<span id="headerText"><a href="/am/customerInfo" id="text">마이페이지</a>
@@ -29,6 +36,17 @@
 				<span id="headerText"><a href="/am/customerInfo?id=${userId}"
 					id="text">마이페이지</a> | <a href="/am/logout" id="text">로그아웃</a></span>
 			</c:if>
+=======
+		<div id="imgHeader">	
+            <c:if test="${userId == null }">
+             <span id="headerText"><a href="/am/customerInfo" id="text">마이페이지</a> | 
+            <a href="/am/customerLogin" id="text">로그인</a></span>
+        	 </c:if>         
+        	 <c:if test="${userId != null }">
+            <span id="headerText"><a href="/am/customerInfo?id=${userId}" id="text">마이페이지</a> | 
+            <a href="/am/logout" id="text">로그아웃</a></span>
+         </c:if>   
+>>>>>>> 749d3afb9dc81727c76a8d98fb12d66cfe09af69
 		</div>
 		<div id="headerLogo">
 			<a href="/am"><img src="/am/resources/img/logo2.png"

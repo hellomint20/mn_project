@@ -13,24 +13,6 @@ public class mediDTO {
 	String mSession;
 	
 	
-	public String getmName() {
-		return mName;
-	}
-	public void setmName(String mName) {
-		this.mName = mName;
-	}
-	public String getmPhoto() {
-		return mPhoto;
-	}
-	public void setmPhoto(String mPhoto) {
-		this.mPhoto = mPhoto;
-	}
-	public String getmAddr() {
-		return mAddr;
-	}
-	public void setmAddr(String mAddr) {
-		this.mAddr = mAddr;
-	}
 	public String getOpenTime() {
 		return openTime;
 	}
@@ -55,6 +37,25 @@ public class mediDTO {
 	public void setmSession(String mSession) {
 		this.mSession = mSession;
 	}
+	public String getmName() {
+		return mName;
+	}
+	public void setmName(String mName) {
+		this.mName = mName;
+	}
+	public String getmPhoto() {
+		return mPhoto;
+	}
+	public void setmPhoto(String mPhoto) {
+		this.mPhoto = mPhoto;
+	}
+	public String getmAddr() {
+		return mAddr;
+	}
+	public void setmAddr(String mAddr) {
+		this.mAddr = mAddr;
+	}
+	
 	public String getmTel() {
 		return mTel;
 	}
