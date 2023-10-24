@@ -47,8 +47,10 @@ public class commonController {
 			cs.keepLogin("nan", 
 					(String)session.getAttribute(LoginSession.LOGIN));
 			System.out.println("·Î±×¾Æ¿ô¿Ï·áÀÎµ­");
-		}
+		}	
+		session.removeAttribute(LoginSession.LOGIN);
 		session.invalidate();
+	
 		return "redirect:/";
 	}
 

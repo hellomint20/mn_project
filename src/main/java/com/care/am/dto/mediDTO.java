@@ -7,8 +7,36 @@ public class mediDTO {
 	String mId;
 	String mPw;
 	String mPhoto;
+	String openTime;
+	String lunchTime;
+	String closeTime;
+	String mSession;
 	
 	
+	public String getOpenTime() {
+		return openTime;
+	}
+	public void setOpenTime(String openTime) {
+		this.openTime = openTime;
+	}
+	public String getLunchTime() {
+		return lunchTime;
+	}
+	public void setLunchTime(String lunchTime) {
+		this.lunchTime = lunchTime;
+	}
+	public String getCloseTime() {
+		return closeTime;
+	}
+	public void setCloseTime(String closeTime) {
+		this.closeTime = closeTime;
+	}
+	public String getmSession() {
+		return mSession;
+	}
+	public void setmSession(String mSession) {
+		this.mSession = mSession;
+	}
 	public String getmName() {
 		return mName;
 	}
