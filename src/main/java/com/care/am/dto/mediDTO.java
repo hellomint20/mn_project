@@ -8,7 +8,7 @@ public class mediDTO {
 	String mPw;
 	String mPhoto;
 	String openTime;
-	String launchTime;
+	String lunchTime;
 	String closeTime;
 	
 	
@@ -54,11 +54,11 @@ public class mediDTO {
 	public void setOpenTime(String openTime) {
 		this.openTime = openTime;
 	}
-	public String getLaunchTime() {
-		return launchTime;
+	public String getLunchTime() {
+		return lunchTime;
 	}
-	public void setLaunchTime(String launchTime) {
-		this.launchTime = launchTime;
+	public void setLunchTime(String lunchTime) {
+		this.lunchTime = lunchTime;
 	}
 	public String getCloseTime() {
 		return closeTime;

@@ -83,7 +83,7 @@
 				
 				<div id="detailDiv" style="display: none;">
 					<table class="reservationDetail">
-					<tr><td colspan="2" class="Xcla"><button id="X" type="button" onclick="Xclose()" >X</button></td></tr>
+					<tr><td class="Xcla"><button id="X" type="button" onclick="Xclose()" >X</button></td></tr>
 						<tr><td id="mediDetail"></td></tr>
 						<tr><td id="mediPhoto"><img src="/am/resources/img/medi.jpeg"></td></tr>
 						<tr><td>이름 :</td><td id="mediName" ></td></tr>
