@@ -116,7 +116,7 @@ function leftPad(value) {
 
 			<div class="box-hospital-name">
 				<strong>병원 예약</strong>
-				<p>${name} = 튼튼병원 예약 페이지입니다</p>
+				<p>${name} 예약 페이지입니다</p>
 			</div>
 
 			<div class="box-container-left">

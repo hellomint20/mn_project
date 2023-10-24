@@ -83,15 +83,14 @@
 				
 				<div id="detailDiv" style="display: none;">
 					<table class="reservationDetail">
-					<tr><td class="Xcla"><button id="X" type="button" onclick="Xclose()" >X</button></td></tr>
-						<tr><td id="mediDetail"></td></tr>
-						<tr><td id="mediPhoto"><img src="/am/resources/img/medi.jpeg"></td></tr>
-						<tr><td>이름 :</td><td id="mediName" ></td></tr>
-						<tr><td>주소 :</td><td id="mediAddr" ></td></tr>
-						<tr><td>영업시간 :</td><td id="mediTime" ></td></tr>
-						<tr><td>전화번호 :</td><td id="mediTel" ></td></tr>
-						<tr><td id="reBtn" ><button class="re" type="button" onclick="choiceMedi()">예약</button></td></tr>
-
+						<tr><td colspan="2" class="Xcla"><button id="X" type="button" onclick="Xclose()" >X</button></td></tr>
+						<tr><td class="detailTd" colspan="2" id="mediDetail" ></td></tr>
+						<tr><td class="detailTd" colspan="2" id="mediPhoto" ><img src="/am/resources/img/medi.jpeg"></td></tr>
+						<tr><td class="detailTd">이름</td><td id="mediName"></td></tr>
+						<tr><td class="detailTd">주소</td><td id="mediAddr" ></td></tr>
+						<tr><td class="detailTd">영업시간</td><td id="mediTime" ></td></tr>
+						<tr><td class="detailTd">전화번호</td><td id="mediTel" ></td></tr>
+						<tr><td class="detailTd" colspan="2" id="reBtn"><button class="re" type="button" onclick="choiceMedi()">예약</button></td></tr>
 				</table>
 				</div>
 			</div>
