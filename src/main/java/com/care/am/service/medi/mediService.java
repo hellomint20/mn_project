@@ -1,5 +1,7 @@
 package com.care.am.service.medi;
 
-public interface mediService {
+import java.util.Map;
 
+public interface mediService {
+	public Map<String, Object> getMedi(String id);
 }

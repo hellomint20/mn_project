@@ -4,4 +4,20 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.care.am.mapper.mediMapper">
 
+	<resultMap type="com.care.am.dto.mediDto" id="medi">
+		<id property="id" column="m_id" />
+		<result property="pw" column="m_pw" />
+		<result property="name" column="m_name" />
+		<result property="addr" column="m_addr" />
+		<result property="tel" column="m_tel" />
+		<result property="photo" column="m_photo" />
+		<result property="openTime" column="open_time" />
+		<result property="launchTime" column="launch_time" />
+		<result property="closeTime" column="close_time" />
+	</resultMap>
+
+	<select id="getMedi" resultMap="medi">
+		select * from medi where m_id = #{id}
+	</select>
+
 </mapper>
