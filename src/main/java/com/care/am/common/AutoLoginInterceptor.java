@@ -9,6 +9,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import org.springframework.web.util.WebUtils;
 
 import com.care.am.dto.customerDTO;
+import com.care.am.dto.mediDTO;
 import com.care.am.service.customer.customerService;
 import com.care.am.service.medi.mediService;
 
@@ -24,8 +25,13 @@ public class AutoLoginInterceptor extends HandlerInterceptorAdapter
 		Cookie loginCookie= WebUtils.getCookie(request, "loginCookie");
 		if(loginCookie != null) {
 			customerDTO dto = cs.getCustomerSessionId(loginCookie.getValue());
+			mediDTO mdto = ms.getMediSessionId(loginCookie.getValue());
 			if(dto != null) {
 				request.getSession().setAttribute(LOGIN,dto.getcId());
+				
+			}
+			if(mdto != null) {
+				request.getSession().setAttribute(LOGIN,mdto.getmId());
 				
 			}
 		}

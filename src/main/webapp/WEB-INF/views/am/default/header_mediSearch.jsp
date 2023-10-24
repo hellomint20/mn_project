@@ -21,10 +21,10 @@
 			<img src="/am/resources/img/dog.jpg" width="100%" height="350px">
 			<c:if test="${userId == null }">
             <span id="headerText"><a href="/am/customerInfo" id="text">마이페이지</a> | 
-            <a href="/am/logout" id="text">로그인</a></span>
+            <a href="/am/customerLogin" id="text">로그인</a></span>
         	 </c:if>         
         	 <c:if test="${userId != null }">
-            <span id="headerText"><a href="/am/customerInfo/userId" id="text">마이페이지</a> | 
+            <span id="headerText"><a href="/am/customerInfo?id=${userId}" id="text">마이페이지</a> | 
             <a href="/am/logout" id="text">로그아웃</a></span>
          </c:if>   
 		</div>
