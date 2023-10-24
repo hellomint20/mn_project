@@ -56,7 +56,7 @@ public class customerController {
 		int result = cs.logChk(id,pw);
 		if(result == 0) {
 			rs.addAttribute("id",id);
-			rs.addAttribute("autoLogin",autoLogin);
+			rs.addAttribute("autoLogin",autoLogin); // console창에 autoLogin 상태 띄어줌
 			return "redirect:successLogin";
 		}
 		return "redirect:customerLogin";
@@ -67,18 +67,18 @@ public class customerController {
 								HttpSession session,
 								HttpServletResponse res) {
 		
-		System.out.println("autologin:"+autoLogin);
-		if(autoLogin.equals("on")) {
+		System.out.println("autologin:"+autoLogin); 
+		if(autoLogin.equals("on")) { //자동로그인 체크하면 쿠키생성
 			int limitTime = 60*60*24*90; //세달
 			Cookie loginCookie = new Cookie("loginCookie",session.getId());
-			loginCookie.setPath("/");
+			loginCookie.setPath("/"); // 경로를 최상위로 두어 모든곳에서 다 쓸수있게
 			loginCookie.setMaxAge(limitTime);
 			res.addCookie(loginCookie);
 			cs.keepLogin(session.getId(),id);
 			System.out.println("자동로그인쿠키생성");
 			
 		}
-		session.setAttribute(LoginSession.LOGIN, id);
+		session.setAttribute(LoginSession.LOGIN, id); // 체크안했으면 그냥 세션만 만들어줘
 		System.out.println(LoginSession.LOGIN);
 		return "redirect:/";
 		

@@ -50,23 +50,33 @@
 						</div>
 					</div>
 				</div>
-				<c:choose>
-				<div id="rightMaincontainer2">
-					<div id="rightMainContent2">
-						<div id="rightMainContentSecond">
-							<a href="mediLogin"><img
-								src="/am/resources/img/main/mediLogin.png" width="300px;"
-								height="150px;" style="border: solid white;"></a>
+					<c:if test="${userId == null }">
+						<div id="rightMaincontainer2">
+							<div id="rightMainContent2">
+								<div id="rightMainContentSecond">
+									<a href="mediLogin"><img
+										src="/am/resources/img/main/mediLogin.png" width="300px;"
+										height="150px;" style="border: solid white;"></a>
+							</div>
+							<div id="rightMainContentSecond">
+								<a href="customerLogin"><img
+									src="/am/resources/img/main/customerLogin.png" width="300px;"
+									height="150px;" style="border: solid white;"></a>
+							</div>
 						</div>
-						<div id="rightMainContentSecond">
-							<a href="customerLogin"><img
-								src="/am/resources/img/main/customerLogin.png" width="300px;"
-								height="150px;" style="border: solid white;"></a>
+					</div>
+				</c:if>
+				<c:if test="${userId != null }">	
+					<div id="rightMainMypage">
+					<div id="rightMainMypageCotainer">
+						<div id="rightMainMypageContent">
+							<a href="customerInfo"><img src="/am/resources/img/main/mypage.png" width="270px;"
+								height="120px;" style="border: solid white;"></a>
 						</div>
-						
 					</div>
 				</div>
-				</c:choose>
+				
+				</c:if>
 			</div>
 		</div>
 	</div>

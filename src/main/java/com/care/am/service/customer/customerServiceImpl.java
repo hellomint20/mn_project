@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.care.am.common.GetMessage;
@@ -15,8 +16,22 @@ public class customerServiceImpl implements customerService{
 	
 	@Autowired customerMapper cm;
 	
+	BCryptPasswordEncoder encoder;
+	public customerServiceImpl() {
+		encoder = new BCryptPasswordEncoder();
+	}
+	
 	public String register(customerDTO dto) {
-		int result = cm.register(dto);
+		int result=0;
+		System.out.println("비밀번호"+ dto.getcPw() );
+		System.out.println("암호화된비밀번호"+ encoder.encode(dto.getcPw() ) );
+		
+		dto.setcPw( encoder.encode(dto.getcPw()) );
+		try {
+			result = cm.register( dto );
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		if(result==1) {
 		 return	GetMessage.getMessage("회원가입 성공","/am/customerLogin");
 		}
@@ -30,7 +45,11 @@ public class customerServiceImpl implements customerService{
 			System.out.println(dto.getcId());
 			System.out.println(dto.getcPw());
 			
-			return 0;
+			if( encoder.matches(pw, dto.getcPw() ) 
+					|| pw.equals( dto.getcPw() ) ) {
+			System.out.println("로그인확인성공");
+			result = 0;
+			}
 		}
 		return result;
 	}
