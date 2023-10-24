@@ -55,6 +55,7 @@ public class mediDTO {
 	public void setmAddr(String mAddr) {
 		this.mAddr = mAddr;
 	}
+	
 	public String getmTel() {
 		return mTel;
 	}

@@ -18,72 +18,65 @@ import com.care.am.service.medi.mediService;
 
 @Controller
 public class mediController {
-	
-	@Autowired mediService ms;
-	
-	//로그인 관련
-	@GetMapping("mediRegister") //병원 회원가입
+
+	@Autowired	mediService ms;
+
+	// 로그인 관련
+	@GetMapping("mediRegister") // 병원 회원가입
 	public String mediRegister() {
 		return "am/medi/mediRegister";
 	}
-	
-	@PostMapping("mediRegister") //병원 회원가입 적용
+
+	@PostMapping("mediRegister") // 병원 회원가입 적용
 	public void mediRegister(mediDTO dto, HttpServletResponse res) {
-		
+
 	}
-	
-	@GetMapping("mediLogin") //로그인 페이지
-	public String mediLogin(){
+
+	@GetMapping("mediLogin") // 로그인 페이지
+	public String mediLogin() {
 		return "am/medi/mediLogin";
 	}
-	
-	@PostMapping("mediLogin") //병원 로그인 확인
-	public String loginChk(HttpSession session, 
-			@RequestParam String id, 
-			@RequestParam String pw,
-			@RequestParam(required=false, defaultValue="off")String autoLogin,
-			RedirectAttributes rs,
+
+	@PostMapping("mediLogin") // 병원 로그인 확인
+	public String loginChk(HttpSession session, @RequestParam String id, @RequestParam String pw,
+			@RequestParam(required = false, defaultValue = "off") String autoLogin, RedirectAttributes rs,
 			HttpServletResponse res) throws Exception {
-		int result = ms.logChk(id,pw);
-		if(result==0) {
+		int result = ms.logChk(id, pw);
+		if (result == 0) {
 			rs.addAttribute("id", id);
 			rs.addAttribute("autoLogin", autoLogin);
 			return "redirect:successMLogin";
 		}
-		
+
 		return "redirect:mediLogin";
-		
 	}
-		
+
 	@RequestMapping("successMLogin")
-	public String successMLogin(@RequestParam String id, 
-			@RequestParam String autoLogin,
-			HttpSession session,
+	public String sucessMLogin(@RequestParam String id, @RequestParam String autoLogin, HttpSession session,
 			HttpServletResponse res) {
 
-		System.out.println("autologin:"+autoLogin); 
-		if(autoLogin.equals("on")) { //자동로그인 체크하면 쿠키생성
-			int limitTime = 60*60*24*90; //세달
-			Cookie loginCookie = new Cookie("loginCookie",session.getId());
+		System.out.println("autologin:" + autoLogin);
+		if (autoLogin.equals("on")) { // 자동로그인 체크하면 쿠키생성
+			
+			int limitTime = 60 * 60 * 24 * 90; // 세달
+			Cookie loginCookie = new Cookie("loginCookie", session.getId());
+			
 			loginCookie.setPath("/"); // 경로를 최상위로 두어 모든곳에서 다 쓸수있게
 			loginCookie.setMaxAge(limitTime);
 			res.addCookie(loginCookie);
-			ms.keepLogin(session.getId(),id);
-			System.out.println("자동로그인쿠키생성");
-
-			}
-		session.setAttribute(LoginSession.LOGIN, id); // 체크안했으면 그냥 세션만 만들어줘
-		System.out.println(LoginSession.LOGIN);
-		
+			ms.keepLogin(session.getId(), id);
+			System.out.println("자동로그인 쿠키생성");
+		}
+		session.setAttribute(LoginSession.mLOGIN, id); // 체크안했으면 그냥 세션만 만들어줘
 		return "redirect:reservationState";
-		
 	}
-	@GetMapping("mediSearchIdPw") //아이디/비밀번호 찾기 페이지
+
+	@GetMapping("mediSearchIdPw") // 아이디/비밀번호 찾기 페이지
 	public String SearchIdPw() {
 		return "am/medi/mediSearchIdPw";
 	}
-	
-	//개인정보 관련
+
+	// 개인정보 관련
 	@GetMapping("mediInfo") // 병원 개인정보 페이지
 	public String info() {
 		return "am/medi/mediInfo";

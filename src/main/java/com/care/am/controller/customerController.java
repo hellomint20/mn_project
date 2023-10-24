@@ -76,11 +76,9 @@ public class customerController {
 			loginCookie.setMaxAge(limitTime);
 			res.addCookie(loginCookie);
 			cs.keepLogin(session.getId(),id);
-			System.out.println("자동로그인쿠키생성");
 			
 		}
-		session.setAttribute(LoginSession.LOGIN, id); // 체크안했으면 그냥 세션만 만들어줘
-		System.out.println(LoginSession.LOGIN);
+		session.setAttribute(LoginSession.cLOGIN, id); // 체크안했으면 그냥 세션만 만들어줘
 		return "redirect:/";
 		
 	}
