@@ -1,11 +1,19 @@
 package com.care.am.controller;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.care.am.common.LoginSession;
+import com.care.am.service.customer.customerService;
+
 @Controller
 public class commonController {
+	
+	@Autowired customerService cs;
 	
 	@GetMapping("/") //메인 홈페이지
 	public String main() {
@@ -24,14 +32,11 @@ public class commonController {
 	}
 	
 	@RequestMapping("logout") //로그아웃
-	public String logout() {
+	public String logout(HttpSession session) {
+		System.out.println("logout: "+ LoginSession.LOGIN);
+		session.invalidate();
 		return "am/common/main";
 	}
-	
-	@GetMapping("reservationPage")
-	public String reservationPage() {
-		return "am/reservation/reservationPage";
-	}
-	
+
 
 }

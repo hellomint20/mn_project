@@ -29,8 +29,10 @@ public class customerServiceImpl implements customerService{
 		if(dto != null) {
 			System.out.println(dto.getcId());
 			System.out.println(dto.getcPw());
-			
-			return 0;
+
+			if(pw.equals(dto.getcPw())) {
+				return 0;
+			}
 		}
 		return result;
 	}

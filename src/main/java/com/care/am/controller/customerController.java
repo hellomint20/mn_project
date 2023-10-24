@@ -52,37 +52,43 @@ public class customerController {
 						@RequestParam(required=false, defaultValue="off")String autoLogin,
 						RedirectAttributes rs,
 						HttpServletResponse res) throws Exception {
-		
+
 		int result = cs.logChk(id,pw);
 		if(result == 0) {
 			rs.addAttribute("id",id);
-			rs.addAttribute("autoLogin",autoLogin);
+			rs.addAttribute("autoLogin", autoLogin);
+
+			session.setAttribute(LoginSession.LOGIN, id);
+			
+			System.out.println("conIdchk:" +session.getAttribute(LoginSession.LOGIN));
+			
 			return "redirect:successLogin";
 		}
 		return "redirect:customerLogin";
 	}
+	
 	@RequestMapping("successLogin")
 	public String successLogin(@RequestParam String id, 
 								@RequestParam String autoLogin,
 								HttpSession session,
 								HttpServletResponse res) {
 		
-		System.out.println("autologin:"+autoLogin);
+		System.out.println("autologin: " +autoLogin);
+		
 		if(autoLogin.equals("on")) {
 			int limitTime = 60*60*24*90; //세달
+			
 			Cookie loginCookie = new Cookie("loginCookie",session.getId());
 			loginCookie.setPath("/");
 			loginCookie.setMaxAge(limitTime);
 			res.addCookie(loginCookie);
-			cs.keepLogin(session.getId(),id);
-			System.out.println("자동로그인쿠키생성");
 			
+			cs.keepLogin(session.getId(), id);
+			System.out.println("자동로그인 쿠키생성");
 		}
-		session.setAttribute(LoginSession.LOGIN, id);
-		System.out.println(LoginSession.LOGIN);
 		return "redirect:/";
-		
 	}
+	
 	@GetMapping("customerSearchIdPw") //아이디/비밀번호 찾기 페이지
 	public String SearchIdPw() {
 		return "am/customer/customerSearchIdPw";
