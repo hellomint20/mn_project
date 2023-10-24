@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.care.am.mapper.CrawMapper">
+
+	<update id="insertType">
+		insert into type(t_num, p_type) values
+		<foreach collection="list" separator="," item="name">
+			(#{name.tNum}, #{name.pType})
+		</foreach>
+	</update>
+
+</mapper>
