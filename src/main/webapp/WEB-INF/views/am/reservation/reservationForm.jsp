@@ -109,14 +109,13 @@ function leftPad(value) {
 
 <body>
 	<%@ include file="../default/header_reservationPage.jsp"%>
-
 	<div class="box-container">
 
 		<div class="reservation-form">
 
 			<div class="box-hospital-name">
 				<strong>병원 예약</strong>
-				<p>튼튼병원 예약 페이지입니다</p>
+				<p>${name} = 튼튼병원 예약 페이지입니다</p>
 			</div>
 
 			<div class="box-container-left">

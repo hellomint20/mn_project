@@ -6,10 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.care.am.dto.mediDTO;
 import com.care.am.service.reservation.reservationService;
 
 @Controller
@@ -31,11 +36,19 @@ public class reservationController {
 		System.out.println("con"+rs.mediInfo(mediName));
 		return rs.mediInfo(mediName);
 	}
+
+	@RequestMapping(value = "reservationForm/page/{name}")
+	public String reservationFormPage(@PathVariable String name, Model model) {
+		System.out.println("reservationFormPage "+name);
+		model.addAttribute("name", name);
+		return "am/reservation/reservationForm";
+	}
 	
+	/*
 	@GetMapping("reservationForm") //병원 예약 하기 페이지
 	public String reservationForm() {
 		return "am/reservation/reservationForm";
-	}
+	}*/
 	
 	@GetMapping("reservationPopup")//예약완료후팝업창
 	public String reservationPopup() {
