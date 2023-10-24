@@ -17,8 +17,8 @@
 
 	<script type="text/javascript">
 	
-	function detailView() {
-		let mediName = document.getElementById("mediInfo").innerText;
+	function detailView(mediName) {
+		//let mediName = document.getElementById("mediList").innerText;
 		console.log(mediName);	
 		
 		$.ajax({
@@ -70,7 +70,7 @@
 							<c:set var="i" value="${i+1 }" />
 							<tr class="listTr">
 								<td>${i }</td>
-								<td><button id="mediInfo" class="listBtn" type="button" onclick="detailView()">${list['m_name']}</button></td>
+								<td id="mediList"><button class="listBtn" type="button" onclick="detailView('${list['m_name']}')">${list['m_name']}</button></td>
 							</tr>
 						</c:forEach>
 					</table>
