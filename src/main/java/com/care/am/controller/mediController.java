@@ -75,7 +75,7 @@ public class mediController {
 		session.setAttribute(LoginSession.LOGIN, id); // 체크안했으면 그냥 세션만 만들어줘
 		System.out.println(LoginSession.LOGIN);
 		
-		return "redirect:mediInfo";
+		return "redirect:reservationState";
 		
 	}
 	@GetMapping("mediSearchIdPw") //아이디/비밀번호 찾기 페이지
