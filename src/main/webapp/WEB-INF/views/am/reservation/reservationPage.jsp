@@ -31,9 +31,9 @@
 				
 				document.getElementById("mediDetail").innerHTML ="{ "+mediInfo['m_name'] + " } 상세 정보";
 				document.getElementById("mediName").innerHTML = mediInfo['m_name'];
-				document.getElementById("mediAddr").innerHTML = "주소 : "+mediInfo['m_addr'];
-				document.getElementById("mediTime").innerHTML = "영업시간 : "+mediInfo['open_time']+" - "+mediInfo['close_time'];
-				document.getElementById("mediTel").innerHTML = "전화번호 : "+mediInfo['m_tel'];
+				document.getElementById("mediAddr").innerHTML = mediInfo['m_addr'];
+				document.getElementById("mediTime").innerHTML = mediInfo['open_time']+" - "+mediInfo['close_time'];
+				document.getElementById("mediTel").innerHTML = mediInfo['m_tel'];
 			},
 			error : () => {
 				console.log("문제 발생")
@@ -83,14 +83,14 @@
 				
 				<div id="detailDiv" style="display: none;">
 					<table class="reservationDetail">
-					<tr><td class="Xcla"><button id="X" type="button" onclick="Xclose()" >X</button></td></tr>
-						<tr><td id="mediDetail" class="detailTd"></td></tr>
-						<tr><td id="mediPhoto" class="detailTd"><img src="/am/resources/img/medi.jpeg"></td></tr>
-						<tr><td>이름 :</td><td id="mediName" class="detailTd"></td></tr>
-						<tr><td id="mediAddr" class="detailTd"></td></tr>
-						<tr><td id="mediTime" class="detailTd"></td></tr>
-						<tr><td id="mediTel" class="detailTd"></td></tr>
-						<tr><td id="reBtn" class="detailTd"><button class="re" type="button" onclick="choiceMedi()">예약</button></td></tr>
+						<tr><td colspan="2" class="Xcla"><button id="X" type="button" onclick="Xclose()" >X</button></td></tr>
+						<tr><td class="detailTd" colspan="2" id="mediDetail" ></td></tr>
+						<tr><td class="detailTd" colspan="2" id="mediPhoto" ><img src="/am/resources/img/medi.jpeg"></td></tr>
+						<tr><td class="detailTd">이름</td><td id="mediName"></td></tr>
+						<tr><td class="detailTd">주소</td><td id="mediAddr" ></td></tr>
+						<tr><td class="detailTd">영업시간</td><td id="mediTime" ></td></tr>
+						<tr><td class="detailTd">전화번호</td><td id="mediTel" ></td></tr>
+						<tr><td class="detailTd" colspan="2" id="reBtn"><button class="re" type="button" onclick="choiceMedi()">예약</button></td></tr>
 				</table>
 				</div>
 			</div>
