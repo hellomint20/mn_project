@@ -1,5 +1,12 @@
 package com.care.am.mapper;
 
-public interface customerMapper {
+import java.util.Map;
 
+import com.care.am.dto.customerDTO;
+
+public interface customerMapper {
+	public customerDTO getCustomer(String id);
+	public void keepLogin(Map<String, Object> map);
+	public int register(customerDTO dto);
+	public customerDTO getCustomerSessionId( String cSessionId );
 }

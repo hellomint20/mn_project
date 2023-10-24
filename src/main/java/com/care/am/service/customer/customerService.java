@@ -1,5 +1,10 @@
 package com.care.am.service.customer;
 
-public interface customerService {
+import com.care.am.dto.customerDTO;
 
+public interface customerService {
+	public String register(customerDTO dto);
+	public int logChk(String id, String pw);
+	public void keepLogin(String cSessionId, String cId);
+	public customerDTO getCustomerSessionId(String cSessionId);
 }

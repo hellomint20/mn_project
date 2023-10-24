@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,6 +50,7 @@
 						</div>
 					</div>
 				</div>
+				<c:choose>
 				<div id="rightMaincontainer2">
 					<div id="rightMainContent2">
 						<div id="rightMainContentSecond">
@@ -61,8 +63,10 @@
 								src="/am/resources/img/main/customerLogin.png" width="300px;"
 								height="150px;" style="border: solid white;"></a>
 						</div>
+						
 					</div>
 				</div>
+				</c:choose>
 			</div>
 		</div>
 	</div>
