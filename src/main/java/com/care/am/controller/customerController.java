@@ -57,11 +57,6 @@ public class customerController {
 		if(result == 0) {
 			rs.addAttribute("id",id);
 			rs.addAttribute("autoLogin", autoLogin);
-
-			session.setAttribute(LoginSession.LOGIN, id);
-			
-			System.out.println("conIdchk:" +session.getAttribute(LoginSession.LOGIN));
-			
 			rs.addAttribute("autoLogin",autoLogin); // console창에 autoLogin 상태 띄어줌
 			return "redirect:successLogin";
 		}
@@ -89,14 +84,14 @@ public class customerController {
 			
 			cs.keepLogin(session.getId(), id);
 			System.out.println("자동로그인 쿠키생성");
+			}
 		}
-
 		session.setAttribute(LoginSession.LOGIN, id); // 체크안했으면 그냥 세션만 만들어줘
 		System.out.println(LoginSession.LOGIN);
 		return "redirect:/";
 	}
 	
-	@GetMapping("customerSearchIdPw") //아이디/비밀번호 찾기 페이지
+	@GetMapping("customerSearchIdPw") // 아이디/비밀번호 찾기 페이지
 	public String SearchIdPw() {
 		return "am/customer/customerSearchIdPw";
 	}

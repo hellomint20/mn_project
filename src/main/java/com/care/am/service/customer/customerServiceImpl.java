@@ -45,9 +45,6 @@ public class customerServiceImpl implements customerService{
 			System.out.println(dto.getcId());
 			System.out.println(dto.getcPw());
 
-			if(pw.equals(dto.getcPw())) {
-				return 0;
-			
 			if( encoder.matches(pw, dto.getcPw() ) 
 					|| pw.equals( dto.getcPw() ) ) {
 			System.out.println("로그인확인성공");
@@ -55,6 +52,7 @@ public class customerServiceImpl implements customerService{
 			}
 		}
 		return result;
+		
 	}
 	public void keepLogin(String cSessionId, String cId) {
 		Map<String, Object> map = new HashMap<String, Object>();

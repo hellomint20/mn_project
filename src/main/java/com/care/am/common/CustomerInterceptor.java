@@ -6,28 +6,32 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-public class CustomerInterceptor extends HandlerInterceptorAdapter{
-	
+
+public class CustomerInterceptor extends HandlerInterceptorAdapter implements LoginSession{
+
+	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		
-		HttpSession session = request.getSession();
-		
-		if( session.getAttribute(LoginSession.LOGIN) == null) {
+			System.out.println("연동 확인");
 			
-			String msg = "<script>alert('로그인 먼저 하세요');";
-			msg += "location.href='/am/login';</script>";
-			response.setContentType("text/html; charset=UTF-8");
+			HttpSession session =request.getSession();
+			
+			if(StringUtils.isEmpty(session.getAttribute(LOGIN))) {
+				String msg="<script>alert('로그인 먼저 하세요');";
+				msg += "location.href='/am/customerLogin';</script>";
+				
+				response.setContentType("text/html; charset=UTF-8");
 
-			PrintWriter out = response.getWriter();
-			out.print(msg);
-		
-			return false;
+				PrintWriter out = response.getWriter();
+				out.print(msg);
+			
+				return false;
+			}
+			return true;
 		}
-		return true;
-	}
 	
 }
