@@ -45,10 +45,13 @@ public class commonController {
 			cookie.setPath("/");
 			res.addCookie(cookie);
 			cs.keepLogin("nan", 
-					(String)session.getAttribute(LoginSession.LOGIN));
+					(String)session.getAttribute(LoginSession.cLOGIN));
+			ms.keepLogin("nan", 
+					(String)session.getAttribute(LoginSession.mLOGIN));
 			System.out.println("·Î±×¾Æ¿ô¿Ï·áÀÎµ­");
 		}	
-		session.removeAttribute(LoginSession.LOGIN);
+		session.removeAttribute(LoginSession.cLOGIN);
+		session.removeAttribute(LoginSession.mLOGIN);
 		session.invalidate();
 	
 		return "redirect:/";

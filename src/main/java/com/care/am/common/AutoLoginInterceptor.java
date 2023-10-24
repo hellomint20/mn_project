@@ -27,10 +27,10 @@ public class AutoLoginInterceptor extends HandlerInterceptorAdapter
 			customerDTO dto = cs.getCustomerSessionId(loginCookie.getValue());
 			mediDTO mdto = ms.getMediSessionId(loginCookie.getValue());
 			if(dto != null) {
-				request.getSession().setAttribute(LOGIN,dto.getcId());
+				request.getSession().setAttribute(cLOGIN,dto.getcId());
 			}
 			if(mdto != null) {
-				request.getSession().setAttribute(LOGIN,mdto.getmId());
+				request.getSession().setAttribute(mLOGIN,mdto.getmId());
 				
 			}
 		}
