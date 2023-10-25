@@ -28,7 +28,7 @@
         	</a>
         </li>
         <li>
-        	<a href="/am/pet/petList">
+        	<a href="/am/pet/petList?id=${userId}">
         		<span class="icon"></span>
         		<span class="title">펫 관리</span>
         	</a>
