@@ -35,7 +35,6 @@ public class mediServiceImpl implements mediService{
 			
 			if(encoder.matches(pw, dto.getmPw()) ||
 					pw.equals(dto.getmPw())) {
-				System.out.println("병원 로그인 성공");
 				result =0;
 			}
 		}
@@ -50,19 +49,16 @@ public class mediServiceImpl implements mediService{
 	}
 	
 	public mediDTO getMediSessionId(String mSessionId) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	
-	public Map<String, Object> getMedi(String id){
+	public Map<String, Object> getMedi(String id){  //병원 마이페이지 아이디 이름 전번 주소
 		mediDTO dto = mm.getMedi(id);
-		//System.out.println(dto.getmId());
-		//System.out.println(dto.getmPw());
-		//System.out.println(dto.getmName());
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("dto", dto);
-		
 		return map;
 	}
+	
+	
 
 }

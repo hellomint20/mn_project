@@ -18,7 +18,7 @@
 	<div class="all">
 		<div class="all_title">
 			<strong>병원 정보</strong>
-			<p>${medi.dto.name } 정보입니다</p>
+			<p>${info.dto.mName } 정보입니다</p>
 		</div>
 	<div class="info">
 		<div class="info-title">
@@ -29,20 +29,20 @@
 		</div>
 		
   		<div class="info-content">
-  			quddnjs<br>
-  			행복병원<br>
-  			서울시 종로구..<br>
-  			010-1111-1111<br>
+  			${info.dto.mId }<br>
+  			${info.dto.mName }<br>
+  			${info.dto.mAddr }<br>
+  			${info.dto.mTel }<br>
   		</div>
   		
   		<div class="pic">
-			사진들어가기
+			${info.dto.mPhoto }
 		</div>
 	</div>
 	
 	
    
-    <button type="button" class="b" onclick="location.href='mediModify'">수정</button>
+    <button type="button" class="b" onclick="location.href='mediModify?id=${info.dto.mId }'">수정</button>
 	</div>
 	
 

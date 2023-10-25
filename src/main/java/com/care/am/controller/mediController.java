@@ -87,19 +87,24 @@ public class mediController {
 	
 	//개인정보 관련
 	@GetMapping("mediInfo") // 병원 개인정보 페이지
-	//public String info(@RequestParam String id, Model model) {
-	public String info(String id, Model model) {
+	public String info(@RequestParam String id, Model model) {
 		model.addAttribute("info", ms.getMedi(id));
+		System.out.println("C병원아이디: "+model.getAttribute(id));
+		
 		return "am/medi/mediInfo";
 	}
+	
 
 	@GetMapping("mediModify") // 병원 개인정보 수정 페이지
-	public String modify() {
+	public String modify(@RequestParam String id, Model model) {
+		model.addAttribute("info", ms.getMedi(id));
+		System.out.println("C병원아이디: "+model.getAttribute(id));
+		
 		return "am/medi/mediModify";
 	}
 
 	@PostMapping("mediModify") // 병원 개인정보 수정 적용
-	public void modify(String id) {
+	public void modify() {
 
 	}
 

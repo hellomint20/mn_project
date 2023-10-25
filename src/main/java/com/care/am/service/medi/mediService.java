@@ -9,6 +9,7 @@ public interface mediService {
 	public void keepLogin(String mSessionId, String cId);
 	public mediDTO getMediSessionId(String mSessionId);
 	public Map<String, Object> getMedi(String id);
+	
 }
 	
 

@@ -14,7 +14,7 @@
 	<div class="all">
 		<div class="all_title">
 			<strong>정보 수정</strong>
-			<p>(병원 이름) 정보입니다</p>
+			<p>${info.dto.mName } 정보입니다</p>
 		</div>
 		
 		<div class="info">
@@ -27,15 +27,15 @@
 			</div>
 			
 			<div class="info-content">
-		   		<input type="text" id="t_b" name="c_id" readonly placeholder="아이디"><br>
-		   		<input type="password" id="t_b" name="c_pw" value="비밀번호"><br>
-		   		<input type="text" id="t_b" name="c_name" value="이름"><br>
-		   		<input type="text" id="t_b" name="c_addr" value="주소"><br>
-		   		<input type="text" id="t_b" name="c_tel" value="전화번호"><br>
+		   		<input type="text" id="t_b" name="c_id" readonly placeholder="${info.dto.mId }"><br>
+		   		<input type="password" id="t_b" name="c_pw" value="${info.dto.mPw }"><br>
+		   		<input type="text" id="t_b" name="c_name" value="${info.dto.mName }"><br>
+		   		<input type="text" id="t_b" name="c_addr" value="${info.dto.mAddr }"><br>
+		   		<input type="text" id="t_b" name="c_tel" value="${info.dto.mTel }"><br>
 		   	</div>
 		   	
 		   	<div class="info-pic">
-				사진
+				${info.dto.mPhoto }
 				<input type="file" class="pic-btn">
 			</div>
 		
