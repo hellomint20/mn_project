@@ -16,7 +16,7 @@
 		<a href="/am"><img src="/am/resources/img/common/logoLogin.png"></a>
 		<h3 style="text-align: left;">병원 회원가입</h3>
 		<hr>
-		<form>
+		<form action="mediRegister" method="post">
 			<div id="registerFormContent" class="form-group row">
 				<label for="inputName" class="col-sm-3 col-form-label">병원명</label>
 				<div class="col-sm-7">

@@ -65,7 +65,6 @@ public class mediController {
 			loginCookie.setMaxAge(limitTime);
 			res.addCookie(loginCookie);
 			ms.keepLogin(session.getId(), id);
-			System.out.println("자동로그인 쿠키생성");
 		}
 		session.setAttribute(LoginSession.mLOGIN, id); // 체크안했으면 그냥 세션만 만들어줘
 		return "redirect:reservationState";

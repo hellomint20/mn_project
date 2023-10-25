@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.care.am.common.LoginSession;
@@ -46,7 +45,6 @@ public class commonController {
 			res.addCookie(cookie);
 			cs.keepLogin("nan", (String)session.getAttribute(LoginSession.cLOGIN));
 			ms.keepLogin("nan", (String)session.getAttribute(LoginSession.mLOGIN));
-			System.out.println("·Î±×¾Æ¿ô¿Ï·áÀÎµ­");
 		}	
 		session.removeAttribute(LoginSession.cLOGIN);
 		session.removeAttribute(LoginSession.mLOGIN);

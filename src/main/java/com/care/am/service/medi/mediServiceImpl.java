@@ -36,7 +36,6 @@ public class mediServiceImpl implements mediService{
 			
 			if(encoder.matches(pw, dto.getmPw()) ||
 					pw.equals(dto.getmPw())) {
-				System.out.println("병원 로그인 성공");
 				result =0;
 			}
 		}

@@ -26,8 +26,8 @@
 	</update>
 
 	<insert id="register">
-		insert into customer(m_name,m_addr,m_tel,m_id,m_pw,m_photo,open_time,lunch_time,close_time) 
-				values (#{mName},#{mAddr},#{mTel},#{mId},#{mPw},#{mPhoto},#{openTime},#{lunchTime},#{closeTime})
+		insert into medi(m_name,m_addr,m_tel,m_id,m_pw) 
+				values (#{mName},#{mAddr},#{mTel},#{mId},#{mPw})
 	</insert>
 
 	<select id="getMediSession" resultMap="medi">
