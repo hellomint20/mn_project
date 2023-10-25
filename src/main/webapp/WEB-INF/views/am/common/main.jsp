@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +18,6 @@
 	font-family: 'SUITE', sans-serif !important;
 }
 </style>
-
 </head>
 <body>
 
@@ -50,33 +49,46 @@
 						</div>
 					</div>
 				</div>
-					<c:if test="${userId == null }">
+				<c:choose>
+					<c:when test="${userId != null }">
+						<div id="rightMainMypage">
+							<div id="rightMainMypageCotainer">
+								<div id="rightMainMypageContent">
+									<a href="customerInfo?id=${userId }"><img
+										src="/am/resources/img/main/mypage.png" width="270px;"
+										height="120px;" style="border: solid white;"></a>
+								</div>
+							</div>
+						</div>
+					</c:when>
+					<c:when test="${mediId != null}">
+						<div id="rightMainMypage">
+							<div id="rightMainMypageCotainer">
+								<div id="rightMainMypageContent">
+									<a href="mediInfo"><img
+										src="/am/resources/img/main/mypage.png" width="270px;"
+										height="120px;" style="border: solid white;"></a>
+								</div>
+							</div>
+						</div>
+					</c:when>
+					<c:otherwise>
 						<div id="rightMaincontainer2">
 							<div id="rightMainContent2">
 								<div id="rightMainContentSecond">
 									<a href="mediLogin"><img
 										src="/am/resources/img/main/mediLogin.png" width="300px;"
 										height="150px;" style="border: solid white;"></a>
-							</div>
-							<div id="rightMainContentSecond">
-								<a href="customerLogin"><img
-									src="/am/resources/img/main/customerLogin.png" width="300px;"
-									height="150px;" style="border: solid white;"></a>
+								</div>
+								<div id="rightMainContentSecond">
+									<a href="customerLogin"><img
+										src="/am/resources/img/main/customerLogin.png" width="300px;"
+										height="150px;" style="border: solid white;"></a>
+								</div>
 							</div>
 						</div>
-					</div>
-				</c:if>
-				<c:if test="${userId != null }">	
-					<div id="rightMainMypage">
-					<div id="rightMainMypageCotainer">
-						<div id="rightMainMypageContent">
-							<a href="customerInfo"><img src="/am/resources/img/main/mypage.png" width="270px;"
-								height="120px;" style="border: solid white;"></a>
-						</div>
-					</div>
-				</div>
-				
-				</c:if>
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 	</div>

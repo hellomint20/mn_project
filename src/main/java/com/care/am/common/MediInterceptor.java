@@ -11,24 +11,22 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 @Component
-public class CustomerInterceptor extends HandlerInterceptorAdapter implements LoginSession{
+public class MediInterceptor extends HandlerInterceptorAdapter implements LoginSession{
    
-   public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+   public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+		   															throws Exception {
+	   
       HttpSession session = request.getSession();
-      if(session.getAttribute(cLOGIN) == null) {
+      if(session.getAttribute(mLOGIN) == null) {
          
          response.setContentType("text/html; charset=UTF-8");
          PrintWriter out = response.getWriter();
          out.print("<script>alert('로그인 먼저 해주세요');"
-        		 +"location.href='/am/customerLogin';</script>");
+        		 +"location.href='/am/mediLogin';</script>");
       
          return false;
       }
       return true;
    }
    
-   public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
-			ModelAndView modelAndView) throws Exception {
-   
-   }
 }

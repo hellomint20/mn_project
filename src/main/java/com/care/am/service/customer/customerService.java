@@ -7,4 +7,6 @@ public interface customerService {
 	public int logChk(String id, String pw);
 	public void keepLogin(String cSessionId, String cId);
 	public customerDTO getCustomerSessionId(String cSessionId);
+	public customerDTO getCustomerInfo(String cId);
+	public String customerModify(customerDTO dto);
 }

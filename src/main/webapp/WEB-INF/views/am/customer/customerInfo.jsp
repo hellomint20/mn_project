@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +16,7 @@
 	<div class="all">
 		<div class="all_title">
 			<strong>회원 정보</strong>
-			<p>회원님의 정보입니다</p>
+			<p>${dto.cName} 회원님의 정보입니다</p>
 		</div>
 		<div class="info">
 			<div class="info-title">
@@ -26,14 +27,14 @@
 			</div>
 			
 	  		<div class="info-content">
-	  			angduzzang<br>
-	  			최재연<br>
-	  			010-1234-5543<br>
-	  			angdu@naver.com<br>
+	  			${dto.cId}<br>
+	  			${dto.cName}<br>
+	  			${dto.cTel}<br>
+	  			${dto.cEmail}<br>
 	  		</div>
 		</div>
 	   
-	    <button type="button" class="b" onclick="location.href='/am/customerModify'">수정</button>
+	    <button type="button" class="b" onclick="location.href='/am/customerModify?id=${userId}'">수정</button>
 	</div>
 	
 </body>

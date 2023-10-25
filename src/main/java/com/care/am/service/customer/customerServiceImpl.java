@@ -23,8 +23,6 @@ public class customerServiceImpl implements customerService{
 	
 	public String register(customerDTO dto) {
 		int result=0;
-		System.out.println("비밀번호"+ dto.getcPw() );
-		System.out.println("암호화된비밀번호"+ encoder.encode(dto.getcPw() ) );
 		
 		dto.setcPw( encoder.encode(dto.getcPw()) );
 		try {
@@ -44,7 +42,7 @@ public class customerServiceImpl implements customerService{
 		if(dto != null) {
 			System.out.println(dto.getcId());
 			System.out.println(dto.getcPw());
-			
+
 			if( encoder.matches(pw, dto.getcPw() ) 
 					|| pw.equals( dto.getcPw() ) ) {
 			System.out.println("로그인확인성공");
@@ -52,6 +50,7 @@ public class customerServiceImpl implements customerService{
 			}
 		}
 		return result;
+		
 	}
 	public void keepLogin(String cSessionId, String cId) {
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -60,8 +59,28 @@ public class customerServiceImpl implements customerService{
 		cm.keepLogin( map );
 		
 	}
+	
+	public customerDTO getCustomerInfo(String cId) {
+		customerDTO dto = cm.getCustomer(cId);
+		return dto;
+		
+	}
+	
 	public customerDTO getCustomerSessionId(String cSessionId) {
 		return cm.getCustomerSessionId( cSessionId );
+	}
+	
+	public String customerModify(customerDTO dto) {
+		int result = cm.customerModify(dto);
+		
+		dto.setcPw( encoder.encode(dto.getcPw()) );
+		if(result ==1) {
+			
+			return GetMessage.getMessage("정보가 수정되었습니다.", "/am/customerInfo");
+		}
+		else {
+			return GetMessage.getMessage("정보수정에 실패했습니다.", "/am/customerModify");
+		}
 	}
 	
 

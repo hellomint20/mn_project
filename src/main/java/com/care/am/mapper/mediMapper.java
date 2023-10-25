@@ -9,4 +9,5 @@ public interface mediMapper {
 	public mediDTO getMediSession( String mSession );
 	public mediDTO getMedi(String id);	
 	public int mediModify(mediDTO dto);
+		
 }

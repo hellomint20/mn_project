@@ -17,18 +17,15 @@
 	      <result property="mSession" column="m_session" />
    </resultMap>
 
-   <select id="getMedi" resultMap="medi">
-      select * from medi where m_id=#{mId}
-   </select>
+	
 
-   <update id="keepLogin">
-      update medi set m_session=#{mSession} where m_id=#{mId}
-   </update>
+	<select id="getMedi" resultMap="medi">
+		select * from medi where m_id=#{mId}
+	</select>
 
-   <insert id="register">
-      insert into customer(m_name,m_addr,m_tel,m_id,m_pw,   m_photo,open_time,lunch_time,close_time) 
-            values (#{mName},#{mAddr},#{mTel},#{mId},#{mPw},#{mPhoto},#{openTime},#{lunchTime},#{closeTime})
-   </insert>
+	<update id="keepLogin">
+		update medi set m_session=#{mSession} where m_id=#{mId}
+	</update>
 
    <select id="getMediSession" resultMap="medi">
       select * from medi where m_session = #{mSession}
@@ -38,5 +35,14 @@
    		update medi set m_name=#{mName}, m_addr=#{mAddr}, m_tel=#{mTel}, m_pw=#{mPw}, m_photo=#{mPhoto},open_time=#{openTime},	
    			close_time=#{closeTime}, lunch_time=#{lunchTime} where m_id=#{mId}
    </update>
+	
+	<insert id="mediRegister">
+		insert into medi(m_name,m_addr,m_tel,m_id,m_pw) 
+				values (#{mName},#{mAddr},#{mTel},#{mId},#{mPw})
+	</insert>
+
+	<select id="getMediSession" resultMap="medi">
+		select * from medi where m_session = #{mSession}
+	</select>
 	
 </mapper>

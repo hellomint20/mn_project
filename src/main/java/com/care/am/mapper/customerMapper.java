@@ -9,4 +9,5 @@ public interface customerMapper {
 	public void keepLogin(Map<String, Object> map);
 	public int register(customerDTO dto);
 	public customerDTO getCustomerSessionId( String cSessionId );
+	public int customerModify(customerDTO dto);
 }

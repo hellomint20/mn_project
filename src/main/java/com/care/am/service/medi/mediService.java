@@ -7,13 +7,12 @@ import org.springframework.web.multipart.MultipartFile;
 import com.care.am.dto.mediDTO;
 
 public interface mediService {
-	public String register(mediDTO dto);
+	public String mediRegister(mediDTO dto,String[] addr);
 	public int logChk(String id, String pw);
 	public void keepLogin(String mSessionId, String cId);
-	public mediDTO getMediSessionId(String mSessionId);
 	public Map<String, Object> getMedi(String id);
 	public String mediModify(mediDTO dto, MultipartFile file);
-	
+	public mediDTO getMediSessionId(String mSession);
 }
 	
 

@@ -3,7 +3,6 @@ package com.care.am.controller;
 import java.io.PrintWriter;
 
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.care.am.common.LoginSession;
@@ -76,11 +74,9 @@ public class customerController {
 			loginCookie.setMaxAge(limitTime);
 			res.addCookie(loginCookie);
 			cs.keepLogin(session.getId(),id);
-			System.out.println("자동로그인쿠키생성");
 			
 		}
-		session.setAttribute(LoginSession.LOGIN, id); // 체크안했으면 그냥 세션만 만들어줘
-		System.out.println(LoginSession.LOGIN);
+		session.setAttribute(LoginSession.cLOGIN, id); // 체크안했으면 그냥 세션만 만들어줘
 		return "redirect:/";
 		
 	}
@@ -91,18 +87,29 @@ public class customerController {
 	
 	//손님정보 관련
 	@GetMapping("customerInfo") //손님 개인정보 페이지
-	public String info() {
+	public String info(@RequestParam String id,Model model) {
+		customerDTO dto = cs.getCustomerInfo(id);
+		model.addAttribute("dto", dto);
+		
 		return "am/customer/customerInfo";
 	}
 	
 	@GetMapping("customerModify") //손님 개인정보 수정 페이지
-	public String modify() {
+	public String modify(@RequestParam String id,Model model) {
+		customerDTO dto = cs.getCustomerInfo(id);
+		model.addAttribute("dto", dto);
 		return "am/customer/customerModify";
 	}
 	
 	@PostMapping("customerModify") //손님 개인정보 수정 적용
-	public void modify(String id) {
-		
+	public void modify(customerDTO dto, 
+			HttpServletResponse res, Model model) throws Exception {
+			String msg="";
+			model.addAttribute("dto", dto);	
+			msg = cs.customerModify(dto);
+		    res.setContentType("text/html; charset=utf-8");
+		    PrintWriter out = res.getWriter();
+		    out.print( msg );
 	}
 	
 	@GetMapping("customerDelete") //손님 탈퇴 페이지
