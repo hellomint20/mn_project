@@ -16,7 +16,7 @@
 			<strong>정보 수정</strong>
 			<p>${info.dto.mName } 정보입니다</p>
 		</div>
-		
+		<form action="/am/mediModify" method="post" enctype="multipart/form-data">
 		<div class="info">
 			<div class="info-title">
 	    		아이디 : <br>
@@ -27,25 +27,27 @@
 			</div>
 			
 			<div class="info-content">
-		   		<input type="text" id="t_b" name="c_id" readonly placeholder="${info.dto.mId }"><br>
-		   		<input type="password" id="t_b" name="c_pw" value="${info.dto.mPw }"><br>
-		   		<input type="text" id="t_b" name="c_name" value="${info.dto.mName }"><br>
-		   		<input type="text" id="t_b" name="c_addr" value="${info.dto.mAddr }"><br>
-		   		<input type="text" id="t_b" name="c_tel" value="${info.dto.mTel }"><br>
+				
+			   		<input type="text" id="t_b" name="mId" readonly placeholder="${info.dto.mId }" ><br>
+			   		<input type="password" id="t_b" name="mPw" placeholder="${info.dto.mPw }"><br>
+			   		<input type="text" id="t_b" name="mName" placeholder="${info.dto.mName }"><br>
+			   		<input type="text" id="t_b" name="mAddr" placeholder="${info.dto.mAddr }"><br>
+			   		<input type="text" id="t_b" name="mTel" placeholder="${info.dto.mTel }"><br>
+		   		
 		   	</div>
 		   	
 		   	<div class="info-pic">
 				${info.dto.mPhoto }
-				<input type="file" class="pic-btn">
+				<input type="file" class="pic-btn" name="file">
 			</div>
 		
 		</div>
 	    
 		<div class="btn_a">
-		    <button type="button" class="cancel" onclick="location.href='/am/mediInfo'">취소</button>
-		    <button type="button" class="completed" onclick="#">등록</button>
+		    <button type="button" class="cancel" onclick="history.back()">취소</button>
+		    <button type="submit" class="completed" onclick="location.href='mediInfo?id=${info.dto.mId }'">등록</button>
 	    </div>
-	    
+	    </form>
 	</div>
 	
 </body>

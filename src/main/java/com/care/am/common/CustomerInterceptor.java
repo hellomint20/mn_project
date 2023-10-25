@@ -15,7 +15,6 @@ public class CustomerInterceptor extends HandlerInterceptorAdapter implements Lo
    
    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
          throws Exception {
-      System.out.println("커스터머 인터셉터 발동!");
       HttpSession session = request.getSession();
       if( session.getAttribute(LOGIN) == null) {
          
@@ -31,7 +30,6 @@ public class CustomerInterceptor extends HandlerInterceptorAdapter implements Lo
    
    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
-		System.out.println("컨트롤러 후 실행");
    
    }
 }

@@ -8,4 +8,5 @@ public interface mediMapper {
 	public int register(mediDTO dto);
 	public mediDTO getMediSession( String mSession );
 	public mediDTO getMedi(String id);	
+	public int mediModify(mediDTO dto);
 }

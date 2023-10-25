@@ -12,7 +12,7 @@
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
  
  <%@ include file = "../default/header_page.jsp" %>
-
+	
 </head>
 <body>
 	<div class="all">
@@ -26,13 +26,17 @@
 	    		병원이름 : <br>
 	    		주소 : <br>
 	    		전화번호 :<br>
+	    		영업시간 : <br>
+	    		점심시간 : <br>
 		</div>
-		
+
   		<div class="info-content">
   			${info.dto.mId }<br>
   			${info.dto.mName }<br>
   			${info.dto.mAddr }<br>
   			${info.dto.mTel }<br>
+  			${info.dto.openTime } - ${info.dto.closeTime }<br>
+  			${info.dto.lunchStartTime} - ${info.dto.lunchEndTime } <br>
   		</div>
   		
   		<div class="pic">

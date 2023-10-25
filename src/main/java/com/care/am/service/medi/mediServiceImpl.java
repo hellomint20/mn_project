@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.care.am.dto.mediDTO;
 import com.care.am.mapper.mediMapper;
@@ -14,6 +15,7 @@ import com.care.am.mapper.mediMapper;
 public class mediServiceImpl implements mediService{
 
 	@Autowired mediMapper mm;
+	@Autowired mediFileService mfs;
 	
 	BCryptPasswordEncoder encoder;
 	public mediServiceImpl() {
@@ -22,7 +24,6 @@ public class mediServiceImpl implements mediService{
 	
 	
 	public String register(mediDTO dto) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -30,9 +31,6 @@ public class mediServiceImpl implements mediService{
 		mediDTO dto = mm.getMedi(id);
 		int result =1;
 		if(dto != null) {
-			System.out.println(dto.getmId());
-			System.out.println(dto.getmPw());
-			
 			if(encoder.matches(pw, dto.getmPw()) ||
 					pw.equals(dto.getmPw())) {
 				result =0;
@@ -52,13 +50,39 @@ public class mediServiceImpl implements mediService{
 		return null;
 	}
 	
-	public Map<String, Object> getMedi(String id){  //병원 마이페이지 아이디 이름 전번 주소
+	public Map<String, Object> getMedi(String id){  
 		mediDTO dto = mm.getMedi(id);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("dto", dto);
 		return map;
 	}
 	
-	
+	public String mediModify(mediDTO dto, MultipartFile file) {
+		
+		String originName = null;
+		
+		if(!file.isEmpty()) { //수정됨
+			originName = dto.getmPhoto();
+			dto.setmPhoto(mfs.saveFile(file));
+		}
+		
+		System.out.println("mediService if후");
+		
+		int result = mm.mediModify(dto);
+		
+		System.out.println("service결과: " + result );
+		
+		String msg ="", url="";
+		if(result==1) {
+			mfs.deleteImage(originName);
+			msg = "정보가 수정되었습니다!";
+			url = "/am/mediInfo?id=" + dto.getmId();
+		}else {
+			mfs.deleteImage(dto.getmPhoto());
+			msg = "정보 수정에 실패했습니다.";
+			url = "/am/mediInfo?id=" + dto.getmId();
+		}
+		return mfs.getMessage(msg, url);
+	}
 
 }

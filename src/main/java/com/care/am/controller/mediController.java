@@ -1,6 +1,9 @@
 package com.care.am.controller;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -11,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -89,7 +93,6 @@ public class mediController {
 	@GetMapping("mediInfo") // 병원 개인정보 페이지
 	public String info(@RequestParam String id, Model model) {
 		model.addAttribute("info", ms.getMedi(id));
-		System.out.println("C병원아이디: "+model.getAttribute(id));
 		
 		return "am/medi/mediInfo";
 	}
@@ -98,14 +101,19 @@ public class mediController {
 	@GetMapping("mediModify") // 병원 개인정보 수정 페이지
 	public String modify(@RequestParam String id, Model model) {
 		model.addAttribute("info", ms.getMedi(id));
-		System.out.println("C병원아이디: "+model.getAttribute(id));
 		
 		return "am/medi/mediModify";
 	}
 
 	@PostMapping("mediModify") // 병원 개인정보 수정 적용
-	public void modify() {
-
+	public void modify(mediDTO dto, @RequestParam MultipartFile file, HttpServletResponse res) throws Exception {
+		
+		System.out.println("컨트롤러");
+		String msg = ms.mediModify(dto, file);
+		
+		res.setContentType("text/html; charset=utf-8");
+		PrintWriter out = res.getWriter();
+		out.print(msg);
 	}
 
 	@PostMapping("mediDelete") // 병원 탈퇴
