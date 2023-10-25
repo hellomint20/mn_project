@@ -91,18 +91,24 @@
 		}
 		newDIV.classList.add("choiceDay"); // 선택된 날짜에 "choiceDay" class 추가
 	}
-
 	// 이전달 버튼 클릭
 	function prevCalendar() {
-		nowMonth = new Date(nowMonth.getFullYear(), nowMonth.getMonth() - 1,
-				nowMonth.getDate()); // 현재 달을 1 감소
-		buildCalendar(); // 달력 다시 생성
+	    nowMonth = new Date(nowMonth.getFullYear(), nowMonth.getMonth() - 1, nowMonth.getDate());   // 현재 달을 1 감소
+	    buildCalendar();    // 달력 다시 생성
 	}
 	// 다음달 버튼 클릭
 	function nextCalendar() {
-		nowMonth = new Date(nowMonth.getFullYear(), nowMonth.getMonth() + 1,
-				nowMonth.getDate()); // 현재 달을 1 증가
-		buildCalendar(); // 달력 다시 생성
+	    nowMonth = new Date(nowMonth.getFullYear(), nowMonth.getMonth() + 1, nowMonth.getDate());   // 현재 달을 1 증가
+	    buildCalendar();    // 달력 다시 생성
+	}
+	
+	// input값이 한자리 숫자인 경우 앞에 '0' 붙혀주는 함수
+	function leftPad(value) {
+	    if (value < 10) {
+	        value = "0" + value;
+	        return value;
+	    }
+	    return value;
 	}
 
 	// input값이 한자리 숫자인 경우 앞에 '0' 붙혀주는 함수
@@ -122,10 +128,7 @@
 		<div class="reservation-form">
 
 			<div class="box-hospital-name">
-				<strong>병원 예약</strong>
-				<p>
-					<b>${name}</b> 예약 페이지
-				</p>
+				<strong><b>${name}</b> 예약</strong>
 			</div>
 
 			<div class="box-container-left">
@@ -139,10 +142,11 @@
 						placeholder="010-1234-5678"
 						pattern=(\d{3})-?\s?(\d{4})-?\s?(\d{4}) required><br>
 					<select id="pName" name="pName" required>
+					
 						<option value="">선택하세요</option>
-						<option value="connecting">앵두</option>
-						<option value="adjoining">체리</option>
-						<option value="adjacent">도니</option>
+						<c:forEach var="list" items="${p_list}">
+						<option value="connecting">${list['p_name']}</option>
+						</c:forEach>
 					</select><br>
 				</div>
 			</div>

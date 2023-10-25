@@ -11,6 +11,7 @@ public class mediDTO {
 	String lunchTime;
 	String closeTime;
 	
+	
 	public String getmName() {
 		return mName;
 	}

@@ -1,8 +1,5 @@
 package com.care.am.controller;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.care.am.dto.mediDTO;
 import com.care.am.service.reservation.reservationService;
 
 @Controller
@@ -42,11 +35,13 @@ public class reservationController {
 	public String reservationFormPage(@PathVariable String name, Model model) {
 		System.out.println("reservationFormPage "+name);
 		model.addAttribute("name", name); //선택된 병원
-		// 로그인한 사람 동물 리스트 가져오기
-	
+		
 		// 영업시간 가져오기 
 		System.out.println(rs.mediTime(name));
 		model.addAttribute("timeList", rs.mediTime(name));
+		
+		// 로그인한 사람 동물 리스트 가져오기
+		model.addAttribute("p_list", rs.petList());
 		
 		return "am/reservation/reservationForm";
 	}

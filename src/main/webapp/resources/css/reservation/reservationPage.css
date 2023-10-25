@@ -115,6 +115,15 @@ button.listBtn {
 	background: none;
 }
 
+table#reservationDetail td{
+	width:20px;
+}
+
+td.detailnameTd{
+	padding-top: 10px;
+    padding-bottom: 10px;
+}
+
 
 
 

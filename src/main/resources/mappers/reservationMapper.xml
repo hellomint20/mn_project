@@ -17,4 +17,9 @@
 			from medi 
 		where m_name = #{name}
 	</select>
+
+	<select id="petList" resultType="map">
+		select * from pet
+	</select>
+	
 </mapper>

@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.care.am.dto.mediDTO;
-import com.care.am.dto.reservationDTO;
+import com.care.am.dto.petDTO;
 import com.care.am.mapper.reservationMapper;
 
 @Service
@@ -48,5 +48,10 @@ public class reservationServiceImpl implements reservationService{
 		System.out.println(timeList);
 
 		return timeList;
+	}
+	
+	public List<Map<String, petDTO>> petList() { //»ç¿ëÀÚ pet list
+		System.out.println("ser" + rm.petList());
+		return rm.petList();
 	}
 }
