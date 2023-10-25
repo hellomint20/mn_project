@@ -13,6 +13,8 @@
 </head>
 <script type="text/javascript">
 function reservationPopup(){
+	
+	console.log(document.getElementById('pName').options[document.getElementById('pName').selectedIndex].text)
 	console.log($("#calYear").text())
 	console.log($("#calMonth").text())
 	console.log($(".futureDay.choiceDay").text());
@@ -129,20 +131,20 @@ function leftPad(value) {
 					<input type="tel" id="phone" name="cPhone"
 						placeholder="010-1234-5678"
 						pattern=(\d{3})-?\s?(\d{4})-?\s?(\d{4}) required><br>
+						
 					<select id="pName" name="pName" required>
-					
 						<option value="">선택하세요</option>
 						<c:forEach var="list" items="${p_list}">
-						<option value="connecting">${list['p_name']}</option>
+						<option value="connecting" id="p_name">${list['p_name']}</option>
 						</c:forEach>
 					</select><br>
 				</div>
 			</div>
 			<div class="content">
-				<label for="rContent">접수내용</label><br> <input type="radio"
-					name="rContent" id="clinic">진료 <input type="radio"
-					name="rContent" id="check">검진 <input type="radio"
-					name="rContent" id="vaccin">접종
+				<label for="rContent">접수내용</label><br> 
+					<input type="radio" name="rContent" id="clinic" value="진료">진료 
+					<input type="radio" name="rContent" id="check" value="검진">검진 
+					<input type="radio" name="rContent" id="vaccin" value="접종">접종
 			</div>
 		</div>
 		<div class="box-container-right">
