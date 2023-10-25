@@ -1,5 +1,6 @@
 package com.care.am.controller;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.http.Cookie;
@@ -94,6 +95,26 @@ public class customerController {
 		return "am/customer/customerInfo";
 	}
 	
+	@GetMapping("customerPwdChk")
+	public String customerPwdChk(@RequestParam String id) {
+		return "am/customer/customerPwdChk";
+	}
+	
+	@PostMapping("customerPwdChk")
+	public void customerPwdChk(@RequestParam String id,@RequestParam String pw, HttpServletResponse res) {
+		String msg ="";
+		msg= cs.customerPwdChk(id,pw);
+		res.setContentType("text/html; charset=utf-8");
+	    PrintWriter out = null;
+		try {
+			out = res.getWriter();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	    out.print( msg );
+		
+	}
+	
 	@GetMapping("customerModify") //손님 개인정보 수정 페이지
 	public String modify(@RequestParam String id,Model model) {
 		customerDTO dto = cs.getCustomerInfo(id);
@@ -102,11 +123,16 @@ public class customerController {
 	}
 	
 	@PostMapping("customerModify") //손님 개인정보 수정 적용
-	public void modify(customerDTO dto, 
-			HttpServletResponse res, Model model) throws Exception {
+	public void modify(customerDTO dto,
+			HttpServletResponse res,
+			@RequestParam String newPw) throws Exception {
 			String msg="";
-			model.addAttribute("dto", dto);	
-			msg = cs.customerModify(dto);
+			System.out.println("원래비밀번호"+dto.getcPw());
+			System.out.println("원래비밀번호"+dto.getcName());
+			System.out.println("새비밀번호"+newPw);
+			
+			dto.setcPw(newPw);
+			msg = cs.customerModify(dto, newPw);
 		    res.setContentType("text/html; charset=utf-8");
 		    PrintWriter out = res.getWriter();
 		    out.print( msg );

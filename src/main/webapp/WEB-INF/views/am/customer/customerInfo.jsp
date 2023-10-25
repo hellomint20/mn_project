@@ -34,7 +34,7 @@
 	  		</div>
 		</div>
 	   
-	    <button type="button" class="b" onclick="location.href='/am/customerModify?id=${userId}'">수정</button>
+	    <button type="button" class="b" onclick="location.href='/am/customerPwdChk?id=${userId}'">수정</button>
 	</div>
 	
 </body>

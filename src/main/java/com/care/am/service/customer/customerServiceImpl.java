@@ -40,12 +40,8 @@ public class customerServiceImpl implements customerService{
 		customerDTO dto = cm.getCustomer(id);
 		int result =1;
 		if(dto != null) {
-			System.out.println(dto.getcId());
-			System.out.println(dto.getcPw());
-
 			if( encoder.matches(pw, dto.getcPw() ) 
 					|| pw.equals( dto.getcPw() ) ) {
-			System.out.println("로그인확인성공");
 			result = 0;
 			}
 		}
@@ -70,18 +66,37 @@ public class customerServiceImpl implements customerService{
 		return cm.getCustomerSessionId( cSessionId );
 	}
 	
-	public String customerModify(customerDTO dto) {
-		int result = cm.customerModify(dto);
-		
-		dto.setcPw( encoder.encode(dto.getcPw()) );
-		if(result ==1) {
-			
-			return GetMessage.getMessage("정보가 수정되었습니다.", "/am/customerInfo");
+	public String customerPwdChk(String id,String pw) {
+		customerDTO dto = cm.getCustomer(id);
+		if(dto != null) {
+			if( encoder.matches(pw, dto.getcPw() ) 
+					|| pw.equals( dto.getcPw() ) ) {
+			String url = "/am/customerModify?id="+id;
+			return  "<script>location.href='"+url+"';</script>";
+			}
 		}
-		else {
-			return GetMessage.getMessage("정보수정에 실패했습니다.", "/am/customerModify");
-		}
+		return GetMessage.getMessage("비밀번호가 틀렸습니다","/am/customerPwdChk?id="+id);
 	}
 	
+	public String customerModify(customerDTO dto,String newPw) {
+		int result = 0;
+		if(newPw != null) {
+			if(!encoder.matches(newPw, dto.getcPw() )|| !newPw.equals( dto.getcPw() ) ) {
+				try{
+					dto.setcPw( encoder.encode(newPw) );
+					System.out.println(dto.getcPw());
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		result = cm.customerModify(dto);
+		// 새 비밀번호 입력 안하면 수정안하는것으로 수정하자~~
+		if(result == 1) {
+			return GetMessage.getMessage("정보가 수정되었습니다.", "/am/customerInfo?id="+dto.getcId());
+		}
+		
+			return GetMessage.getMessage("정보수정에 실패했습니다.", "/am/customerModify?id="+dto.getcId());
+	}
 
 }
