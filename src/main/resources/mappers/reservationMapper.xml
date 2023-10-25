@@ -10,4 +10,8 @@
 <select id="mediInfo" resultType="map">
 	select * from medi where m_name = #{mediName}
 </select>
+
+<select id="petList" resultType="map">
+	select * from pet
+</select>
 </mapper>

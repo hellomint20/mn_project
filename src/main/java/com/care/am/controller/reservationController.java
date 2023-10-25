@@ -43,7 +43,7 @@ public class reservationController {
 		model.addAttribute("name", name); //선택된 병원
 		// 로그인한 사람 동물 리스트 가져오기
 		// 영업시간 가져오기 
-		
+		model.addAttribute("p_list", rs.petList());
 		return "am/reservation/reservationForm";
 	}
 	

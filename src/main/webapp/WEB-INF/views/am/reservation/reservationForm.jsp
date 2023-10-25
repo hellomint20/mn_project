@@ -130,10 +130,11 @@ function leftPad(value) {
 						placeholder="010-1234-5678"
 						pattern=(\d{3})-?\s?(\d{4})-?\s?(\d{4}) required><br>
 					<select id="pName" name="pName" required>
+					
 						<option value="">선택하세요</option>
-						<option value="connecting">앵두</option>
-						<option value="adjoining">체리</option>
-						<option value="adjacent">도니</option>
+						<c:forEach var="list" items="${p_list}">
+						<option value="connecting">${list['p_name']}</option>
+						</c:forEach>
 					</select><br>
 				</div>
 			</div>
