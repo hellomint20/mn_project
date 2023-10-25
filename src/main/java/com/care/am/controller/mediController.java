@@ -55,7 +55,6 @@ public class mediController {
 	public String sucessMLogin(@RequestParam String id, @RequestParam String autoLogin, HttpSession session,
 			HttpServletResponse res) {
 
-		System.out.println("autologin:" + autoLogin);
 		if (autoLogin.equals("on")) { // 자동로그인 체크하면 쿠키생성
 			
 			int limitTime = 60 * 60 * 24 * 90; // 세달
@@ -67,6 +66,7 @@ public class mediController {
 			ms.keepLogin(session.getId(), id);
 		}
 		session.setAttribute(LoginSession.mLOGIN, id); // 체크안했으면 그냥 세션만 만들어줘
+		System.out.println(session.getAttribute(LoginSession.mLOGIN));
 		return "redirect:reservationState";
 	}
 

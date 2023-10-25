@@ -43,6 +43,10 @@
 	<interceptors>
 		<interceptor>
 			<mapping path="/customerInfo" />
+			<mapping path="/pet/petList" />
+			<mapping path="/reservationList" />
+			<mapping path="/customerDelete" />
+			<mapping path="/customerModify" />
 			<beans:ref bean="customInter" />
 		</interceptor>
 	</interceptors>
@@ -50,6 +54,7 @@
 	<interceptors>
 		<interceptor>
 			<mapping path="/mediInfo" />
+			<mapping path="/mediModify" />
 			<mapping path="/reservationState" />
 			<beans:ref bean="mediInter" />
 		</interceptor>
