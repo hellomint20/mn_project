@@ -1,5 +1,8 @@
 package com.care.am.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +35,6 @@ public class reservationController {
 	@ResponseBody
 	@PostMapping("reservation/mediInfo") //병원 상세정보 팝업
 	public Map<String, Object> mediInfo(@RequestBody String mediName){
-		System.out.println("con"+mediName);
-		System.out.println("con"+rs.mediInfo(mediName));
 		return rs.mediInfo(mediName);
 	}
 
@@ -42,7 +43,10 @@ public class reservationController {
 		System.out.println("reservationFormPage "+name);
 		model.addAttribute("name", name); //선택된 병원
 		// 로그인한 사람 동물 리스트 가져오기
+	
 		// 영업시간 가져오기 
+		System.out.println(rs.mediTime(name));
+		model.addAttribute("timeList", rs.mediTime(name));
 		
 		return "am/reservation/reservationForm";
 	}
