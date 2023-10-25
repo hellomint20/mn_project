@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -86,18 +87,29 @@ public class customerController {
 	
 	//손님정보 관련
 	@GetMapping("customerInfo") //손님 개인정보 페이지
-	public String info() {
+	public String info(@RequestParam String id,Model model) {
+		customerDTO dto = cs.getCustomerInfo(id);
+		model.addAttribute("dto", dto);
+		
 		return "am/customer/customerInfo";
 	}
 	
 	@GetMapping("customerModify") //손님 개인정보 수정 페이지
-	public String modify() {
+	public String modify(@RequestParam String id,Model model) {
+		customerDTO dto = cs.getCustomerInfo(id);
+		model.addAttribute("dto", dto);
 		return "am/customer/customerModify";
 	}
 	
 	@PostMapping("customerModify") //손님 개인정보 수정 적용
-	public void modify(String id) {
-		
+	public void modify(customerDTO dto, 
+			HttpServletResponse res, Model model) throws Exception {
+			String msg="";
+			model.addAttribute("dto", dto);	
+			msg = cs.customerModify(dto);
+		    res.setContentType("text/html; charset=utf-8");
+		    PrintWriter out = res.getWriter();
+		    out.print( msg );
 	}
 	
 	@GetMapping("customerDelete") //손님 탈퇴 페이지

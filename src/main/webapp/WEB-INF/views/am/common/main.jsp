@@ -54,7 +54,7 @@
 						<div id="rightMainMypage">
 							<div id="rightMainMypageCotainer">
 								<div id="rightMainMypageContent">
-									<a href="customerInfo"><img
+									<a href="customerInfo?id=${userId }"><img
 										src="/am/resources/img/main/mypage.png" width="270px;"
 										height="120px;" style="border: solid white;"></a>
 								</div>

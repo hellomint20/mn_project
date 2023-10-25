@@ -11,6 +11,13 @@
 <link rel="stylesheet" href="/am/resources/css/bootstrap/bootstrap.css">
 <script type="text/javascript">
 </script>
+<script>
+  const hypenAdd = (target) => {
+	 target.value = target.value
+    .replace(/[^0-9]/g, '')
+   .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
+}
+</script>
 </head>
 <body id="registerFormBody">
 	<div id="registerForm">
@@ -42,7 +49,7 @@
 					<label for="inputTel" class="col-sm-3 col-form-label">연락처</label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" id="inputTel" name="cTel"
-							placeholder="input Tel">
+							  oninput="hypenAdd(this)" maxlength="13" placeholder="input Tel">
 					</div>
 				</div>
 				<div id="registerFormContent" class="form-group row">

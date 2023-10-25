@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 	<link rel="stylesheet" href="/am/css/customer/modi.css">
+
 </head>
 <body>
 	<%@ include file = "../default/header_page.jsp" %>
@@ -14,9 +15,9 @@
 	<div class="all">
 		<div class="all_title">
 			<strong>정보 수정</strong>
-			<p>회원님의 정보입니다</p>
+			<p>${dto.cName} 회원님의 정보입니다</p>
 		</div>
-		
+		<form action="customerModify" method="post">
 		<div class="info">
 			<div class="info-title">
 	    		아이디 : <br>
@@ -27,18 +28,19 @@
 			</div>
 			
 			<div class="info-content">
-		   		<input type="text" id="t_b" name="c_id" readonly placeholder="아이디"><br>
-		   		<input type="password" id="t_b" name="c_pw" value="비밀번호"><br>
-		   		<input type="text" id="t_b" name="c_name" value="이름"><br>
-		   		<input type="text" id="t_b" name="c_tel" value="전화번호"><br>
-		   		<input type="text" id="t_b" name="c_email" value="e-mail"><br>
+		   		<input type="text" id="t_b" name="c_id" value="${dto.cId}" readonly ><br>
+		   		<input type="password" id="t_b" name="c_pw" value="비밀번호수정"><br>
+		   		<input type="text" id="t_b" name="c_name" value="${dto.cName}"><br>
+		   		<input type="text" id="t_b" name="c_tel" value="${dto.cTel}"><br>
+		   		<input type="text" id="t_b" name="c_email" value="${dto.cEmail}"><br>
 		   	</div>
 		</div>
 	    
 	    <div class="btn_a">
-		    <button type="button" class="cancel" onclick="location.href='/am/customerInfo'">취소</button>
-		    <button type="button" class="completed" onclick="#">완료</button>
+		    <button type="button" class="cancel" onclick="location.href='/am/customerInfo?id=${userId}'">취소</button>
+		    <button type="submit" class="completed">완료</button>
 	    </div>
+	    </form>
 	</div>
 	
 </body>

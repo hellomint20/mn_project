@@ -23,8 +23,6 @@ public class customerServiceImpl implements customerService{
 	
 	public String register(customerDTO dto) {
 		int result=0;
-		System.out.println("비밀번호"+ dto.getcPw() );
-		System.out.println("암호화된비밀번호"+ encoder.encode(dto.getcPw() ) );
 		
 		dto.setcPw( encoder.encode(dto.getcPw()) );
 		try {
@@ -61,8 +59,28 @@ public class customerServiceImpl implements customerService{
 		cm.keepLogin( map );
 		
 	}
+	
+	public customerDTO getCustomerInfo(String cId) {
+		customerDTO dto = cm.getCustomer(cId);
+		return dto;
+		
+	}
+	
 	public customerDTO getCustomerSessionId(String cSessionId) {
 		return cm.getCustomerSessionId( cSessionId );
+	}
+	
+	public String customerModify(customerDTO dto) {
+		int result = cm.customerModify(dto);
+		
+		dto.setcPw( encoder.encode(dto.getcPw()) );
+		if(result ==1) {
+			
+			return GetMessage.getMessage("정보가 수정되었습니다.", "/am/customerInfo");
+		}
+		else {
+			return GetMessage.getMessage("정보수정에 실패했습니다.", "/am/customerModify");
+		}
 	}
 	
 
