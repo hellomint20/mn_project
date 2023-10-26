@@ -11,7 +11,7 @@ public interface mediService {
 	public int logChk(String id, String pw);
 	public void keepLogin(String mSessionId, String cId);
 	public Map<String, Object> getMedi(String id);
-	public String mediModify(mediDTO dto, MultipartFile file);
+	public String mediModify(mediDTO dto, MultipartFile fileName, String[] addr);
 	public mediDTO getMediSessionId(String mSession);
 }
 	

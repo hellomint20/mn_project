@@ -10,6 +10,14 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 public class mediFileServiceImpl implements mediFileService {
 	
+	public String getMessage(String msg, String url) {
+		String message = "<script>alert('" + msg + "');";
+		message += "location.href='" + url + "';<script>";
+		
+		return message;
+	}
+	
+	
 	public String saveFile(MultipartFile image_file_name) {
 		
 		SimpleDateFormat fo = new SimpleDateFormat("yyMMdd-");
@@ -30,10 +38,5 @@ public class mediFileServiceImpl implements mediFileService {
 		file.delete();
 	}
 	
-	public String getMessage(String msg, String url) {
-		String message = "<script>alert('" + msg + "');";
-		message += "location.href='" + url + "';<script>";
-		
-		return message;
-	}
+	
 }

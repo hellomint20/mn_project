@@ -116,14 +116,20 @@ public class mediController {
 	}
 
 	@PostMapping("mediModify") // 병원 개인정보 수정 적용
-	public void modify(mediDTO dto, @RequestParam MultipartFile file, HttpServletResponse res) throws Exception {
-		
-		System.out.println("컨트롤러");
-		String msg = ms.mediModify(dto, file);
-		
+	public void modify(mediDTO dto, @RequestParam MultipartFile file, HttpServletResponse res, HttpServletRequest req, Model model) throws Exception {
+	
+		String[] addr = req.getParameterValues("mAddr");
+		String ad ="";
+		for(String a :addr) {
+			ad+= a+"/";
+		}
+		addr = ad.split("/");
+		String msg = ms.mediModify(dto, file, req.getParameterValues("mAddr"));
+		model.addAttribute("info", ms.getMedi(dto.getmId()));
 		res.setContentType("text/html; charset=utf-8");
 		PrintWriter out = res.getWriter();
 		out.print(msg);
+		
 	}
 
 	@PostMapping("mediDelete") // 병원 탈퇴

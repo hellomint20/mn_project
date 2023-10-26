@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"  %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,23 +24,32 @@
 		<div class="info-title">
 	    		아이디 : <br>
 	    		병원이름 : <br>
-	    		주소 : <br>
+	    		주소 : <br><br><br>
 	    		전화번호 :<br>
 	    		영업시간 : <br>
 	    		점심시간 : <br>
 		</div>
 
-  		<div class="info-content">
+  		<div class="info-content" id="addr">
   			${info.dto.mId }<br>
   			${info.dto.mName }<br>
-  			${info.dto.mAddr }<br>
+  			${info.addr1 } <br>
+  			${info.addr2 } <br>
+  			${info.addr3 } <br>
   			${info.dto.mTel }<br>
   			${info.dto.openTime } - ${info.dto.closeTime }<br>
   			${info.dto.lunchStartTime} - ${info.dto.lunchEndTime } <br>
   		</div>
   		
   		<div class="pic">
-			${info.dto.mPhoto }
+  			<c:choose>
+  				<c:when test="${info.dto.mPhoto != null }">
+  					<img id="photo" src="/am/resources/img/${info.dto.mPhoto}" >
+  				</c:when>
+  				<c:when test="${info.dto.mPhoto == null }">
+  					<img id="photo" src="/am/resources/img/default.jpg" >
+  				</c:when>
+  			</c:choose>
 		</div>
 	</div>
 	
