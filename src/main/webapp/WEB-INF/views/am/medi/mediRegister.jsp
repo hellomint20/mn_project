@@ -49,7 +49,7 @@
 						placeholder="input post">
 				</div>
 				<div class="col-sm-2">
-					<input type="button" class="btn btn-dark" onclick="daumPost()" value="주소검색">
+					<input type="button" class="post-btn" onclick="daumPost()" value="우편번호 검색">
 				</div>
 			</div>
 			<div id="registerFormContent" class="form-group row">

@@ -25,8 +25,13 @@
     <select id="getCustomerSessionId" resultMap="customer">
 		select * from customer where c_session = #{cSessionId}
 	</select>
-	<update id="customerModify">
-		update customer set c_pw=#{cPw}, c_name=#{cName}, c_tel=#{cTel}, c_email=#{cEmail} where c_id=#{cId}
+	<update id="customerPwdChg">
+		update customer set c_pw=#{cPw} where c_id =#{cId}
 	</update>
-    
+	<update id="customerModify">
+		update customer set c_name=#{cName}, c_tel=#{cTel}, c_email=#{cEmail} where c_id=#{cId}
+	</update>
+    <delete id="customerDelete">
+    	delete from customer where c_id=#{cId};
+    </delete>
 </mapper>

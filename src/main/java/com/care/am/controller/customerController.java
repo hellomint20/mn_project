@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,20 +46,30 @@ public class customerController {
 	}
 	
 	@PostMapping("customerLogin") //손님 로그인 확인
-	public String loginChk(HttpSession session, 
-						@RequestParam String id, 
+	public String loginChk(@RequestParam String id, 
 						@RequestParam String pw,
 						@RequestParam(required=false, defaultValue="off")String autoLogin,
 						RedirectAttributes rs,
 						HttpServletResponse res) throws Exception {
 		
 		int result = cs.logChk(id,pw);
-		if(result == 0) {
+		if(result == 1) {
 			rs.addAttribute("id",id);
 			rs.addAttribute("autoLogin",autoLogin); // console창에 autoLogin 상태 띄어줌
+			
 			return "redirect:successLogin";
+		}else {
+			res.setContentType("text/html; charset=UTF-8");
+            PrintWriter out = null;
+            try {
+                out = res.getWriter();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            out.println("<script>alert('아이디나 비밀번호가 틀렸습니다.'); history.back();</script>");
+            out.flush();
+            return "redirect:customerLogin";
 		}
-		return "redirect:customerLogin";
 	}
 	
 	@RequestMapping("successLogin")
@@ -95,12 +106,12 @@ public class customerController {
 		return "am/customer/customerInfo";
 	}
 	
-	@GetMapping("customerPwdChk")
+	@GetMapping("customerPwdChk") // 비밀번호 확인페이지
 	public String customerPwdChk(@RequestParam String id) {
 		return "am/customer/customerPwdChk";
 	}
 	
-	@PostMapping("customerPwdChk")
+	@PostMapping("customerPwdChk") // 비밀번호 확인
 	public void customerPwdChk(@RequestParam String id,@RequestParam String pw, HttpServletResponse res) {
 		String msg ="";
 		msg= cs.customerPwdChk(id,pw);
@@ -111,6 +122,22 @@ public class customerController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	    out.print( msg );
+	}
+	
+	@GetMapping("customerPwdChg") // 비밀번호 변경 페이지
+	public String customerPwdChg(@RequestParam String id) {
+		return "am/customer/customerPwdChg";
+	}
+
+	@PostMapping("customerPwdChg") // 비밀번호 변경
+	public void customerPwdChg(customerDTO dto, HttpServletResponse res,
+								@RequestParam String pw,
+								@RequestParam String newPw) throws Exception {
+		String msg="";
+		msg = cs.customerPwdChg(dto,pw,newPw);
+		res.setContentType("text/html; charset=utf-8");
+	    PrintWriter out = res.getWriter();
 	    out.print( msg );
 		
 	}
@@ -123,18 +150,16 @@ public class customerController {
 	}
 	
 	@PostMapping("customerModify") //손님 개인정보 수정 적용
-	public void modify(customerDTO dto,
-			HttpServletResponse res,
-			@RequestParam String newPw) throws Exception {
+	public void modify(customerDTO dto, HttpServletResponse res ){
 			String msg="";
-			System.out.println("원래비밀번호"+dto.getcPw());
-			System.out.println("원래비밀번호"+dto.getcName());
-			System.out.println("새비밀번호"+newPw);
-			
-			dto.setcPw(newPw);
-			msg = cs.customerModify(dto, newPw);
+			msg = cs.customerModify(dto);
 		    res.setContentType("text/html; charset=utf-8");
-		    PrintWriter out = res.getWriter();
+		    PrintWriter out = null;
+		    try {
+				out = res.getWriter();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		    out.print( msg );
 	}
 	
@@ -144,7 +169,22 @@ public class customerController {
 	}
 	
 	@PostMapping("customerDelete") //손님 탈퇴
-	public void delete(String id, String pw) {
-		// 매개변수 임의로 넣어 둠
+	public void delete(HttpSession session, @CookieValue(value="loginCookie",required=false)Cookie cookie,
+			customerDTO dto,@RequestParam String pw, HttpServletResponse res) {
+		String msg ="";
+		if(cookie != null) {
+			cookie.setMaxAge(0);
+		}
+		session.removeAttribute(LoginSession.cLOGIN);
+		session.invalidate();
+		msg= cs.customerDelete(dto,pw);
+		res.setContentType("text/html; charset=utf-8");
+	    PrintWriter out = null;
+		try {
+			out = res.getWriter();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	    out.print( msg );
 	}
 }

@@ -27,8 +27,6 @@
 		<div class="info">
 			<div class="info-title">
 	    		아이디 : <br>
-	    		비밀번호 : <br>
-	    		새 비밀번호 :<br>
 	    		이름 : <br>
 	    		전화번호 :<br>
 	    		e-mail : <br>
@@ -36,12 +34,9 @@
 			
 			<div class="info-content">
 		   		<input type="text" id="t_b" name="cId" value="${userId}" readonly ><br>
-		   		<input type="hidden" id="t_b" name="cPw" value="${dto.cPw}" >
-		   		<input type="password" id="t_b" value="비밀번호수정" ><br>
-		   		<input type="password" id="t_b" name="newPw"><br>
-		   		<input type="text" id="t_b" name="cName" value="${dto.cName}"><br>
-		   		<input type="text" id="t_b" name="cTel"  oninput="hypenAdd(this)" maxlength="13" value="${dto.cTel}"><br>
-		   		<input type="text" id="t_b" name="cEmail" value="${dto.cEmail}"><br>
+		   		<input type="text" id="t_b" name="cName" value="${dto.cName}" required><br>
+		   		<input type="text" id="t_b" name="cTel"  oninput="hypenAdd(this)" maxlength="13" value="${dto.cTel}" required><br>
+		   		<input type="text" id="t_b" name="cEmail" value="${dto.cEmail}" required><br>
 		   	</div>
 		</div>
 	    

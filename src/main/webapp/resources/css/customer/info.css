@@ -9,7 +9,7 @@
 
 p {
 	font-size: 1rem;
-	margin-bottom:10px;
+	margin-bottom:20px;
 }
 
 .info {
@@ -36,7 +36,7 @@ p {
 
 .b {
 	border: none;
-	margin-left: 280px;
+	margin-left: 200px;
 	width: 80px;
 	height: 40px;
 	color: #fff;
@@ -52,6 +52,27 @@ p {
 }
 
 .b:hover {
+	background: linear-gradient(0deg, #73b4db 0%, #73b4db 100%);
+	opacity: 0.8;
+}
+
+.b2{
+	border: none;
+	margin-left: 60px;
+	width: 120px;
+	height: 40px;
+	color: #fff;
+	border-radius: 5px;
+	font-weight: 500;
+	transition: all 0.3s ease;
+	position: relative;
+	display: inline-block;
+	box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5), 7px 7px 20px
+		0px rgba(0, 0, 0, .1), 4px 4px 5px 0px rgba(0, 0, 0, .1);
+	background: linear-gradient(0deg, #1b4c68 0%, #1b4c68 100%);
+	
+}
+.b2:hover {
 	background: linear-gradient(0deg, #73b4db 0%, #73b4db 100%);
 	opacity: 0.8;
 }

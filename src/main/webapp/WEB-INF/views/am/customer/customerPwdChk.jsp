@@ -23,7 +23,7 @@
 			</div>
 			<div class="info-content">
 				<input type="hidden" name="id" value="${userId}">
-				<input type="password" id="t_b" name="pw">
+				<input type="password" id="t_b" name="pw" required>
 			</div>
 		</div>
 		<button type="submit" class="b">확인</button>

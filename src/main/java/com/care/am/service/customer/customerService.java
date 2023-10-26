@@ -8,6 +8,8 @@ public interface customerService {
 	public void keepLogin(String cSessionId, String cId);
 	public customerDTO getCustomerSessionId(String cSessionId);
 	public customerDTO getCustomerInfo(String cId);
-	public String customerModify(customerDTO dto, String newPw);
+	public String customerPwdChg(customerDTO dto,String pw, String newPw);
+	public String customerModify(customerDTO dto);
 	public String customerPwdChk(String id, String Pw);
+	public String customerDelete(customerDTO dto, String pw);
 }
