@@ -19,7 +19,6 @@
 	
 	function detailView(mediName) {
 		console.log(mediName);	
-		
 		$.ajax({
 			url : "reservation/mediInfo", type : "post",
 			data : mediName,
@@ -85,7 +84,7 @@
 					<table class="reservationDetail">
 						<tr><td colspan="2" class="Xcla"><button id="X" type="button" onclick="Xclose()" >X</button></td></tr>
 						<tr><td class="detailTd" colspan="2" id="mediDetail" ></td></tr>
-						<tr><td class="detailTd" colspan="2" id="mediPhoto" ><img src="/am/resources/img/medi.jpeg"></td></tr>
+						<tr><td class="detailTd" colspan="2" id="mediPhoto" ><img src="/am/resources/img/common/default.jpg" width="230px;" height="200px;"></td></tr>
 						<tr><td class="detailTd">이름</td><td id="mediName"></td></tr>
 						<tr><td class="detailTd">주소</td><td id="mediAddr" ></td></tr>
 						<tr><td class="detailTd">영업시간</td><td id="mediTime" ></td></tr>

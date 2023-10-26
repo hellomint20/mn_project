@@ -48,7 +48,7 @@ table.listTable{
 }
 #detailDiv{
 	display: inline-block;
-	width : 40%;
+	width : 60%;
 	height: 615px;
 	border: 2px solid black;
 	text-align: center;

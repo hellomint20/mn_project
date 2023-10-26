@@ -10,7 +10,9 @@ import com.care.am.dto.petDTO;
 
 @Mapper
 public interface reservationMapper {
-	public List<Map<String, mediDTO>> mediList();
-	public Map<String, Object> mediInfo(String mediName);
-	public List<Map<String, petDTO>> petList();
+	public List<Map<String, mediDTO>> mediList(); //병원 리스트
+	public Map<String, Object> mediInfo(String mediName); //병원 상세정보
+	public Map<String, Object> mediTime(String name); //병원 Time
+	public List<Map<String, petDTO>> petList(String id); //사용자 pet list
+
 }

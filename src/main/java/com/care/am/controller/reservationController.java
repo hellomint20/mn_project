@@ -2,6 +2,8 @@ package com.care.am.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,11 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.care.am.dto.mediDTO;
 import com.care.am.service.reservation.reservationService;
 
 @Controller
@@ -32,16 +30,22 @@ public class reservationController {
 	@ResponseBody
 	@PostMapping("reservation/mediInfo") //병원 상세정보 팝업
 	public Map<String, Object> mediInfo(@RequestBody String mediName){
-		System.out.println("con"+mediName);
-		System.out.println("con"+rs.mediInfo(mediName));
+		System.out.println("pop : "+rs.mediInfo(mediName));
 		return rs.mediInfo(mediName);
 	}
 
 	@RequestMapping(value = "reservationForm/page/{name}") //병원 예약 페이지
-	public String reservationFormPage(@PathVariable String name, Model model) {
+	public String reservationFormPage(@PathVariable String name, Model model, HttpSession session) {
 		System.out.println("reservationFormPage "+name);
 		model.addAttribute("name", name); //선택된 병원
-		model.addAttribute("p_list", rs.petList());
+
+		// 영업시간 가져오기 
+		System.out.println(rs.mediTime(name));
+		model.addAttribute("timeList", rs.mediTime(name));
+		
+		// 로그인한 사람 동물 리스트 가져오기
+		String id = "yh";
+		model.addAttribute("p_list", rs.petList(id));
 		
 		return "am/reservation/reservationForm";
 	}
