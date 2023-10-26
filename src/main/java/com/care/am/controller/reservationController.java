@@ -28,6 +28,7 @@ public class reservationController {
 	@ResponseBody
 	@PostMapping("reservation/mediInfo") //병원 상세정보 팝업
 	public Map<String, Object> mediInfo(@RequestBody String mediName){
+		System.out.println("pop : "+rs.mediInfo(mediName));
 		return rs.mediInfo(mediName);
 	}
 

@@ -20,7 +20,12 @@ public class reservationServiceImpl implements reservationService{
 		return rm.mediList();
 	}
 	public Map<String, Object> mediInfo(String mediName){ //병원 상세정보
-		return rm.mediInfo(mediName);
+		Map<String, Object> mediInfo = rm.mediInfo(mediName);  //m_addr=13536/경기 성남시 분당구 판교역로2번길 1/3층/
+		String addr1 = mediInfo.get("m_addr").toString().split("/")[1];
+		String addr2 = mediInfo.get("m_addr").toString().split("/")[2];
+		mediInfo.put("m_addr", addr1+" "+addr2);
+		
+		return mediInfo;
 	}
 	
 	public List<String> mediTime(String name){ //병원 time 가져오기
