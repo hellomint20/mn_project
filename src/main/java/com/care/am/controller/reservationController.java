@@ -36,7 +36,7 @@ public class reservationController {
 	public String reservationFormPage(@PathVariable String name, Model model) {
 		System.out.println("reservationFormPage "+name);
 		model.addAttribute("name", name); //선택된 병원
-		
+
 		// 영업시간 가져오기 
 		System.out.println(rs.mediTime(name));
 		model.addAttribute("timeList", rs.mediTime(name));

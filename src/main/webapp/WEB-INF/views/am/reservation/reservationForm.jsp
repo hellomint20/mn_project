@@ -12,15 +12,6 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 </head>
 <script type="text/javascript">
-	function reservationPopup() {
-		console.log($("#calYear").text())
-		console.log($("#calMonth").text())
-		console.log($(".futureDay.choiceDay").text());
-		var popupURI1 = '/am/reservationPopup';
-		var reserv = encodeURI(popupURI1);
-		window.open(reserv, '예약확인',
-				'width=510px,height=600px,scrollbars=yes,resizable=no');
-	}
 
 	window.onload = function() {
 		buildCalendar();
@@ -119,6 +110,18 @@
 		}
 		return value;
 	}
+
+	function reservationPopup(){ //예약 확인 팝업에 띄울 데이터
+		
+		console.log(document.getElementById('pName').options[document.getElementById('pName').selectedIndex].text)
+		console.log($("#calYear").text())
+		console.log($("#calMonth").text())
+		console.log($(".futureDay.choiceDay").text());
+		var popupURI1='/am/reservationPopup';
+		var reserv = encodeURI(popupURI1);
+	    window.open(reserv, '예약확인', 'width=510px,height=600px,scrollbars=yes,resizable=no');
+	}
+	
 </script>
 
 <body>
@@ -141,20 +144,20 @@
 					<input type="tel" id="phone" name="cPhone"
 						placeholder="010-1234-5678"
 						pattern=(\d{3})-?\s?(\d{4})-?\s?(\d{4}) required><br>
+						
 					<select id="pName" name="pName" required>
-					
 						<option value="">선택하세요</option>
 						<c:forEach var="list" items="${p_list}">
-						<option value="connecting">${list['p_name']}</option>
+						<option value="connecting" id="p_name">${list['p_name']}</option>
 						</c:forEach>
 					</select><br>
 				</div>
 			</div>
-			<div class="content" id="clinic">
+			<div class="content">
 				<label for="rContent">접수내용</label><br> 
-				<input type="radio" name="rContent" >진료 
-				<input type="radio"	name="rContent" >검진 
-				<input type="radio"	name="rContent" >접종
+					<input type="radio" name="rContent" id="clinic" value="진료">진료 
+					<input type="radio" name="rContent" id="check" value="검진">검진 
+					<input type="radio" name="rContent" id="vaccin" value="접종">접종
 			</div>
 		</div>
 		<div class="box-container-right">
@@ -179,7 +182,6 @@
 					</thead>
 
 					<tbody>
-
 					</tbody>
 				</table>
 			</div>
@@ -208,7 +210,6 @@
 	<div class="box-container-bottom">
 		<button class="reservation-submit" onclick="reservationPopup()">예약하기</button>
 	</div>
-
 
 </body>
 </html>
