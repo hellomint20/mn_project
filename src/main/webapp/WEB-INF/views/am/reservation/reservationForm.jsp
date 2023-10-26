@@ -112,11 +112,14 @@
 	}
 
 	function reservationPopup(){ //예약 확인 팝업에 띄울 데이터
-		
-		console.log(document.getElementById('pName').options[document.getElementById('pName').selectedIndex].text)
-		console.log($("#calYear").text())
-		console.log($("#calMonth").text())
-		console.log($(".futureDay.choiceDay").text());
+		console.log(document.getElementById("rName").value) //예약자 이름
+		console.log(document.getElementById("rTel").value) //예약자 전화번호
+		console.log(document.getElementById('pName').options[document.getElementById('pName').selectedIndex].text) //동물 이름
+		console.log(document.querySelector('input[name="rContent"]:checked').value) //진료 내용
+		console.log($("#calYear").text())	//년도
+		console.log($("#calMonth").text())	//월
+		console.log($(".futureDay.choiceDay").text());	//일
+		console.log(document.querySelector('input[name="vbtn-radio"]:checked').value) //시간
 		var popupURI1='/am/reservationPopup';
 		var reserv = encodeURI(popupURI1);
 	    window.open(reserv, '예약확인', 'width=510px,height=600px,scrollbars=yes,resizable=no');
@@ -136,12 +139,12 @@
 
 			<div class="box-container-left">
 				<div class="label">
-					<label for="name">예약자 성함</label><br> <label for="phone">전화번호</label><br>
+					<label for="rName">예약자 성함</label><br> <label for="rTel">전화번호</label><br>
 					<label for="pName">동물이름</label><br>
 				</div>
 				<div class="input-form">
-					<input type="text" id="name" name="cId" placeholder="홍길동" required><br>
-					<input type="tel" id="phone" name="cPhone"
+					<input type="text" id="rName" name="cId" placeholder="홍길동" required><br>
+					<input type="tel" id="rTel" name="cPhone"
 						placeholder="010-1234-5678"
 						pattern=(\d{3})-?\s?(\d{4})-?\s?(\d{4}) required><br>
 						
@@ -188,19 +191,26 @@
 
 			<div class="timeList">
 				<c:forEach var="AM" items="${timeList}" varStatus="vs" step="3">
-					<div class="btn-group-vertical btn-group-lg" role="group"
-						aria-label="Vertical radio toggle button group">
-						<input type="radio" class="btn-check" name="vbtn-radio" id="${timeList[vs.index]}" autocomplete="off" checked> 
-						<label class="btn btn-outline-dark" for="${timeList[vs.index]}">${timeList[vs.index]}</label>
+					<div class="btn-group btn-group-lg" >
+						<c:choose>
+							<c:when test="${vs.index == 0}">
+								<input type="radio" class="btn-check" name="vbtn-radio"	id="${timeList[vs.index]}" value="${timeList[vs.index]}" autocomplete="off" checked> 
+								<label id="reservationTime" class="btn btn-outline-dark" for="${timeList[vs.index]}">${timeList[vs.index]}</label>
+							</c:when>
+							<c:otherwise>
+								<input type="radio" class="btn-check" name="vbtn-radio"	id="${timeList[vs.index]}" value="${timeList[vs.index]}" autocomplete="off"> 
+								<label id="reservationTime" class="btn btn-outline-dark" for="${timeList[vs.index]}">${timeList[vs.index]}</label>
+							</c:otherwise>
+						</c:choose>
 						
 						<c:if test="${timeList[vs.index+1] != null}">
-							<input type="radio" class="btn-check" name="vbtn-radio"	id="${timeList[vs.index+1]}" autocomplete="off"> 
-							<label class="btn btn-outline-dark" for="${timeList[vs.index+1]}">${timeList[vs.index+1]}</label>
+							<input type="radio" class="btn-check" name="vbtn-radio"	id="${timeList[vs.index+1]}" value="${timeList[vs.index+1]}" autocomplete="off"> 
+							<label id="reservationTime" class="btn btn-outline-dark" for="${timeList[vs.index+1]}">${timeList[vs.index+1]}</label>
 						</c:if>
 						
 						<c:if test="${timeList[vs.index+2] != null}">
-							<input type="radio" class="btn-check" name="vbtn-radio"	id="${timeList[vs.index+2]}" autocomplete="off">
-							<label class="btn btn-outline-dark" for="${timeList[vs.index+2]}">${timeList[vs.index+2]}</label>
+							<input type="radio" class="btn-check" name="vbtn-radio"	id="${timeList[vs.index+2]}" value="${timeList[vs.index+2]}" autocomplete="off">
+							<label id="reservationTime" class="btn btn-outline-dark" for="${timeList[vs.index+2]}">${timeList[vs.index+2]}</label>
 						</c:if>
 					</div>
 				</c:forEach>

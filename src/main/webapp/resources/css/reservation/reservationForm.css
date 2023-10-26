@@ -122,14 +122,19 @@ td {
 	margin-left: 20px;
 }
 
-#name {
+#rName {
 	margin-top: 50px;
 	height: 35px;
 }
 
-#phone {
+#rTel {
 	height: 35px;
 }
+#reservationTime{
+	width: 100px; 
+	margin-bottom: 10px;
+}
+
 
 .box-container-bottom {
 	margin: 0 0 50px 600px;
