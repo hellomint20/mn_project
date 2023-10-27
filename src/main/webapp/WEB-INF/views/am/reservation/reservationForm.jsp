@@ -120,10 +120,12 @@
 		console.log($("#calMonth").text())	//월
 		console.log($(".futureDay.choiceDay").text());	//일
 		console.log(document.querySelector('input[name="vbtn-radio"]:checked').value) //시간
-		var popupURI1='/am/reservationPopup';
-		var reserv = encodeURI(popupURI1);
-	    window.open(reserv, '예약확인', 'width=510px,height=600px,scrollbars=yes,resizable=no');
-	}
+
+
+		window.open('/am/reservationPopup','pop','width=800, height=600');
+		}
+	
+	
 	
 </script>
 
@@ -148,7 +150,7 @@
 						placeholder="010-1234-5678"
 						pattern=(\d{3})-?\s?(\d{4})-?\s?(\d{4}) required><br>
 						
-					<select id="pName" name="pName" required>
+					<select id="pName" required>
 						<option value="">선택하세요</option>
 						<c:forEach var="list" items="${p_list}">
 						<option value="connecting" id="p_name">${list['p_name']}</option>
