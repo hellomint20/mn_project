@@ -23,8 +23,8 @@ public class petServiceImpl implements petService {
 	}
 
 	@Override
-	public List<typeDTO> petType() {
-		return pm.petType();
+	public List<typeDTO> petType(String val) {
+		return pm.petType(val);
 	}
 	
 	@Override

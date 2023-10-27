@@ -9,5 +9,5 @@ public interface petMapper {
 	public List<petDTO> petList(String id);
 	public int petRegister(petDTO dto);
 	public petDTO petInfo(int num);
-	public List<typeDTO> petType();
+	public List<typeDTO> petType(String val);
 }

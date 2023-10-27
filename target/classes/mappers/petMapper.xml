@@ -33,7 +33,7 @@
 	</select>
 	
 	<select id="petType" resultMap="type">
-		select * from type;
+		select * from type where t_num=#{tNum};
 	</select>
 	
 	

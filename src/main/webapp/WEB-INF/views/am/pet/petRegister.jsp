@@ -7,33 +7,6 @@
 <title>펫 등록</title>
 	<link rel="stylesheet" href="/am/css/pet/register.css">
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-	<script type="text/javascript">
-		var arr = new Array();
-		
-		function pSec(e){
-			console.log(e.value);
-			console.log(${list.size()});
-			console.log('${list.get(20).pType}');
-			
-			for(var i=0; i < ${list.size()}; i++){
-				if(${list.get(i).tNum} == e.value){
-					arr.push('${list.get(i).pType}');
-					console.log('${list.get(i).pType}');
-				}
-			}
-			
-			var target = document.getElementById("pType");
-			
-			target.options.length = 0;
-
-			for (x in arr) {
-				var opt = document.createElement("option");
-				opt.value = arr[x];
-				opt.innerHTML = arr[x];
-				target.appendChild(opt);
-			}	
-		}
-	</script>
 	
 </head>
 <body>
@@ -63,26 +36,19 @@
 				   		<input type="radio" id="m" name="pSex">남
 				   		<input type="radio" id="f" name="pSex">여<br>
 			   		</div>
-			   		
-					<select onchange="pSec(this)">
-						<option>선택해주세요</option>
+					<select id="pSection" name="sn">
+						<option value="">--선택해주세요--</option>
 						<option value="1">개</option>
 						<option value="2">고양이</option>
 						<option value="3">기타</option>
 					</select>
-					
-					<select id="pType">
-						<option>선택해주세요</option>
-					</select>
-					
-					<%--
-					<select id="pType">
-					<option selected>선택하세요</option>
-					    <c:forEach var="list" items = "${ptList }">
-						<option><c:out value="${list.pType }"/>
-					</c:forEach>
-					</select>
-					--%>
+					<br>
+					<div id="pTypeCont">
+						<select id="pType" name="tn">
+							<option>--선택해주세요--</option>
+						</select>
+						<input type="text" id="writeType" name="writeType" placeholder="예시) 햄스터" style="display: none;">
+					</div>
 					<br>
 			   	</div>
 				<div class="info-pic">
@@ -98,4 +64,44 @@
 	
 	</div>
 </body>
+
+<script type="text/javascript">
+	var ch1 = document.getElementById("pSection");
+	var ch2 = document.getElementById("pType");
+	var writeType = document.getElementById("writeType");
+
+	ch1.onchange = function() {
+		var chVal = $('#pSection').val();
+		
+			$.ajax({
+				url : 'petType',
+				type : 'post',
+				data : {
+					data : chVal
+				},
+				dataType : 'json',
+				success : function(data) {
+					if (chVal !== "3") {
+						writeType.style.display = "none";
+						ch2.style.display = "block";
+						ch2.innerHTML = '';
+						
+						$.each(data, function(index, item) {
+							var option = document.createElement("option");
+							option.value = item.tNum;
+							option.text = item.pType;
+							ch2.appendChild(option); // 두 번째 select에 옵션 추가
+						});
+				    } else {
+				    	ch2.style.display = "none";
+						writeType.style.display = "block";
+				    }
+				},
+				error : function(xhr, status, error) {
+					console.error(error);
+				}
+			});
+	};
+</script>
+
 </html>
