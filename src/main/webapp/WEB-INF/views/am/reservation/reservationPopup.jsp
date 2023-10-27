@@ -7,6 +7,7 @@
 <title>예약정보</title>	
 <link href="https://cdn.jsdelivr.net/gh/sunn-us/SUITE/fonts/static/woff2/SUITE.css" rel="stylesheet">
 <link href="/am/css/reservation/reservationForm.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <style>
 		* {
 		font-family: 'SUITE', sans-serif !important;
@@ -18,7 +19,7 @@
 		window.close();
 	}
 	
-</script>
+	</script>
 <body>
 	
   
@@ -35,7 +36,7 @@
    		<div class="info-content">
    			2023년 10월 20일<br>
    			17:00<br>
-   			최재연<br>
+   			김효진<br>
    			앵두<br>
    			접종<br>
    			010-3335-9998

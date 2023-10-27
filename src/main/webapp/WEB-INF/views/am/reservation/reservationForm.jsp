@@ -110,8 +110,9 @@
 		}
 		return value;
 	}
-
+	
 	function reservationPopup(){ //예약 확인 팝업에 띄울 데이터
+		//콘솔
 		console.log(document.getElementById("rName").value) //예약자 이름
 		console.log(document.getElementById("rTel").value) //예약자 전화번호
 		console.log(document.getElementById('pName').options[document.getElementById('pName').selectedIndex].text) //동물 이름
@@ -120,10 +121,14 @@
 		console.log($("#calMonth").text())	//월
 		console.log($(".futureDay.choiceDay").text());	//일
 		console.log(document.querySelector('input[name="vbtn-radio"]:checked').value) //시간
+		
 		var popupURI1='/am/reservationPopup';
 		var reserv = encodeURI(popupURI1);
-	    window.open(reserv, '예약확인', 'width=510px,height=600px,scrollbars=yes,resizable=no');
+		var popup = window.open(reserv, '예약확인', 'width=510px,height=600px,scrollbars=yes,resizable=no');	
+	    
 	}
+	
+ 
 	
 </script>
 
