@@ -122,7 +122,7 @@
 		console.log(document.querySelector('input[name="vbtn-radio"]:checked').value) //시간
 
 
-		window.open('/am/reservationPopup','pop','width=800, height=600');
+		window.open('/am/reservationPopup','pop','width=550, height=600');
 		}
 	
 	

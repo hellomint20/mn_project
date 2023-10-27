@@ -53,6 +53,19 @@
 	}
 	
 	function reservationRegister(){
+			/* console.log(document.getElementById("rDate").innerText)
+			console.log(document.getElementById("rTime").innerText)
+			console.log(document.getElementById("rName").innerText)
+			console.log(document.getElementById("pName").innerText)
+			console.log(document.getElementById("rContent").innerText)
+			console.log(document.getElementById("rTel").innerText) */
+			
+			var info = document.getElementById("rDate").innerText + document.getElementById("rTime").innerText + document.getElementById("rName").innerText +
+						document.getElementById("pName").innerText + document.getElementById("rContent").innerText + document.getElementById("rTel").innerText;
+			
+			console.log(info);
+			
+			/* location.href = "reservationRegister" */
 		
 	}
 	
