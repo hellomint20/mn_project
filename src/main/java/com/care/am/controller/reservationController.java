@@ -2,6 +2,8 @@ package com.care.am.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -52,9 +54,15 @@ public class reservationController {
 		return "am/reservation/reservationPopup";
 	}
 	
+	@ResponseBody
 	@PostMapping("reservationRegister") //병원 예약 DB 등록
-	public void reservation(String id) {
+	public String reservationRegister(@RequestBody Map<String, Object> map, HttpSession session) {
+		System.out.println(map);
+		map.put("cId", "yh");
+		int result = rs.reservationRegister(map);
+		System.out.println(result);
 		
+		return Integer.toString(result);
 	}
 	
 	@GetMapping("reservationList") //손님 예약 리스트

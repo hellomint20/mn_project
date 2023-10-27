@@ -43,12 +43,51 @@
     </div>
     
     <script type="text/javascript">
-	document.getElementById("rDate").innerHTML = opener.$("#calYear").text()+"년 "+opener.$("#calMonth").text()+"월 "+opener.$(".futureDay.choiceDay").text()+"일";
+    
+	var day = null;
+	if (opener.$(".futureDay.choiceDay").val() == undefined){ //선택된 날짜가 오늘 이후가 아니라면
+		day = opener.$(".today.choiceDay").text();
+	}else{
+		day = opener.$(".futureDay.choiceDay").text();
+	}
+	
+	document.getElementById("rDate").innerHTML = opener.$("#calYear").text()+"년 "+opener.$("#calMonth").text()+"월 "+day+"일";
 	document.getElementById("rTime").innerHTML = opener.document.querySelector('input[name="vbtn-radio"]:checked').value;
 	document.getElementById("rName").innerHTML = opener.document.getElementById("rName").value;
 	document.getElementById("pName").innerHTML = opener.$("#pName option:selected").text();
 	document.getElementById("rContent").innerHTML = opener.document.querySelector('input[name="rContent"]:checked').value;
 	document.getElementById("rTel").innerHTML = opener.document.getElementById("rTel").value;
+	
+	function reservationRegister(){
+       	
+		var map = {};
+		map['mName'] = opener.$("#mName").text();
+		map['rDate'] = document.getElementById("rDate").innerText;
+		map['rTime'] = document.getElementById("rTime").innerText;
+		map['rName'] = document.getElementById("rName").innerText;
+		map['pName'] = document.getElementById("pName").innerText;
+		map['rContent'] = document.getElementById("rContent").innerText;
+		map['rTel'] = document.getElementById("rTel").innerText;
+		
+		console.log(map);
+		
+		$.ajax({
+			url : "/am/reservationRegister", type : "post",
+			data : JSON.stringify(map),
+			contentType : "application/json; charset=utf-8",
+			success : (result) => {
+				console.log("통신 성공")
+				if(result == 1){
+					alert("예약이 접수 되었습니다.");
+					window.opener.location.href="/am/reservationList";
+					window.close();
+				}
+			},
+			error : () => {
+				console.log("문제 발생")
+			}
+		})
+  	}
 	
 	function closeForm(){
 		window.close();
