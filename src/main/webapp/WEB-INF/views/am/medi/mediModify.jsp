@@ -12,6 +12,8 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="/am/resources/js/daumPost.js"></script>
 
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
 </head>
 
 <script type="text/javascript">
@@ -27,7 +29,17 @@ function readURL(input) {
         }
     }
 }
-</script>
+
+setTimeout(function(){
+    if (self.name != 'reload') {
+         self.name = 'reload';
+         self.location.reload(true);
+     }
+     else self.name = ''; 
+},1)
+  
+  
+ </script>
 
 <body>
 	<%@ include file = "../default/header_page.jsp" %>
@@ -66,7 +78,7 @@ function readURL(input) {
 			   	</div>
 			   	
 			   	<div class="info-pic">
-				 	<img id="photo" src="D:/mn_project/image/${info.dto.mPhoto }"> 
+				 	<img id="photo" src="/am/resources/img/${info.dto.mPhoto }"> 
 					<input type="file" class="pic-btn" name="file"  onchange="readURL(this)">
 				</div>
 			

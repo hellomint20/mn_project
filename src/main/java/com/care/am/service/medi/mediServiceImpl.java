@@ -87,36 +87,27 @@ public class mediServiceImpl implements mediService{
 		return map;
 	}
 	
-	public String mediModify(mediDTO dto, MultipartFile image_file_name, String[] addr) {
+	public String mediModify(mediDTO dto, MultipartFile file, String[] addr) {
+		// 주소
 		String ad ="";
 		for(String a:addr) {
 			ad += a+"/";
 		}
 		dto.setmAddr(ad); //합쳐진 주소 dto에 넣어줘
-		//---------------------------------/*
-		/*if(image_file_name.isEmpty()) { //파일이 없다면
-			dto.setImageFileName("nan");
-		}else { //파일이 존재하는 경우
-			dto.setImageFileName(bfs.saveFile(image_file_name) ); //특정위치에 파일 저장 + 파일 이름 만들기
-		}*/
-		if(image_file_name.isEmpty()) {
-			dto.setmPhoto("default.jpg");
-		}else {
-			dto.setmPhoto(mfs.saveFile(image_file_name));
+		
+		//file 
+		String dbImg = mm.getMedi(dto.getmId()).getmPhoto(); 
+		
+		String originName = file.getOriginalFilename();		 
+		
+		if(originName=="") { //파일 선택이 없다면  //
+			dto.setmPhoto(dbImg); //디비에 있던 원래 파일 저장
+		}else { // 파일 선택이 있다면
+			dto.setmPhoto(mfs.saveFile(file)); //새로운 파일 저장
 		}
 		
-		
-		String originName = null;
-		System.out.println("mPhotot: "+dto.getmPhoto()); //null
-		
-		if(!image_file_name.isEmpty()) { //수정됨
-			originName = dto.getmPhoto();
-			dto.setmPhoto(mfs.saveFile(image_file_name));
-		}
-		System.out.println("originName: "+originName);
-		
+		//text정보
 		int result = mm.mediModify(dto);
-		
 		String msg ="", url="";
 		if(result==1) {
 			mfs.deleteImage(originName);

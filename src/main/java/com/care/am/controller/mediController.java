@@ -124,6 +124,7 @@ public class mediController {
 			ad+= a+"/";
 		}
 		addr = ad.split("/");
+		System.out.println("file: "+file.getOriginalFilename());
 		String msg = ms.mediModify(dto, file, req.getParameterValues("mAddr"));
 		model.addAttribute("info", ms.getMedi(dto.getmId()));
 		res.setContentType("text/html; charset=utf-8");

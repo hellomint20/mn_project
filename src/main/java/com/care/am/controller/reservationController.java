@@ -1,12 +1,19 @@
 package com.care.am.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.care.am.service.reservation.reservationService;
 
 @Controller
 public class reservationController {
+	
+	@Autowired reservationService rs;
 	
 	//병원 예약 관련(손님 기준)
 	@GetMapping("reservation") //병원 예약 기본 페이지
@@ -36,7 +43,8 @@ public class reservationController {
 	
 	//병원 예약상태 관련(병원 기준)
 	@GetMapping("reservationState") //병원 예약상태
-	public String reservationState() {
+	public String reservationState(@RequestParam String id, Model model) {
+		model.addAttribute("list", rs.getList(id));
 		return "am/reservation/reservationState";
 	}
 	

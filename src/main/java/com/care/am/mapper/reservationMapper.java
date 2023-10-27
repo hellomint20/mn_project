@@ -1,5 +1,7 @@
 package com.care.am.mapper;
 
-public interface reservationMapper {
+import com.care.am.dto.reservationDTO;
 
+public interface reservationMapper {
+	public reservationDTO getList(String id);
 }
