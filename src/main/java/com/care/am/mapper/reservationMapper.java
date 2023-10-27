@@ -1,5 +1,8 @@
 package com.care.am.mapper;
 
-public interface reservationMapper {
+import java.util.Map;
 
+
+public interface reservationMapper {
+	public Map<String, String> reservationList(String cId);
 }

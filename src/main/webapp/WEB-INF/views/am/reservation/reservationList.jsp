@@ -28,12 +28,12 @@
 				</div>
 				<!-- for문으로 리스트 뽑아오기 -->
 				<div>
-					<div class="r_date">날짜</div>
-					<div class="r_time">시간</div>
-					<div class="p_name">환자</div>
-					<div class="m_name">병원이름이 길수도 있잖아요</div>
-					<div class="r_content">접수 내용</div>
-					<div class="r_apply">예약 현황</div>
+					<div class="r_date">${list["year"]}년 ${list.month}월 ${list.day}일</div>
+					<div class="r_time">${list.hour}시 ${list.min}분</div>
+					<div class="p_name">${list['p_name']}</div>
+					<div class="m_name">${list['m_name']}</div>
+					<div class="r_content">${list['r_content']}</div>
+					<div class="r_apply">${list['r_apply']}</div>
 				</div>
 			</div>
 		</div>
