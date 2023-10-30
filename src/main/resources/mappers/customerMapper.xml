@@ -16,6 +16,9 @@
 	<select id = "getCustomer" resultMap="customer">
 		select * from customer where c_id=#{cId}
 	</select>
+	<select id="customerSearchId" resultMap="customer">
+		select * from customer where c_name=#{inputName}
+	</select>
 	<update id="keepLogin">
 		update customer set c_session=#{cSessionId} where c_id=#{cId}
 	</update>

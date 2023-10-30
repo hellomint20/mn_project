@@ -13,14 +13,12 @@
 		<result property="rApply" column="r_apply"/>
 		<result property="rName" column="r_name"/>
 		<result property="rTel" column="r_tel"/>
-		<result property="rName" column="r_name"/>
-		<result property="rTel" column="r_tel"/>
 	</resultMap>
 	
 	<select id="reservationList" resultType="map">
-		SELECT reservation.r_date, reservation.r_time, pet.p_name, medi.m_name, reservation.r_apply, reservation.r_content
-		FROM reservation
-		JOIN medi ON reservation.m_id = medi.m_id
-		JOIN pet ON reservation.p_num = pet.p_num where reservation.c_id=#{cId}
+		select reservation.r_date, reservation.r_time, pet.p_name, medi.m_name, reservation.r_apply, reservation.r_content
+		from reservation
+		join medi ON reservation.m_id = medi.m_id
+		join pet ON reservation.p_num = pet.p_num where reservation.c_id=#{cId} order by reservation.r_date asc, reservation.r_time asc 
 	</select>
 </mapper>

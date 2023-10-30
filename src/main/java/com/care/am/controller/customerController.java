@@ -72,7 +72,7 @@ public class customerController {
 		}
 	}
 	
-	@RequestMapping("successLogin")
+	@RequestMapping("successLogin") //로그인성공시
 	public String successLogin(@RequestParam String id, 
 								@RequestParam String autoLogin,
 								HttpSession session,
@@ -89,13 +89,44 @@ public class customerController {
 			
 		}
 		session.setAttribute(LoginSession.cLOGIN, id); // 체크안했으면 그냥 세션만 만들어줘
+		System.out.println("세션값"+LoginSession.cLOGIN);
 		return "redirect:/";
 		
 	}
 	@GetMapping("customerSearchIdPw") //아이디/비밀번호 찾기 페이지
-	public String SearchIdPw() {
+	public String searchIdPw() {
 		return "am/customer/customerSearchIdPw";
 	}
+	
+	
+	@RequestMapping("customerSearchId")
+	public String customerSearchId( @RequestParam String inputName, 
+									@RequestParam String inputEmail,
+						 Model model,HttpServletResponse res) {
+		String cId = cs.customerSearchId(inputName, inputEmail);
+		if(cId != null) {
+			model.addAttribute("id",cId);
+			return "am/customer/customerSearchId";
+		}
+		else {
+			PrintWriter out = null;
+            try {
+                out = res.getWriter();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            out.println("<script>alert('정보가 일치하지 않습니다.'); history.back();</script>");
+            out.flush();
+		}
+		return "redirect:customerSearchIdPw";
+	}
+	
+	
+	@PostMapping("customerSearchPw")
+	public void customerSearchPw() {
+		
+	}
+	
 	
 	//손님정보 관련
 	@GetMapping("customerInfo") //손님 개인정보 페이지

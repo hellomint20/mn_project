@@ -9,6 +9,14 @@
 <link href="/am/resources/css/common/register.css" rel="stylesheet">
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="/am/resources/css/bootstrap/bootstrap.css">
+<link
+	href="https://cdn.jsdelivr.net/gh/sunn-us/SUITE/fonts/static/woff2/SUITE.css"
+	rel="stylesheet">
+<style>
+* {
+	font-family: 'SUITE', sans-serif !important;
+}
+</style>
 <script type="text/javascript">
 </script>
 <script>

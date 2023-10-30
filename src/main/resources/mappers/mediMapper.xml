@@ -12,7 +12,8 @@
 		<result property="mPw" column="m_pw" />
 		<result property="mPhoto" column="m_photo" />
 		<result property="openTime" column="open_time" />
-		<result property="lunchTime" column="lunch_time" />
+		<result property="lunchStartTime" column="lunch_start_time" />
+		<result property="lunchCloseTime" column="lunch_close_time" />
 		<result property="closeTime" column="close_time" />
 		<result property="mSession" column="m_session" />
 	</resultMap>

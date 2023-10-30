@@ -42,7 +42,6 @@ public class reservationController {
 	@GetMapping("reservationList") //손님 예약 리스트
 	public String reservationList(@RequestParam String id, Model model) {
 		model.addAttribute("list",rs.reservationList(id));
-		
 		return "am/reservation/reservationList";
 	}
 	

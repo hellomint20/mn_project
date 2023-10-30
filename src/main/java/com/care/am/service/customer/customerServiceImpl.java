@@ -39,6 +39,17 @@ public class customerServiceImpl implements customerService {
 		}
 		return GetMessage.getMessage("회원가입 실패", "/am/customerRegister");
 	}
+	
+	public String customerSearchId(String inputName, String inputEmail) {
+		customerDTO dto = cm.customerSearchId(inputName);
+		String result="";
+		if(dto!=null) {
+			if(inputEmail.equals(dto.getcEmail())){
+				result = dto.getcId();
+			}
+		}
+		return result;
+	}
 
 	public int logChk(String id, String pw) {
 		customerDTO dto = cm.getCustomer(id);
