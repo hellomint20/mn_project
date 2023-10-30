@@ -22,4 +22,12 @@
 		select * from pet where c_id = #{c_id}
 	</select>
 	
+	<insert id="reservationRegister">
+		insert into reservation 
+		values (r_num, 
+				(select m_id from medi where m_name=#{mName}), 
+				(select p_num from pet where p_name=#{pName}), 
+				#{cId}, #{rContent}, #{rDate}, '대기', #{rName}, #{rTel}, #{rTime});
+	</insert>
+	
 </mapper>

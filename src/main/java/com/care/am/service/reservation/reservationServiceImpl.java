@@ -59,4 +59,20 @@ public class reservationServiceImpl implements reservationService{
 		System.out.println("ser" + rm.petList(id));
 		return rm.petList(id);
 	}
+	public int reservationRegister(Map<String, Object> map) { //병원 예약 
+		int result = 0;
+		System.out.println(map);
+		
+		
+		String year =  map.get("rDate").toString().replace("년 ", "-");
+		String month = year.replace("월 ", "-");
+		String day = month.replace("일", "");
+		map.put("rDate", day);
+		
+		map.put("rTime", map.get("rTime").toString().replace(":", "-"));
+		
+		System.out.println(map);
+		result = rm.reservationRegister(map);
+		return result;
+	}
 }

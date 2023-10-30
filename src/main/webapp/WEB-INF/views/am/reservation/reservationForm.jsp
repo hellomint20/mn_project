@@ -111,22 +111,13 @@
 		return value;
 	}
 
-	function reservationPopup(){ //예약 확인 팝업에 띄울 데이터
-		console.log(document.getElementById("rName").value) //예약자 이름
-		console.log(document.getElementById("rTel").value) //예약자 전화번호
-		console.log(document.getElementById('pName').options[document.getElementById('pName').selectedIndex].text) //동물 이름
-		console.log(document.querySelector('input[name="rContent"]:checked').value) //진료 내용
-		console.log($("#calYear").text())	//년도
-		console.log($("#calMonth").text())	//월
-		console.log($(".futureDay.choiceDay").text());	//일
-		console.log(document.querySelector('input[name="vbtn-radio"]:checked').value) //시간
-
-
-		window.open('/am/reservationPopup','pop','width=550, height=600');
+	function reservationPopup(){ //예약 확인 팝업에 띄울 데이터 
+		if($(".today.choiceDay").val()== undefined && $(".futureDay.choiceDay").val()== undefined){ //선택된 날짜가 없을 때
+			alert("날짜를 선택해주세요");
+			return
 		}
-	
-	
-	
+		window.open('/am/reservationPopup','pop','width=800, height=600');
+	}
 </script>
 
 <body>
@@ -136,7 +127,7 @@
 		<div class="reservation-form">
 
 			<div class="box-hospital-name">
-				<strong><b>${name}</b> 예약</strong>
+				<strong><b id="mName">${name}</b> 예약</strong>
 			</div>
 
 			<div class="box-container-left">
@@ -204,7 +195,7 @@
 								<label id="reservationTime" class="btn btn-outline-dark" for="${timeList[vs.index]}">${timeList[vs.index]}</label>
 							</c:otherwise>
 						</c:choose>
-	
+						
 						<c:if test="${timeList[vs.index+1] != null}">
 							<input type="radio" class="btn-check" name="vbtn-radio"	id="${timeList[vs.index+1]}" value="${timeList[vs.index+1]}" autocomplete="off"> 
 							<label id="reservationTime" class="btn btn-outline-dark" for="${timeList[vs.index+1]}">${timeList[vs.index+1]}</label>
