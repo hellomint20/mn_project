@@ -23,11 +23,11 @@
 	</select>
 	
 	<insert id="reservationRegister">
-		insert into reservation 
-		values (r_num, 
-				(select m_id from medi where m_name=#{mName}), 
-				(select p_num from pet where p_name=#{pName}), 
-				#{cId}, #{rContent}, #{rDate}, '대기', #{rName}, #{rTel}, #{rTime});
+		    insert into reservation 
+      		(r_num, m_id, p_num, c_id, r_content, r_date, r_time, r_name, r_tel)
+      		values (r_num, 
+            (select m_id from medi where m_name=#{mName}), 
+            (select p_num from pet where p_name=#{pName}),#{cId}, #{rContent}, #{rDate}, #{rTime}, #{rName}, #{rTel});
 	</insert>
 	
 </mapper>

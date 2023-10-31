@@ -87,4 +87,7 @@ public class reservationController {
 		return "am/reservation/reservationApplyPopup";
 	}
 	
+	/* @PostMapping("reservationCount") */
+
+	
 }
