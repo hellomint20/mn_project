@@ -1,9 +1,10 @@
 package com.care.am.service.customer;
 
+import java.security.SecureRandom;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -51,6 +52,44 @@ public class customerServiceImpl implements customerService {
 		return result;
 	}
 
+	public customerDTO customerSearchPw(String inputId, String inputName, String inputTel) {
+			customerDTO dto = cm.getCustomer(inputId);
+			if(dto!=null) {
+				if(inputName.equals(dto.getcName()) && inputTel.equals(dto.getcTel())) {
+					System.out.println("아이디, 이름, 전화번호 다 일치 > 임시비밀번호 발급");
+					return dto;
+				}
+			}
+			return null;
+	}
+	
+	public String makeRandomPw() {
+		StringBuffer sb = new StringBuffer();
+		SecureRandom sr = new SecureRandom();
+		char[] charSet = new char[] {
+	                '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+	                'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 
+	                'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 
+	                'U', 'V', 'W', 'X', 'Y', 'Z','a', 'b', 'c', 'd', 
+	                'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 
+	                'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+	                '!', '@', '#', '$', '%', '^', '&' };
+		sr.setSeed(new Date().getTime());
+		int idx = 0;
+		int len = charSet.length;
+		for(int i=0; i<8;i++) { // 8은 임시비밀번호 자리수
+			idx = sr.nextInt(len);
+			sb.append(charSet[idx]);
+			}
+			return sb.toString();
+		}
+	
+	public int customerPwChg(String tempPwd, customerDTO dto) {
+		dto.setcPw(encoder.encode(tempPwd));
+		int result = cm.customerPwChg(dto);
+		return result;
+	}
+	
 	public int logChk(String id, String pw) {
 		customerDTO dto = cm.getCustomer(id);
 		int result = 0;

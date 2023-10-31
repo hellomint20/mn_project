@@ -22,9 +22,10 @@ import com.care.am.dto.customerDTO;
 import com.care.am.service.customer.customerService;
 
 @Controller
-public class customerController {
+public class customerController{
 	
 	@Autowired customerService cs;
+	
 	
 	//로그인 관련
 	@GetMapping("customerRegister") //손님 회원가입 페이지
@@ -99,12 +100,12 @@ public class customerController {
 	}
 	
 	
-	@RequestMapping("customerSearchId")
+	@RequestMapping("customerSearchId") // 아이디찾기
 	public String customerSearchId( @RequestParam String inputName, 
 									@RequestParam String inputEmail,
 						 Model model,HttpServletResponse res) {
 		String cId = cs.customerSearchId(inputName, inputEmail);
-		if(cId != null) {
+		if(cId.length() >= 1) {
 			model.addAttribute("id",cId);
 			return "am/customer/customerSearchId";
 		}
@@ -113,17 +114,31 @@ public class customerController {
             try {
                 out = res.getWriter();
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                e.printStackTrace();
             }
-            out.println("<script>alert('정보가 일치하지 않습니다.'); history.back();</script>");
+            out.println("<script>alert('정보가 일치하지 않습니다.');</script>");
             out.flush();
+            return "am/customer/customerSearchIdPw";
+		
 		}
-		return "redirect:customerSearchIdPw";
-	}
-	
-	
-	@PostMapping("customerSearchPw")
-	public void customerSearchPw() {
+	}	
+	@PostMapping("customerSearchPw") // 비밀번호 찾기
+	public String customerSearchPw(@RequestParam String inputId, 
+								@RequestParam String inputName, 
+								@RequestParam String inputTel,HttpServletResponse res) {
+		customerDTO dto = cs.customerSearchPw(inputId,inputName,inputTel);
+		String tempPwd ="";
+		if(dto !=null) {
+			tempPwd = cs.makeRandomPw();
+			int result = cs.customerPwChg(tempPwd,dto);
+			if(result ==1) {
+				String toMail = dto.getcEmail();
+				String content = tempPwd;
+				return "redirect:/customerSearchPw/"+"mong_jini@naver.com"+"/"+content+"/";
+			}
+			System.out.println(tempPwd);
+		}
+		return "redirect:/customerSearchIdPw";
 		
 	}
 	

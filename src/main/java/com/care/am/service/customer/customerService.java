@@ -5,6 +5,9 @@ import com.care.am.dto.customerDTO;
 public interface customerService {
 	public String register(customerDTO dto);
 	public String customerSearchId(String inputName, String inputEmail);
+	public customerDTO customerSearchPw(String inputId, String inputName, String inputTel);
+	public String makeRandomPw();
+	public int customerPwChg(String tempPwd, customerDTO dto);
 	public int logChk(String id, String pw);
 	public void keepLogin(String cSessionId, String cId);
 	public customerDTO getCustomerSessionId(String cSessionId);

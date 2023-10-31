@@ -55,26 +55,26 @@
 			</form>
 			<hr>
 			<h4 style="text-align: left; margin-bottom: 20px;">보호자 비밀번호 찾기</h4>
-			<form>
+			<form action="customerSearchPw" method="post">
 				<div id="searchIdPwFormContent" class="form-group row" >
 					<label for="inputId" class="col-sm-3 col-form-label">아이디</label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" id="inputId"
-							placeholder="input Id">
+							name="inputId" placeholder="input Id" required >
 					</div>
 				</div>
 				<div id="searchIdPwFormContent" class="form-group row">
 					<label for="inputName" class="col-sm-3 col-form-label">이름</label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" id="inputName"
-							placeholder="input Name">
+							name="inputName" placeholder="input Name" required>
 					</div>
 				</div>
 				<div id="searchIdPwFormContent" class="form-group row">
 					<label for="inputTel" class="col-sm-3 col-form-label">연락처</label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" id="inputTel"
-							placeholder="input Tel">
+						<input type="text" class="form-control" id="inputTel" name="inputTel"
+							 oninput="hypenAdd(this)" maxlength="13" placeholder="input Tel" required>
 					</div>
 				</div>
 		
