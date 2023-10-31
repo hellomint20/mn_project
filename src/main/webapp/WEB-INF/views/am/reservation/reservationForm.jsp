@@ -64,6 +64,7 @@
 				newDIV.className = "today";
 				newDIV.onclick = function() {
 					choiceDate(this);
+					
 					reservationCount('${timeList}');
 				}
 			} else { // 미래인 경우
@@ -88,7 +89,15 @@
 	//---------------------------------------------
 	//예약 현황 확인
 	function reservationCount(timeList){
-		console.log(timeList)
+		//$("#totalTimeList").load(window.location.href+' #totalTimeList')
+		
+		//disabled false 변환
+		for(var i=1; i<timeList.length; i+=7){
+				document.getElementById(timeList.slice(i, i+5)).disabled = false;
+				$("label[for='"+timeList.slice(i, i+5)+"']").css('background-color','');
+				console.log("변환")
+		}
+		
 		let mName = $("#mName").text();
 		let checkDay = $("#calYear").text()+"-"+$("#calMonth").text()+"-";
 		
@@ -108,20 +117,12 @@
 			data : JSON.stringify(form),
 			contentType : "application/json; charset=utf-8",
 			success : (map) => {
-				console.log("통신 성공")
-				console.log(map)
-				console.log(map['10:30'])
-				console.log(timeList.slice(1, 6))
-				console.log(timeList.slice(8, 13))
-				console.log(timeList.length)
-				
+
 				for(var i=1; i<timeList.length; i+=7){
-					console.log(i+" : "+timeList.slice(i, i+5))
-					console.log(map[timeList.slice(i, i+5)]);
-					if(map[timeList.slice(i, i+5)] == '2'){
-						document.getElementById(timeList.slice(i, i+5)).style.background = 'gray';
-						consoil(timeList.slice(i, i+5))
-						console.log("되었능가")
+					if(map[timeList.slice(i, i+5)] == "3"){
+						$("label[for='"+timeList.slice(i, i+5)+"']").css('background-color','#e2e5e8');
+						document.getElementById(timeList.slice(i, i+5)).disabled = true;
+
 					}
 				}
 			},
@@ -162,9 +163,30 @@
 	}
 
 	function reservationPopup(){ //예약 확인 팝업에 띄울 데이터 
+
+		if($("#rName").val() == ""){ //이름 입력 안했을 때
+			alert("예약자 성함을 입력해주세요");
+			return false;
+		}
+		if($("#rTel").val() == ""){
+			alert("예약자 전화번호를 입력해주세요"); //전화번호 입력 안했을 때
+			return false;
+		}
+		if($("#pName option:selected").val() == ""){
+			alert("동물을 선택해주세요"); //동물 선택 안했을 때
+			return false;
+		}
+		if($("input[name=rContent]:radio:checked").length == 0){
+			alert("진료 내용을 선택해주세요"); //진료 내용 선택 안했을 때
+			return false;
+		}
 		if($(".today.choiceDay").val()== undefined && $(".futureDay.choiceDay").val()== undefined){ //선택된 날짜가 없을 때
-			alert("날짜를 선택해주세요");
+			alert("예약 날짜를 선택해주세요"); //날짜 선택 안했을 때
 			return
+		}
+		if($("input[name=vbtn-radio]:radio:checked").length == 0){
+			alert("예약 시간을 선택해주세요"); //시간 선택 안했을 때
+			return false;
 		}
 		window.open('/am/reservationPopup','pop','width=800, height=600');
 	}
@@ -232,12 +254,13 @@
 				</table>
 			</div>
 
-			<div class="timeList">
+			<div class="timeList" id="totalTimeList">
 				<c:forEach var="AM" items="${timeList}" varStatus="vs" step="3">
 					<div class="btn-group btn-group-lg" >
 						<c:choose>
 							<c:when test="${vs.index == 0}">
-								<input type="radio" class="btn-check" name="vbtn-radio"	id="${timeList[vs.index]}" value="${timeList[vs.index]}" autocomplete="off" checked > 
+
+								<input type="radio" class="btn-check" name="vbtn-radio"	id="${timeList[vs.index]}" value="${timeList[vs.index]}" autocomplete="off"> 
 								<label id="reservationTime" class="btn btn-outline-dark" for="${timeList[vs.index]}">${timeList[vs.index]}</label>
 							</c:when>
 							<c:otherwise>
