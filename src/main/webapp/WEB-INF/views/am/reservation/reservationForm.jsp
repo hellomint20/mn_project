@@ -120,6 +120,7 @@
 					console.log(map[timeList.slice(i, i+5)]);
 					if(map[timeList.slice(i, i+5)] == '2'){
 						document.getElementById(timeList.slice(i, i+5)).style.background = 'gray';
+						consoil(timeList.slice(i, i+5))
 						console.log("되었능가")
 					}
 				}
@@ -236,22 +237,22 @@
 					<div class="btn-group btn-group-lg" >
 						<c:choose>
 							<c:when test="${vs.index == 0}">
-								<input type="radio" class="btn-check" name="vbtn-radio"	id="${timeList[vs.index]}" value="${timeList[vs.index]}" autocomplete="off" checked> 
+								<input type="radio" class="btn-check" name="vbtn-radio"	id="${timeList[vs.index]}" value="${timeList[vs.index]}" autocomplete="off" checked > 
 								<label id="reservationTime" class="btn btn-outline-dark" for="${timeList[vs.index]}">${timeList[vs.index]}</label>
 							</c:when>
 							<c:otherwise>
-								<input type="radio" class="btn-check" name="vbtn-radio"	id="${timeList[vs.index]}" value="${timeList[vs.index]}" autocomplete="off"> 
+								<input type="radio" class="btn-check" name="vbtn-radio"	id="${timeList[vs.index]}" value="${timeList[vs.index]}" autocomplete="off" > 
 								<label id="reservationTime" class="btn btn-outline-dark" for="${timeList[vs.index]}">${timeList[vs.index]}</label>
 							</c:otherwise>
 						</c:choose>
 						
 						<c:if test="${timeList[vs.index+1] != null}">
-							<input type="radio" class="btn-check" name="vbtn-radio"	id="${timeList[vs.index+1]}" value="${timeList[vs.index+1]}" autocomplete="off"> 
+							<input type="radio" class="btn-check" name="vbtn-radio"	id="${timeList[vs.index+1]}" value="${timeList[vs.index+1]}" autocomplete="off" > 
 							<label id="reservationTime" class="btn btn-outline-dark" for="${timeList[vs.index+1]}">${timeList[vs.index+1]}</label>
 						</c:if>
 						
 						<c:if test="${timeList[vs.index+2] != null}">
-							<input type="radio" class="btn-check" name="vbtn-radio"	id="${timeList[vs.index+2]}" value="${timeList[vs.index+2]}" autocomplete="off">
+							<input type="radio" class="btn-check" name="vbtn-radio"	id="${timeList[vs.index+2]}" value="${timeList[vs.index+2]}" autocomplete="off" >
 							<label id="reservationTime" class="btn btn-outline-dark" for="${timeList[vs.index+2]}">${timeList[vs.index+2]}</label>
 						</c:if>
 					</div>

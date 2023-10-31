@@ -49,5 +49,12 @@
 		where m_id=(select m_id from medi where m_name=#{mName}) and 
 				r_date =#{rDate} group by r_time;
 	</select>
+	
+	<select id="peopleCount" resultType="map">
+		select count(*) 
+			from reservation 
+		where m_id=(select m_id from medi where m_name=#{mName}) 
+				and r_date = #{rDate} and r_time = #{rTime};
+	</select>
 
 </mapper>

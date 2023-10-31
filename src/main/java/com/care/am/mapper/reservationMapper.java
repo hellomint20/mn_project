@@ -18,4 +18,5 @@ public interface reservationMapper {
 	public List<Map<String, petDTO>> petList(); //사용자 pet list
 	public int reservationRegister(Map<String, Object> map); //병원 예약 
 	public List<Map<String, Object>> reservationCount(Map<String, Object> map); ////시간별 예약자 수 확인
+	public Map<String, Object> peopleCount(Map<String, Object> map);
 }
