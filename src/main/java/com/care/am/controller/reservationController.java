@@ -40,7 +40,6 @@ public class reservationController {
 		model.addAttribute("name", name); //선택된 병원
 
 		// 영업시간 가져오기 
-		System.out.println(rs.mediTime(name));
 		model.addAttribute("timeList", rs.mediTime(name));
 		
 		// 로그인한 사람 동물 리스트 가져오기
@@ -59,7 +58,7 @@ public class reservationController {
 	@PostMapping("reservationRegister") //병원 예약 DB 등록
 	public String reservationRegister(@RequestBody Map<String, Object> map, HttpSession session) {
 		System.out.println(map);
-		map.put("cId", "yh");
+		map.put("cId", "1");
 		int result = rs.reservationRegister(map);
 		System.out.println(result);
 		
@@ -86,8 +85,12 @@ public class reservationController {
 	public String reservationApplyPopup(String id) {
 		return "am/reservation/reservationApplyPopup";
 	}
-	
-	/* @PostMapping("reservationCount") */
+
+	@ResponseBody
+	@PostMapping("reservationCount") //시간별 예약자 수 확인
+	public Map<String, String> reservationCount(@RequestBody Map<String, Object> map) {
+		return rs.reservationCount(map);
+	}
 
 	
 }

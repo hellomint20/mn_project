@@ -1,6 +1,7 @@
 package com.care.am.service.reservation;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -30,9 +31,6 @@ public class reservationServiceImpl implements reservationService{
 	
 	public List<String> mediTime(String name){ //병원 time 가져오기
 		Map<String, Object> mediTime = rm.mediTime(name);
-		System.out.println(mediTime);
-		
-		System.out.println("==============================");
 		
 		//시간을 list로 담기
 		List<String > timeList = new ArrayList<String>();
@@ -50,8 +48,6 @@ public class reservationServiceImpl implements reservationService{
 		for(int i=Integer.parseInt(lunchEndTime.split(":")[0]); i<Integer.parseInt(closeTime.split(":")[0]); i++) {
 			timeList.add(String.valueOf(String.format("%02d", i))+":"+mediTime.get("lunch_end_time").toString().split(":")[1]);
 		}
-		System.out.println(timeList);
-
 		return timeList;
 	}
 	
@@ -59,10 +55,9 @@ public class reservationServiceImpl implements reservationService{
 		System.out.println("ser" + rm.petList(id));
 		return rm.petList(id);
 	}
+	
 	public int reservationRegister(Map<String, Object> map) { //병원 예약 
 		int result = 0;
-		System.out.println(map);
-		
 		
 		String year =  map.get("rDate").toString().replace("년 ", "-");
 		String month = year.replace("월 ", "-");
@@ -71,8 +66,20 @@ public class reservationServiceImpl implements reservationService{
 		
 		map.put("rTime", map.get("rTime").toString().replace(":", "-"));
 		
-		System.out.println(map);
 		result = rm.reservationRegister(map);
 		return result;
+	}
+	public Map<String, String> reservationCount(Map<String, Object> map) { ////시간별 예약자 수 확인
+	
+		List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
+		list = rm.reservationCount(map);
+		
+		Map<String, String> rDateCount = new HashMap<String, String>();
+		
+		for(int i=0; i<list.size(); i++) {
+			String rTime = list.get(i).get("r_time").toString().split("-")[0]+":"+list.get(i).get("r_time").toString().split("-")[1];
+			rDateCount.put(rTime, list.get(i).get("count(*)").toString());
+		}	
+		return rDateCount; 
 	}
 }

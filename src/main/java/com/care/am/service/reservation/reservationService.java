@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import com.care.am.dto.mediDTO;
 import com.care.am.dto.petDTO;
+import com.care.am.dto.reservationDTO;
 
 public interface reservationService {
 	public List<Map<String, mediDTO>> mediList(); //병원 리스트
@@ -11,5 +12,6 @@ public interface reservationService {
 	public List<String> mediTime(String name); //병원 Time
 	public List<Map<String , petDTO>> petList(String id); //사용자 pet lists
 	public int reservationRegister(Map<String, Object> map); //병원 예약 
+	public Map<String, String> reservationCount(Map<String, Object> map); ////시간별 예약자 수 확인
 
 }
