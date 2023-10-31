@@ -5,30 +5,39 @@
 <mapper namespace="com.care.am.mapper.reservationMapper">
 
 	<resultMap type="com.care.am.dto.reservationDTO" id="reservation">
-		
+		<id property="rNum" column="r_num"/>
+		<result property="mId" column="m_id"/>
+		<result property="cId" column="c_id"/>
+		<result property="rContent" column="r_content"/>
+		<result property="rDate" column="r_date"/>
+		<result property="rTime" column="r_time"/>
+		<result property="rApply" column="r_apply"/>
+		<result property="rName" column="r_name"/>
+		<result property="rTel" column="r_tel"/>
+		<result property="rName" column="r_name"/>
+	</resultMap>
+	
+	<resultMap type="com.care.am.dto.petDTO" id="pet">
+		<id property="pNum" column="p_num"/>
+		<result property="pName" column="p_name" />
+		<result property="pSection" column="p_section" />
+		<result property="pType" column="p_type" />
+		<result property="pAge" column="p_age" />
+		<result property="pSex" column="p_sex" />
+		<result property="cId" column="c_id" />
+		<result property="pPhoto" column="pPhoto" />
 	</resultMap>
 
+	<select id="mediReservationList" resultType="map">
+		select
+	reservation.r_date, reservation.r_time, pet.p_type, reservation.r_content, reservation.r_apply
+		from reservation left join pet
+			on reservation.p_num = pet.p_num
+				where reservation.m_id = #{mId}
+	</select>
+	<!--  
+	<select id="selectListCount" resultType="Integer">
+		select count(*) from reservation where m_id=#{mId}
+	</select>-->
 
-r_num int AI PK  88           예약번호
-m_id varchar(45) 88		
-p_num varchar(45) 	동물번호
-c_id varchar(45) 
-r_content varchar(45) 
-r_date varchar(45) 
-r_apply varchar(45) 
-r_name varchar(45) /
-r_tel varchar(45) /
-r_time varchar(45)
-
-
-
-	int rNum;
-	String mId;
-	String pNum;
-	String cId;
-	String rContent;
-	String rDate;
-	String rApply;
-	String rName;
-	String rTel;
 </mapper>

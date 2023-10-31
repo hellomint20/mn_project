@@ -34,7 +34,7 @@ public class mediServiceImpl implements mediService{
 			ad += a+"/";
 		}
 		dto.setmAddr(ad); //합쳐진 주소 dto에 넣어줘
-		dto.setmPw((encoder.encode(dto.getmPw()))); //비밀번호 암호화해서 저장
+		dto.setmPw(encoder.encode(dto.getmPw())); //비밀번호 암호화해서 저장
 		
 		int result =0;
 		try {
@@ -85,6 +85,41 @@ public class mediServiceImpl implements mediService{
 			map.put("addr3", addr[2]);
 		}
 		return map;
+	}
+	
+	public String mediPwdChk(String id, String pw) {
+		mediDTO dto = mm.getMedi(id);
+		
+		if(dto != null) {
+			try {
+				if(encoder.matches(pw, dto.getmPw()) || pw.equals(dto.getmPw())) {
+					String url = "/am/mediModify?id=" + id;
+					return "<script> location.href='" + url + "';</script>";
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
+		return GetMessage.getMessage("비밀번호가 틀렸습니다.", "/am/mediPwdChk?id="+id);
+	}
+	
+	public String mediPwdChg(mediDTO dto,String pw, String newPw) {
+		
+		dto = mm.getMedi(dto.getmId());
+		
+		System.out.println("pw: "+pw);
+		System.out.println("getpw : "+dto.getmPw());
+		
+		int result = 0;
+		if (encoder.matches(pw, dto.getmPw()) || pw.equals(dto.getmPw())) {
+			dto.setmPw(encoder.encode(newPw));
+			result = mm.mediPwdChg(dto);
+			if(result == 1) {
+				return GetMessage.getMessage("비밀번호가 변경되었습니다", "/am/mediInfo?id=" +dto.getmId());
+			}
+		}
+	return GetMessage.getMessage("비밀번호가 틀렸습니다", "/am/mediPwdChg?id=" + dto.getmId());
 	}
 	
 	public String mediModify(mediDTO dto, MultipartFile file, String[] addr) {

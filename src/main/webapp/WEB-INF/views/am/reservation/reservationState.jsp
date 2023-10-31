@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -76,6 +77,15 @@ function Popup(){
                     </tr>
                 </thead>
                 <tbody>
+                	<c:forEach var="list" items="${list }">
+                		<tr>
+                			<td><a href="#" onclick="Popup()" >${list.date }</a></td>
+                			<td>${list.hour }시 ${list.min }분</td>
+                			<td>${list.type }</td>
+                			<td>${list.content }</td>
+                			
+                		</tr>
+                	</c:forEach>
                     <tr>
                         <td> <a href="#" onclick="Popup()" >2023-10-16</a></td>
                         <td>16:00</td>
@@ -83,33 +93,7 @@ function Popup(){
                         <td>접종</td>
                         
                     </tr>
-                    <tr>
-                       <td>2023-10-17</td>
-                        <td>13:00</td>
-                        <td>고양이</td>
-                        <td>검진</td>
-                       
-                    </tr>
-                    <tr>
-                        <td>2023-10-20</td>
-                        <td>9:00</td>
-                        <td>개</td>
-                        <td>접종</td>
-                        
-                    </tr>
-                    <tr>
-                        <td>2023-10-20</td>
-                        <td>11:00</td>
-                        <td>앵무</td>
-                        <td>진료</td>
-                       
-                    </tr>
-                    <tr>
-                        <td>2023-10-21</td>
-                        <td>17:00</td>
-                        <td>고양이</td>
-                        <td>진료</td>
-                    </tr>
+                    
                 </tbody>
             </table>
         </div>

@@ -38,7 +38,7 @@
       </c:choose>
       </div>
       <div id="headerLogo">
-         <a href="/am/reservationState?id=${mediId}"><img src="/am/resources/img/logo2.png"
+         <a href="/am/reservationState?id=${mediId }"><img src="/am/resources/img/logo2.png"
             width="250px" height="100px"></a>
       </div>
 

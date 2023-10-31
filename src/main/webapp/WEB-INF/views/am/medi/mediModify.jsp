@@ -54,7 +54,6 @@ setTimeout(function(){
 			<div class="info">
 				<div class="info-title">
 					아이디 : <br>
-		    		비밀번호 : <br>
 		    		병원이름 : <br>
 		    		주소 : <br><br><br>
 		    		전화번호 :<br>
@@ -65,7 +64,6 @@ setTimeout(function(){
 				<div class="info-content">
 					
 				   		<input type="text" class="t_b" name="mId" readonly value="${info.dto.mId }" ><br>
-				   		<input type="password" class="t_b" name="mPw" placeholder="${info.dto.mPw }"><br>
 				   		<input type="text" class="t_b" name="mName" placeholder="${info.dto.mName }"><br>
 				   		<input type="text" class="t_b_post" name="mAddr" id="addr1" placeholder="${info.addr1 }">
 				   			<input type="button" class="btn btn-dark" onclick="daumPost()" value="주소검색">
@@ -86,7 +84,7 @@ setTimeout(function(){
 		    
 			<div class="btn_a">
 			    <button type="button" class="cancel" onclick="history.back()">취소</button>
-			    <button type="submit" class="completed" onclick="location.href='mediInfo?id=${info.dto.mId }'">등록</button>
+			    <button type="submit" class="completed" onclick="location.href='mediInfo?id=${mediId }'">등록</button>
 		    </div>
 	    </form>
 	</div>

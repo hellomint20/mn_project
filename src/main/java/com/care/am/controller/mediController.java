@@ -91,7 +91,7 @@ public class mediController {
 		}
 		session.setAttribute(LoginSession.mLOGIN, id); // 체크안했으면 그냥 세션만 만들어줘
 		System.out.println(session.getAttribute(LoginSession.mLOGIN));
-		return "redirect:reservationState";
+		return "redirect:reservationState?id="+id;
 	}
 
 	@GetMapping("mediSearchIdPw") // 아이디/비밀번호 찾기 페이지
@@ -107,6 +107,42 @@ public class mediController {
 		return "am/medi/mediInfo";
 	}
 	
+	@GetMapping("mediPwdChk") //비밀번호 확인페이지
+	public String mediPwdChk(@RequestParam String id) {
+		return "am/medi/mediPwdChk";
+	}
+	
+	@PostMapping("mediPwdChk")//비밀번호 확인
+	public void mediPwdChk(@RequestParam String id, @RequestParam String pw, HttpServletResponse res) {
+		String msg ="";
+		msg = ms.mediPwdChk(id,pw);
+		res.setContentType("text/html; charset=utf-8");
+		PrintWriter out =null;
+		try {
+			out = res.getWriter();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		out.print(msg);
+	}
+	
+	@GetMapping("mediPwdChg") //비밀번호 변경 페이지
+	public String mediPwdChg(@RequestParam String id) {
+		return "am/medi/mediPwdChg";
+	}
+	
+	@PostMapping("mediPwdChg")
+	public void mediPwdChg(mediDTO dto, HttpServletResponse res, @RequestParam String pw, @RequestParam String newPw) throws Exception{
+		
+		String msg="";
+		
+		System.out.println("con: "+dto.getmId());
+		
+		msg = ms.mediPwdChg(dto, pw, newPw);
+		res.setContentType("text/html; charset=utf-8");
+	    PrintWriter out = res.getWriter();
+	    out.print( msg );
+	}
 
 	@GetMapping("mediModify") // 병원 개인정보 수정 페이지
 	public String modify(@RequestParam String id, Model model) {
@@ -137,4 +173,6 @@ public class mediController {
 	public void delete() {
 
 	}
+	
+	
 }

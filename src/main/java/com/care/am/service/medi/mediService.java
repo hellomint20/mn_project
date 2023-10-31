@@ -13,6 +13,8 @@ public interface mediService {
 	public Map<String, Object> getMedi(String id);
 	public String mediModify(mediDTO dto, MultipartFile fileName, String[] addr);
 	public mediDTO getMediSessionId(String mSession);
+	public String mediPwdChk(String id, String pw);
+	public String mediPwdChg(mediDTO dto,String pw, String newPw);
 }
 	
 

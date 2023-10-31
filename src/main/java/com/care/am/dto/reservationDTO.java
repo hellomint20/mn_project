@@ -10,8 +10,15 @@ public class reservationDTO {
 	String rApply;
 	String rName;
 	String rTel;
+	String rTime;
 	
 	
+	public String getrTime() {
+		return rTime;
+	}
+	public void setrTime(String rTime) {
+		this.rTime = rTime;
+	}
 	public int getrNum() {
 		return rNum;
 	}

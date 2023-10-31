@@ -1,5 +1,8 @@
 package com.care.am.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,13 +46,18 @@ public class reservationController {
 	
 	//병원 예약상태 관련(병원 기준)
 	@GetMapping("reservationState") //병원 예약상태
-	public String reservationState(@RequestParam String id, Model model) {
-		model.addAttribute("list", rs.getList(id));
+	public String reservationState(@RequestParam String id, Model model/*, @RequestParam(required = false, defaultValue = "1") int num*/) {
+		
+		model.addAttribute("list", rs.mediReservationList(id));
+		
+		//Map<String, Object> map = rs.paging(num);
+		//model.addAttribute("page", map.get("paging"));
+		
 		return "am/reservation/reservationState";
 	}
 	
 	@PostMapping("reservationState") //병원 예약 승인, 취소 (map으로 묶어서 받기)
-	public void reservationState(String id) {
+	public void reservationState() {
 		
 	}
 
