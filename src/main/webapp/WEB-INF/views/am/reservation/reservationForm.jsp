@@ -64,11 +64,13 @@
 				newDIV.className = "today";
 				newDIV.onclick = function() {
 					choiceDate(this);
+					reservationCount('${timeList}');
 				}
 			} else { // 미래인 경우
 				newDIV.className = "futureDay";
 				newDIV.onclick = function() {
 					choiceDate(this);
+					reservationCount('${timeList}');
 				}
 			}
 		}
@@ -82,6 +84,53 @@
 		}
 		newDIV.classList.add("choiceDay"); // 선택된 날짜에 "choiceDay" class 추가
 	}
+	
+	//---------------------------------------------
+	//예약 현황 확인
+	function reservationCount(timeList){
+		console.log(timeList)
+		let mName = $("#mName").text();
+		let checkDay = $("#calYear").text()+"-"+$("#calMonth").text()+"-";
+		
+		if ($(".futureDay.choiceDay").val() == undefined){ //선택된 날짜가 오늘 이후가 아니라면
+			checkDay += $(".today.choiceDay").text();
+		}else{
+			checkDay += $(".futureDay.choiceDay").text();
+		}
+
+		let form = {}
+		form['mName'] = mName;
+		form['rDate'] = checkDay;
+		console.log(form)
+		
+		$.ajax({
+			url : "/am/reservationCount", type : "post",
+			data : JSON.stringify(form),
+			contentType : "application/json; charset=utf-8",
+			success : (map) => {
+				console.log("통신 성공")
+				console.log(map)
+				console.log(map['10:30'])
+				console.log(timeList.slice(1, 6))
+				console.log(timeList.slice(8, 13))
+				console.log(timeList.length)
+				
+				for(var i=1; i<timeList.length; i+=7){
+					console.log(i+" : "+timeList.slice(i, i+5))
+					console.log(map[timeList.slice(i, i+5)]);
+					if(map[timeList.slice(i, i+5)] == '2'){
+						document.getElementById(timeList.slice(i, i+5)).style.background = 'gray';
+						console.log("되었능가")
+					}
+				}
+			},
+			error : () => {
+				console.log("문제 발생")
+			}
+		})
+	}
+	//---------------------------------------------
+	
 	// 이전달 버튼 클릭
 	function prevCalendar() {
 	    nowMonth = new Date(nowMonth.getFullYear(), nowMonth.getMonth() - 1, nowMonth.getDate());   // 현재 달을 1 감소
