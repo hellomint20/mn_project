@@ -35,15 +35,16 @@ public class reservationController {
 	}
 
 	@RequestMapping(value = "reservationForm/page/{name}") //병원 예약 페이지
-	public String reservationFormPage(@PathVariable String name, Model model) {
-		//선택된 병원
-		model.addAttribute("name", name);
-		
+	public String reservationFormPage(@PathVariable String name, Model model, HttpSession session) {
+		System.out.println("reservationFormPage "+name);
+		model.addAttribute("name", name); //선택된 병원
+
 		// 영업시간 가져오기 
 		model.addAttribute("timeList", rs.mediTime(name));
 		
 		// 로그인한 사람 동물 리스트 가져오기
-		model.addAttribute("p_list", rs.petList());
+		String id = "yh";
+		model.addAttribute("p_list", rs.petList(id));
 		
 		return "am/reservation/reservationForm";
 	}
@@ -84,11 +85,12 @@ public class reservationController {
 	public String reservationApplyPopup(String id) {
 		return "am/reservation/reservationApplyPopup";
 	}
-	
+
 	@ResponseBody
 	@PostMapping("reservationCount") //시간별 예약자 수 확인
 	public Map<String, String> reservationCount(@RequestBody Map<String, Object> map) {
 		return rs.reservationCount(map);
 	}
+
 	
 }

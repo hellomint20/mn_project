@@ -89,9 +89,7 @@
 	//---------------------------------------------
 	//예약 현황 확인
 	function reservationCount(timeList){
-		//$("#totalTimeList").load(window.location.href+' #totalTimeList')
-		
-		//disabled false 변환
+
 		for(var i=1; i<timeList.length; i+=7){
 				document.getElementById(timeList.slice(i, i+5)).disabled = false;
 				$("label[for='"+timeList.slice(i, i+5)+"']").css('background-color','');
@@ -117,22 +115,20 @@
 			data : JSON.stringify(form),
 			contentType : "application/json; charset=utf-8",
 			success : (map) => {
-
 				for(var i=1; i<timeList.length; i+=7){
 					if(map[timeList.slice(i, i+5)] == '2'){
 						$("label[for='"+timeList.slice(i, i+5)+"']").css('background-color','#e2e5e8');
 						document.getElementById(timeList.slice(i, i+5)).disabled = true;
-						console.log("되었능가")
 					}
 				}
 			},
 			error : () => {
-				console.log("문제 발생")
+				console.log("문제 발생");
 			}
 		})
-	}
+	}	
 	//---------------------------------------------
-	
+
 	// 이전달 버튼 클릭
 	function prevCalendar() {
 	    nowMonth = new Date(nowMonth.getFullYear(), nowMonth.getMonth() - 1, nowMonth.getDate());   // 현재 달을 1 감소
@@ -263,18 +259,18 @@
 								<label id="reservationTime" class="btn btn-outline-dark" for="${timeList[vs.index]}">${timeList[vs.index]}</label>
 							</c:when>
 							<c:otherwise>
-								<input type="radio" class="btn-check" name="vbtn-radio"	id="${timeList[vs.index]}" value="${timeList[vs.index]}" autocomplete="off"> 
+								<input type="radio" class="btn-check" name="vbtn-radio"	id="${timeList[vs.index]}" value="${timeList[vs.index]}" autocomplete="off" > 
 								<label id="reservationTime" class="btn btn-outline-dark" for="${timeList[vs.index]}">${timeList[vs.index]}</label>
 							</c:otherwise>
 						</c:choose>
 						
 						<c:if test="${timeList[vs.index+1] != null}">
-							<input type="radio" class="btn-check" name="vbtn-radio"	id="${timeList[vs.index+1]}" value="${timeList[vs.index+1]}" autocomplete="off"> 
+							<input type="radio" class="btn-check" name="vbtn-radio"	id="${timeList[vs.index+1]}" value="${timeList[vs.index+1]}" autocomplete="off" > 
 							<label id="reservationTime" class="btn btn-outline-dark" for="${timeList[vs.index+1]}">${timeList[vs.index+1]}</label>
 						</c:if>
 						
 						<c:if test="${timeList[vs.index+2] != null}">
-							<input type="radio" class="btn-check" name="vbtn-radio"	id="${timeList[vs.index+2]}" value="${timeList[vs.index+2]}" autocomplete="off">
+							<input type="radio" class="btn-check" name="vbtn-radio"	id="${timeList[vs.index+2]}" value="${timeList[vs.index+2]}" autocomplete="off" >
 							<label id="reservationTime" class="btn btn-outline-dark" for="${timeList[vs.index+2]}">${timeList[vs.index+2]}</label>
 						</c:if>
 					</div>

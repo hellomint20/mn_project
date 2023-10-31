@@ -19,16 +19,15 @@
 	</select>
 
 	<select id="petList" resultType="map">
-		select * from pet
+		select * from pet where c_id = #{c_id}
 	</select>
 	
 	<insert id="reservationRegister">
-		insert into reservation 
-		(r_num, m_id, p_num, c_id, r_content, r_date, r_time, r_name, r_tel)
-		values (r_num, 
-				(select m_id from medi where m_name=#{mName}), 
-				(select p_num from pet where p_name=#{pName}), 
-				#{cId}, #{rContent}, #{rDate}, #{rTime}, #{rName}, #{rTel});
+		    insert into reservation 
+      		(r_num, m_id, p_num, c_id, r_content, r_date, r_time, r_name, r_tel)
+      		values (r_num, 
+            (select m_id from medi where m_name=#{mName}), 
+            (select p_num from pet where p_name=#{pName}),#{cId}, #{rContent}, #{rDate}, #{rTime}, #{rName}, #{rTel});
 	</insert>
 	
 	<select id="reservationDate" resultType="map">
@@ -49,6 +48,13 @@
 			from reservation 
 		where m_id=(select m_id from medi where m_name=#{mName}) and 
 				r_date =#{rDate} group by r_time;
+	</select>
+	
+	<select id="peopleCount" resultType="map">
+		select count(*) 
+			from reservation 
+		where m_id=(select m_id from medi where m_name=#{mName}) 
+				and r_date = #{rDate} and r_time = #{rTime};
 	</select>
 
 </mapper>
