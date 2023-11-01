@@ -39,7 +39,6 @@
 		</div>
 		<button class="btn btn-lg btn-block" style="background-color: #0B1F54; color: white;" type="submit">
 			Sign in</button>
-
 		<br>
 		<div class="checkbox mb-3">
 			<a class="loginAtag" href="customerRegister">회원가입</a> &nbsp; | &nbsp;

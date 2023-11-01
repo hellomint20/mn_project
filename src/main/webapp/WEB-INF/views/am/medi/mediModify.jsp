@@ -41,11 +41,9 @@
 		
 		</div>
 	    
-		<div class="btn_a">
-		    <button type="button" class="cancel" onclick="location.href='/am/mediInfo'">취소</button>
-		    <button type="button" class="completed" onclick="#">등록</button>
-	    </div>
-	    
+	    <div class="btn_a">
+		    <button type="button" class="cancel" onclick="location.href='mediInfo'">취소</button>
+		    <button type="button" class="completed" onclick="location.href='mediInfo'">완료</button>
 	</div>
 	
 </body>
