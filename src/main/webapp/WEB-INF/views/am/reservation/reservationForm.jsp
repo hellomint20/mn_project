@@ -146,7 +146,27 @@
 		})
 	}	
 	//---------------------------------------------
+
+	// 이전달 버튼 클릭
+	function prevCalendar() {
+	    nowMonth = new Date(nowMonth.getFullYear(), nowMonth.getMonth() - 1, nowMonth.getDate());   // 현재 달을 1 감소
+	    buildCalendar();    // 달력 다시 생성
+	}
+	// 다음달 버튼 클릭
+	function nextCalendar() {
+	    nowMonth = new Date(nowMonth.getFullYear(), nowMonth.getMonth() +1, nowMonth.getDate());   // 현재 달을 1 증가
+	    buildCalendar();    // 달력 다시 생성
+	}
 	
+	// input값이 한자리 숫자인 경우 앞에 '0' 붙혀주는 함수
+	function leftPad(value) {
+	    if (value < 10) {
+	        value = "0" + value;
+	        return value;
+	    }
+	    return value;
+	}
+
 	function reservationPopup(){ //예약 확인 팝업에 띄울 데이터 
 
 		if($("#rName").val() == ""){ //이름 입력 안했을 때
@@ -175,6 +195,13 @@
 		}
 		window.open('/am/reservationPopup','pop','width=800, height=600');
 	}
+	
+	 const hypenAdd = (target) => {
+		 target.value = target.value
+	    .replace(/[^0-9]/g, '')
+	   .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
+	}
+	
 </script>
 
 <body>
@@ -194,9 +221,8 @@
 				</div>
 				<div class="input-form">
 					<input type="text" id="rName" name="cId" placeholder="홍길동" required><br>
-					<input type="tel" id="rTel" name="cPhone"
-						placeholder="010-1234-5678"
-						pattern=(\d{3})-?\s?(\d{4})-?\s?(\d{4}) required><br>
+					<input type="tel" id="rTel" name="cPhone" oninput="hypenAdd(this)"
+						placeholder="010-1234-5678"><br>
 						
 					<select id="pName" required>
 						<option value="">선택하세요</option>
