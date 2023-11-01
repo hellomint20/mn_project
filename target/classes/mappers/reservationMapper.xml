@@ -3,6 +3,24 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.care.am.mapper.reservationMapper">
+	<resultMap type="com.care.am.dto.reservationDTO" id="reservation">
+		<id property="rNum" column="r_num"/>
+		<result property="mId" column="m_id"/>
+		<result property="cId" column="c_id"/>
+		<result property="rContent" column="r_content"/>
+		<result property="rDate" column="r_date"/>
+		<result property="rTime" column="r_time"/>
+		<result property="rApply" column="r_apply"/>
+		<result property="rName" column="r_name"/>
+		<result property="rTel" column="r_tel"/>
+	</resultMap>
+	
+	<select id="reservationList" resultType="map">
+		select reservation.r_date, reservation.r_time, pet.p_name, medi.m_name, reservation.r_apply, reservation.r_content
+		from reservation
+		join medi ON reservation.m_id = medi.m_id
+		join pet ON reservation.p_num = pet.p_num where reservation.c_id=#{cId} order by reservation.r_date asc, reservation.r_time asc 
+	</select>
 
 	<select id="mediList" resultType="map">
 		select * from medi
