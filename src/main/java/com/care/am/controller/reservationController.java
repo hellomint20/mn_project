@@ -47,8 +47,8 @@ public class reservationController {
 	//병원 예약상태 관련(병원 기준)
 	@GetMapping("reservationState") //병원 예약상태
 	public String reservationState(@RequestParam String id, Model model/*, @RequestParam(required = false, defaultValue = "1") int num*/) {
-		
 		model.addAttribute("list", rs.mediReservationList(id));
+		model.addAttribute("waitList", rs.mediReservationWaitList(id));
 		
 		//Map<String, Object> map = rs.paging(num);
 		//model.addAttribute("page", map.get("paging"));
@@ -62,7 +62,10 @@ public class reservationController {
 	}
 
 	@GetMapping("reservationApplyPopup") 
-	public String reservationApplyPopup(String id) {
+	public String reservationApplyPopup(@RequestParam int rNum, Model model) {
+		
+		model.addAttribute("info", rs.reservationInfo(rNum));
+		
 		return "am/reservation/reservationApplyPopup";
 	}
 	

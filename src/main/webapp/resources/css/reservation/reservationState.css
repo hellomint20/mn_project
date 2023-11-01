@@ -152,7 +152,7 @@ a{
 
 .popup_table{
 	margin-top:25px;
-	width:273px;
+	width:350px;
 	
 }
 
@@ -170,7 +170,6 @@ a{
 	display:inline-block;
 	width:200px;
 	height: 200px;
-	border : 1px solid black;
 	margin: auto;	
 
 }
@@ -219,4 +218,9 @@ textarea {
 	border: none;
 	margin-left: 200px;
 	margin-top : 20px;
+}
+#photo{
+	width: 200px;
+	height: 200px;
+	border : 1px solid black;
 }

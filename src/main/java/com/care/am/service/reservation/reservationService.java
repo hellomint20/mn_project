@@ -5,5 +5,7 @@ import java.util.Map;
 
 public interface reservationService {
 	public List<Map<String, String>> mediReservationList(String id);
+	public List<Map<String, String>> mediReservationWaitList(String id);
+	public Map<String, String> reservationInfo(int rNum);
 	//public Map<String, Object> paging(int num);
 }

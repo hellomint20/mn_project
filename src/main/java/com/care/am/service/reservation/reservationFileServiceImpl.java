@@ -1,4 +1,4 @@
-package com.care.am.service.medi;
+package com.care.am.service.reservation;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
-public class mediFileServiceImpl implements mediFileService {	
+public class reservationFileServiceImpl implements reservationFileService{
 	
-	public String saveFile(MultipartFile image_file_name) {
+public String saveFile(MultipartFile image_file_name) {
 		
 		SimpleDateFormat fo = new SimpleDateFormat("yyMMdd-");
 		String sysFileName = fo.format(new Date());
@@ -29,6 +29,4 @@ public class mediFileServiceImpl implements mediFileService {
 		File file = new File(IMAGE_REPO + "/" + fileName);
 		file.delete();
 	}
-	
-	
 }

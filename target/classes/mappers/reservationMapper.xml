@@ -33,8 +33,25 @@
 	reservation.r_date, reservation.r_time, pet.p_type, reservation.r_content, reservation.r_apply
 		from reservation left join pet
 			on reservation.p_num = pet.p_num
-				where reservation.m_id = #{mId}
+				where reservation.m_id = #{mId} and not r_apply in ("대기")
 	</select>
+	
+	<select id="mediReservationWaitList" resultType="map">
+		select
+		reservation.r_num, reservation.r_date, reservation.r_time, pet.p_type, reservation.r_content, reservation.r_apply
+		from reservation left join pet
+			on reservation.p_num = pet.p_num
+		where reservation.m_id = #{mId} and r_apply= "대기"
+	</select>
+	
+	<select id="reservationInfo" resultType="map">
+		select customer.c_email, reservation.r_date, reservation.r_time, reservation.r_name, customer.c_tel, pet.p_section, pet.p_type, pet.p_name, pet.p_sex, pet.p_age, reservation.r_content, pet.p_photo
+		from reservation 
+		join customer on reservation.c_id = customer.c_id
+    	join pet on reservation.p_num = pet.p_num
+		where reservation.r_num = #{rNum}
+	</select>
+	
 	<!--  
 	<select id="selectListCount" resultType="Integer">
 		select count(*) from reservation where m_id=#{mId}
