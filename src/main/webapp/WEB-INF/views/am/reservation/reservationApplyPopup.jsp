@@ -15,25 +15,26 @@
 	font-family: 'SUITE', sans-serif !important;
 }
 </style>
+
+	<script type="text/javascript">
+		function ok_Form() {
+			location.href="/am/reserState?num=24";
+			window.close();
+		}
+		
+		function nook_Form(num) {
+			var cont = document.getElementById("textarea");
+			location.href="/am/reservationState?num="+num+"&cont="+cont;
+			window.close();
+		}
+		
+		$(function (){
+			$("#btn_no").click(function (){
+		  	$("#Toggle").toggle();
+		  });
+		});
+	</script>
 </head>
-<script type="text/javascript">
-	function ok_Form() {
-		location.href="/am/reserState?num=24";
-		window.close();
-	}
-	
-	function nook_Form(num) {
-		var cont = document.getElementById("textarea");
-		location.href="/am/reservationState?num="+num+"&cont="+cont;
-		window.close();
-	}
-	
-	$(function (){
-		$("#btn_no").click(function (){
-	  	$("#Toggle").toggle();
-	  });
-	});
-</script>
 <body>
 
 
@@ -43,34 +44,45 @@
 	<hr>
 	<div class="popup">
 		<table class="popup_table">
+		<input type="hidden" ${info.c_email }>
 			<tr>
-				<td>예약일시</td>
-				<td>2023-10-26 10시</td>
+				<td>예약날짜 </td>
+				<td>${info.year }년 ${info.month }월 ${info.day }일</td>
 			</tr>
 			<tr>
-				<td>보호자</td>
-				<td>${mediId }</td>
+				<td>예약시간</td>
+				<td>${info.hour}시 ${info.min}분</td>
+			</tr>
+			<tr>
+				<td>보호자(예약자) 성명</td>
+				<td>${info.r_name }</td>
+			</tr>
+			<tr>
+				<td>보호자(예약자) 전화번호</td>
+				<td>${info.c_tel }</td>
 			</tr>
 			<tr>
 				<td>진료동물</td>
-				<td>개 | 시츄(앵두)</td>
+				<td>${info.p_section } | ${info.p_type }(${info.p_name })</td>
 			</tr>
 			<tr>
 				<td>성별</td>
-				<td>여자</td>
+				<td>${info.p_sex }</td>
 			</tr>
 			<tr>
 				<td>나이</td>
-				<td>13</td>
+				<td>${info.p_age }</td>
 			</tr>
 			<tr>
 				<td>진료내용</td>
-				<td>접종</td>
+				<td>${info.r_content }</td>
 			</tr>
 
 		</table>
 
-		<div class="ani_pic">동물사진</div>
+		<div class="ani_pic">
+			<img id="photo" src="/am/resources/img/${info.p_photo}">
+		</div>
 	</div>
 
 
@@ -88,7 +100,7 @@
 	<div id="Toggle" style="display:none">
 		<textarea>취소사유</textarea>
 		
-		<button type="button" id="btn_nook" onclick="nook_Form()">완료</button>
+		<button type="button" id="btn_nook" onclick="nook_Form()">취소완료</button>
 	</div>
 	
 	

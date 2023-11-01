@@ -3,6 +3,8 @@ package com.care.am.controller;
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,13 +17,13 @@ import com.care.am.common.GetMessage;
 import com.care.am.service.customer.customerService;
 import com.care.am.service.reservation.reservationService;
 
+import org.springframework.web.bind.annotation.PutMapping;
 
 @Controller
 public class reservationController {
 
 	@Autowired reservationService rs;
 	@Autowired customerService cs;
-	
 	
 	//병원 예약 관련(손님 기준)
 	@GetMapping("reservation") //병원 예약 기본 페이지
@@ -64,7 +66,13 @@ public class reservationController {
 	
 	//병원 예약상태 관련(병원 기준)
 	@GetMapping("reservationState") //병원 예약상태
-	public String reservationState() {
+	public String reservationState(@RequestParam String id, Model model/*, @RequestParam(required = false, defaultValue = "1") int num*/) {
+		model.addAttribute("list", rs.mediReservationList(id));
+		model.addAttribute("waitList", rs.mediReservationWaitList(id));
+		
+		//Map<String, Object> map = rs.paging(num);
+		//model.addAttribute("page", map.get("paging"));
+		
 		return "am/reservation/reservationState";
 	}
 	
@@ -80,7 +88,8 @@ public class reservationController {
 	}
 
 	@GetMapping("reservationApplyPopup") 
-	public String reservationApplyPopup() {
+	public String reservationApplyPopup(@RequestParam int rNum, Model model) {
+		model.addAttribute("info", rs.reservationInfo(rNum));
 		return "am/reservation/reservationApplyPopup";
 	}
 

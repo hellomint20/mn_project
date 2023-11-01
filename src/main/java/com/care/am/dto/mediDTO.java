@@ -20,9 +20,6 @@ public class mediDTO {
 	public void setLunchStartTime(String lunchStartTime) {
 		this.lunchStartTime = lunchStartTime;
 	}
-	public String getLunchEndTime() {
-		return lunchEndTime;
-	}
 	public void setLunchEndTime(String lunchEndTime) {
 		this.lunchEndTime = lunchEndTime;
 	}

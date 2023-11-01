@@ -3,11 +3,13 @@ package com.care.am.mapper;
 import java.util.List;
 import java.util.Map;
 
-import com.care.am.dto.reservationDTO;
-
-
 public interface reservationMapper {
 	public List<Map<String, String>> reservationList(String cId);
 	public int reserCancel(int num);
 	public int reserState(int num);
+	public List<Map<String , String>> mediReservationList(String mId);
+	public List<Map<String, String>> mediReservationWaitList(String mId);
+	public Map<String, String> reservationInfo(int rNum);
+	//public int selectListCount();
+	//public List<Map<String, Object>> allList(@Param("s") int start, @Param("e") int end);
 }
