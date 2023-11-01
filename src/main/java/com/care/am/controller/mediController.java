@@ -1,6 +1,10 @@
 package com.care.am.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -28,8 +32,25 @@ public class mediController {
 	}
 
 	@PostMapping("mediRegister") // 병원 회원가입 적용
-	public void mediRegister(mediDTO dto, HttpServletResponse res) {
-
+	public void mediRegister(mediDTO dto, HttpServletRequest req, HttpServletResponse res) {
+		String[] addr = req.getParameterValues("mAddr");
+		String ad ="";
+		for(String a :addr) {
+			ad+= a+"/";
+		}
+		addr = ad.split("/");
+		
+		String msg = ms.mediRegister(dto,req.getParameterValues("mAddr"));
+		res.setContentType("text/html; charset=utf-8");
+	    PrintWriter out = null;
+		try {
+			out = res.getWriter();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	    out.print( msg );
+		
 	}
 
 	@GetMapping("mediLogin") // 로그인 페이지

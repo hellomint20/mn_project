@@ -13,6 +13,14 @@
 
 <!-- Custom styles for this template -->
 <link href="/am/resources/css/common/login.css" rel="stylesheet">
+<link
+	href="https://cdn.jsdelivr.net/gh/sunn-us/SUITE/fonts/static/woff2/SUITE.css"
+	rel="stylesheet">
+<style>
+* {
+	font-family: 'SUITE', sans-serif !important;
+}
+</style>
 
 </head>
 <body class="text-center">

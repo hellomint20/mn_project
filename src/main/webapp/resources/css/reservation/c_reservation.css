@@ -21,7 +21,7 @@
 }
 
 .board_list {
-    width: 100%;
+    width: 750px;
     border-top: 2px solid #000;
 }
 
@@ -32,10 +32,6 @@
 
 .board_list > div.top {
     border-bottom: 1px solid #999;
-}
-
-.board_list > div:last-child {
-    border-bottom: 1px solid #000;
 }
 
 .board_list > div > div {
@@ -50,12 +46,12 @@
 }
 
 .board_list .r_date {
-    width: 15%;
+    width: 20%;
     text-align: center;
 }
 
 .board_list .r_time {
-    width: 10%;
+    width: 15%;
     text-align: center;
 }
 
@@ -65,16 +61,27 @@
 }
 
 .board_list .m_name {
-    width: 30%;
+    width: 23%;
     text-alingn: left;
 }
 
 .board_list .r_content {
-    width: 15%;
+    width: 12%;
     text-align: center;
 }
 
 .board_list .r_apply {
-    width: 15%;
+    width: 12%;
     text-align: center;
+}
+
+.board_list .listIsNull{
+	width:100%;
+	text-align: center;
+}
+.board_list .listbox{
+	width:100%;
+}
+.board_list .listbox:last-child{
+	 border-bottom: 1px solid #000;
 }

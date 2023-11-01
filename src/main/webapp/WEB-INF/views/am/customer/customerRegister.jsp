@@ -9,7 +9,22 @@
 <link href="/am/resources/css/common/register.css" rel="stylesheet">
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="/am/resources/css/bootstrap/bootstrap.css">
+<link
+	href="https://cdn.jsdelivr.net/gh/sunn-us/SUITE/fonts/static/woff2/SUITE.css"
+	rel="stylesheet">
+<style>
+* {
+	font-family: 'SUITE', sans-serif !important;
+}
+</style>
 <script type="text/javascript">
+</script>
+<script>
+  const hypenAdd = (target) => {
+	 target.value = target.value
+    .replace(/[^0-9]/g, '')
+   .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
+}
 </script>
 </head>
 <body id="registerFormBody">
@@ -21,35 +36,35 @@
 					<label for="inputId" class="col-sm-3 col-form-label">아이디</label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" id="inputId" name="cId"
-							placeholder="input Id">
+							placeholder="input Id" required>
 					</div>
 				</div>
 				<div id="registerFormContent" class="form-group row" >
 					<label for="inputPassword" class="col-sm-3 col-form-label">비밀번호</label>
 					<div class="col-sm-9">
 						<input type="password" class="form-control" id="inputPassword" name="cPw"
-							placeholder="input Password">
+							placeholder="input Password" required>
 					</div>
 				</div>
 				<div id="registerFormContent" class="form-group row">
 					<label for="inputName" class="col-sm-3 col-form-label">이름</label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" id="inputName" name="cName"
-							placeholder="input Name">
+							placeholder="input Name" required>
 					</div>
 				</div>
 				<div id="registerFormContent" class="form-group row">
 					<label for="inputTel" class="col-sm-3 col-form-label">연락처</label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" id="inputTel" name="cTel"
-							placeholder="input Tel">
+							  oninput="hypenAdd(this)" maxlength="13" placeholder="input Tel" required>
 					</div>
 				</div>
 				<div id="registerFormContent" class="form-group row">
 					<label for="inputEmail" class="col-sm-3 col-form-label">E-mail</label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" id="inputEmail" name="cEmail"
-							placeholder="input Email">
+							placeholder="input Email" required>
 					</div>
 				</div>
 				<br>

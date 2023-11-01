@@ -16,6 +16,12 @@
 	<select id = "getCustomer" resultMap="customer">
 		select * from customer where c_id=#{cId}
 	</select>
+	<select id="customerSearchId" resultMap="customer">
+		select * from customer where c_name=#{inputName}
+	</select>
+	<update id="customerPwChg">
+		update customer set c_pw =#{cPw} where c_id=#{cId}
+	</update>
 	<update id="keepLogin">
 		update customer set c_session=#{cSessionId} where c_id=#{cId}
 	</update>
@@ -25,5 +31,13 @@
     <select id="getCustomerSessionId" resultMap="customer">
 		select * from customer where c_session = #{cSessionId}
 	</select>
-    
+	<update id="customerPwdChg">
+		update customer set c_pw=#{cPw} where c_id =#{cId}
+	</update>
+	<update id="customerModify">
+		update customer set c_name=#{cName}, c_tel=#{cTel}, c_email=#{cEmail} where c_id=#{cId}
+	</update>
+    <delete id="customerDelete">
+    	delete from customer where c_id=#{cId};
+    </delete>
 </mapper>

@@ -7,11 +7,18 @@ public class reservationDTO {
 	String cId;
 	String rContent;
 	String rDate;
+	String rTime;
 	String rApply;
 	String rName;
 	String rTel;
 	
 	
+	public String getrTime() {
+		return rTime;
+	}
+	public void setrTime(String rTime) {
+		this.rTime = rTime;
+	}
 	public int getrNum() {
 		return rNum;
 	}

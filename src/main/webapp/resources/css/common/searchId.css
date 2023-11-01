@@ -1,0 +1,31 @@
+@charset "UTF-8";
+
+#searchIdFormBody{
+	background: #0B1F54;
+	margin-top: 15.5%;
+}
+
+#searchIdForm{
+	background:white;
+	margin: 20px 35%;
+	padding: 30px 50px;
+	text-align: center;
+}
+img{
+	margin: 0 auto;
+	width: 200px;
+	height: 80px;
+}
+#searchIdFormContent{
+	margin-top: 15px;
+}
+.searchId{
+	font-size: 20px;
+	border-top : 1px solid black;
+	padding : 50px;
+}
+.bottombtn{
+	display: flex;
+	display: inline-block;
+	
+}
