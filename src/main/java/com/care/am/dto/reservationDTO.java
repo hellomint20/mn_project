@@ -7,10 +7,10 @@ public class reservationDTO {
 	String cId;
 	String rContent;
 	String rDate;
+	String rTime;
 	String rApply;
 	String rName;
 	String rTel;
-	
 	
 	public int getrNum() {
 		return rNum;
@@ -48,20 +48,24 @@ public class reservationDTO {
 	public void setrDate(String rDate) {
 		this.rDate = rDate;
 	}
+	public String getrTime() {
+		return rTime;
+	}
+	public void setrTime(String rTime) {
+		this.rTime = rTime;
+	}
 	public String getrApply() {
 		return rApply;
 	}
 	public void setrApply(String rApply) {
 		this.rApply = rApply;
 	}
-
 	public String getrName() {
 		return rName;
 	}
 	public void setrName(String rName) {
 		this.rName = rName;
 	}
-
 	public String getrTel() {
 		return rTel;
 	}
