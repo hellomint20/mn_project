@@ -29,4 +29,17 @@ public class mailController {
 		
 		return "redirect:/customerLogin";
 	}
+	@RequestMapping(value="/reserState/{toMail}/", method=RequestMethod.GET)
+	String sendMail(@PathVariable String toMail, HttpServletResponse res)throws Exception{
+		String title = "애니메디 예약현황입니다.";
+		String msg = "AniMedi에서 발송된 메일입니다.\n\n";
+		msg += "고객님의 예약이 확정되어 연락드립니다\n";
+		msg += "예약 확인하시고 꼭 시간에 맞게 내원해주세요!\n\n";
+		msg += "오늘도 좋은 하루 보내세요~~~♥";
+		
+		mails.tempPwdSendMail(toMail,title,msg);
+		// 받는사람 메일 / 제목 / 내용
+		
+		return "redirect:/reservationList";
+	}
 }

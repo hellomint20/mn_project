@@ -8,6 +8,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.care.am.common.GetMessage;
+import com.care.am.dto.reservationDTO;
 import com.care.am.mapper.reservationMapper;
 
 @Service
@@ -38,5 +40,23 @@ public class reservationServiceImpl implements reservationService {
 
 		return listmap;
 
+	}
+
+	@Override
+	public String reserCancel(String id, int num) {
+		int result = rm.reserCancel(num);
+		System.out.println("ser"+result);
+		String msg = "", url = "/am/reservationList?id="+id;
+		if(result == 1) {
+			msg = "예약이 취소되었습니다";
+		}else {
+			msg = "예약 취소에 실패하였습니다";
+		}
+		return GetMessage.getMessage(msg, url);
+	}
+
+	@Override
+	public int reserState(int num) {
+		return rm.reserState(num);
 	}
 }

@@ -18,10 +18,13 @@
 </head>
 <script type="text/javascript">
 	function ok_Form() {
+		location.href="/am/reserState?num=24";
 		window.close();
 	}
-
-	function nook_Form() {
+	
+	function nook_Form(num) {
+		var cont = document.getElementById("textarea");
+		location.href="/am/reservationState?num="+num+"&cont="+cont;
 		window.close();
 	}
 	
@@ -46,7 +49,7 @@
 			</tr>
 			<tr>
 				<td>보호자</td>
-				<td>최재연</td>
+				<td>${mediId }</td>
 			</tr>
 			<tr>
 				<td>진료동물</td>
@@ -85,7 +88,7 @@
 	<div id="Toggle" style="display:none">
 		<textarea>취소사유</textarea>
 		
-		<button type="button" id="btn_nook" onclick="nook_Form()">취소완료</button>
+		<button type="button" id="btn_nook" onclick="nook_Form()">완료</button>
 	</div>
 	
 	

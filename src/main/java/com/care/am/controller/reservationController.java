@@ -1,5 +1,9 @@
 package com.care.am.controller;
 
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,7 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.care.am.dto.reservationDTO;
+import com.care.am.common.GetMessage;
+import com.care.am.service.customer.customerService;
 import com.care.am.service.reservation.reservationService;
 
 
@@ -15,6 +20,7 @@ import com.care.am.service.reservation.reservationService;
 public class reservationController {
 
 	@Autowired reservationService rs;
+	@Autowired customerService cs;
 	
 	
 	//병원 예약 관련(손님 기준)
@@ -38,12 +44,23 @@ public class reservationController {
 		
 	}
 	
-	//10/27 여기 할테야
 	@GetMapping("reservationList") //손님 예약 리스트
 	public String reservationList(@RequestParam String id, Model model) {
 		model.addAttribute("list",rs.reservationList(id));
 		return "am/reservation/reservationList";
 	}
+	
+	@GetMapping("reservationCancel") // 손님 -> 예약 취소
+	public void reservationCancel(@RequestParam String id, @RequestParam int num,
+								HttpServletResponse res) throws Exception {
+		String msg = rs.reserCancel(id, num);
+		res.setContentType("text/html; charset=utf-8");
+		PrintWriter out = res.getWriter();
+		out.print(msg);
+	}
+	
+	
+	
 	
 	//병원 예약상태 관련(병원 기준)
 	@GetMapping("reservationState") //병원 예약상태
@@ -51,14 +68,21 @@ public class reservationController {
 		return "am/reservation/reservationState";
 	}
 	
-	@PostMapping("reservationState") //병원 예약 승인, 취소 (map으로 묶어서 받기)
-	public void reservationState(String id) {
-		
+	@GetMapping("reserState") //병원 예약 승인, 취소 (map으로 묶어서 받기)
+	public String reserState(@RequestParam int num) {
+		System.out.println("ctrl"+num);
+		int result = rs.reserState(num);
+		System.out.println("ctrl"+result);
+		if(result == 1) {
+			return "redirect:/reserState/"+"wjdtjs3558@naver.com"+"/";
+		}
+		return "redirect:/reservationState";
 	}
 
 	@GetMapping("reservationApplyPopup") 
-	public String reservationApplyPopup(String id) {
+	public String reservationApplyPopup() {
 		return "am/reservation/reservationApplyPopup";
 	}
+
 	
 }

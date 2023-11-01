@@ -3,6 +3,10 @@ package com.care.am.service.reservation;
 import java.util.List;
 import java.util.Map;
 
+import com.care.am.dto.reservationDTO;
+
 public interface reservationService {
 	public List<Map<String, String>> reservationList(String id);
+	public String reserCancel(String id, int num);
+	public int reserState(int num);
 }
