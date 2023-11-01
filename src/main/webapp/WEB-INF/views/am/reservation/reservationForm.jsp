@@ -25,13 +25,12 @@
 	function buildCalendar() {
 
 		let firstDate = new Date(nowMonth.getFullYear(), nowMonth.getMonth(), 1); // 이번달 1일
-		let lastDate = new Date(nowMonth.getFullYear(),
-				nowMonth.getMonth() + 1, 0); // 이번달 마지막날
+		console.log(firstDate)
+		let lastDate = new Date(nowMonth.getFullYear(), nowMonth.getMonth() + 1, 0); // 이번달 마지막날
 
 		let tbody_Calendar = document.querySelector(".Calendar > tbody");
 		document.getElementById("calYear").innerText = nowMonth.getFullYear(); // 연도 숫자 갱신
-		document.getElementById("calMonth").innerText = leftPad(nowMonth
-				.getMonth() + 1); // 월 숫자 갱신
+		document.getElementById("calMonth").innerText = leftPad(nowMonth.getMonth() + 1); // 월 숫자 갱신
 
 		while (tbody_Calendar.rows.length > 0) { // 이전 출력결과가 남아있는 경우 초기화
 			tbody_Calendar.deleteRow(tbody_Calendar.rows.length - 1);
@@ -64,7 +63,6 @@
 				newDIV.className = "today";
 				newDIV.onclick = function() {
 					choiceDate(this);
-					
 					reservationCount('${timeList}');
 				}
 			} else { // 미래인 경우
@@ -86,6 +84,26 @@
 		newDIV.classList.add("choiceDay"); // 선택된 날짜에 "choiceDay" class 추가
 	}
 	
+	// 이전달 버튼 클릭
+	function prevCalendar() {
+	    nowMonth = new Date(nowMonth.getFullYear(), nowMonth.getMonth() - 1, nowMonth.getDate());   // 현재 달을 1 감소
+	    buildCalendar();    // 달력 다시 생성
+	}
+	// 다음달 버튼 클릭
+	function nextCalendar() {
+	    nowMonth = new Date(nowMonth.getFullYear(), nowMonth.getMonth() + 1, nowMonth.getDate());   // 현재 달을 1 증가
+	    buildCalendar();    // 달력 다시 생성
+	}
+	
+	// input값이 한자리 숫자인 경우 앞에 '0' 붙혀주는 함수
+	function leftPad(value) {
+	    if (value < 10) {
+	        value = "0" + value;
+	        return value;
+	    }
+	    return value;
+	}
+
 	//---------------------------------------------
 	//예약 현황 확인
 	function reservationCount(timeList){
@@ -116,7 +134,7 @@
 			contentType : "application/json; charset=utf-8",
 			success : (map) => {
 				for(var i=1; i<timeList.length; i+=7){
-					if(map[timeList.slice(i, i+5)] == '2'){
+					if(map[timeList.slice(i, i+5)] == '3'){
 						$("label[for='"+timeList.slice(i, i+5)+"']").css('background-color','#e2e5e8');
 						document.getElementById(timeList.slice(i, i+5)).disabled = true;
 					}
@@ -128,36 +146,7 @@
 		})
 	}	
 	//---------------------------------------------
-
-	// 이전달 버튼 클릭
-	function prevCalendar() {
-	    nowMonth = new Date(nowMonth.getFullYear(), nowMonth.getMonth() - 1, nowMonth.getDate());   // 현재 달을 1 감소
-	    buildCalendar();    // 달력 다시 생성
-	}
-	// 다음달 버튼 클릭
-	function nextCalendar() {
-	    nowMonth = new Date(nowMonth.getFullYear(), nowMonth.getMonth() + 1, nowMonth.getDate());   // 현재 달을 1 증가
-	    buildCalendar();    // 달력 다시 생성
-	}
 	
-	// input값이 한자리 숫자인 경우 앞에 '0' 붙혀주는 함수
-	function leftPad(value) {
-	    if (value < 10) {
-	        value = "0" + value;
-	        return value;
-	    }
-	    return value;
-	}
-
-	// input값이 한자리 숫자인 경우 앞에 '0' 붙혀주는 함수
-	function leftPad(value) {
-		if (value < 10) {
-			value = "0" + value;
-			return value;
-		}
-		return value;
-	}
-
 	function reservationPopup(){ //예약 확인 팝업에 띄울 데이터 
 
 		if($("#rName").val() == ""){ //이름 입력 안했을 때
