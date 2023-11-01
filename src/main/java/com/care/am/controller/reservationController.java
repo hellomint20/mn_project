@@ -47,7 +47,7 @@ public class reservationController {
 		model.addAttribute("timeList", rs.mediTime(name));
 		
 		// 로그인한 사람 동물 리스트 가져오기
-		String id = "yh";
+		String id = "1";
 		model.addAttribute("p_list", rs.petList(id));
 		
 		return "am/reservation/reservationForm";
