@@ -44,17 +44,16 @@ public class reservationServiceImpl implements reservationService {
 	public List<Map<String, mediDTO>> mediList(){ //병원 리스트 
 		return rm.mediList();
 	}
-	public Map<String, Object> mediInfo(String mediName){ //병원 상세정보
-		Map<String, Object> mediInfo = rm.mediInfo(mediName);  //m_addr=13536/경기 성남시 분당구 판교역로2번길 1/3층/
+	public Map<String, Object> mediInfo(String mediId){ //병원 상세정보
+		Map<String, Object> mediInfo = rm.mediInfo(mediId);  
 		String addr1 = mediInfo.get("m_addr").toString().split("/")[1];
 		String addr2 = mediInfo.get("m_addr").toString().split("/")[2];
 		mediInfo.put("m_addr", addr1+" "+addr2);
-		
 		return mediInfo;
 	}
 	
-	public List<String> mediTime(String name){ //병원 time 가져오기
-		Map<String, Object> mediTime = rm.mediTime(name);
+	public List<String> mediTime(String mediId){ //병원 time 가져오기
+		Map<String, Object> mediTime = rm.mediTime(mediId);
 		
 		//시간을 list로 담기
 		List<String > timeList = new ArrayList<String>();
@@ -76,7 +75,6 @@ public class reservationServiceImpl implements reservationService {
 	}
 	
 	public List<Map<String, petDTO>> petList(String id) { //사용자 pet list
-		System.out.println("ser" + rm.petList(id));
 		return rm.petList(id);
 	}
 	
@@ -88,7 +86,7 @@ public class reservationServiceImpl implements reservationService {
 		String time = map.get("rTime").toString().replace(":", "-");
 		
 		Map<String, Object> countMap = new HashMap<String, Object>();
-		countMap.put("mName", map.get("mName"));
+		countMap.put("mId", map.get("mId"));
 		countMap.put("rDate", day);
 		countMap.put("rTime", time);
 		System.out.println("register" + countMap);

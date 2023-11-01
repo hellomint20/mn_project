@@ -17,11 +17,11 @@
 
 	<script type="text/javascript">
 	
-	function detailView(mediName) {
-		console.log(mediName);	
+	function detailView(mediId) {
+		console.log(mediId);	
 		$.ajax({
 			url : "reservation/mediInfo", type : "post",
-			data : mediName,
+			data : mediId,
 			contentType : "application/json; charset=utf-8",
 			success : (mediInfo) => {
 				console.log("통신 성공")
@@ -33,6 +33,7 @@
 				document.getElementById("mediAddr").innerHTML = mediInfo['m_addr'];
 				document.getElementById("mediTime").innerHTML = mediInfo['open_time']+" - "+mediInfo['close_time'];
 				document.getElementById("mediTel").innerHTML = mediInfo['m_tel'];
+				document.getElementById("mId").value =  mediInfo['m_id']
 			},
 			error : () => {
 				console.log("문제 발생")
@@ -40,12 +41,6 @@
 		})
 		
 		$("#detailDiv").css("display", "block");
-	}
-	
-	function choiceMedi(){
-		console.log(document.getElementById("mediName").innerText)
-		let a = document.getElementById("mediName").innerText;
-		location.href = "/am/reservationForm/page/"+a
 	}
 	
 	function Xclose(){
@@ -74,7 +69,7 @@
 							<c:set var="i" value="${i+1 }" />
 							<tr class="listTr">
 								<td>${i }</td>
-								<td id="mediList"><button class="listBtn" type="button" onclick="detailView('${list['m_name']}')">${list['m_name']}</button></td>
+								<td id="mediList"><button class="listBtn" type="button" onclick="detailView('${list['m_id']}')">${list['m_name']}</button></td>
 							</tr>
 						</c:forEach>
 					</table>
@@ -89,7 +84,12 @@
 						<tr><td class="detailTd">주소</td><td id="mediAddr" ></td></tr>
 						<tr><td class="detailTd">영업시간</td><td id="mediTime" ></td></tr>
 						<tr><td class="detailTd">전화번호</td><td id="mediTel" ></td></tr>
-						<tr><td class="detailTd" colspan="2" id="reBtn"><button class="re" type="button" onclick="choiceMedi()">예약</button></td></tr>
+						<tr><td class="detailTd" colspan="2" id="reBtn">
+							<form action="reservationForm/page" method="post">
+								<input type="hidden" name="mediId" id="mId">
+								<button class="re" type="submit">예약</button>
+							</form>
+						</td></tr>
 				</table>
 				</div>
 			</div>

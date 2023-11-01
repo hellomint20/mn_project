@@ -124,6 +124,7 @@
 		}
 
 		let form = {}
+		form['mId'] = document.getElementById("mId").value;
 		form['mName'] = mName;
 		form['rDate'] = checkDay;
 		console.log(form)
@@ -211,7 +212,8 @@
 		<div class="reservation-form">
 
 			<div class="box-hospital-name">
-				<strong><b id="mName">${name}</b> 예약</strong>
+				<strong><b id="mName">${mediInfo['m_name']}</b> 예약</strong>
+				<input type="hidden" id="mId" value=${mediInfo['m_id']}>
 			</div>
 
 			<div class="box-container-left">

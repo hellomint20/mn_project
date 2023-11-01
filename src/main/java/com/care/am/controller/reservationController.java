@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.care.am.common.LoginSession;
 import com.care.am.service.reservation.reservationService;
 
 
@@ -33,38 +34,38 @@ public class reservationController {
 	
 	@ResponseBody
 	@PostMapping("reservation/mediInfo") //병원 상세정보 팝업
-	public Map<String, Object> mediInfo(@RequestBody String mediName){
-		System.out.println("pop : "+rs.mediInfo(mediName));
-		return rs.mediInfo(mediName);
+	public Map<String, Object> mediInfo(@RequestBody String mediId){
+		return rs.mediInfo(mediId);
 	}
 
-	@RequestMapping(value = "reservationForm/page/{name}") //병원 예약 페이지
-	public String reservationFormPage(@PathVariable String name, Model model, HttpSession session) {
-		System.out.println("reservationFormPage "+name);
-		model.addAttribute("name", name); //선택된 병원
+	@PostMapping("reservationForm/page") //병원 예약 페이지
+	public String reservationFormPage(@RequestParam String mediId, Model model, HttpSession session) {
+
+		//선택된 병원
+		model.addAttribute("mediInfo", rs.mediInfo(mediId));
 
 		// 영업시간 가져오기 
-		model.addAttribute("timeList", rs.mediTime(name));
+		model.addAttribute("timeList", rs.mediTime(mediId));
 		
 		// 로그인한 사람 동물 리스트 가져오기
-		String id = "1";
-		model.addAttribute("p_list", rs.petList(id));
+		model.addAttribute("p_list", rs.petList(session.getAttribute(LoginSession.cLOGIN).toString()));
 		
 		return "am/reservation/reservationForm";
 	}
 
 	@GetMapping("reservationPopup")//예약완료후팝업창
-	public String reservationPopup() {
+	public String reservationPopup(Model model, HttpSession session) {
+		//로그인한 사람 정보
+		model.addAttribute("cId", session.getAttribute(LoginSession.cLOGIN).toString());
+		
 		return "am/reservation/reservationPopup";
 	}
 	
 	@ResponseBody
 	@PostMapping("reservationRegister") //병원 예약 DB 등록
 	public String reservationRegister(@RequestBody Map<String, Object> map, HttpSession session) {
-		System.out.println(map);
-		map.put("cId", "1");
+		map.put("cId", session.getAttribute(LoginSession.cLOGIN).toString());
 		int result = rs.reservationRegister(map);
-		System.out.println(result);
 		
 		return Integer.toString(result);
 	}
