@@ -36,5 +36,14 @@
 		select * from type where t_num=#{tNum};
 	</select>
 	
+	<delete id="petDel">
+		delete from pet where p_num=#{pNum};
+	</delete>
+	
+	<update id="petModify">
+		update pet set p_name=#{pName},p_age=#{pAge}, p_section=#{pSection}, p_type=#{pType}, p_sex=#{pSex}, p_photo=#{pPhoto}
+		 where p_num=#{pNum}
+	</update>
+	
 	
 </mapper>

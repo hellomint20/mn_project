@@ -9,8 +9,9 @@
 <link href="/am/css/pet/petList.css" rel="stylesheet">
 <link href="/am/css/bootstrap/bootstrap.css" rel="stylesheet">
 <script type="text/javascript">
-	function delPet() {
-		alert('정말로 삭제하시겠습니까?');
+	function delPet(num) {
+		let msg = confirm("정말로 삭제하시겠습니까?");
+		if (msg == true)	location.href="/am/pet/petDelete?num="+num+"&id=${userId}";
 	}
 </script>
 </head>
@@ -41,11 +42,18 @@
 							</div>
 						</div>
 						<div class="pet-list-del">
-							<button onclick="delPet()" class="delBtn">삭제</button>
+							<button onclick="delPet(${list.pNum})" class="delBtn">삭제</button>
 						</div>
 					</div>
 					<div class="pet-info-image">
-						<img src="/am/resources/img/러바오.jpg" width="250px" height="250px">
+						<c:choose>
+							<c:when test="${list.pPhoto != null}">
+								<img src="/am/resources/img/${list.pPhoto }" width="250px" height="250px">
+							</c:when>
+							<c:otherwise>
+								<img src="/am/resources/img/petDefault.jpg" width="250px" height="250px">
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 			</c:forEach>
