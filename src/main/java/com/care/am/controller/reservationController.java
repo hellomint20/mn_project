@@ -12,13 +12,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.care.am.service.reservation.reservationService;
+
 
 @Controller
 public class reservationController {
-	@Autowired
-	reservationService rs;
+
+	@Autowired reservationService rs;
+	
 	
 	//병원 예약 관련(손님 기준)
 	@GetMapping("reservation") //병원 예약 기본 페이지
@@ -65,8 +69,10 @@ public class reservationController {
 		return Integer.toString(result);
 	}
 	
+	//10/27 여기 할테야
 	@GetMapping("reservationList") //손님 예약 리스트
-	public String reservationList() {
+	public String reservationList(@RequestParam String id, Model model) {
+		model.addAttribute("list",rs.reservationList(id));
 		return "am/reservation/reservationList";
 	}
 	

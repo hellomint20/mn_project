@@ -15,26 +15,19 @@
 	<div id="searchIdPwForm">
 		<a href="/am"><img src="/am/resources/img/common/logoLogin.png"></a>
 		<h4 style="text-align: left; margin-bottom: 20px;">병원 아이디 찾기</h4>
-			<form>
+			<form action="mediSearchId" method="post">
 				<div id="searchIdPwFormContent" class="form-group row">
 					<label for="inputName" class="col-sm-3 col-form-label">이름</label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" id="inputName"
-							placeholder="input Name">
+							name="inputName" placeholder="input Name">
 					</div>
 				</div>
 				<div id="searchIdPwFormContent" class="form-group row">
-					<label for="inputTel" class="col-sm-3 col-form-label">연락처</label>
+					<label for="inputTel" class="col-sm-3 col-form-label">전화번호</label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" id="inputTel"
-							placeholder="input Tel">
-					</div>
-				</div>
-				<div id="searchIdPwFormContent" class="form-group row">
-					<label for="inputEmail" class="col-sm-3 col-form-label">E-mail</label>
-					<div class="col-sm-9">
-						<input type="text" class="form-control" id="inputEmail"
-							placeholder="input Email">
+							name="inputTel" placeholder="input Tel">
 					</div>
 				</div>
 				<div id="searchIdPwFormContent" class="form-group row">
@@ -45,26 +38,27 @@
 			</form>
 			<hr>
 			<h4 style="text-align: left; margin-bottom: 20px;">병원 비밀번호 찾기</h4>
-			<form>
+			<form action="mediSearchPw" method="post">
 				<div id="searchIdPwFormContent" class="form-group row" >
 					<label for="inputId" class="col-sm-3 col-form-label">아이디</label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" id="inputId"
-							placeholder="input Id">
+							name="inputId" placeholder="input Id">
+							
 					</div>
 				</div>
 				<div id="searchIdPwFormContent" class="form-group row">
 					<label for="inputName" class="col-sm-3 col-form-label">이름</label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" id="inputName"
-							placeholder="input Name">
+							name="inputName" placeholder="input Name">
 					</div>
 				</div>
 				<div id="searchIdPwFormContent" class="form-group row">
-					<label for="inputTel" class="col-sm-3 col-form-label">연락처</label>
+					<label for="inputTel" class="col-sm-3 col-form-label">전화번호</label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" id="inputTel"
-							placeholder="input Tel">
+							name="inputTel" placeholder="input Tel">
 					</div>
 				</div>
 		

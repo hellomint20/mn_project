@@ -1,5 +1,6 @@
 package com.care.am.common;
 
 public interface LoginSession {
-	public String LOGIN = "userId";
+	public String cLOGIN = "userId";
+	public String mLOGIN = "mediId";
 }

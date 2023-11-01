@@ -16,31 +16,31 @@
 <div class="menu">
     <ul>
 		<li>
-        	<a href="/am/customerInfo">
+        	<a href="/am/customerInfo?id=${userId }">
         		<span class="icon"></span>
         		<span class="title">마이페이지</span>
         	</a>
         </li>
         <li>
-        	<a href="/am/customerInfo">
+        	<a href="/am/customerPwdChk?id=${userId }">
         		<span class="icon"></span>
-        		<span class="title">회원 정보</span>
+        		<span class="title">정보 수정</span>
         	</a>
         </li>
         <li>
-        	<a href="/am/pet/petList">
+        	<a href="/am/pet/petList?id=${userId }">
         		<span class="icon"></span>
         		<span class="title">펫 관리</span>
         	</a>
         </li>
         <li>
-        	<a href="/am/reservationList">
+        	<a href="/am/reservationList?id=${userId }">
         		<span class="icon"></span>
         		<span class="title">예약 관리</span>
         	</a>
         </li>
         <li>
-        	<a href="/am/customerDelete">
+        	<a href="/am/customerDelete?id=${userId }">
         		<span class="icon"></span>
         		<span class="title">회원 탈퇴</span>
         	</a>
