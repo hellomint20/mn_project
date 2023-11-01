@@ -54,7 +54,7 @@
 				</div>
 			</form>
 			<hr>
-			<h4 style="text-align: left; margin-bottom: 20px;">보호자 비밀번호 찾기</h4>
+			<h4 style="text-align:left; margin-bottom: 20px;">보호자 비밀번호 찾기</h4>
 			<form action="customerSearchPw" method="post">
 				<div id="searchIdPwFormContent" class="form-group row" >
 					<label for="inputId" class="col-sm-3 col-form-label">아이디</label>

@@ -27,6 +27,6 @@ public class mailController {
 		mails.tempPwdSendMail(toMail,title,msg);
 						// 받는사람 메일 / 제목 / 내용
 		
-		return "redirect:/customerLogin";
+		return "redirect:/customerSearchPw";
 	}
 }

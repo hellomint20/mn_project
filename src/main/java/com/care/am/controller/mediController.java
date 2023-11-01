@@ -10,6 +10,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.care.am.common.LoginSession;
+import com.care.am.dto.customerDTO;
 import com.care.am.dto.mediDTO;
+import com.care.am.service.customer.customerService;
 import com.care.am.service.medi.mediService;
 
 @Controller
@@ -67,12 +71,21 @@ public class mediController {
 			rs.addAttribute("id", id);
 			rs.addAttribute("autoLogin", autoLogin);
 			return "redirect:successMLogin";
+		}else {
+			res.setContentType("text/html; charset=UTF-8");
+            PrintWriter out = null;
+            try {
+                out = res.getWriter();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            out.println("<script>alert('아이디나 비밀번호가 틀렸습니다.'); history.back();</script>");
+            out.flush();
+            return "redirect:mediLogin";
 		}
-
-		return "redirect:mediLogin";
 	}
 
-	@RequestMapping("successMLogin")
+	@RequestMapping("successMLogin") // 로그인성공
 	public String sucessMLogin(@RequestParam String id, @RequestParam String autoLogin, HttpSession session,
 			HttpServletResponse res) {
 
@@ -95,6 +108,72 @@ public class mediController {
 	public String SearchIdPw() {
 		return "am/medi/mediSearchIdPw";
 	}
+	@RequestMapping("mediSearchId") // 병원 아이디 찾기
+	public String mediSearchId(@RequestParam String inputName, 
+								@RequestParam String inputTel,
+								Model model, HttpServletResponse res) {
+		String mId = ms.mediSearchId(inputName, inputTel);
+		if(mId.length() >=1) {
+			model.addAttribute("id",mId);
+			return "am/medi/mediSearchId";
+		}else {
+			PrintWriter out = null;
+            try {
+                out = res.getWriter();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            out.println("<script>alert('정보가 일치하지 않습니다.');</script>");
+            out.flush();
+            return "am/medi/mediSearchIdPw";
+		}
+	}
+	
+	@RequestMapping("mediSearchPw") //비밀번호 찾기
+	public String mediSearchPw(@RequestParam String inputId, 
+								@RequestParam String inputName,
+								@RequestParam String inputTel,
+								Model model,HttpServletResponse res) {
+		mediDTO dto = ms.mediSearchPw(inputId,inputName,inputTel);
+		if(dto !=null) {
+			model.addAttribute("id", dto.getmId());
+			return "redirect:/mediPwChg";
+		}else {
+			PrintWriter out = null;
+            try {
+                out = res.getWriter();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            out.println("<script>alert('정보가 일치하지 않습니다.');</script>");
+            out.flush();
+            return "am/medi/mediSearchIdPw";
+		}
+	}
+	
+	@GetMapping("mediPwChg") // 비밀번호 재설정
+	public String mediPwChg(String id,Model model) {
+		model.addAttribute("id", id);
+		return "am/medi/mediPwChg";
+	}
+	@RequestMapping("mediPwChg")
+	public void mediPwChg(@RequestParam String id, 
+						@RequestParam String newPw,
+						HttpServletResponse res) {
+		String msg="";
+		msg = ms.mediPwChg(newPw, id);
+		res.setContentType("text/html; charset=utf-8");
+	    PrintWriter out = null;
+		try {
+			out = res.getWriter();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	    out.print( msg );	
+	}
+	
+
 
 	// 개인정보 관련
 	@GetMapping("mediInfo") // 병원 개인정보 페이지

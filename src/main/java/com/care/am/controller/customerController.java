@@ -119,7 +119,6 @@ public class customerController{
             out.println("<script>alert('정보가 일치하지 않습니다.');</script>");
             out.flush();
             return "am/customer/customerSearchIdPw";
-		
 		}
 	}	
 	@PostMapping("customerSearchPw") // 비밀번호 찾기
@@ -140,6 +139,11 @@ public class customerController{
 		}
 		return "redirect:/customerSearchIdPw";
 		
+	}
+	
+	@GetMapping("customerSearchPw")
+	public String customerSearchPw() {
+		return "am/customer/customerSearchPw";
 	}
 	
 	

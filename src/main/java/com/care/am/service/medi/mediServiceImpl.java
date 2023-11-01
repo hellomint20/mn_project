@@ -69,4 +69,35 @@ public class mediServiceImpl implements mediService{
 	public mediDTO getMediSessionId(String mSession) {
 		return mm.getMediSession(mSession);
 	}
+	
+	public String mediSearchId(String inputName, String inputTel) {
+		String result ="";
+		mediDTO dto = mm.mediSearchId(inputName,inputTel);
+		if(dto!=null) {
+				result=dto.getmId();
+		}
+		return result;
+	}
+		
+	public mediDTO mediSearchPw(String inputId, String inputName, String inputTel) {
+		mediDTO dto = mm.getMedi(inputId);
+		if(dto!=null) {
+			if(inputName.equals(dto.getmName())&& inputTel.equals(dto.getmTel())) {
+				return dto;
+			}
+		}
+		return null;
+	}
+	
+	public String mediPwChg(String newPw, String id) {
+		mediDTO dto = mm.getMedi(id);
+		dto.setmPw(encoder.encode(newPw));
+		int result = mm.mediPwChg(dto);
+		if(result==1) {
+			return GetMessage.getMessage("비밀번호 변경 성공", "/am/mediLogin");
+		}
+		else {
+			return GetMessage.getMessage("비밀번호 변경 실패", "/am/mediSearchPw");
+		}
+	}
 }

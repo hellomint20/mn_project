@@ -42,12 +42,10 @@ public class customerServiceImpl implements customerService {
 	}
 	
 	public String customerSearchId(String inputName, String inputEmail) {
-		customerDTO dto = cm.customerSearchId(inputName);
+		customerDTO dto = cm.customerSearchId(inputName, inputEmail);
 		String result="";
 		if(dto!=null) {
-			if(inputEmail.equals(dto.getcEmail())){
 				result = dto.getcId();
-			}
 		}
 		return result;
 	}

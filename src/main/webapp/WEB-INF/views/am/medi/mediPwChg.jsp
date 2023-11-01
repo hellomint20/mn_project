@@ -24,15 +24,22 @@
 <body id="searchIdFormBody">
 	<div id="searchIdForm">
 		<a href="/am"><img src="/am/resources/img/common/logoLogin.png"></a>
-		<h6 style="text-align: center; margin-bottom: 20px;">다음 아이디로 가입한 계정이 있습니다.</h6>
-			
-				<div id="searchIdFormContent" class="form-group row">
-					 <p class="searchId"><c:out value="${fn:substring(id, 0, fn:length(id) - 3)}" />***</p>
+			<h4 style="text-align: left; margin: 20px 0px;">비밀번호 재설정</h4>
+			<form action="mediPwChg" method="post">
+				<div id="searchIdPwFormContent" class="form-group row" >
+					<label for="newPw" class="col-sm-3 col-form-label">새 비밀번호</label>
+					<div class="col-sm-9">
+					<input type="hidden" name="id" value="${id}">
+						<input type="text" class="form-control" id="newPw"
+							name="newPw" placeholder="input Pw" required>
+					</div>
 				</div>
-			<div  class="bottombtn">
-			<button type="button" onclick="location.href ='customerSearchIdPw'" class="btn" style="background-color: #0B1F54; color: white;">비밀번호 찾기</button>
-			<button type="button" onclick="location.href ='customerLogin'" class="btn" style="background-color: #0B1F54; color: white;">로그인</button>
-		</div>
+				<div id="searchIdPwFormContent" class="form-group row">
+					<div class="col-sm-12">
+						<button type="submit" class="btn" style="background-color: #0B1F54; margin-top:20px; color: white;">확인</button>
+					</div>
+				</div>
+			</form>
 		</div>
 </body>
 </html>
