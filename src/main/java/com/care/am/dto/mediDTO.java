@@ -8,10 +8,10 @@ public class mediDTO {
 	String mPw;
 	String mPhoto;
 	String openTime;
-	String lunchTime;
+	String lunchStartTime;
+	String lunchEndTime;
 	String closeTime;
-	
-	
+	String mSession;
 	public String getmName() {
 		return mName;
 	}
@@ -54,11 +54,17 @@ public class mediDTO {
 	public void setOpenTime(String openTime) {
 		this.openTime = openTime;
 	}
-	public String getLunchTime() {
-		return lunchTime;
+	public String getLunchStartTime() {
+		return lunchStartTime;
 	}
-	public void setLunchTime(String lunchTime) {
-		this.lunchTime = lunchTime;
+	public void setLunchStartTime(String lunchStartTime) {
+		this.lunchStartTime = lunchStartTime;
+	}
+	public String getLunchEndTime() {
+		return lunchEndTime;
+	}
+	public void setLunchEndTime(String lunchEndTime) {
+		this.lunchEndTime = lunchEndTime;
 	}
 	public String getCloseTime() {
 		return closeTime;
@@ -66,4 +72,12 @@ public class mediDTO {
 	public void setCloseTime(String closeTime) {
 		this.closeTime = closeTime;
 	}
+	public String getmSession() {
+		return mSession;
+	}
+	public void setmSession(String mSession) {
+		this.mSession = mSession;
+	}
+	
+
 }

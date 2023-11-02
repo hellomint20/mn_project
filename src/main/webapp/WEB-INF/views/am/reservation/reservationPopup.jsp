@@ -43,7 +43,6 @@
     </div>
     
     <script type="text/javascript">
-    
 	var day = null;
 	if (opener.$(".futureDay.choiceDay").val() == undefined){ //선택된 날짜가 오늘 이후가 아니라면
 		day = opener.$(".today.choiceDay").text();
@@ -61,6 +60,7 @@
 	function reservationRegister(){
        	
 		var map = {};
+		map['mId'] = opener.document.getElementById("mId").value;
 		map['mName'] = opener.$("#mName").text();
 		map['rDate'] = document.getElementById("rDate").innerText;
 		map['rTime'] = document.getElementById("rTime").innerText;
@@ -79,7 +79,7 @@
 				console.log("통신 성공")
 				if(result == 1){
 					alert("예약이 접수 되었습니다.");
-					window.opener.location.href="/am/reservationList";
+					window.opener.location.href="/am/reservationList?id="+"${cId}"
 					window.close();
 				}else if(result == 99){
 					alert("이미 예약이 꽉 찼습니다");

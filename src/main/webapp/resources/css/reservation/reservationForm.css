@@ -161,8 +161,7 @@ td {
 
 /*popup css*/
 #title {
-	margin-top: 70px;
-	text-align: center;
+	margin: 70px 0 0 200px;
 }
 
 .popup-main-box {
@@ -188,8 +187,7 @@ td {
 }
 
 .popup-bottom-box {
-	padding-top: 20px;
-	text-align: center;
+	margin: 20px 0 0 190px;
 }
 
 #reservationBtn {
