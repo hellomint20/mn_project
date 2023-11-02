@@ -39,7 +39,7 @@
 	</update>
 	
 	<update id="reserState">
-		update reservation set r_apply="확정" where r_num=#{rNum}
+		update reservation set r_apply=#{apply} where r_num=#{num}
 	</update>
 
 

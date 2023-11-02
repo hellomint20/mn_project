@@ -86,9 +86,6 @@ function Popup(rNum){
 										<td>${wait.hour }시 ${wait.min }분</td>
 										<td>${wait.p_type }</td>
 										<td>${wait.r_content }</td>
-										
-										
-
 									</tr>
 								</c:forEach>
 							

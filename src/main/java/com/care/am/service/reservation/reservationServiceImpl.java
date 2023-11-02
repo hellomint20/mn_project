@@ -55,8 +55,14 @@ public class reservationServiceImpl implements reservationService{
 	}
 
 	@Override
-	public int reserState(int num) {
-		return rm.reserState(num);
+	public int reserState(int num, int state) {
+		String apply= "";
+		if(state == 1) {
+			apply = "확정";
+		}else {
+			apply = "취소";
+		}
+		return rm.reserState(apply, num);
 	}
 	
 	public List<Map<String, String>> mediReservationList(String mId){

@@ -13,7 +13,9 @@ public class mediDTO {
 	String closeTime;
 	String mSession;
 	
-	
+	public String getLunchEndTime() {
+		return lunchEndTime;
+	}
 	public String getLunchStartTime() {
 		return lunchStartTime;
 	}
