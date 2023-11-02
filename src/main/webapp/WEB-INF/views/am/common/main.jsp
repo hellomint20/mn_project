@@ -31,64 +31,75 @@
 				</div>
 			</div>
 			<div id="rightMain">
-				<div id="rightMaincontainer">
-					<div id="rightMainContent">
-						<div id="rightMainContentFirst">
-							<a href="mediSearch"><img
-								src="/am/resources/img/main/dogMain.jpg" class="rounded"
-								width="300px" height="200px" style="margin-bottom: 10px;"></a>
-							<b class="mainBtag">병원 조회</b>
-							<h6>주변의 동물병원을 찾아보세요</h6>
-						</div>
-						<div id="rightMainContentFirst">
-							<a href="reservation"><img
-								src="/am/resources/img/main/catMain.jpg" class="rounded"
-								width="300px" height="200px" style="margin-bottom: 10px;"></a>
-							<b class="mainBtag">병원 예약</b>
-							<h6>편리하게 예약할 수 있습니다</h6>
+				<c:if test="${mediId ==null }">
+					<div id="rightMaincontainer">
+
+						<div id="rightMainContent">
+
+							<a href="mediSearch" style="text-decoration: none; color: black">
+								<div id="rightMainContentFirst">
+									<img src="/am/resources/img/main/dogMain.jpg" class="rounded"
+										width="300px" height="200px" style="margin-bottom: 10px;">
+									<b class="mainBtag">병원 조회</b>
+									<h6>주변의 동물병원을 찾아보세요</h6>
+								</div>
+							</a> <a href="reservation"
+								style="text-decoration: none; color: black">
+								<div id="rightMainContentFirst">
+									<img src="/am/resources/img/main/catMain.jpg" class="rounded"
+										width="300px" height="200px" style="margin-bottom: 10px;">
+									<b class="mainBtag">병원 예약</b>
+									<h6>편리하게 예약할 수 있습니다</h6>
+								</div>
+							</a>
+
 						</div>
 					</div>
-				</div>
-				<c:choose>
-					<c:when test="${userId != null }">
-						<div id="rightMainMypage">
-							<div id="rightMainMypageCotainer">
-								<div id="rightMainMypageContent">
-									<a href="customerInfo?id=${userId }"><img
-										src="/am/resources/img/main/mypage.png" width="270px;"
-										height="120px;" style="border: solid white;"></a>
+					<c:choose>
+						<c:when test="${userId != null }">
+							<div id="rightMainMypage">
+								<div id="rightMainMypageCotainer">
+									<div id="rightMainMypageContent">
+										<a href="customerInfo?id=${userId }"><img
+											src="/am/resources/img/main/mypage.png" width="270px;"
+											height="120px;" style="border: solid white;"></a>
+									</div>
+								</div>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<div id="rightMaincontainer2">
+								<div id="rightMainContent2">
+									<div id="rightMainContentSecond">
+										<a href="mediLogin"><img
+											src="/am/resources/img/main/mediLogin.png" width="300px;"
+											height="150px;" style="border: solid white;"></a>
+									</div>
+									<div id="rightMainContentSecond">
+										<a href="customerLogin"><img
+											src="/am/resources/img/main/customerLogin.png" width="300px;"
+											height="150px;" style="border: solid white;"></a>
+									</div>
+								</div>
+							</div>
+						</c:otherwise>
+					</c:choose>
+				</c:if>
+				<c:if test="${mediId != null }">
+					<div id="rightMaincontainer">
+						<div id="rightMainContent">
+							<div id="rightMainMypage">
+								<div id="rightMainMypageCotainer">
+									<div id="rightMainMypageContent">
+										<a href="mediInfo?id=${mediId }"><img
+											src="/am/resources/img/main/mypage.png" width="270px;"
+											height="120px;" style="border: solid white;"></a>
+									</div>
 								</div>
 							</div>
 						</div>
-					</c:when>
-					<c:when test="${mediId != null}">
-						<div id="rightMainMypage">
-							<div id="rightMainMypageCotainer">
-								<div id="rightMainMypageContent">
-									<a href="mediInfo"><img
-										src="/am/resources/img/main/mypage.png" width="270px;"
-										height="120px;" style="border: solid white;"></a>
-								</div>
-							</div>
-						</div>
-					</c:when>
-					<c:otherwise>
-						<div id="rightMaincontainer2">
-							<div id="rightMainContent2">
-								<div id="rightMainContentSecond">
-									<a href="mediLogin"><img
-										src="/am/resources/img/main/mediLogin.png" width="300px;"
-										height="150px;" style="border: solid white;"></a>
-								</div>
-								<div id="rightMainContentSecond">
-									<a href="customerLogin"><img
-										src="/am/resources/img/main/customerLogin.png" width="300px;"
-										height="150px;" style="border: solid white;"></a>
-								</div>
-							</div>
-						</div>
-					</c:otherwise>
-				</c:choose>
+					</div>
+				</c:if>
 			</div>
 		</div>
 	</div>

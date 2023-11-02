@@ -4,8 +4,8 @@
 }
 
 .board_wrap {
-    width: 50%;
-    margin: 100px 350px;
+    width: 70%;
+    margin: 100px 450px;
 }
 
 .board_title {
@@ -42,7 +42,7 @@
 }
 
 .board_list > div.top > div {
-    font-weight: 600;
+    font-weight: 650;
 }
 
 .board_list .r_date {
@@ -56,25 +56,34 @@
 }
 
 .board_list .p_name {
-	width: 15%;
+	width: 10%;
     text-align: center;
 }
 
 .board_list .m_name {
-    width: 23%;
+    width: 18%;
     text-alingn: left;
 }
 
 .board_list .r_content {
-    width: 12%;
+    width: 13%;
     text-align: center;
 }
 
 .board_list .r_apply {
-    width: 12%;
+    width: 13%;
     text-align: center;
 }
 
+.board_list .r_cancel {
+	width: 11%;
+    text-align: center;
+}
+.board_list .r_cancel button{
+	border: 0;
+	border-bottom: 1px solid;
+  	background-color: transparent;
+}
 .board_list .listIsNull{
 	width:100%;
 	text-align: center;

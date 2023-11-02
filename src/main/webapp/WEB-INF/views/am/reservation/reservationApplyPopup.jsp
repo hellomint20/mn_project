@@ -15,59 +15,107 @@
 	font-family: 'SUITE', sans-serif !important;
 }
 </style>
-</head>
-<script type="text/javascript">
-	function ok_Form() {
-		window.close();
-	}
 
-	function nook_Form() {
-		window.close();
-	}
-	
-	$(function (){
-		$("#btn_no").click(function (){
-	  	$("#Toggle").toggle();
-	  });
-	});
-</script>
+	<script type="text/javascript">
+		
+		function ok_Form(num) {
+			let email = document.getElementById("cemail").value;
+			console.log(num);
+			console.log(email);
+			location.href="/am/reserState1?num="+num+"&email="+email+"&mId="+'${mediId}';
+			window.close();
+		}
+		
+		function nook_Form(num) {
+		    var form = document.createElement('form');
+		    form.method = 'POST';
+		    form.action = '/am/reserState2'; // POST 요청을 처리할 엔드포인트 URL
+
+		    var emailInput = document.createElement('input');
+		    emailInput.type = 'hidden';
+		    emailInput.name = 'email';
+		    emailInput.value = document.getElementById("cemail").value;
+		    form.appendChild(emailInput);
+
+		    var numInput = document.createElement('input');
+		    numInput.type = 'hidden';
+		    numInput.name = 'num';
+		    numInput.value = num;
+		    form.appendChild(numInput);
+
+		    var mediIdInput = document.createElement('input');
+		    mediIdInput.type = 'hidden';
+		    mediIdInput.name = 'mId';
+		    mediIdInput.value = '${mediId}';
+		    form.appendChild(mediIdInput);
+
+		    var contInput = document.createElement('input');
+		    contInput.type = 'hidden';
+		    contInput.name = 'cont';
+		    contInput.value = encodeURIComponent(document.getElementById("reason").value);
+		    form.appendChild(contInput);
+		    document.body.appendChild(form);
+		    form.submit();
+		    window.close();
+		}
+		
+		
+		$(function (){
+			$("#btn_no").click(function (){
+		  	$("#Toggle").toggle();
+		  });
+		});
+	</script>
+</head>
 <body>
 
-
+	
 	<h1 id="title">상세내용</h1>
 	<br>
 
 	<hr>
 	<div class="popup">
+		<input type="hidden" id="cemail" value="${info.c_email }">
 		<table class="popup_table">
+			
 			<tr>
-				<td>예약일시</td>
-				<td>2023-10-26 10시</td>
+				<td>예약날짜</td>
+				<td>${info.year }년 ${info.month }월 ${info.day }일</td>
 			</tr>
 			<tr>
-				<td>보호자</td>
-				<td>최재연</td>
+				<td>예약시간</td>
+				<td>${info.hour}시 ${info.min}분</td>
+			</tr>
+			<tr>
+				<td>보호자(예약자) 성명</td>
+				<td>${info.r_name }</td>
+			</tr>
+			<tr>
+				<td>보호자(예약자) 전화번호</td>
+				<td>${info.c_tel }</td>
 			</tr>
 			<tr>
 				<td>진료동물</td>
-				<td>개 | 시츄(앵두)</td>
+				<td>${info.p_section } | ${info.p_type }(${info.p_name })</td>
 			</tr>
 			<tr>
 				<td>성별</td>
-				<td>여자</td>
+				<td>${info.p_sex }</td>
 			</tr>
 			<tr>
 				<td>나이</td>
-				<td>13</td>
+				<td>${info.p_age }</td>
 			</tr>
 			<tr>
 				<td>진료내용</td>
-				<td>접종</td>
+				<td>${info.r_content }</td>
 			</tr>
 
 		</table>
 
-		<div class="ani_pic">동물사진</div>
+		<div class="ani_pic">
+			<img id="photo" src="/am/resources/img/${info.p_photo}">
+		</div>
 	</div>
 
 
@@ -77,18 +125,16 @@
 			<button type="button" id="btn_no">취소</button>
 		</div>
 		<div class="popup_ok_box">
-			<button type="button" id="btn_ok" onclick="ok_Form()">확인</button>
+			<button type="button" id="btn_ok" onclick="ok_Form(${num})">확인</button>
 		</div>
 	</div>
 	
 	
 	<div id="Toggle" style="display:none">
-		<textarea>취소사유</textarea>
+		<textarea id="reason" placeholder="취소사유를 작성해주세요"></textarea>
 		
-		<button type="button" id="btn_nook" onclick="nook_Form()">취소완료</button>
+		<button type="button" id="btn_nook" onclick="nook_Form(${num})">취소완료</button>
 	</div>
-	
-	
 	
 </body>
 </html>
