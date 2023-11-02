@@ -15,9 +15,10 @@ public interface mediService {
 	public mediDTO getMediSessionId(String mSession);
 	public String mediSearchId(String inputName, String inputTel);
 	public mediDTO mediSearchPw(String inputId, String inputName, String inputTel);
-	public String mediPwChg(String newPw, String id);
+	public String mediNewPwd(String newPw, String id);
 	public String mediPwdChk(String id, String pw);
 	public String mediPwdChg(mediDTO dto,String pw, String newPw);
+	public String mediDelete(mediDTO dto, String pw);
 }
 	
 

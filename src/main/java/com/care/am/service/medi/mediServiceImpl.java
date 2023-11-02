@@ -93,10 +93,10 @@ public class mediServiceImpl implements mediService{
 		return null;
 	}
 	
-	public String mediPwChg(String newPw, String id) {
+	public String mediNewPwd(String newPw, String id) {
 		mediDTO dto = mm.getMedi(id);
 		dto.setmPw(encoder.encode(newPw));
-		int result = mm.mediPwChg(dto);
+		int result = mm.mediPwdChg(dto);
 		if(result==1) {
 			return GetMessage.getMessage("비밀번호 변경 성공", "/am/mediLogin");
 		}
@@ -182,5 +182,16 @@ public class mediServiceImpl implements mediService{
 			return GetMessage.getMessage( "정보 수정에 실패했습니다.", "/am/mediModify?id=" + dto.getmId());
 		}
 	}
-
+	public String mediDelete(mediDTO dto, String pw) {
+		dto = mm.getMedi(dto.getmId());
+		 int result =0 ;
+			if (encoder.matches(pw, dto.getmPw()) || pw.equals(dto.getmPw())) {
+				result =  mm.mediDelete(dto);
+				if(result == 1) {
+					return GetMessage.getMessage("탈퇴가 완료되었습니다", "/am" );
+				}
+			}
+		return GetMessage.getMessage("비밀번호가 틀렸습니다", "/am/mediPwdChk?id=" + dto.getmId());
+	}
+		
 }

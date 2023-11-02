@@ -37,10 +37,20 @@ setTimeout(function(){
      }
      else self.name = ''; 
 },1)
+ 
+  const hypenAdd = (target) => {
+	 target.value = target.value
+    .replace(/[^0-9]/g, '')
+   .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
+}
+  const colonAdd = (target) =>{
+	  target.value = target.value
+	  .replace(/[^0-9]/g, '')
+	  .replace(/^(\d{2})(\d{2})$/, `$1:$2`);
+  }
   
   
- </script>
-
+  </script>
 <body>
 	<%@ include file = "../default/header_page.jsp" %>
 	
@@ -62,17 +72,17 @@ setTimeout(function(){
 				</div>
 				
 				<div class="info-content">
-					
 				   		<input type="text" class="t_b" name="mId" readonly value="${info.dto.mId }" ><br>
-				   		<input type="text" class="t_b" name="mName" placeholder="${info.dto.mName }"><br>
-				   		<input type="text" class="t_b_post" name="mAddr" id="addr1" placeholder="${info.addr1 }">
-				   			<input type="button" class="btn btn-dark" onclick="daumPost()" value="주소검색">
-				   		<input type="text" class="t_b" name="mAddr" id="addr2" placeholder="${info.addr2 }"><br>
-				   		<input type="text" class="t_b" name="mAddr" id="addr3" placeholder="${info.addr3 }"><br>
-				   		<input type="text" class="t_b" name="mTel" placeholder="${info.dto.mTel }"><br>
-				   		<input type="text" class="t_b_time" name="openTime" placeholder="${info.dto.openTime }">&nbsp ~ &nbsp<input type="text" class="t_b_time" name="closeTime" placeholder="${info.dto.closeTime }"><br>
-				   		<input type="text" class="t_b_time" name="lunchStartTime" placeholder="${info.dto.lunchStartTime }">&nbsp ~ &nbsp<input type="text" class="t_b_time" name="lunchEndTime" placeholder="${info.dto.lunchEndTime }"><br>
-			   		
+				   		<input type="text" class="t_b" name="mName" value=" ${info.dto.mName }"><br>
+				   		<input type="text" class="t_b_post" name="mAddr" id="addr1" value="${info.addr1 }" >
+				   		<input type="button" class="btn btn-dark" onclick="daumPost()" value="주소검색">
+				   		<input type="text" class="t_b" name="mAddr" id="addr2" value="${info.addr2 }" ><br>
+				   		<input type="text" class="t_b" name="mAddr" id="addr3" value="${info.addr3 }"><br>
+				   		<input type="text" class="t_b" name="mTel" oninput="hypenAdd(this)" maxlength="13" value="${info.dto.mTel }" ><br>
+				   		<input type="text" class="t_b_time" name="openTime" oninput="colonAdd(this)" maxlength="4" placeholder="예시)0900 입력 " value="${info.dto.openTime }">&nbsp ~ 
+				   				&nbsp<input type="text" class="t_b_time" oninput="colonAdd(this)" maxlength="4" name="closeTime" value="${info.dto.closeTime }"><br>
+				   		<input type="text" class="t_b_time" name="lunchStartTime" oninput="colonAdd(this)" maxlength="4" placeholder="예시)1300" value="${info.dto.lunchStartTime }">&nbsp ~ 
+				   				&nbsp<input type="text" class="t_b_time" oninput="colonAdd(this)" maxlength="4" name="lunchEndTime" value="${info.dto.lunchEndTime }"><br>
 			   	</div>
 			   	
 			   	<div class="info-pic">
@@ -81,19 +91,13 @@ setTimeout(function(){
 				</div>
 			
 			</div>
-		  </form>
-		</div>
-	  
-	    <div class="btn_a">
-		    <button type="button" class="cancel" onclick="location.href='mediInfo'">취소</button>
-		    <button type="button" class="completed" onclick="location.href='mediInfo'">완료</button>
 		    
 			<div class="btn_a">
-			    <button type="button" class="cancel" onclick="history.back()">취소</button>
+			    <button type="button" class="cancel" onclick="location.href='mediInfo?id=${mediId}'">취소</button>
 			    <button type="submit" class="completed" onclick="location.href='mediInfo?id=${mediId }'">등록</button>
 		    </div>
-	    
+	    </form>
 	</div>
-	
+	    
 </body>
 </html>

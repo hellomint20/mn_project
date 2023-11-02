@@ -90,6 +90,7 @@ public class customerController{
 		}
 		session.setAttribute(LoginSession.cLOGIN, id); // 체크안했으면 그냥 세션만 만들어줘
 		System.out.println("세션값"+LoginSession.cLOGIN);
+		System.out.println("세션값:22"+session.getAttribute(LoginSession.cLOGIN));
 		return "redirect:/";
 		
 	}

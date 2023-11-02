@@ -42,8 +42,10 @@
 	<select id="mediSearchId" resultMap="medi">
 		select * from medi where m_name=#{inputName} and m_tel=#{inputTel}
 	</select>
-	<update id="mediPwChg">
+	<update id="mediPwdChg">
 		update medi set m_pw = #{mPw} where m_id = #{mId}
 	</update>
-	
+	<delete id="mediDelete">
+    	delete from medi where m_id=#{mId};
+    </delete>
 </mapper>
