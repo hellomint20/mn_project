@@ -101,10 +101,10 @@ function Popup(rNum){
 					<table class="col-100 col">
 						<colgroup>
 							<col width="30%">
+							<col width="15%">
 							<col width="20%">
-							<col width="20%">
-							<col width="20%">
-							<col width="20%">
+							<col width="17.5%">
+							<col width="17.5%">
 						</colgroup>
 						<thead>
 							<tr>
