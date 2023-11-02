@@ -20,7 +20,7 @@ public class CustomerInterceptor extends HandlerInterceptorAdapter implements Lo
          response.setContentType("text/html; charset=UTF-8");
          PrintWriter out = response.getWriter();
          out.print("<script>alert('로그인 먼저 해주세요');"
-        		 +"location.href='/am/customerLogin';</script>");
+        		 +"location.href='/am';</script>");
       
          return false;
       }

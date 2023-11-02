@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="/am/css/bootstrap/bootstrap.css" rel="stylesheet">
 <link rel="stylesheet" href="/am/css/medi/m_modi.css">
 <link rel="stylesheet" href="/am/resources/css/bootstrap/bootstrap.css">
 
@@ -43,6 +42,7 @@ setTimeout(function(){
 
 <body>
 	<%@ include file = "../default/header_page.jsp" %>
+	<%@ include file = "../common/mediSidebar.jsp" %>
 	
 	<div class="all">
 		<div class="all_title">
