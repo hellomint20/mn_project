@@ -22,8 +22,6 @@ public class MailConfig {
         prop.setProperty("mail.smtp.auth", "true");              //메일을 보낼 때 사용자 인증을 할거냐 
         prop.setProperty("mail.smtp.starttls.enable", "true");         // ttl이라는 암호화 방식을 설정 할거냐 
         prop.setProperty("mail.debug", "true");             // 디버그 - 로그찍어주는거
-        prop.setProperty("mail.mime.charset","UTF-8");
-        prop.setProperty("mail.smpt.ssl.enable", "true");
         jms.setJavaMailProperties(prop); 
 
         return jms;

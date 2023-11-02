@@ -11,8 +11,6 @@ import org.springframework.stereotype.Service;
 public class mailService {
 	
 	@Autowired JavaMailSender mailSender;
-	@Autowired
-	//mailContentBuilder mailContentBuilder;
 	
 	public void tempPwdSendMail(String to,String subject,String body) {
 		MimeMessage message = mailSender.createMimeMessage();
@@ -21,11 +19,9 @@ public class mailService {
 			helper.setTo(to);
 			helper.setSubject(subject);
 			helper.setText(body);
-			//String content = mailContentBuilder.build(message);
 			mailSender.send(message);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-
 }

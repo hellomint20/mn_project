@@ -1,8 +1,5 @@
 package com.care.am.controller;
 
-import java.util.Map;
-
-import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletResponse;
@@ -11,12 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.care.am.service.reservation.reservationService;
 
@@ -26,36 +19,6 @@ public class reservationController {
 	@Autowired reservationService rs;
 	
 	
-	//병원 예약 관련(손님 기준)
-	@GetMapping("reservation") //병원 예약 기본 페이지
-	public String reservation(Model model) {
-		model.addAttribute("list", rs.mediList()); //medi List 가져오기
-		return "am/reservation/reservationPage";
-	}
-	
-	@ResponseBody
-	@PostMapping("reservation/mediInfo") //병원 상세정보 팝업
-	public Map<String, Object> mediInfo(@RequestBody String mediName){
-		System.out.println("pop : "+rs.mediInfo(mediName));
-		return rs.mediInfo(mediName);
-	}
-
-	@RequestMapping(value = "reservationForm/page/{name}") //병원 예약 페이지
-	public String reservationFormPage(@PathVariable String name, Model model, HttpSession session) {
-		System.out.println("reservationFormPage "+name);
-		model.addAttribute("name", name); //선택된 병원
-
-		// 영업시간 가져오기 
-		model.addAttribute("timeList", rs.mediTime(name));
-		
-		// 로그인한 사람 동물 리스트 가져오기
-		String id = "1";
-		model.addAttribute("p_list", rs.petList(id));
-		
-		return "am/reservation/reservationForm";
-	}
-
-
 	@GetMapping("reservation")
 	public String reservation() {
 		return "am/reservation/reservationPage";
@@ -71,14 +34,9 @@ public class reservationController {
 		return "am/reservation/reservationPopup";
 	}
 	
-	@ResponseBody
-	@PostMapping("reservationRegister") //병원 예약 DB 등록
-	public String reservationRegister(@RequestBody Map<String, Object> map, HttpSession session) {
-		System.out.println(map);
-		map.put("cId", "1");
-		int result = rs.reservationRegister(map);
-		System.out.println(result);
-		return Integer.toString(result);
+	@PostMapping("reservationRegister") 
+	public void reservation(String id) {
+		
 	}
 	
 	@GetMapping("reservationList") 
@@ -140,10 +98,6 @@ public class reservationController {
 		model.addAttribute("num", rNum);
 		return "am/reservation/reservationApplyPopup";
 	}
-	@ResponseBody
-	@PostMapping("reservationCount") //시간별 예약자 수 확인
-	public Map<String, String> reservationCount(@RequestBody Map<String, Object> map) {
-		return rs.reservationCount(map);
-	}
+
 	
 }

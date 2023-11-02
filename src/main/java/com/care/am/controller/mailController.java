@@ -15,7 +15,6 @@ import com.care.am.service.mail.mailService;
 public class mailController implements LoginSession{
 	@Autowired mailService mails;
 	
-	
 	@RequestMapping(value="/customerSearchPw/{toMail}/{content}/", method=RequestMethod.GET)
 	String tempPwdSendMail(@PathVariable String toMail, @PathVariable String content, HttpServletResponse res)throws Exception{
 		String title = "임시비밀번호 발급 메일입니다.";
@@ -29,7 +28,7 @@ public class mailController implements LoginSession{
 		mails.tempPwdSendMail(toMail,title,msg);
 						// 받는사람 메일 / 제목 / 내용
 		
-		return "redirect:/customerSearchPw";
+		return "redirect:/customerLogin";
 	}
 	@RequestMapping(value="/reserState1/{toMail}/{mId}", method=RequestMethod.GET)
 	String sendMail(@PathVariable String toMail, @PathVariable String mId, 
