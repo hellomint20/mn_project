@@ -156,7 +156,7 @@ public class mediController {
 		model.addAttribute("id", id);
 		return "am/medi/mediPwChg";
 	}
-	@RequestMapping("mediPwChg")
+	@PostMapping("mediPwChg")
 	public void mediPwChg(@RequestParam String id, 
 						@RequestParam String newPw,
 						HttpServletResponse res) {

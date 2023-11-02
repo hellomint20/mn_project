@@ -14,6 +14,7 @@ import com.care.am.service.mail.mailService;
 public class mailController {
 	@Autowired mailService mails;
 	
+	
 	@RequestMapping(value="/customerSearchPw/{toMail}/{content}/", method=RequestMethod.GET)
 	String tempPwdSendMail(@PathVariable String toMail, @PathVariable String content, HttpServletResponse res)throws Exception{
 		String title = "임시비밀번호 발급 메일입니다.";
@@ -29,4 +30,6 @@ public class mailController {
 		
 		return "redirect:/customerSearchPw";
 	}
+	
+	
 }

@@ -19,7 +19,9 @@
 	font-family: 'SUITE', sans-serif !important;
 }
 </style>
-
+<script type="text/javascript">
+	history.replaceState({}, null, '/am/mediPwChg');
+</script>
 </head>
 <body id="searchIdFormBody">
 	<div id="searchIdForm">

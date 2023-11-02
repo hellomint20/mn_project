@@ -87,7 +87,6 @@ public class customerController{
 			loginCookie.setMaxAge(limitTime);
 			res.addCookie(loginCookie);
 			cs.keepLogin(session.getId(),id);
-			
 		}
 		session.setAttribute(LoginSession.cLOGIN, id); // 체크안했으면 그냥 세션만 만들어줘
 		System.out.println("세션값"+LoginSession.cLOGIN);
