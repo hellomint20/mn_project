@@ -33,6 +33,7 @@
 				document.getElementById("mediAddr").innerHTML = mediInfo['m_addr'];
 				document.getElementById("mediTime").innerHTML = mediInfo['open_time']+" - "+mediInfo['close_time'];
 				document.getElementById("mediTel").innerHTML = mediInfo['m_tel'];
+				document.getElementById("mediId").innerHTML = mediInfo['m_id'];
 			},
 			error : () => {
 				console.log("문제 발생")
@@ -76,6 +77,7 @@
 								<td>${i }</td>
 								<td id="mediList"><button class="listBtn" type="button" onclick="detailView('${list['m_name']}')">${list['m_name']}</button></td>
 							</tr>
+							
 						</c:forEach>
 					</table>
 				</div>
