@@ -6,24 +6,25 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-	<link rel="stylesheet" href="/am/css/customer/delete.css">
+	<link rel="stylesheet" href="/am/css/medi/pwdChk.css">
 <body>
 	<%@ include file = "../default/header_page.jsp" %>
-	<%@ include file = "../common/sidebar.jsp" %>
 	
 	<div class="all">
 		<div class="all_title">
-			<strong>정보 수정</strong>
-			<p>비밀번호를 입력해주세요</p>
+			<strong>비밀번호 변경</strong>
+			<p>새로운 비밀번호로 변경해주세요</p>
 		</div>
-	<form action="customerPwdChk" method="post">
+	<form action="mediPwdChg" method="post">
 		<div class="info">
 			<div class="info-title">
-				비밀번호: 
+				기존 비밀번호: <br>
+				새로운 비밀번호: 
 			</div>
 			<div class="info-content">
-				<input type="hidden" name="id" value="${userId}">
-				<input type="password" id="t_b" name="pw" required>
+				<input type="hidden" name="mId" value="${mediId}">
+				<input type="password" id="t_b" name="pw" required><br>
+				<input type="password" id="t_b" name="newPw" required><br>
 			</div>
 		</div>
 		<button type="submit" class="b">확인</button>

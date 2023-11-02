@@ -3,6 +3,9 @@ package com.care.am.controller;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.care.am.service.reservation.reservationService;
-
 
 @Controller
 public class reservationController {
@@ -53,7 +55,18 @@ public class reservationController {
 		return "am/reservation/reservationForm";
 	}
 
-	@GetMapping("reservationPopup")//예약완료후팝업창
+
+	@GetMapping("reservation")
+	public String reservation() {
+		return "am/reservation/reservationPage";
+	}
+	
+	@GetMapping("reservationForm")
+	public String reservationForm() {
+		return "am/reservation/reservationForm";
+	}
+	
+	@GetMapping("reservationPopup")
 	public String reservationPopup() {
 		return "am/reservation/reservationPopup";
 	}
@@ -65,38 +78,72 @@ public class reservationController {
 		map.put("cId", "1");
 		int result = rs.reservationRegister(map);
 		System.out.println(result);
-		
 		return Integer.toString(result);
 	}
 	
-	//10/27 여기 할테야
-	@GetMapping("reservationList") //손님 예약 리스트
+	@GetMapping("reservationList") 
 	public String reservationList(@RequestParam String id, Model model) {
 		model.addAttribute("list",rs.reservationList(id));
 		return "am/reservation/reservationList";
 	}
 	
-	//병원 예약상태 관련(병원 기준)
-	@GetMapping("reservationState") //병원 예약상태
-	public String reservationState() {
+	@GetMapping("reservationCancel") 
+	public void reservationCancel(@RequestParam String id, @RequestParam int num,
+								HttpServletResponse res) throws Exception {
+		String msg = rs.reserCancel(id, num);
+		res.setContentType("text/html; charset=utf-8");
+		PrintWriter out = res.getWriter();
+		out.print(msg);
+	}
+	
+	
+	
+	
+
+	@GetMapping("reservationState")
+	public String reservationState(@RequestParam String id, Model model/*, @RequestParam(required = false, defaultValue = "1") int num*/) {
+		model.addAttribute("list", rs.mediReservationList(id));
+		model.addAttribute("waitList", rs.mediReservationWaitList(id));
+		
+		//Map<String, Object> map = rs.paging(num);
+		//model.addAttribute("page", map.get("paging"));
+		
 		return "am/reservation/reservationState";
 	}
 	
-	@PostMapping("reservationState") //병원 예약 승인, 취소 (map으로 묶어서 받기)
-	public void reservationState(String id) {
+	@GetMapping("reserState1") 
+	public String reserState1(@RequestParam int num, @RequestParam String email, @RequestParam String mId) {
+		int result = rs.reserState(num, 1);
+		if(result == 1) {
+			String toMail = email;
+			return "redirect:/reserState1/"+toMail+"/"+mId+"/";
+		}
+		return "redirect:/reservationState";
+	}
+	
+	@PostMapping("reserState2")
+    public String reserState2(@RequestParam String email,@RequestParam int num,
+        @RequestParam String mId, @RequestParam String cont) {
+		int result = rs.reserState(num, 0);
 		
+		if(result == 1) {
+			String toMail = email;
+			return "redirect:/reserState2/"+toMail+"/"+cont+"/"+mId+"/";
+		}
+		return "redirect:/reservationState";
 	}
 
 	@GetMapping("reservationApplyPopup") 
-	public String reservationApplyPopup(String id) {
+	public String reservationApplyPopup(@RequestParam int rNum, Model model) {
+		System.out.println(rNum);
+		model.addAttribute("info", rs.reservationInfo(rNum));
+		model.addAttribute("num", rNum);
 		return "am/reservation/reservationApplyPopup";
 	}
-
 	@ResponseBody
 	@PostMapping("reservationCount") //시간별 예약자 수 확인
 	public Map<String, String> reservationCount(@RequestBody Map<String, Object> map) {
 		return rs.reservationCount(map);
 	}
-
 	
 }

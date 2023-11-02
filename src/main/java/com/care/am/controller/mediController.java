@@ -11,17 +11,15 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.care.am.common.LoginSession;
-import com.care.am.dto.customerDTO;
 import com.care.am.dto.mediDTO;
-import com.care.am.service.customer.customerService;
 import com.care.am.service.medi.mediService;
 
 @Controller
@@ -101,7 +99,7 @@ public class mediController {
 		}
 		session.setAttribute(LoginSession.mLOGIN, id); // 체크안했으면 그냥 세션만 만들어줘
 		System.out.println(session.getAttribute(LoginSession.mLOGIN));
-		return "redirect:reservationState";
+		return "redirect:reservationState?id="+id;
 	}
 
 	@GetMapping("mediSearchIdPw") // 아이디/비밀번호 찾기 페이지
@@ -177,22 +175,78 @@ public class mediController {
 
 	// 개인정보 관련
 	@GetMapping("mediInfo") // 병원 개인정보 페이지
-	public String info() {
+	public String info(@RequestParam String id, Model model) {
+		model.addAttribute("info", ms.getMedi(id));
+		
 		return "am/medi/mediInfo";
+	}
+	
+	@GetMapping("mediPwdChk") //비밀번호 확인페이지
+	public String mediPwdChk(@RequestParam String id) {
+		return "am/medi/mediPwdChk";
+	}
+	
+	@PostMapping("mediPwdChk")//비밀번호 확인
+	public void mediPwdChk(@RequestParam String id, @RequestParam String pw, HttpServletResponse res) {
+		String msg ="";
+		msg = ms.mediPwdChk(id,pw);
+		res.setContentType("text/html; charset=utf-8");
+		PrintWriter out =null;
+		try {
+			out = res.getWriter();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		out.print(msg);
+	}
+	
+	@GetMapping("mediPwdChg") //비밀번호 변경 페이지
+	public String mediPwdChg(@RequestParam String id) {
+		return "am/medi/mediPwdChg";
+	}
+	
+	@PostMapping("mediPwdChg")
+	public void mediPwdChg(mediDTO dto, HttpServletResponse res, @RequestParam String pw, @RequestParam String newPw) throws Exception{
+		
+		String msg="";
+		
+		System.out.println("con: "+dto.getmId());
+		
+		msg = ms.mediPwdChg(dto, pw, newPw);
+		res.setContentType("text/html; charset=utf-8");
+	    PrintWriter out = res.getWriter();
+	    out.print( msg );
 	}
 
 	@GetMapping("mediModify") // 병원 개인정보 수정 페이지
-	public String modify() {
+	public String modify(@RequestParam String id, Model model) {
+		model.addAttribute("info", ms.getMedi(id));
+		
 		return "am/medi/mediModify";
 	}
 
 	@PostMapping("mediModify") // 병원 개인정보 수정 적용
-	public void modify(String id) {
-
+	public void modify(mediDTO dto, @RequestParam MultipartFile file, HttpServletResponse res, HttpServletRequest req, Model model) throws Exception {
+	
+		String[] addr = req.getParameterValues("mAddr");
+		String ad ="";
+		for(String a :addr) {
+			ad+= a+"/";
+		}
+		addr = ad.split("/");
+		System.out.println("file: "+file.getOriginalFilename());
+		String msg = ms.mediModify(dto, file, req.getParameterValues("mAddr"));
+		model.addAttribute("info", ms.getMedi(dto.getmId()));
+		res.setContentType("text/html; charset=utf-8");
+		PrintWriter out = res.getWriter();
+		out.print(msg);
+		
 	}
 
 	@PostMapping("mediDelete") // 병원 탈퇴
 	public void delete() {
 
 	}
+	
+	
 }

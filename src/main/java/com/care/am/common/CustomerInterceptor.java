@@ -13,9 +13,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 @Component
 public class CustomerInterceptor extends HandlerInterceptorAdapter implements LoginSession{
    
-   public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-		   															throws Exception {
-	   
+   public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
       HttpSession session = request.getSession();
       if(session.getAttribute(cLOGIN) == null) {
          
@@ -29,4 +27,8 @@ public class CustomerInterceptor extends HandlerInterceptorAdapter implements Lo
       return true;
    }
    
+   public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
+			ModelAndView modelAndView) throws Exception {
+   
+   }
 }

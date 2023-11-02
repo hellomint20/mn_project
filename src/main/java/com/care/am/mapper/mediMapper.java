@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.care.am.dto.mediDTO;
 
+
 public interface mediMapper {
 	 	  public mediDTO getMedi(String id);
 		  public void keepLogin(Map<String, Object> map);
@@ -13,4 +14,6 @@ public interface mediMapper {
 		  public mediDTO getMediSession( String mSession );
 		  public mediDTO mediSearchId(@Param("inputName") String inputName,@Param("inputTel") String inputTel);
 		  public int mediPwChg(mediDTO dto);
+		  public int mediModify(mediDTO dto);
+		  public int mediPwdChg(mediDTO dto);
 }

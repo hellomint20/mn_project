@@ -79,5 +79,4 @@ public class mediDTO {
 		this.mSession = mSession;
 	}
 	
-
 }

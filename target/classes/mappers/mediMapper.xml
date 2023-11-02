@@ -3,7 +3,6 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.care.am.mapper.mediMapper">
-
 	<resultMap type="com.care.am.dto.mediDTO" id="medi">
 		<id property="mName" column="m_name" />
 		<result property="mAddr" column="m_addr" />
@@ -26,18 +25,25 @@
 		update medi set m_session=#{mSession} where m_id=#{mId}
 	</update>
 
+   <select id="getMediSession" resultMap="medi">
+      select * from medi where m_session = #{mSession}
+   </select>
+   
+   <update id="mediModify">
+   		update medi set m_name=#{mName}, m_addr=#{mAddr}, m_tel=#{mTel}, m_photo=#{mPhoto},open_time=#{openTime}, 
+   		close_time=#{closeTime}, lunch_start_time=#{lunchStartTime}, lunch_end_time=#{lunchEndTime} where m_id=#{mId}
+   </update>
+	
 	<insert id="mediRegister">
 		insert into medi(m_name,m_addr,m_tel,m_id,m_pw) 
 				values (#{mName},#{mAddr},#{mTel},#{mId},#{mPw})
 	</insert>
 
-	<select id="getMediSession" resultMap="medi">
-		select * from medi where m_session = #{mSession}
-	</select>
 	<select id="mediSearchId" resultMap="medi">
 		select * from medi where m_name=#{inputName} and m_tel=#{inputTel}
 	</select>
 	<update id="mediPwChg">
 		update medi set m_pw = #{mPw} where m_id = #{mId}
 	</update>
+	
 </mapper>

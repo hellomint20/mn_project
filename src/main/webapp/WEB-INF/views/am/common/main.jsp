@@ -65,7 +65,7 @@
 						<div id="rightMainMypage">
 							<div id="rightMainMypageCotainer">
 								<div id="rightMainMypageContent">
-									<a href="mediInfo"><img
+									<a href="mediInfo?id=${mediId }"><img
 										src="/am/resources/img/main/mypage.png" width="270px;"
 										height="120px;" style="border: solid white;"></a>
 								</div>
