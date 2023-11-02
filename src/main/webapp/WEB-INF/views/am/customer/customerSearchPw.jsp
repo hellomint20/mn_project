@@ -24,15 +24,13 @@
 <body id="searchIdFormBody">
 	<div id="searchIdForm">
 		<a href="/am"><img src="/am/resources/img/common/logoLogin.png"></a>
-		<h6 style="text-align: center; margin-bottom: 20px;">다음 아이디로 가입한 계정이 있습니다.</h6>
+		<h6 style="text-align: center; margin-bottom: 20px;"><br>등록된 이메일로 임시비밀번호를 전송했습니다.<br><br></h6>
 			
-				<div id="searchIdFormContent" class="form-group row">
-					 <p class="searchId"><c:out value="${fn:substring(id, 0, fn:length(id) - 3)}" />***</p>
-				</div>
 			<div  class="bottombtn">
-			<button type="button" onclick="location.href ='customerSearchIdPw'" class="btn" style="background-color: #0B1F54; color: white;">비밀번호 찾기</button>
 			<button type="button" onclick="location.href ='customerLogin'" class="btn" style="background-color: #0B1F54; color: white;">로그인</button>
 		</div>
 		</div>
+		
+</body>
 </body>
 </html>

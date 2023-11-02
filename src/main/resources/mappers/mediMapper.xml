@@ -12,7 +12,7 @@
 		<result property="mPhoto" column="m_photo" />
 		<result property="openTime" column="open_time" />
 		<result property="lunchStartTime" column="lunch_start_time" />
-		<result property="lunchCloseTime" column="lunch_close_time" />
+		<result property="lunchEndTime" column="lunch_end_time" />
 		<result property="closeTime" column="close_time" />
 		<result property="mSession" column="m_session" />
 	</resultMap>
@@ -39,9 +39,13 @@
 				values (#{mName},#{mAddr},#{mTel},#{mId},#{mPw})
 	</insert>
 
+	<select id="mediSearchId" resultMap="medi">
+		select * from medi where m_name=#{inputName} and m_tel=#{inputTel}
+	</select>
 	<update id="mediPwdChg">
-		update medi set m_pw=#{mPw} where m_id=#{mId}
+		update medi set m_pw = #{mPw} where m_id = #{mId}
 	</update>
-	
-	
+	<delete id="mediDelete">
+    	delete from medi where m_id=#{mId};
+    </delete>
 </mapper>

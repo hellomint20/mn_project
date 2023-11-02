@@ -30,8 +30,8 @@
 					 <p class="searchId"><c:out value="${fn:substring(id, 0, fn:length(id) - 3)}" />***</p>
 				</div>
 			<div  class="bottombtn">
-			<button type="button" onclick="location.href ='customerSearchIdPw'" class="btn" style="background-color: #0B1F54; color: white;">비밀번호 찾기</button>
-			<button type="button" onclick="location.href ='customerLogin'" class="btn" style="background-color: #0B1F54; color: white;">로그인</button>
+			<button type="button" onclick="location.href ='mediSearchIdPw'" class="btn" style="background-color: #0B1F54; color: white;">비밀번호 찾기</button>
+			<button type="button" onclick="location.href ='mediLogin'" class="btn" style="background-color: #0B1F54; color: white;">로그인</button>
 		</div>
 		</div>
 </body>

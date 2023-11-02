@@ -3,12 +3,13 @@
 #searchIdPwFormBody{
 	background: #0B1F54;
 	margin-top: 3.5%;
+	text-align: center
 }
 
 #searchIdPwForm{
 	background:white;
 	margin: 20px 35%;
-	padding: 10px 50px;
+	padding: 40px 50px;
 	text-align: center;
 }
 img{

@@ -23,7 +23,6 @@ a.loginAtag{
 .form-signin {
   width: 100%;
   max-width: 330px;
-  margin: 0 auto;
   text-align: center;
 }
 .form-signin .checkbox {
@@ -55,8 +54,12 @@ a.loginAtag{
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-#autoLoginChk{
-	margin-left:10px;
+.autoLoginChk{
+	margin-left:5px;
 	word-spacing: 2px;
 	width:100px;
-	}
+	margin-bottom:30px;
+}
+label{
+	margin-left:10px;
+}

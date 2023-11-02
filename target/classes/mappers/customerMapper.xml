@@ -17,7 +17,7 @@
 		select * from customer where c_id=#{cId}
 	</select>
 	<select id="customerSearchId" resultMap="customer">
-		select * from customer where c_name=#{inputName}
+		select * from customer where c_name=#{inputName} and c_email=#{inputEmail}
 	</select>
 	<update id="customerPwChg">
 		update customer set c_pw =#{cPw} where c_id=#{cId}

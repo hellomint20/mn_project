@@ -23,7 +23,7 @@
 </style>
 
 </head>
-<body class="text-center">
+<body>
 	<form class="form-signin" method="post" action="mediLogin">
 		<a href="/am"><img class="mb-2" src="/am/resources/img/common/logoLogin.png"
 			width="270px" height="110px"></a>
@@ -35,9 +35,12 @@
 			<label for="inputPassword" class="sr-only">Password</label>
 		<input type="password" name="pw" id="inputPassword" class="form-control"
 			placeholder="input Password" required>
+		<div id="autoLoginChk" style="text-align: left">
+		<input type="checkbox" id="inputChk"  name="autoLogin"><label for="inputChk" >자동 로그인</label>
+		<br>
+		</div>
 		<button class="btn btn-lg btn-block" style="background-color: #0B1F54; color: white;" type="submit">
 			Sign in</button><br>
-			<input type="checkbox" name="autoLogin">자동 로그인
 		<div class="checkbox mb-3">
 			<a class="loginAtag" href="mediRegister">회원가입</a> &nbsp; | &nbsp; 
 			<a class="loginAtag" href="mediSearchIdPw">아이디/비밀번호 찾기</a>

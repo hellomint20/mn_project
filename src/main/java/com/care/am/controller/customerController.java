@@ -87,10 +87,10 @@ public class customerController{
 			loginCookie.setMaxAge(limitTime);
 			res.addCookie(loginCookie);
 			cs.keepLogin(session.getId(),id);
-			
 		}
 		session.setAttribute(LoginSession.cLOGIN, id); // 체크안했으면 그냥 세션만 만들어줘
 		System.out.println("세션값"+LoginSession.cLOGIN);
+		System.out.println("세션값:22"+session.getAttribute(LoginSession.cLOGIN));
 		return "redirect:/";
 		
 	}
@@ -119,7 +119,6 @@ public class customerController{
             out.println("<script>alert('정보가 일치하지 않습니다.');</script>");
             out.flush();
             return "am/customer/customerSearchIdPw";
-		
 		}
 	}	
 	@PostMapping("customerSearchPw") // 비밀번호 찾기
@@ -140,6 +139,11 @@ public class customerController{
 		}
 		return "redirect:/customerSearchIdPw";
 		
+	}
+	
+	@GetMapping("customerSearchPw")
+	public String customerSearchPw() {
+		return "am/customer/customerSearchPw";
 	}
 	
 	
