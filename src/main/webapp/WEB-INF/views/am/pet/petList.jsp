@@ -35,10 +35,10 @@
 						<a href="petModify?num=${list.pNum}" class="petNameBtn">${list.pName }</a>
 						<div class="pet-info-box">
 							<div class="pet-info-title">
-								나이: <br> 성별: <br>
+								나이: <br> 성별: <br> 종: <br>
 							</div>
 							<div class="pet-info-content">
-								${list.pAge }<br> ${list.pSex }<br>
+								${list.pAge }<br> ${list.pSex }<br>	${list.pType }<br>
 							</div>
 						</div>
 						<div class="pet-list-del">
