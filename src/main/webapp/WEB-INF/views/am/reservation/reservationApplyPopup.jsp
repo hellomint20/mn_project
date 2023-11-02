@@ -23,6 +23,7 @@
 			console.log(num);
 			console.log(email);
 			location.href="/am/reserState1?num="+num+"&email="+email+"&mId="+'${mediId}';
+			window.close();
 		}
 		
 		function nook_Form(num) {
@@ -53,9 +54,9 @@
 		    contInput.name = 'cont';
 		    contInput.value = encodeURIComponent(document.getElementById("reason").value);
 		    form.appendChild(contInput);
-
 		    document.body.appendChild(form);
 		    form.submit();
+		    window.close();
 		}
 		
 		
