@@ -27,6 +27,15 @@
 		<result property="cId" column="c_id" />
 		<result property="pPhoto" column="pPhoto" />
 	</resultMap>
+	
+	<resultMap type="com.care.am.dto.customerDTO" id="customer">
+		<id property="cId" column="c_id"/>
+		<result property="cPw" column="c_pw"/>
+		<result property="cName" column="c_name"/>
+		<result property="cTel" column="c_tel"/>
+		<result property="cEmail" column="c_email"/>
+		<result property="cSessionId" column="c_session"/>
+	</resultMap>
 
 	<select id="mediReservationList" resultType="map">
 		select
@@ -52,9 +61,65 @@
 		where reservation.r_num = #{rNum}
 	</select>
 	
+	<select id="pagingList" parameterType="hashMap" resultType="map">
+		select r_time, r_content, r_apply, r_date, p_type
+		from reservation, pet
+		where m_id=#{mId}
+		order by r_date 
+		limit #{start}, #{limit}
+	</select>
+	
+	<!-- 승인/취소 테이블 페이징 -->
+	<select id="mediReservationListCount" resultType="Integer">
+		select 
+		count(*) from reservation left join pet on reservation.p_num = pet.p_num
+		where reservation.m_id = #{mId} and not reservation.r_apply in('대기')
+	</select>
+	
+	
 	<!--  
 	<select id="selectListCount" resultType="Integer">
 		select count(*) from reservation where m_id=#{mId}
 	</select>-->
+	
+	
+	
+	
+	
+	
+	<!-- 새로운 접수 -->
+	<select id="waitList" parameterType="hashMap" resultType="map">
+		select r_time, r_content, r_apply, r_date, p_type
+		from reservation, pet
+		where m_id = ${mId} and  r_apply = "대기"
+		order by r_date 
+		limit #{start}, #{limit}
+	</select>
+	
+	<!-- 새로운 접수 페이징 -->
+	<select id="waitListPaging" resultType="Integer">
+		select 
+		count(*) from reservation left join pet on reservation.p_num = pet.p_num
+		where reservation.m_id = #{mId} and not reservation.r_apply in('대기')
+	</select>
+	
+	
+	
+	<!-- 승인취소 -->
+	<select id="ACList" parameterType="hashMap" resultType="map">
+		select r_time, r_content, r_apply, r_date, p_type
+		from reservation, pet
+		where m_id = ${mId} and not r_apply in ("대기")
+		order by r_date 
+		limit #{start}, #{limit}
+	</select>
+	
+	<!-- 승인취소 페이징 -->
+	<select id="ACListPaging" resultType="Integer">
+		select 
+		count(*) from reservation left join pet on reservation.p_num = pet.p_num
+		where reservation.m_id = #{mId} and not reservation.r_apply in('대기')
+	</select>
+	
 
 </mapper>

@@ -33,6 +33,7 @@ button:hover {
 .r_table{
 	 margin-top: 80px;
 	 margin-left : 340px;
+	 margin-bottom: 40px;
 }
 
 table {
@@ -63,6 +64,21 @@ td {
 a{
 	text-decoration: none;
 	color: black;
+}
+#waitTable{
+	margin-bottom: 40px;
+}
+
+
+.page{
+	margin-left: 300px;
+	padding-bottom: 40px;
+}
+.page-link{
+	color: #0B1F54;
+}
+#ACTable{
+	margin-bottom: 40px;
 }
 
 
@@ -224,3 +240,4 @@ textarea {
 	height: 200px;
 	border : 1px solid black;
 }
+

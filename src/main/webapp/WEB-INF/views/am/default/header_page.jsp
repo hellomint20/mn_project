@@ -24,8 +24,9 @@
       <div id="imgHeader">
       <c:choose>
          <c:when test="${mediId != null}">
-            <span id="headerText"><a href="/am/mediInfo?id=${mediId }"
-               id="text">마이페이지</a> | <a href="/am/logout" id="text">로그아웃</a></span>
+            <span id="headerText">
+            	<a href="/am/mediInfo?id=${mediId }"id="text">마이페이지</a> | <a href="/am/logout" id="text">로그아웃</a>
+            </span>
          </c:when>
          <c:when test="${userId != null}">
             <span id="headerText"><a href="/am/customerInfo"

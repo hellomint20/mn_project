@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.care.am.dto.pageDTO;
 import com.care.am.service.reservation.reservationService;
 
 @Controller
@@ -46,9 +47,29 @@ public class reservationController {
 	
 	//병원 예약상태 관련(병원 기준)
 	@GetMapping("reservationState") //병원 예약상태
-	public String reservationState(@RequestParam String id, Model model/*, @RequestParam(required = false, defaultValue = "1") int num*/) {
-		model.addAttribute("list", rs.mediReservationList(id));
-		model.addAttribute("waitList", rs.mediReservationWaitList(id));
+	public String reservationState(@RequestParam String id, Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
+		
+		
+		model.addAttribute("wait", rs.waitList(id, page)); //새로운접수
+		model.addAttribute("waitPaging", rs.waitListPaging(page, id));
+		
+		model.addAttribute("ac", rs.ACList(id, page)); //승인취소
+		model.addAttribute("ACPaging", rs.ACListPaging(page, id));
+		
+		System.out.println("11:"+ rs.waitList(id, page));
+		System.out.println("22:"+ rs.waitListPaging(page, id));
+		
+		//model.addAttribute("list", rs.mediReservationList(id, page)); //승인취소
+		//model.addAttribute("waitList", rs.mediReservationWaitList(id)); //대기
+		
+		List<Map<String, Object>> pagingList = rs.paging(page, id);
+		//System.out.println("page: "+page);
+		System.out.println("pagingList: "+pagingList);
+		
+		//pageDTO pageDTO = rs.pagingParam(page, id);
+		
+		//model.addAttribute("page", pagingList);
+		//model.addAttribute("paging", pageDTO);
 		
 		//Map<String, Object> map = rs.paging(num);
 		//model.addAttribute("page", map.get("paging"));
