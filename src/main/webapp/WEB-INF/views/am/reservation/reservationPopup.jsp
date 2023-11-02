@@ -79,7 +79,7 @@
 				console.log("통신 성공")
 				if(result == 1){
 					alert("예약이 접수 되었습니다.");
-					window.opener.location.href="/am/reservationList?id="+${cId}
+					window.opener.location.href="/am/reservationList?id="+${cId};
 					window.close();
 				}else if(result == 99){
 					alert("이미 예약이 꽉 찼습니다");
