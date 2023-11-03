@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.care.am.dto.mediDTO;
 import com.care.am.dto.petDTO;
 import com.care.am.mapper.reservationMapper;
+import com.care.am.page.reservationPagination;
 
 @Service
 public class reservationServiceImpl implements reservationService {
@@ -120,5 +121,10 @@ public class reservationServiceImpl implements reservationService {
 			rDateCount.put(rTime, list.get(i).get("count(*)").toString());
 		}	
 		return rDateCount; 
+	}
+
+	@Override
+	public List<Map<String, String>> mediSelectList(reservationPagination pag) {
+		return rm.mediSelectList(pag);
 	}
 }

@@ -206,6 +206,7 @@
 </script>
 
 <body>
+
 	<%@ include file="../default/header_reservationPage.jsp"%>
 	<div class="box-container">
 

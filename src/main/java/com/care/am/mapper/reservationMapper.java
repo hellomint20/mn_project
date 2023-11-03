@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.care.am.dto.mediDTO;
 import com.care.am.dto.petDTO;
+import com.care.am.page.reservationPagination;
 
 @Mapper
 public interface reservationMapper {
@@ -18,4 +19,5 @@ public interface reservationMapper {
 	public int reservationRegister(Map<String, Object> map); //병원 예약 
 	public List<Map<String, Object>> reservationCount(Map<String, Object> map); ////시간별 예약자 수 확인
 	public Map<String, Object> peopleCount(Map<String, Object> map);
+	public List<Map<String, String>> mediSelectList(reservationPagination pag);
 }
