@@ -1,21 +1,17 @@
 package com.care.am.controller;
 
-import java.util.List;
 import java.util.Map;
-
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.care.am.common.LoginSession;
+import com.care.am.page.reservationPagination;
 import com.care.am.service.reservation.reservationService;
 
 
@@ -24,12 +20,27 @@ public class reservationController {
 
 	@Autowired reservationService rs;
 	
-	
 	//병원 예약 관련(손님 기준)
 	@GetMapping("reservation") //병원 예약 기본 페이지
-	public String reservation(Model model) {
-		model.addAttribute("list", rs.mediList()); //medi List 가져오기
+	public String reservation(Model model, reservationPagination pag
+			, @RequestParam(value="nowPage", required=false)String nowPage
+			, @RequestParam(value="cntPerPage", required=false)String cntPerPage)  {
 		
+		int mediCnt = rs.mediList().size();  // 전체 병원 갯수
+     
+    	if (nowPage == null && cntPerPage == null) { 
+    		nowPage = "1";
+    		cntPerPage = "10";  // 한 페이지에 노출되는 글 갯수
+    	} else if (nowPage == null) {
+    		nowPage = "1";
+    	} else if (cntPerPage == null) { 
+    		cntPerPage = "10";
+    	}
+    	
+    	pag = new reservationPagination(mediCnt, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+    	model.addAttribute("paging", pag);
+    	model.addAttribute("viewAll", rs.mediSelectList(pag));
+    	
 		return "am/reservation/reservationPage";
 	}
 	
@@ -71,7 +82,6 @@ public class reservationController {
 		return Integer.toString(result);
 	}
 	
-	//10/27 여기 할테야
 	@GetMapping("reservationList") //손님 예약 리스트
 	public String reservationList(@RequestParam String id, Model model) {
 		model.addAttribute("list",rs.reservationList(id));
@@ -100,5 +110,4 @@ public class reservationController {
 		return rs.reservationCount(map);
 	}
 
-	
 }

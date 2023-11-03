@@ -44,27 +44,42 @@
 		    insert into reservation 
       		(r_num, m_id, p_num, c_id, r_content, r_date, r_time, r_name, r_tel)
       		values (r_num, #{mId}, 
-            (select p_num from pet where p_name=#{pName} and c_id=#{cId} ),#{cId}, #{rContent}, #{rDate}, #{rTime}, #{rName}, #{rTel});
+            (select p_num from pet where p_name=#{pName} and c_id=#{cId} ),#{cId}, #{rContent}, #{rDate}, #{rTime}, #{rName}, #{rTel})
 	</insert>
 
 	<select id="reservationTime" resultType="map">
 		select count(r_time) 
 			from reservation 
-		where r_date=#{date} order by r_time asc;
+		where r_date=#{date} order by r_time asc
 	</select>
 	
 	<select id="reservationCount" resultType="map">
 		select r_time, count(*) 
 			from reservation 
 		where m_id=#{mId} and 
-				r_date =#{rDate} group by r_time;
+				r_date =#{rDate} group by r_time
 	</select>
 	
 	<select id="peopleCount" resultType="map">
 		select count(*) 
 			from reservation 
 		where m_id=#{mId} 
-				and r_date = #{rDate} and r_time = #{rTime};
+				and r_date = #{rDate} and r_time = #{rTime}
+	</select>
+	
+	<select id="mediSelectList" resultType="map">
+	<![CDATA[
+		SELECT *
+   			FROM (
+      				SELECT format(@rownum:= @rownum+1, 0) as RN, A.* 
+         				FROM (
+               				SELECT * 
+              					 FROM medi 
+                  					ORDER BY m_name ASC 
+               					) A, (select @rownum :=0,0) R
+         		) B
+		WHERE RN BETWEEN ${start} AND ${end}
+		]]>
 	</select>
 
 </mapper>
