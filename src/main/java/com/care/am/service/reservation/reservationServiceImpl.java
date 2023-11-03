@@ -25,9 +25,7 @@ public class reservationServiceImpl implements reservationService {
 		listmap = rm.reservationList(cId);
 		try {
 			for (int i = 0; i <= listmap.size(); i++) {
-
-				Map<String, String> map = new HashMap<String, String>();
-
+				
 				listmap.get(i).put("year", listmap.get(i).get("r_date").split("-")[0]);
 				listmap.get(i).put("month", listmap.get(i).get("r_date").split("-")[1]);
 				listmap.get(i).put("day", listmap.get(i).get("r_date").split("-")[2]);
@@ -53,7 +51,7 @@ public class reservationServiceImpl implements reservationService {
 		mediInfo.put("m_addr", addr1+" "+addr2);
 		return mediInfo;
 	}
-	
+
 	public List<String> mediTime(String mediId){ //병원 time 가져오기
 		Map<String, Object> mediTime = rm.mediTime(mediId);
 		

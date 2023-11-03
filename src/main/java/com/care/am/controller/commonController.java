@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,7 @@ public class commonController {
 	
 	@Autowired customerService cs;
 	@Autowired mediService ms;
+	@Autowired JavaMailSender mailSender;
 	
 	@GetMapping("/") //메인 홈페이지
 	public String main() {

@@ -21,7 +21,6 @@ public class reservationController {
 
 	@Autowired reservationService rs;
 	
-	
 	//병원 예약 관련(손님 기준)
 	@GetMapping("reservation") //병원 예약 기본 페이지
 	public String reservation(Model model, reservationPagination pag
@@ -38,7 +37,6 @@ public class reservationController {
     	} else if (cntPerPage == null) { 
     		cntPerPage = "10";
     	}
-
     	
     	pag = new reservationPagination(mediCnt, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
     	model.addAttribute("paging", pag);
@@ -54,8 +52,8 @@ public class reservationController {
 	}
 
 	@PostMapping("reservationForm/page") //병원 예약 페이지
-	public String reservationFormPage(@RequestParam String mediId, Model model, HttpSession session) {
-
+	public String reservationFormPage(@RequestParam String mediId, Model model, HttpSession session ) {
+		
 		//선택된 병원
 		model.addAttribute("mediInfo", rs.mediInfo(mediId));
 
@@ -137,5 +135,4 @@ public class reservationController {
 		return rs.reservationCount(map);
 	}
 
-	
 }

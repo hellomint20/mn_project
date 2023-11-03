@@ -14,8 +14,30 @@
 <body>
 	<%@ include file="/WEB-INF/views/am/default/header_reservationPage.jsp"%>
 
-
 	<script type="text/javascript">
+
+    function filter(){
+
+        var value, name, item, i;
+
+        value = document.getElementById("mediSearch").value.toUpperCase(); //검색창
+        item = document.getElementsByClassName("listTr"); //병원 이름 부분
+        
+        console.log(document.getElementById("mediSearch").value)
+        
+        if(!document.getElementById("mediSearch").value){
+        	location.reload();
+        }
+		
+        for(i=0;i<item.length;i++){
+          name = item[i].getElementsByClassName("listBtn");
+          if(name[0].innerHTML.toUpperCase().indexOf(value) > -1){
+              item[i].style.display = "";
+            }else{
+              item[i].style.display = "none";
+            }
+        }
+      }
 	
 	function detailView(mediId) {
 		console.log(mediId);	
@@ -34,7 +56,6 @@
 				document.getElementById("mediTime").innerHTML = mediInfo['open_time']+" - "+mediInfo['close_time'];
 				document.getElementById("mediTel").innerHTML = mediInfo['m_tel'];
 				document.getElementById("mId").value =  mediInfo['m_id']
-
 			},
 			error : () => {
 				console.log("문제 발생")
@@ -55,12 +76,12 @@
 	}
 	</script>
 
-
 	<div id="searchDiv">
 		<div id="reservationSearchWindow">
-			<input class="reservationSearch" type="text"
-				placeholder="예약할 병원 이름 검색"> <a href="#"> <img
-				src="/am/resources/img/searchIcon.png" width="25px" height="25px"></a>
+			<input class="reservationSearch" id="mediSearch" type="text"
+				placeholder="예약할 병원 이름 검색"> <a id="mediSearch"
+				onclick="filter()"><img src="/am/resources/img/searchIcon.png"
+				width="25px" height="25px"></a>
 		</div>
 	</div>
 	<div id="tableDiv">
@@ -74,53 +95,42 @@
 						</tr>
 						<c:forEach items="${viewAll }" var="list">
 							<tr>
-								<td>${list.RN} </td>
-								
-								<td id="mediList"><button class="listBtn" type="button"
-										onclick="detailView('${list['m_id']}')">${list['m_name']}</button></td>
+								<td>${list.RN}</td>
+								<td id="mediList"><button class="listBtn" type="button"	onclick="detailView('${list['m_id']}')">${list['m_name']}</button></td>
 							</tr>
 						</c:forEach>
 					</table>
 					<br>
-
-					<div style="display: block; text-align: center; margin-top:20px;">
+					<div style="display: block; text-align: center; margin-top: 20px;">
 						<c:if test="${paging.startPage != 1 }">
-							<a
-								href="/am/reservation?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+							<a href="/am/reservation?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
 						</c:if>
-						<c:forEach begin="${paging.startPage }" end="${paging.endPage }"
-							var="p">
+						<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
 							<c:choose>
 								<c:when test="${p == paging.nowPage }">
 									<b>${p }</b>
 								</c:when>
 								<c:when test="${p != paging.nowPage }">
-									<a
-										href="/am/reservation?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+									<a href="/am/reservation?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
 								</c:when>
 							</c:choose>
 						</c:forEach>
 						<c:if test="${paging.endPage != paging.lastPage}">
-							<a
-								href="/am/reservation?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
+							<a href="/am/reservation?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
 						</c:if>
 					</div>
 				</div>
-
-
 				<div id="detailDiv" style="display: none;">
 					<table class="reservationDetail">
 						<tr>
-							<td colspan="2" class="Xcla"><button id="X" type="button"
-									onclick="Xclose()">X</button></td>
+							<td colspan="2" class="Xcla"><button id="X" type="button" onclick="Xclose()">X</button></td>
 						</tr>
 						<tr>
 							<td class="detailTd" colspan="2" id="mediDetail"></td>
 						</tr>
 						<tr>
-							<td class="detailTd" colspan="2" id="mediPhoto"><img
-								src="/am/resources/img/common/default.jpg" width="230px;"
-								height="200px;"></td>
+							<td class="detailTd" colspan="2" id="mediPhoto">
+							<img src="/am/resources/img/common/default.jpg" width="230px;" height="200px;"></td>
 						</tr>
 						<tr>
 							<td class="detailTd">이름</td>
@@ -151,6 +161,5 @@
 			</div>
 		</div>
 	</div>
-
 </body>
 </html>
