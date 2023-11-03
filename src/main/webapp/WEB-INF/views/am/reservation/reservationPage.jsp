@@ -13,9 +13,31 @@
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/am/default/header_reservationPage.jsp"%>
-
-
+	
 	<script type="text/javascript">
+
+    function filter(){
+
+        var value, name, item, i;
+
+        value = document.getElementById("mediSearch").value.toUpperCase(); //검색창
+        item = document.getElementsByClassName("listTr"); //병원 이름 부분
+        
+        console.log(document.getElementById("mediSearch").value)
+        
+        if(!document.getElementById("mediSearch").value){
+        	location.reload();
+        }
+		
+        for(i=0;i<item.length;i++){
+          name = item[i].getElementsByClassName("listBtn");
+          if(name[0].innerHTML.toUpperCase().indexOf(value) > -1){
+              item[i].style.display = "";
+            }else{
+              item[i].style.display = "none";
+            }
+        }
+      }
 	
 	function detailView(mediId) {
 		console.log(mediId);	
@@ -53,9 +75,8 @@
 
 	<div id="searchDiv">
 		<div id="reservationSearchWindow">
-			<input class="reservationSearch" type="text"
-				placeholder="예약할 병원 이름 검색"> <a href="#"><img
-				src="/am/resources/img/searchIcon.png" width="25px" height="25px"></a>
+			<input class="reservationSearch" id="mediSearch" type="text" placeholder="예약할 병원 이름 검색"> 
+			<a id="mediSearch" onclick="filter()"><img src="/am/resources/img/searchIcon.png" width="25px" height="25px"></a>
 		</div>
 	</div>
 	<div id="tableDiv">
@@ -69,8 +90,8 @@
 						<c:forEach var="list" items="${list}">
 							<c:set var="i" value="${i+1 }" />
 							<tr class="listTr">
-								<td>${i }</td>
-								<td id="mediList"><button class="listBtn" type="button" onclick="detailView('${list['m_id']}')">${list['m_name']}</button></td>
+								<td class="listTd">${i }</td>
+								<td id="mediList"><button class="listBtn" type="button" onclick="detailView('${list['m_id']}')" style="width: 100px;">${list['m_name']}</button></td>
 							</tr>
 							
 						</c:forEach>

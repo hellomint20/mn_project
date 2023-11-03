@@ -1,5 +1,6 @@
 package com.care.am.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -8,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +29,7 @@ public class reservationController {
 	@GetMapping("reservation") //병원 예약 기본 페이지
 	public String reservation(Model model) {
 		model.addAttribute("list", rs.mediList()); //medi List 가져오기
+		
 		return "am/reservation/reservationPage";
 	}
 	
@@ -39,8 +40,8 @@ public class reservationController {
 	}
 
 	@PostMapping("reservationForm/page") //병원 예약 페이지
-	public String reservationFormPage(@RequestParam String mediId, Model model, HttpSession session) {
-
+	public String reservationFormPage(@RequestParam String mediId, Model model, HttpSession session ) {
+		
 		//선택된 병원
 		model.addAttribute("mediInfo", rs.mediInfo(mediId));
 

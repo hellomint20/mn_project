@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 import com.care.am.dto.mediDTO;
 import com.care.am.dto.petDTO;
-import com.care.am.dto.reservationDTO;
 
 public interface reservationService {
 	public List<Map<String, mediDTO>> mediList(); //병원 리스트

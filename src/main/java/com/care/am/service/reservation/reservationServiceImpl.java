@@ -51,7 +51,7 @@ public class reservationServiceImpl implements reservationService {
 		mediInfo.put("m_addr", addr1+" "+addr2);
 		return mediInfo;
 	}
-	
+
 	public List<String> mediTime(String mediId){ //병원 time 가져오기
 		Map<String, Object> mediTime = rm.mediTime(mediId);
 		
