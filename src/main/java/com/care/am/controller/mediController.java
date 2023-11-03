@@ -20,7 +20,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.care.am.common.LoginSession;
-import com.care.am.dto.customerDTO;
 import com.care.am.dto.mediDTO;
 import com.care.am.service.medi.mediService;
 
