@@ -7,6 +7,13 @@
 <meta charset="UTF-8">
 <title>보호자 예약확인</title>
 		<link rel="stylesheet" href="/am/css/reservation/c_reservation.css">
+		
+<script type="text/javascript">
+function selChange() {
+	var sel = document.getElementById('cntPerPage').value;
+	location.href="reservationList?id=${userId}&nowPage=${paging.nowPage}&cntPerPage="+sel;
+}
+</script>
 </head>
 <body>
 	<%@ include file = "../default/header_page.jsp" %>
@@ -35,7 +42,8 @@
 					</div>
 					</c:when>
 					<c:when test="${list.size()!=0 }">
-						<c:forEach var="list" items="${list}" > 
+					
+						<c:forEach items="${viewAll }" var="list" > 
 						<div class= "listbox">
 							<div class="r_date">${list.year}년 ${list.month}월 ${list.day}일</div>
 							<div class="r_time">${list.hour	}시 ${list.min}분</div>
@@ -49,6 +57,28 @@
 				</c:choose>
 			</div>
 		</div>
+		<div style="display: block; text-align: center; margin-top:20px;">
+						<c:if test="${paging.startPage != 1 }">
+							<a class="pageLink"
+								href="/am/reservationList?id=${userId}&nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+						</c:if>
+						<c:forEach begin="${paging.startPage }" end="${paging.endPage }"
+							var="p">
+							<c:choose>
+								<c:when test="${p == paging.nowPage }">
+									<b>${p }</b>
+								</c:when>
+								<c:when test="${p != paging.nowPage }">
+									<a class="pageLink"
+										href="/am/reservationList?id=${userId}&nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+								</c:when>
+							</c:choose>
+						</c:forEach>
+						<c:if test="${paging.endPage != paging.lastPage}">
+							<a class="pageLink"
+								href="/am/reservationList?id=${userId}&nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
+						</c:if>
+					</div>
 	</div>
 </body>
 </html>

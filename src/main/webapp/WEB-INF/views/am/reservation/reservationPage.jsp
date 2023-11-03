@@ -72,7 +72,7 @@
 							<th>번호</th>
 							<th>병원명</th>
 						</tr>
-						<c:forEach items="${viewAll }" var="list" varStatus="status">
+						<c:forEach items="${viewAll }" var="list">
 							<tr>
 								<td>${list.RN} </td>
 								
