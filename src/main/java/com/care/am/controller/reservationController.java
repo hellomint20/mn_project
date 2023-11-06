@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.care.am.common.LoginSession;
+import com.care.am.page.customerPagination;
 import com.care.am.page.reservationPagination;
 import com.care.am.service.reservation.reservationService;
 
@@ -82,9 +83,33 @@ public class reservationController {
 		return Integer.toString(result);
 	}
 	
+
 	@GetMapping("reservationList") //손님 예약 리스트
-	public String reservationList(@RequestParam String id, Model model) {
+	public String reservationList(@RequestParam String id, Model model, customerPagination pag
+			, @RequestParam(value="nowPage", required=false)String nowPage
+			, @RequestParam(value="cntPerPage", required=false)String cntPerPage) {
+		
 		model.addAttribute("list",rs.reservationList(id));
+		
+		int customerCnt = rs.reservationList(id).size();  // 전체 병원 갯수
+		
+		System.out.println(customerCnt);
+	     
+    	if (nowPage == null && cntPerPage == null) { 
+    		nowPage = "1";
+    		cntPerPage = "4";  // 한 페이지에 노출되는 글 갯수
+    	} else if (nowPage == null) {
+    		nowPage = "1";
+    	} else if (cntPerPage == null) { 
+    		cntPerPage = "4";
+    	}
+    	
+    	pag = new customerPagination(customerCnt, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+    	
+    	System.out.println("pag" + pag);
+    	model.addAttribute("paging", pag);
+    	model.addAttribute("viewAll", rs.customerResList(id, pag));
+		
 		return "am/reservation/reservationList";
 	}
 	

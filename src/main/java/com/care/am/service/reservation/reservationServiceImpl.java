@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.care.am.dto.mediDTO;
 import com.care.am.dto.petDTO;
 import com.care.am.mapper.reservationMapper;
+import com.care.am.page.customerPagination;
 import com.care.am.page.reservationPagination;
 
 @Service
@@ -124,5 +125,33 @@ public class reservationServiceImpl implements reservationService {
 	@Override
 	public List<Map<String, String>> mediSelectList(reservationPagination pag) {
 		return rm.mediSelectList(pag);
+	}
+
+	@Override
+	public List<Map<String, String>> customerResList( String id, customerPagination pag) {
+		
+		String start = pag.getStart()+"";
+		String end = pag.getEnd()+"";
+		
+		List<Map<String, String>> listmap = new ArrayList<Map<String, String>>();
+		listmap = rm.customerResList(id,start, end );
+		try {
+			for (int i = 0; i <= listmap.size(); i++) {
+
+				Map<String, String> map = new HashMap<String, String>();
+
+				listmap.get(i).put("year", listmap.get(i).get("r_date").split("-")[0]);
+				listmap.get(i).put("month", listmap.get(i).get("r_date").split("-")[1]);
+				listmap.get(i).put("day", listmap.get(i).get("r_date").split("-")[2]);
+
+				listmap.get(i).put("hour", listmap.get(i).get("r_time").split("-")[0]);
+				listmap.get(i).put("min", listmap.get(i).get("r_time").split("-")[1]);
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return listmap;
 	}
 }

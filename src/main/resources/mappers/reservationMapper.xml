@@ -21,6 +21,22 @@
 		join medi ON reservation.m_id = medi.m_id
 		join pet ON reservation.p_num = pet.p_num where reservation.c_id=#{cId} order by reservation.r_date asc, reservation.r_time asc 
 	</select>
+	
+	<select id="customerResList" resultType="map">
+		SELECT *
+			FROM (
+				SELECT format(@rownum:= @rownum+1, 0) as RN, A.*
+					FROM (
+						select reservation.r_date, reservation.r_time, pet.p_name, medi.m_name,
+								reservation.r_apply, reservation.r_content
+									from reservation
+											join medi ON reservation.m_id = medi.m_id
+											join pet ON reservation.p_num = pet.p_num where reservation.c_id=#{id} order
+											by reservation.r_date asc, reservation.r_time asc
+							) A, (select @rownum :=0,0) R
+				) B
+		WHERE RN BETWEEN ${start} AND ${end}
+	</select> 
 
 	<select id="mediList" resultType="map">
 		select * from medi
