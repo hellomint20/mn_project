@@ -167,6 +167,8 @@
 	    }
 	    return value;
 	}
+	
+	
 
 	function reservationPopup(){ //예약 확인 팝업에 띄울 데이터 
 
@@ -194,8 +196,47 @@
 			alert("예약 시간을 선택해주세요"); //시간 선택 안했을 때
 			return false;
 		}
-		window.open('/am/reservationPopup','pop','width=800, height=600');
+		
+		let checkDay = $("#calYear").text()+"-"+$("#calMonth").text()+"-";
+		let pName = $("#pName option:selected").text();
+		
+		if ($(".futureDay.choiceDay").val() == undefined){ //선택된 날짜가 오늘 이후가 아니라면
+			checkDay += $(".today.choiceDay").text();
+		}else{
+			checkDay += $(".futureDay.choiceDay").text();
+		}
+
+		let form = {}
+		form['mId'] = document.getElementById("mId").value
+		form['pName'] = pName;
+		form['rDate'] = checkDay;
+		form['rTime'] = $("input[name=vbtn-radio]:radio:checked").val()
+		console.log(form)
+		
+		
+		$.ajax({
+			url : "/am/reservationCheck", type : "post",
+			data : JSON.stringify(form),
+			contentType : "application/json; charset=utf-8",
+			success : (size) => {
+				console.log("성공");
+				if(size == "1"){
+					alert("이미 예약 하신 시간입니다");
+					window.location.href="/am/reservationPage?id="+${userId}
+				}else{
+					window.open('/am/reservationPopup','pop','width=800, height=600');
+				}
+			},
+			error : () => {
+				console.log("문제 발생");
+			}
+		}) 
+		
+		
+		
 	}
+	
+	
 	
 	 const hypenAdd = (target) => {
 		 target.value = target.value

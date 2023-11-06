@@ -17,4 +17,5 @@ public interface reservationService {
 	public List<Map<String, String>> reservationList(String id);
 	public List<Map<String, String>> mediSelectList(reservationPagination pag);
 	public List<Map<String, String>> customerResList( String id, customerPagination pag);
+	public Map<String, String> reservationCheck(Map<String, String> map);
 }

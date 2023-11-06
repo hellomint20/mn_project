@@ -134,5 +134,17 @@ public class reservationController {
 	public Map<String, String> reservationCount(@RequestBody Map<String, Object> map) {
 		return rs.reservationCount(map);
 	}
+	
+	@ResponseBody
+	@PostMapping("reservationCheck")
+	public String reservationCheck(HttpSession session, @RequestBody Map<String, String> map ) {
+		String size = "";
+		
+		if(rs.reservationCheck(map) != null) {
+			size = "1";
+		} 
+		
+		return size;
+	}
 
 }
