@@ -13,8 +13,12 @@ public interface mediService {
 	public Map<String, Object> getMedi(String id);
 	public String mediModify(mediDTO dto, MultipartFile fileName, String[] addr);
 	public mediDTO getMediSessionId(String mSession);
+	public String mediSearchId(String inputName, String inputTel);
+	public mediDTO mediSearchPw(String inputId, String inputName, String inputTel);
+	public String mediNewPwd(String newPw, String id);
 	public String mediPwdChk(String id, String pw);
 	public String mediPwdChg(mediDTO dto,String pw, String newPw);
+	public String mediDelete(mediDTO dto, String pw);
 }
 	
 

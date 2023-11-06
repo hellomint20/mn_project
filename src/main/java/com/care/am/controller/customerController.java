@@ -1,5 +1,6 @@
 package com.care.am.controller;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.http.Cookie;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,9 +22,10 @@ import com.care.am.dto.customerDTO;
 import com.care.am.service.customer.customerService;
 
 @Controller
-public class customerController {
+public class customerController{
 	
 	@Autowired customerService cs;
+	
 	
 	//로그인 관련
 	@GetMapping("customerRegister") //손님 회원가입 페이지
@@ -44,23 +47,33 @@ public class customerController {
 	}
 	
 	@PostMapping("customerLogin") //손님 로그인 확인
-	public String loginChk(HttpSession session, 
-						@RequestParam String id, 
+	public String loginChk(@RequestParam String id, 
 						@RequestParam String pw,
 						@RequestParam(required=false, defaultValue="off")String autoLogin,
 						RedirectAttributes rs,
 						HttpServletResponse res) throws Exception {
 		
 		int result = cs.logChk(id,pw);
-		if(result == 0) {
+		if(result == 1) {
 			rs.addAttribute("id",id);
 			rs.addAttribute("autoLogin",autoLogin); // console창에 autoLogin 상태 띄어줌
+			
 			return "redirect:successLogin";
+		}else {
+			res.setContentType("text/html; charset=UTF-8");
+            PrintWriter out = null;
+            try {
+                out = res.getWriter();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            out.println("<script>alert('아이디나 비밀번호가 틀렸습니다.'); history.back();</script>");
+            out.flush();
+            return "redirect:customerLogin";
 		}
-		return "redirect:customerLogin";
 	}
 	
-	@RequestMapping("successLogin")
+	@RequestMapping("successLogin") //로그인성공시
 	public String successLogin(@RequestParam String id, 
 								@RequestParam String autoLogin,
 								HttpSession session,
@@ -74,16 +87,65 @@ public class customerController {
 			loginCookie.setMaxAge(limitTime);
 			res.addCookie(loginCookie);
 			cs.keepLogin(session.getId(),id);
-			
 		}
 		session.setAttribute(LoginSession.cLOGIN, id); // 체크안했으면 그냥 세션만 만들어줘
+		System.out.println("세션값"+LoginSession.cLOGIN);
+		System.out.println("세션값:22"+session.getAttribute(LoginSession.cLOGIN));
 		return "redirect:/";
 		
 	}
 	@GetMapping("customerSearchIdPw") //아이디/비밀번호 찾기 페이지
-	public String SearchIdPw() {
+	public String searchIdPw() {
 		return "am/customer/customerSearchIdPw";
 	}
+	
+	
+	@RequestMapping("customerSearchId") // 아이디찾기
+	public String customerSearchId( @RequestParam String inputName, 
+									@RequestParam String inputEmail,
+						 Model model,HttpServletResponse res) {
+		String cId = cs.customerSearchId(inputName, inputEmail);
+		if(cId.length() >= 1) {
+			model.addAttribute("id",cId);
+			return "am/customer/customerSearchId";
+		}
+		else {
+			PrintWriter out = null;
+            try {
+                out = res.getWriter();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            out.println("<script>alert('정보가 일치하지 않습니다.');</script>");
+            out.flush();
+            return "am/customer/customerSearchIdPw";
+		}
+	}	
+	@PostMapping("customerSearchPw") // 비밀번호 찾기
+	public String customerSearchPw(@RequestParam String inputId, 
+								@RequestParam String inputName, 
+								@RequestParam String inputTel,HttpServletResponse res) {
+		customerDTO dto = cs.customerSearchPw(inputId,inputName,inputTel);
+		String tempPwd ="";
+		if(dto !=null) {
+			tempPwd = cs.makeRandomPw();
+			int result = cs.customerPwChg(tempPwd,dto);
+			if(result ==1) {
+				String toMail = dto.getcEmail();
+				String content = tempPwd;
+				return "redirect:/customerSearchPw/"+"mong_jini@naver.com"+"/"+content+"/";
+			}
+			System.out.println(tempPwd);
+		}
+		return "redirect:/customerSearchIdPw";
+		
+	}
+	
+	@GetMapping("customerSearchPw")
+	public String customerSearchPw() {
+		return "am/customer/customerSearchPw";
+	}
+	
 	
 	//손님정보 관련
 	@GetMapping("customerInfo") //손님 개인정보 페이지
@@ -94,6 +156,42 @@ public class customerController {
 		return "am/customer/customerInfo";
 	}
 	
+	@GetMapping("customerPwdChk") // 비밀번호 확인페이지
+	public String customerPwdChk(@RequestParam String id) {
+		return "am/customer/customerPwdChk";
+	}
+	
+	@PostMapping("customerPwdChk") // 비밀번호 확인
+	public void customerPwdChk(@RequestParam String id,@RequestParam String pw, HttpServletResponse res) {
+		String msg ="";
+		msg= cs.customerPwdChk(id,pw);
+		res.setContentType("text/html; charset=utf-8");
+	    PrintWriter out = null;
+		try {
+			out = res.getWriter();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	    out.print( msg );
+	}
+	
+	@GetMapping("customerPwdChg") // 비밀번호 변경 페이지
+	public String customerPwdChg(@RequestParam String id) {
+		return "am/customer/customerPwdChg";
+	}
+
+	@PostMapping("customerPwdChg") // 비밀번호 변경
+	public void customerPwdChg(customerDTO dto, HttpServletResponse res,
+								@RequestParam String pw,
+								@RequestParam String newPw) throws Exception {
+		String msg="";
+		msg = cs.customerPwdChg(dto,pw,newPw);
+		res.setContentType("text/html; charset=utf-8");
+	    PrintWriter out = res.getWriter();
+	    out.print( msg );
+		
+	}
+	
 	@GetMapping("customerModify") //손님 개인정보 수정 페이지
 	public String modify(@RequestParam String id,Model model) {
 		customerDTO dto = cs.getCustomerInfo(id);
@@ -102,13 +200,16 @@ public class customerController {
 	}
 	
 	@PostMapping("customerModify") //손님 개인정보 수정 적용
-	public void modify(customerDTO dto, 
-			HttpServletResponse res, Model model) throws Exception {
+	public void modify(customerDTO dto, HttpServletResponse res ){
 			String msg="";
-			model.addAttribute("dto", dto);	
 			msg = cs.customerModify(dto);
 		    res.setContentType("text/html; charset=utf-8");
-		    PrintWriter out = res.getWriter();
+		    PrintWriter out = null;
+		    try {
+				out = res.getWriter();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		    out.print( msg );
 	}
 	
@@ -118,7 +219,22 @@ public class customerController {
 	}
 	
 	@PostMapping("customerDelete") //손님 탈퇴
-	public void delete(String id, String pw) {
-		// 매개변수 임의로 넣어 둠
+	public void delete(HttpSession session, @CookieValue(value="loginCookie",required=false)Cookie cookie,
+			customerDTO dto,@RequestParam String pw, HttpServletResponse res) {
+		String msg ="";
+		if(cookie != null) {
+			cookie.setMaxAge(0);
+		}
+		session.removeAttribute(LoginSession.cLOGIN);
+		session.invalidate();
+		msg= cs.customerDelete(dto,pw);
+		res.setContentType("text/html; charset=utf-8");
+	    PrintWriter out = null;
+		try {
+			out = res.getWriter();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	    out.print( msg );
 	}
 }

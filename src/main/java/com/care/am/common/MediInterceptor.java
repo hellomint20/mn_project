@@ -22,7 +22,7 @@ public class MediInterceptor extends HandlerInterceptorAdapter implements LoginS
          response.setContentType("text/html; charset=UTF-8");
          PrintWriter out = response.getWriter();
          out.print("<script>alert('로그인 먼저 해주세요');"
-        		 +"location.href='/am/mediLogin';</script>");
+        		 +"location.href='/am';</script>");
       
          return false;
       }

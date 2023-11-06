@@ -34,7 +34,8 @@
 	  		</div>
 		</div>
 	   
-	    <button type="button" class="b" onclick="location.href='/am/customerModify?id=${userId}'">수정</button>
+	    <button type="button" class="b" onclick="location.href='/am/customerPwdChk?id=${userId}'">수정</button>
+	    <button type="button" class="b2" onclick="location.href='/am/customerPwdChg?id=${userId}'">비밀번호 변경</button>
 	</div>
 	
 </body>

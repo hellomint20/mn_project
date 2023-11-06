@@ -20,7 +20,8 @@
 }
 
 #keyword{
-	width: 200px;
+	margin-left: 19px;
+	width: 215px;
 	font-size: 20px;
 	border: 3px solid #3F4F78;
 }
@@ -28,19 +29,20 @@
 button.re {
 	color: #fff;
 	border-radius: 5px;
-	padding: 7px 12.5px;
+	padding: 4px 12.5px 1px 12.5px;
 	font-weight: 500;
 	cursor: pointer;
 	transition: all 0.3s ease;
 	position: relative;
 	display: inline-block;
-	box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5), 7px 7px 20px
-		0px rgba(0, 0, 0, .1), 4px 4px 5px 0px rgba(0, 0, 0, .1);
+	box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5), 1px 1px 1px
+		0px rgba(0, 0, 0, .1), 1px 1px 1px 0px rgba(0, 0, 0, .1);
 	outline: none;
 	background: linear-gradient(0deg, #1b4c68 0%, #1b4c68 100%);
 	border: none;
 	height: 40px;
 }
+
 button.re:hover {
 	background: linear-gradient(0deg, #73b4db 0%, #73b4db 100%);
 	opacity: 0.8;

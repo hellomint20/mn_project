@@ -122,14 +122,19 @@ td {
 	margin-left: 20px;
 }
 
-#name {
+#rName {
 	margin-top: 50px;
 	height: 35px;
 }
 
-#phone {
+#rTel {
 	height: 35px;
 }
+#reservationTime{
+	width: 100px; 
+	margin-bottom: 10px;
+}
+
 
 .box-container-bottom {
 	margin: 0 0 50px 600px;
@@ -168,7 +173,7 @@ td {
 	width: 350px;
 	font-size: 20px;
 	line-height: 40px;
-	margin-left: 80px;
+	margin-left: 25%;
 }
 
 .info-title {
@@ -185,7 +190,7 @@ td {
 	margin: 20px 0 0 190px;
 }
 
-#btn-close {
+#reservationBtn {
 	width: 130px;
 	height: 40px;
 	color: #fff;

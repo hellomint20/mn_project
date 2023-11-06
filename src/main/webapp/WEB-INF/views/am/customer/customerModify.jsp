@@ -6,7 +6,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 	<link rel="stylesheet" href="/am/css/customer/modi.css">
-
+<script>
+  const hypenAdd = (target) => {
+	 target.value = target.value
+    .replace(/[^0-9]/g, '')
+   .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
+}
+</script>
 </head>
 <body>
 	<%@ include file = "../default/header_page.jsp" %>
@@ -21,18 +27,16 @@
 		<div class="info">
 			<div class="info-title">
 	    		아이디 : <br>
-	    		비밀번호 : <br>
 	    		이름 : <br>
 	    		전화번호 :<br>
 	    		e-mail : <br>
 			</div>
 			
 			<div class="info-content">
-		   		<input type="text" id="t_b" name="c_id" value="${dto.cId}" readonly ><br>
-		   		<input type="password" id="t_b" name="c_pw" value="비밀번호수정"><br>
-		   		<input type="text" id="t_b" name="c_name" value="${dto.cName}"><br>
-		   		<input type="text" id="t_b" name="c_tel" value="${dto.cTel}"><br>
-		   		<input type="text" id="t_b" name="c_email" value="${dto.cEmail}"><br>
+		   		<input type="text" id="t_b" name="cId" value="${userId}" readonly ><br>
+		   		<input type="text" id="t_b" name="cName" value="${dto.cName}" required><br>
+		   		<input type="text" id="t_b" name="cTel"  oninput="hypenAdd(this)" maxlength="13" value="${dto.cTel}" required><br>
+		   		<input type="text" id="t_b" name="cEmail" value="${dto.cEmail}" required><br>
 		   	</div>
 		</div>
 	    

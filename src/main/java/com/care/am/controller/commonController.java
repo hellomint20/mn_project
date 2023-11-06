@@ -52,5 +52,4 @@ public class commonController {
 	
 		return "redirect:/";
 	}
-
 }

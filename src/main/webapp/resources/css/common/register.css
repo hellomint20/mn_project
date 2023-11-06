@@ -20,7 +20,11 @@ img{
 	margin-bottom: 10px;
 }
 
-#btn btn-dark{
-	font-size:10px;
+.post-btn{
+	background:white;
+	border-color:#0B1F54;
+	border-radius: 4px;
+	font-size:13px;
+	margin: 5px 0 0 -10px;
 }
 

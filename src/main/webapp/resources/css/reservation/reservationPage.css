@@ -47,7 +47,7 @@ table.listTable{
 }
 #detailDiv{
 	display: inline-block;
-	width : 40%;
+	width : 60%;
 	height: 615px;
 	border: 2px solid black;
 	text-align: center;
@@ -112,6 +112,15 @@ tr.trCla{
 button.listBtn {
 	border: none;
 	background: none;
+}
+
+table#reservationDetail td{
+	width:20px;
+}
+
+td.detailnameTd{
+	padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 

@@ -17,14 +17,13 @@
 <body>
 	<div class="all">
 		<div class="all_title">
-			<strong>병원 정보</strong>
+			<strong>${info.dto.mName }</strong>
 			<p>${info.dto.mName } 정보입니다</p>
 		</div>
 		<div class="info">
 			<div class="info-title">
 		    		아이디 : <br>
-		    		병원이름 : <br>
-		    		주소 : <br><br><br>
+		    		주소 : <br><br>
 		    		전화번호 :<br>
 		    		영업시간 : <br>
 		    		점심시간 : <br>
@@ -32,10 +31,8 @@
 
 	  		<div class="info-content" id="addr">
 	  			${info.dto.mId }<br>
-	  			${info.dto.mName }<br>
-	  			${info.addr1 } <br>
 	  			${info.addr2 } <br>
-	  			${info.addr3 } <br>
+	  			${info.addr3 } ( ${info.addr1 } )<br>
 	  			${info.dto.mTel }<br>
 	  			${info.dto.openTime } - ${info.dto.closeTime }<br>
 	  			${info.dto.lunchStartTime} - ${info.dto.lunchEndTime } <br>
