@@ -68,18 +68,16 @@ a{
 #waitTable{
 	margin-bottom: 40px;
 }
-
-
-.page{
-	margin-left: 300px;
-	padding-bottom: 40px;
-}
-.page-link{
-	color: #0B1F54;
-}
 #ACTable{
 	margin-bottom: 40px;
 }
+.acPage{
+	margin-left: 340px;
+}
+.waitPage{
+	margin-left: 340px;
+}
+
 
 
 
