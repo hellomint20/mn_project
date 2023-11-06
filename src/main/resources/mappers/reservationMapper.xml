@@ -104,7 +104,6 @@
 		update reservation set r_apply=#{apply} where r_num=#{num}
 	</update>
 
->>>>>>> 66da799e7c961043630e90838ad9c57544d6df16
 
 	<select id="mediReservationList" resultType="map">
 		select

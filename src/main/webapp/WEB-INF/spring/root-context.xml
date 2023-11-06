@@ -16,8 +16,8 @@
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 	   <property name="driverClassName" value="com.mysql.jdbc.Driver" />
 	   <property name="jdbcUrl" value="jdbc:mysql://192.168.0.32:3306/mn_test" />
-	   <property name="username" value="myung" />
-	   <property name="password" value="wlsgml00!@" />
+	   <property name="username" value="choi" />
+	   <property name="password" value="wodus00!@" />
 	</bean>
 	
 	<!-- hikariConfig를 설정된 값을 토대로 DB에 연결된 bean얻어옴 -->
