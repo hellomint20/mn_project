@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,14 +14,36 @@
 <body>
 	<%@ include file="/WEB-INF/views/am/default/header_reservationPage.jsp"%>
 
-
 	<script type="text/javascript">
+
+    function filter(){
+
+        var value, name, item, i;
+
+        value = document.getElementById("mediSearch").value.toUpperCase(); //검색창
+        item = document.getElementsByClassName("listTr"); //병원 이름 부분
+        
+        console.log(document.getElementById("mediSearch").value)
+        
+        if(!document.getElementById("mediSearch").value){
+        	location.reload();
+        }
+		
+        for(i=0;i<item.length;i++){
+          name = item[i].getElementsByClassName("listBtn");
+          if(name[0].innerHTML.toUpperCase().indexOf(value) > -1){
+              item[i].style.display = "";
+            }else{
+              item[i].style.display = "none";
+            }
+        }
+      }
 	
-	function detailView(mediName) {
-		console.log(mediName);	
+	function detailView(mediId) {
+		console.log(mediId);	
 		$.ajax({
 			url : "reservation/mediInfo", type : "post",
-			data : mediName,
+			data : mediId,
 			contentType : "application/json; charset=utf-8",
 			success : (mediInfo) => {
 				console.log("통신 성공")
@@ -33,6 +55,7 @@
 				document.getElementById("mediAddr").innerHTML = mediInfo['m_addr'];
 				document.getElementById("mediTime").innerHTML = mediInfo['open_time']+" - "+mediInfo['close_time'];
 				document.getElementById("mediTel").innerHTML = mediInfo['m_tel'];
+				document.getElementById("mId").value =  mediInfo['m_id']
 			},
 			error : () => {
 				console.log("문제 발생")
@@ -42,24 +65,23 @@
 		$("#detailDiv").css("display", "block");
 	}
 	
-	function choiceMedi(){
-		console.log(document.getElementById("mediName").innerText)
-		let a = document.getElementById("mediName").innerText;
-		location.href = "/am/reservationForm/page/"+a
-	}
-	
 	function Xclose(){
 		console.log("X")
 		$("#detailDiv").css("display", "none");
 	}
+	
+	function selChange() {
+		var sel = document.getElementById('cntPerPage').value;
+		location.href="boardList?nowPage=${paging.nowPage}&cntPerPage="+sel;
+	}
 	</script>
-
 
 	<div id="searchDiv">
 		<div id="reservationSearchWindow">
-			<input class="reservationSearch" type="text"
-				placeholder="예약할 병원 이름 검색"> <a href="#"><img
-				src="/am/resources/img/searchIcon.png" width="25px" height="25px"></a>
+			<input class="reservationSearch" id="mediSearch" type="text"
+				placeholder="예약할 병원 이름 검색"> <a id="mediSearch"
+				onclick="filter()"><img src="/am/resources/img/searchIcon.png"
+				width="25px" height="25px"></a>
 		</div>
 	</div>
 	<div id="tableDiv">
@@ -68,33 +90,76 @@
 				<div id="listDiv">
 					<table class="listTable">
 						<tr class="trCla">
-							<th>번호</th><th>병원명</th>
+							<th>번호</th>
+							<th>병원명</th>
 						</tr>
-						<c:forEach var="list" items="${list}">
-							<c:set var="i" value="${i+1 }" />
-							<tr class="listTr">
-								<td>${i }</td>
-								<td id="mediList"><button class="listBtn" type="button" onclick="detailView('${list['m_name']}')">${list['m_name']}</button></td>
+						<c:forEach items="${viewAll }" var="list">
+							<tr>
+								<td>${list.RN}</td>
+								<td id="mediList"><button class="listBtn" type="button"	onclick="detailView('${list['m_id']}')">${list['m_name']}</button></td>
 							</tr>
 						</c:forEach>
 					</table>
+					<br>
+					<div style="display: block; text-align: center; margin-top: 20px;">
+						<c:if test="${paging.startPage != 1 }">
+							<a href="/am/reservation?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+						</c:if>
+						<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+							<c:choose>
+								<c:when test="${p == paging.nowPage }">
+									<b>${p }</b>
+								</c:when>
+								<c:when test="${p != paging.nowPage }">
+									<a href="/am/reservation?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+								</c:when>
+							</c:choose>
+						</c:forEach>
+						<c:if test="${paging.endPage != paging.lastPage}">
+							<a href="/am/reservation?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
+						</c:if>
+					</div>
 				</div>
-				
 				<div id="detailDiv" style="display: none;">
 					<table class="reservationDetail">
-						<tr><td colspan="2" class="Xcla"><button id="X" type="button" onclick="Xclose()" >X</button></td></tr>
-						<tr><td class="detailTd" colspan="2" id="mediDetail" ></td></tr>
-						<tr><td class="detailTd" colspan="2" id="mediPhoto" ><img src="/am/resources/img/common/default.jpg" width="230px;" height="200px;"></td></tr>
-						<tr><td class="detailTd">이름</td><td id="mediName"></td></tr>
-						<tr><td class="detailTd">주소</td><td id="mediAddr" ></td></tr>
-						<tr><td class="detailTd">영업시간</td><td id="mediTime" ></td></tr>
-						<tr><td class="detailTd">전화번호</td><td id="mediTel" ></td></tr>
-						<tr><td class="detailTd" colspan="2" id="reBtn"><button class="re" type="button" onclick="choiceMedi()">예약</button></td></tr>
-				</table>
+						<tr>
+							<td colspan="2" class="Xcla"><button id="X" type="button" onclick="Xclose()">X</button></td>
+						</tr>
+						<tr>
+							<td class="detailTd" colspan="2" id="mediDetail"></td>
+						</tr>
+						<tr>
+							<td class="detailTd" colspan="2" id="mediPhoto">
+							<img src="/am/resources/img/common/default.jpg" width="230px;" height="200px;"></td>
+						</tr>
+						<tr>
+							<td class="detailTd">이름</td>
+							<td id="mediName"></td>
+						</tr>
+						<tr>
+							<td class="detailTd">주소</td>
+							<td id="mediAddr"></td>
+						</tr>
+						<tr>
+							<td class="detailTd">영업시간</td>
+							<td id="mediTime"></td>
+						</tr>
+						<tr>
+							<td class="detailTd">전화번호</td>
+							<td id="mediTel"></td>
+						</tr>
+						<tr>
+							<td class="detailTd" colspan="2" id="reBtn">
+								<form action="reservationForm/page" method="post">
+									<input type="hidden" name="mediId" id="mId">
+									<button class="re" type="submit">예약</button>
+								</form>
+							</td>
+						</tr>
+					</table>
 				</div>
 			</div>
 		</div>
 	</div>
-
 </body>
 </html>
