@@ -1,29 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Login</title>
 <link href="/am/resources/css/common/login.css" rel="stylesheet">
-<link rel="canonical"
-	href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
-
+<link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
 <!-- Bootstrap core CSS -->
 <link href="/am/resources/css/common/bootstrap.css" rel="stylesheet">
-
 <!-- Custom styles for this template -->
-<link
-	href="https://cdn.jsdelivr.net/gh/sunn-us/SUITE/fonts/static/woff2/SUITE.css"
-	rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/gh/sunn-us/SUITE/fonts/static/woff2/SUITE.css" rel="stylesheet">
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <style>
 * {
 	font-family: 'SUITE', sans-serif !important;
 }
 </style>
 
-<script type="text/javascript">
-</script>
 </head>
 <body>
 	<form  class="form-signin" action="customerLogin" method="post">
@@ -45,7 +40,15 @@
 			<a class="loginAtag" href="customerSearchIdPw">아이디/비밀번호 찾기</a>
 			<hr>
 			간편 로그인
-		</div>
+	</div>
 	</form>
+	<!-- 네이버 로그인 화면으로 이동 시키는 URL -->
+	<!-- 네이버 로그인 화면에서 ID, PW를 올바르게 입력하면 callback 메소드 실행 요청 -->
+	<div id="naver_id_login" style="text-align:center"><a href="${url}"><img height="50" src="/am/resources/img/common/btnG_아이콘원형.png"/></a>
+	</div>
+	
+
+	  			
+
 </body>
 </html>

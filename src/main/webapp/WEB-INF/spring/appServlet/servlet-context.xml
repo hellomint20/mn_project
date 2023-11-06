@@ -32,6 +32,8 @@
 	<beans:bean id="autoLogin" class="com.care.am.common.AutoLoginInterceptor" />
 	<beans:bean id="customInter" class="com.care.am.common.CustomerInterceptor" />
 	<beans:bean id="mediInter" class="com.care.am.common.MediInterceptor" />
+	<!-- NaverLoginBO Class에 대한 Bean설정 추가 -->
+	
 	
 	<interceptors>
 		<interceptor>
