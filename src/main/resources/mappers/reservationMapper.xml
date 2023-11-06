@@ -42,6 +42,26 @@
 		select * from medi
 	</select>
 	
+	<select id="mediSearch" resultType="int">
+		select count(*) from medi where m_name like CONCAT('%', #{mName}, '%')
+	</select>
+	
+	<select id="mediSelectSearch" resultType="map">
+		<![CDATA[
+		SELECT *
+   			FROM (
+      				SELECT format(@rownum:= @rownum+1, 0) as RN, A.* 
+         				FROM (
+               				SELECT * 
+              					 FROM medi 
+              					 	WHERE m_name LIKE CONCAT('%', #{mName}, '%')
+                  						ORDER BY m_name ASC 
+               					) A, (select @rownum :=0,0) R
+         		) B
+		WHERE RN BETWEEN ${start} AND ${end}
+		]]>
+	</select>
+	
 	<select id="mediInfo" resultType="map">
 		select * from medi where m_id = #{mediId}
 	</select>

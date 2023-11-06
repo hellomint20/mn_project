@@ -41,7 +41,32 @@ public class reservationController {
     	pag = new reservationPagination(mediCnt, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
     	model.addAttribute("paging", pag);
     	model.addAttribute("viewAll", rs.mediSelectList(pag));
+    	model.addAttribute("search", 0);
     	
+		return "am/reservation/reservationPage";
+	}
+
+	@GetMapping("reservationSearch")
+	public String reservationSearch(@RequestParam String mName, Model model, reservationPagination pag,
+									@RequestParam(value = "nowPage", required = false)String nowPage,
+									@RequestParam(value = "cntPerPage", required = false)String cntPerPage) {
+		int mediCnt = rs.mediSearch(mName); //검색한 이름 리스트 갯수 가져오기
+		System.out.println("controller : " +mediCnt);
+		
+		if(nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "10"; //한 페이지에 노출되는 갯수
+		}else if(nowPage == null) {
+			nowPage = "1";
+		}else if(cntPerPage == null) {
+			cntPerPage = "10";
+		}
+		pag = new reservationPagination(mediCnt, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+    	model.addAttribute("paging", pag);
+    	model.addAttribute("viewAll", rs.mediSelectSearch(mName, pag));
+    	model.addAttribute("search", 1);
+    	model.addAttribute("mName", mName);
+		
 		return "am/reservation/reservationPage";
 	}
 	

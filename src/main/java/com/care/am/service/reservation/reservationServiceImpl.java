@@ -44,6 +44,18 @@ public class reservationServiceImpl implements reservationService {
 	public List<Map<String, mediDTO>> mediList(){ //병원 리스트 
 		return rm.mediList();
 	}
+	
+	public int mediSearch(String mName) { //검색한 이름 리스트 갯수 가져오기
+		return rm.mediSearch(mName);
+	}
+	
+	public List<Map<String, String>> mediSelectSearch(String mName, reservationPagination pag){ //pag 해당하는 만큼 검색 리스트 가져오기
+		String start = pag.getStart()+"";
+		String end = pag.getEnd()+"";
+		
+		return rm.mediSelectSearch(mName, start, end);
+	}
+	
 	public Map<String, Object> mediInfo(String mediId){ //병원 상세정보
 		Map<String, Object> mediInfo = rm.mediInfo(mediId);  
 		String addr1 = mediInfo.get("m_addr").toString().split("/")[1];

@@ -194,7 +194,7 @@
 			alert("예약 시간을 선택해주세요"); //시간 선택 안했을 때
 			return false;
 		}
-		window.open('/am/reservationPopup','pop','width=800, height=600');
+		window.open('/am/reservationPopup.','pop','width=800, height=600');
 	}
 	
 	 const hypenAdd = (target) => {
