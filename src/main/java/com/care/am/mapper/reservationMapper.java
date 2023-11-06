@@ -23,21 +23,15 @@ public interface reservationMapper {
 	public Map<String, Object> peopleCount(Map<String, Object> map);
 	public int reserCancel(int num);
 	public int reserState(@Param("apply") String apply, @Param("num") int num);
-	public List<Map<String , String>> mediReservationList(String mId);
-	public List<Map<String, String>> mediReservationWaitList(String mId);
-	public Map<String, String> reservationInfo(int rNum);
+	public Map<String, String> reservationInfo(int rNum); //병원 팝업 예약 정보
 	
 	
 	
-	//public List<Map<String, Object>> pagingList(Map<String, Object> pageMap);
-	public List<Map<String, Object>> waitList(Map<String, Object> pageMap); //새로운 접수
-	public List<Map<String, Object>> ACList(Map<String, Object> pageMap); //승인취소
+	public List<Map<String, Object>> waitList(Map<String, Object> pageMap); //병원 새로운 접수 리스트
+	public Integer waitListPaging(String mId); //병원 새로운 접수 페이징
+	public List<Map<String, Object>> ACList(Map<String, Object> pageMap); //병원 승인취소 리스트
+	public Integer ACListPaging(String mId); // 병원 승인취소 페이징
 	
 	
-	public Integer mediReservationListCount(String mId);
-	
-	
-	public Integer waitListPaging(String mId);
-	public Integer ACListPaging(String mId);
 	
 }

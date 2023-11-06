@@ -37,6 +37,8 @@ $(document).ready(function() {
 })
 
 function Popup(rNum){
+	console.log(rNum);
+	console.log(typeof rNum);
 	var popupURI1='/am/reservationApplyPopup?rNum='+rNum ;
 	var reserv = encodeURI(popupURI1);
     var popup = window.open(reserv, '예약수락', 'width=600px,height=700px,scrollbars=yes,resizable=no');
@@ -89,6 +91,7 @@ function Popup(rNum){
 					</tbody>
 				</table>
 			</div>
+			
 			<!-- 승인/취소 테이블 -->
 			<!-- 접수상태에 '취소'들어올 시 그 열 글씨 색 gray로 변경 -->
 			<div id="ACTable" width="800px">
@@ -123,8 +126,8 @@ function Popup(rNum){
 				</table>
 
 			</div>
-			
-			
+
+
 			<div class="waitPage">
 				<c:choose>
 					<%-- 현재 페이지가 1페이지면 이전 글자만 보여줌 --%>
@@ -133,7 +136,8 @@ function Popup(rNum){
 					</c:when>
 					<%-- 1페이지가 아닌 경우에는 [이전]을 클릭하면 현재 페이지보다 1 작은 페이지 요청 --%>
 					<c:otherwise>
-						<a href="/am/reservationState?id=${mediId }&page=${waitPaging.page-1}">[이전]</a>
+						<a
+							href="/am/reservationState?id=${mediId }&page=${waitPaging.page-1}">[이전]</a>
 					</c:otherwise>
 				</c:choose>
 
@@ -157,11 +161,13 @@ function Popup(rNum){
 						<span>[다음]</span>
 					</c:when>
 					<c:otherwise>
-						<a href="/am/reservationState?id=${mediId }&page=${waitPaging.page+1}">[다음]</a>
+						<a
+							href="/am/reservationState?id=${mediId }&page=${waitPaging.page+1}">[다음]</a>
 					</c:otherwise>
 				</c:choose>
-			</div><!-- waitPage div -->
-			
+			</div>
+			<!-- waitPage div -->
+
 			<div class="acPage">
 				<c:choose>
 					<%-- 현재 페이지가 1페이지면 이전 글자만 보여줌 --%>
@@ -170,13 +176,14 @@ function Popup(rNum){
 					</c:when>
 					<%-- 1페이지가 아닌 경우에는 [이전]을 클릭하면 현재 페이지보다 1 작은 페이지 요청 --%>
 					<c:otherwise>
-						<a href="/am/reservationState?id=${mediId }&page=${ACPaging.page-1}">[이전]</a>
+						<a
+							href="/am/reservationState?id=${mediId }&page=${ACPaging.page-1}">[이전]</a>
 					</c:otherwise>
 				</c:choose>
 
 				<%--  for(int i=startPage; i<=endPage; i++)      --%>
-				<c:forEach begin="${ACPaging.startPage}"
-					end="${ACPaging.endPage}" var="i" step="1">
+				<c:forEach begin="${ACPaging.startPage}" end="${ACPaging.endPage}"
+					var="i" step="1">
 					<c:choose>
 						<%-- 요청한 페이지에 있는 경우 현재 페이지 번호는 텍스트만 보이게 --%>
 						<c:when test="${i eq ACPaging.page}">
@@ -194,11 +201,13 @@ function Popup(rNum){
 						<span>[다음]</span>
 					</c:when>
 					<c:otherwise>
-						<a href="/am/reservationState?id=${mediId }&page=${ACPaging.page+1}">[다음]</a>
+						<a
+							href="/am/reservationState?id=${mediId }&page=${ACPaging.page+1}">[다음]</a>
 					</c:otherwise>
 				</c:choose>
-			</div><!-- acPage div -->
-			
+			</div>
+			<!-- acPage div -->
+
 		</div>
 	</div>
 

@@ -57,8 +57,6 @@ public class reservationController {
 		model.addAttribute("ac", rs.ACList(id, page)); //승인취소
 		model.addAttribute("ACPaging", rs.ACListPaging(page, id));
 		
-		System.out.println("11:"+ rs.waitList(id, page));
-		//List<Map<String, Object>> pagingList = rs.paging(page, id);
 		return "am/reservation/reservationState";
 	}
 	
@@ -71,20 +69,6 @@ public class reservationController {
 		out.print(msg);
 	}
 	
-	
-	
-	
-	//언니네가 고친거
-	//@GetMapping("reservationState")
-	//public String reservationState(@RequestParam String id, Model model/*, @RequestParam(required = false, defaultValue = "1") int num*/) {
-		//model.addAttribute("list", rs.mediReservationList(id));
-		//model.addAttribute("waitList", rs.mediReservationWaitList(id));
-		
-		//Map<String, Object> map = rs.paging(num);
-		//model.addAttribute("page", map.get("paging"));
-		
-		//return "am/reservation/reservationState";
-	//}
 	
 	@GetMapping("reserState1") 
 	public String reserState1(@RequestParam int num, @RequestParam String email, @RequestParam String mId) {

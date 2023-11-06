@@ -38,18 +38,13 @@ public class reservationServiceImpl implements reservationService{
 
 				listmap.get(i).put("hour", listmap.get(i).get("r_time").split("-")[0]);
 				listmap.get(i).put("min", listmap.get(i).get("r_time").split("-")[1]);
-
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		return listmap;
 	}
 	
-	public List<Map<String, mediDTO>> mediList(){ //병원 리스트 
-		return rm.mediList();
-	}
 	public Map<String, Object> mediInfo(String mediName){ //병원 상세정보
 		Map<String, Object> mediInfo = rm.mediInfo(mediName);  //m_addr=13536/경기 성남시 분당구 판교역로2번길 1/3층/
 		String addr1 = mediInfo.get("m_addr").toString().split("/")[1];
@@ -153,57 +148,8 @@ public class reservationServiceImpl implements reservationService{
 		}
 		return rm.reserState(apply, num);
 	}
-	
-	public List<Map<String, String>> mediReservationList(String mId){
-		
-		List<Map<String, String>> listMap = new ArrayList<Map<String,String>>();
-		listMap = rm.mediReservationList(mId);
-		try {
-			for(int i =0; i<listMap.size(); i++) {
-				Map<String, String> map = new HashMap<String, String>();
-				
-				listMap.get(i).put("year", listMap.get(i).get("r_date").split("-")[0]);
-				listMap.get(i).put("month", listMap.get(i).get("r_date").split("-")[1]);
-				listMap.get(i).put("day", listMap.get(i).get("r_date").split("-")[2]);
-	
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
 
-	public List<Map<String, Object>> mediReservationList(String mId, int page) {
-
-		List<Map<String, Object>> listMap = new ArrayList<Map<String, Object>>();
-
-		Map<String, Object> pageMap = new HashMap<String, Object>();
-		//pageMap.put("paging", paging(page, mId));
-		//pageMap.put("pagingParam", pagingParam(page, mId));
-
-		//listMap = rm.mediReservationList(mId);
-
-		try {
-			for (int i = 0; i < listMap.size(); i++) {
-				Map<String, String> map = new HashMap<String, String>();
-
-				listMap.get(i).put("year", listMap.get(i).get("r_date").toString().split("-")[0]);
-				listMap.get(i).put("month", listMap.get(i).get("r_date").toString().split("-")[1]);
-				listMap.get(i).put("day", listMap.get(i).get("r_date").toString().split("-")[2]);
-
-				listMap.get(i).put("hour", listMap.get(i).get("r_time").toString().split("-")[0]);
-				listMap.get(i).put("min", listMap.get(i).get("r_time").toString().split("-")[1]);
-			}
-			listMap.add(pageMap);
-			System.out.println("ser listMap: " + listMap);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return listMap;
-	}
-
-	public List<Map<String, Object>> waitList(String mId, int page) { // 새로운접수
+	public List<Map<String, Object>> waitList(String mId, int page) { // 병원 새로운접수 리스트
 
 		int pagingStart = (page - 1) * pagingLimit;
 
@@ -226,46 +172,17 @@ public class reservationServiceImpl implements reservationService{
 				waitList.get(i).put("hour", waitList.get(i).get("r_time").toString().split("-")[0]);
 				waitList.get(i).put("min", waitList.get(i).get("r_time").toString().split("-")[1]);
 			}
-			//waitList.add(pageMap);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return waitList;
 	}
 
-	public List<Map<String, String>> mediReservationWaitList(String mId){
-		
-		List<Map<String, String>> waitList = new ArrayList<Map<String, String>>();
-		waitList = rm.mediReservationWaitList(mId);
-		
-		
-		try {
-			for (int i = 0; i < waitList.size(); i++) {
-				Map<String, String> map = new HashMap<String, String>();
-
-				waitList.get(i).put("year", waitList.get(i).get("r_date").toString().split("-")[0]);
-				waitList.get(i).put("month", waitList.get(i).get("r_date").toString().split("-")[1]);
-				waitList.get(i).put("day", waitList.get(i).get("r_date").toString().split("-")[2]);
-
-				waitList.get(i).put("hour", waitList.get(i).get("r_time").toString().split("-")[0]);
-				waitList.get(i).put("min", waitList.get(i).get("r_time").toString().split("-")[1]);
-			}
-			//waitList.add(pageMap);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return waitList;
-
-	}
-
-
-	// 새로운접수 페이징
+	// 병원 새로운접수 페이징
 	public pageDTO waitListPaging(int page, String mId) {
 
 		// 전체 글 갯수 조회
 		int listCount = rm.waitListPaging(mId); // 13
-		// System.out.println("ff: "+listCount);
-		// System.out.println("11: "+rm.mediReservationListCount(mId));
 
 		// 전체 페이지 갯수 계산(10/3=3.33333 => 4)
 		int maxPage = (int) (Math.ceil((double) listCount / pagingLimit));
@@ -284,11 +201,7 @@ public class reservationServiceImpl implements reservationService{
 		return pageDTO;
 	}
 	
-	
-	
-	
-
-	public List<Map<String, Object>> ACList(String mId, int page) { // 승인취소 리스트
+	public List<Map<String, Object>> ACList(String mId, int page) { // 병원 승인취소 리스트
 
 		int pagingStart = (page - 1) * pagingLimit;
 
@@ -311,7 +224,6 @@ public class reservationServiceImpl implements reservationService{
 				ACList.get(i).put("hour", ACList.get(i).get("r_time").toString().split("-")[0]);
 				ACList.get(i).put("min", ACList.get(i).get("r_time").toString().split("-")[1]);
 			}
-			//ACList.add(pageMap);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}		
@@ -319,13 +231,10 @@ public class reservationServiceImpl implements reservationService{
 
 	}
 
-	// 승인취소 페이징
-	public pageDTO ACListPaging(int page, String mId) { //승인취소 페이징
+	public pageDTO ACListPaging(int page, String mId) { // 병원 승인취소 페이징
 
 		// 전체 글 갯수 조회
 		int listCount = rm.ACListPaging(mId); // 13
-		// System.out.println("ff: "+listCount);
-		// System.out.println("11: "+rm.mediReservationListCount(mId));
 
 		// 전체 페이지 갯수 계산(10/3=3.33333 => 4)
 		int maxPage = (int) (Math.ceil((double) listCount / pagingLimit));
@@ -344,9 +253,7 @@ public class reservationServiceImpl implements reservationService{
 		return pageDTO;
 	}
 
-
-
-	public Map<String, String> reservationInfo(int rNum) { //병원 마이페이지 정보
+	public Map<String, String> reservationInfo(int rNum) { //병원 팝업 예약 정보
 		Map<String, String> info = new HashMap<String, String>();
 		info = rm.reservationInfo(rNum);
 
