@@ -5,6 +5,7 @@ import com.care.am.dto.customerDTO;
 public interface customerService {
 	public String register(customerDTO dto);
 	public String customerSearchId(String inputName, String inputEmail);
+	public customerDTO naverLogin(String apiResult) throws Exception;
 	public customerDTO customerSearchPw(String inputId, String inputName, String inputTel);
 	public String makeRandomPw();
 	public int customerPwChg(String tempPwd, customerDTO dto);
@@ -16,4 +17,5 @@ public interface customerService {
 	public String customerModify(customerDTO dto);
 	public String customerPwdChk(String id, String Pw);
 	public String customerDelete(customerDTO dto, String pw);
+	
 }

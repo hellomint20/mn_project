@@ -11,17 +11,17 @@
 <link href="/am/resources/css/common/bootstrap.css" rel="stylesheet">
 <!-- Custom styles for this template -->
 <link href="https://cdn.jsdelivr.net/gh/sunn-us/SUITE/fonts/static/woff2/SUITE.css" rel="stylesheet">
-<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script>
-  <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
 <style>
 * {
 	font-family: 'SUITE', sans-serif !important;
 }
 </style>
-
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 </head>
 <body>
-	<form  class="form-signin" action="customerLogin" method="post">
+	<form  class="form-signin" action="cusloginChk" method="post">
 		<a href="/am"><img class="mb-2" src="/am/resources/img/common/logoLogin.png" width="270px" height="110px"></a>
 		<h2 class="h3 mb-3 font-weight-normal">보호자 로그인</h2>
 		<label for="inputId" class="sr-only">id</label> 
@@ -40,14 +40,13 @@
 			<a class="loginAtag" href="customerSearchIdPw">아이디/비밀번호 찾기</a>
 			<hr>
 			간편 로그인
+			<br><br>
+			<!-- 네이버 로그인 화면으로 이동 시키는 URL -->
+		<!-- 네이버 로그인 화면에서 ID, PW를 올바르게 입력하면 callback 메소드 실행 요청 -->
+		<div id="naver_id_login" style="text-align:center"><a href="${url}">
+		<img width="50px" src="/am/resources/img/common/btnG_아이콘원형.png"/></a></div>
 	</div>
 	</form>
-	<!-- 네이버 로그인 화면으로 이동 시키는 URL -->
-	<!-- 네이버 로그인 화면에서 ID, PW를 올바르게 입력하면 callback 메소드 실행 요청 -->
-	<div id="naver_id_login" style="text-align:center"><a href="${url}"><img height="50" src="/am/resources/img/common/btnG_아이콘원형.png"/></a>
-	</div>
-	
-
 	  			
 
 </body>

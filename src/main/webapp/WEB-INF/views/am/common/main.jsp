@@ -91,9 +91,16 @@
 							<div id="rightMainMypage">
 								<div id="rightMainMypageCotainer">
 									<div id="rightMainMypageContent">
-										<a href="mediInfo?id=${mediId }"><img
-											src="/am/resources/img/main/mypage.png" width="270px;"
+									<div id="mediContent">
+									<a href="reservationState?id=${mediId }">
+										<img src="/am/resources/img/main/reservList.png" width="270px;"
+											height="120px;" style="border: solid white;"></a></div>
+										<div id="mediMypage">
+										<a href="mediInfo?id=${mediId }">
+										<img src="/am/resources/img/main/mypage.png" width="270px;"
 											height="120px;" style="border: solid white;"></a>
+										</div>	
+									</div>
 									</div>
 								</div>
 							</div>

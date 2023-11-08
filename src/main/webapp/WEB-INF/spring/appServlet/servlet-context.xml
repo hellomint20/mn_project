@@ -28,6 +28,7 @@
 	
 
 	<context:component-scan	base-package="com.care.am" />
+	<beans:bean id="naverLoginBO" class="com.care.am.naver.NaverLoginBO"></beans:bean>
 
 	<beans:bean id="autoLogin" class="com.care.am.common.AutoLoginInterceptor" />
 	<beans:bean id="customInter" class="com.care.am.common.CustomerInterceptor" />
