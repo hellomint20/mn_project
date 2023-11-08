@@ -9,7 +9,15 @@
 <link href="/am/resources/css/common/searchIdPw.css" rel="stylesheet">
 
 <!-- Bootstrap CSS -->
+
 <link rel="stylesheet" href="/am/resources/css/bootstrap/bootstrap.css">
+<script>
+  const hypenAdd = (target) => {
+	 target.value = target.value
+    .replace(/[^0-9]/g, '')
+   .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
+}
+</script>
 </head>
 <body id="searchIdPwFormBody">
 	<div id="searchIdPwForm">
@@ -27,7 +35,7 @@
 					<label for="inputTel" class="col-sm-3 col-form-label">전화번호</label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" id="inputTel"
-							name="inputTel" placeholder="input Tel">
+							oninput="hypenAdd(this)" maxlength="13"  name="inputTel" placeholder="input Tel">
 					</div>
 				</div>
 				<div id="searchIdPwFormContent" class="form-group row">
@@ -58,7 +66,7 @@
 					<label for="inputTel" class="col-sm-3 col-form-label">전화번호</label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" id="inputTel"
-							name="inputTel" placeholder="input Tel">
+						  oninput="hypenAdd(this)" maxlength="13" name="inputTel" placeholder="input Tel">
 					</div>
 				</div>
 		

@@ -14,7 +14,7 @@ p {
 .info {
 	text-align : center;
 	display: flex;
-	padding: 30px 0 30px 70px;
+	padding: 10px;
 	border-top: 2px solid #000;
    	width: 700px;
 }
@@ -23,10 +23,17 @@ p {
 	display: inline-block;
 	font-size: 1.2rem;
 	line-height: 50px;
+	width: 90px;
+	text-align: left;
 }
 
-#t_b {
+.t_b {
 	height: 35px;
+	width: 250px;
+}
+.t_b_post{
+	height: 35px;
+	width: 170px;
 }
 .rb {
 	word-spacing: 50px;
@@ -37,20 +44,19 @@ p {
 	display: inline-block;
 	font-size: 1rem;
 	line-height: 50px;
-	margin-left: 40px;
+	width: 300px;
 }
 
 
 .info-pic {
 	display: inline-block;
 	width: 180px;
-	height: 200px;
-	border: 1px solid black;
-	margin-left: 70px;
+	height: 180px;
+	margin-left: 35px;
 }
 
 .pic-btn {
-	margin-top: 185px;
+	margin-top: 15px;
 }
 
 
@@ -59,7 +65,6 @@ p {
 	margin-top: 20px;
 	margin-left: 180px;
 }
-
 .btn_a .cancel{
 	margin-right: 50px;
 	border: none;
@@ -98,4 +103,13 @@ p {
 .btn_a .completed:hover {
    	background: linear-gradient(0deg, #73b4db 0%, #73b4db 100%);
 	opacity: 0.8;
+}
+#photo{
+	width: 250px;
+	height: 250px;
+	border : 1px solid black;
+}
+.t_b_time{
+	height: 35px;
+	width: 114px;
 }

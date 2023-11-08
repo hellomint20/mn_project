@@ -20,35 +20,36 @@
 
 </head>
 <body>
-	<div class="all-h">
-		<div id="imgHeader">
-		<c:choose>
-			<c:when test="${mediId != null}">
-				<span id="headerText"><a href="/am/mediInfo?id=${mediId}"
-					id="text">마이페이지</a> | <a href="/am/logout" id="text">로그아웃</a></span>
-			</c:when>
-			<c:when test="${userId != null}">
-				<span id="headerText"><a href="/am/customerInfo?id=${userId}"
-					id="text">마이페이지</a> | <a href="/am/logout" id="text">로그아웃</a></span>
-			</c:when>
-			<c:otherwise>
-				<span id="headerText"><a href="/am/customerInfo" id="text">마이페이지</a>
-					| <a href="/am/main" id="text">로그인</a></span>
-			</c:otherwise>
-		</c:choose>
-		</div>
-		<div id="headerLogo">
-			<a href="/am"><img src="/am/resources/img/logo2.png"
-				width="250px" height="100px"></a>
-		</div>
+	<c:choose>
+		<c:when test="${mediId != null}">
+			<div class="all-h">
+				<div id="headerLogo">
+					<a href="/am/reservationState?id=${mediId }"> 
+					<img src="/am/resources/img/logo2.png" width="250px" height="100px"></a>
+				</div>
+				<div id="imgHeader">
+					<span id="headerText"><a href="/am/mediInfo?id=${mediId }"
+						id="text">마이페이지</a> | <a href="/am/logout" id="text">로그아웃</a></span>
+				</div>
+			</div>
+		</c:when>
+		
+		<c:when test="${userId != null}">
+			<div class="all-h">
+				<div id="headerLogo">
+					<a href="/am"> 
+					<img src="/am/resources/img/logo2.png" width="250px" height="100px"></a>
+				</div>
+				<div id="imgHeader">
+					<span id="headerText"><a href="/am/customerInfo?id=${userId }"
+						id="text">마이페이지</a> | <a href="/am/logout" id="text">로그아웃</a></span>
+				</div>
+			</div>
+		</c:when>		
+	</c:choose>
 
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
+		<br> <br> <br> <br> <br>
 		<hr>
-	</div>
 
 </body>
 </html>

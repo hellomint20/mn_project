@@ -3,6 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.care.am.mapper.reservationMapper">
+
 	<resultMap type="com.care.am.dto.reservationDTO" id="reservation">
 		<id property="rNum" column="r_num"/>
 		<result property="mId" column="m_id"/>
@@ -15,8 +16,19 @@
 		<result property="rTel" column="r_tel"/>
 	</resultMap>
 	
+	<resultMap type="com.care.am.dto.petDTO" id="pet">
+		<id property="pNum" column="p_num"/>
+		<result property="pName" column="p_name" />
+		<result property="pSection" column="p_section" />
+		<result property="pType" column="p_type" />
+		<result property="pAge" column="p_age" />
+		<result property="pSex" column="p_sex" />
+		<result property="cId" column="c_id" />
+		<result property="pPhoto" column="pPhoto" />
+	</resultMap>
+	
 	<select id="reservationList" resultType="map">
-		select reservation.r_date, reservation.r_time, pet.p_name, medi.m_name, reservation.r_apply, reservation.r_content
+		select reservation.r_num, reservation.r_date, reservation.r_time, pet.p_name, medi.m_name, reservation.r_apply, reservation.r_content
 		from reservation
 		join medi ON reservation.m_id = medi.m_id
 		join pet ON reservation.p_num = pet.p_num where reservation.c_id=#{cId} order by reservation.r_date asc, reservation.r_time asc 
@@ -27,7 +39,7 @@
 			FROM (
 				SELECT format(@rownum:= @rownum+1, 0) as RN, A.*
 					FROM (
-						select reservation.r_date, reservation.r_time, pet.p_name, medi.m_name,
+						select reservation.r_num, reservation.r_date, reservation.r_time, pet.p_name, medi.m_name,
 								reservation.r_apply, reservation.r_content
 									from reservation
 											join medi ON reservation.m_id = medi.m_id
@@ -122,6 +134,40 @@
 		select reservation.m_id, reservation.r_date, reservation.r_time,pet.p_num
 			from reservation join pet on reservation.p_num = pet.p_num
 			where m_id=#{mId} and r_date = #{rDate} and r_time = #{rTime} and p_name=#{pName};
+	</select>
+	
+	<update id="reserCancel">
+		update reservation set r_apply="취소" where r_num=#{rNum}
+	</update>
+	
+	<update id="reserState">
+		update reservation set r_apply=#{apply} where r_num=#{num}
+	</update>
+
+
+	<select id="mediReservationList" resultType="map">
+		select
+	reservation.r_date, reservation.r_time, pet.p_type, reservation.r_content, reservation.r_apply
+		from reservation left join pet
+			on reservation.p_num = pet.p_num
+				where reservation.m_id = #{mId} and not r_apply in ("대기")
+				order by reservation.r_date asc
+	</select>
+	
+	<select id="mediReservationWaitList" resultType="map">
+		select
+		reservation.r_num, reservation.r_date, reservation.r_time, pet.p_type, reservation.r_content, reservation.r_apply
+		from reservation left join pet
+			on reservation.p_num = pet.p_num
+		where reservation.m_id = #{mId} and r_apply= "대기"
+	</select>
+	
+	<select id="reservationInfo" resultType="map">
+		select customer.c_email, reservation.r_date, reservation.r_time, reservation.r_name, customer.c_tel, pet.p_section, pet.p_type, pet.p_name, pet.p_sex, pet.p_age, reservation.r_content, pet.p_photo
+		from reservation 
+		join customer on reservation.c_id = customer.c_id
+    	join pet on reservation.p_num = pet.p_num
+		where reservation.r_num = #{rNum}
 	</select>
 
 </mapper>
