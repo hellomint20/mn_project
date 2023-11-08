@@ -32,7 +32,7 @@
 									from reservation
 											join medi ON reservation.m_id = medi.m_id
 											join pet ON reservation.p_num = pet.p_num where reservation.c_id=#{id} order
-											by reservation.r_date asc, reservation.r_time asc
+											by reservation.r_date desc, reservation.r_time asc
 							) A, (select @rownum :=0,0) R
 				) B
 		WHERE RN BETWEEN ${start} AND ${end}
@@ -40,6 +40,26 @@
 
 	<select id="mediList" resultType="map">
 		select * from medi
+	</select>
+	
+	<select id="mediSearch" resultType="int">
+		select count(*) from medi where m_name like CONCAT('%', #{mName}, '%')
+	</select>
+	
+	<select id="mediSelectSearch" resultType="map">
+		<![CDATA[
+		SELECT *
+   			FROM (
+      				SELECT format(@rownum:= @rownum+1, 0) as RN, A.* 
+         				FROM (
+               				SELECT * 
+              					 FROM medi 
+              					 	WHERE m_name LIKE CONCAT('%', #{mName}, '%')
+                  						ORDER BY m_name ASC 
+               					) A, (select @rownum :=0,0) R
+         		) B
+		WHERE RN BETWEEN ${start} AND ${end}
+		]]>
 	</select>
 	
 	<select id="mediInfo" resultType="map">

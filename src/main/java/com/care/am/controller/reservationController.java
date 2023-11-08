@@ -1,5 +1,6 @@
 package com.care.am.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,8 @@ import com.care.am.service.reservation.reservationService;
 @Controller
 public class reservationController {
 
-	@Autowired reservationService rs;
+	@Autowired 
+	private reservationService rs;
 	
 	//병원 예약 관련(손님 기준)
 	@GetMapping("reservation") //병원 예약 기본 페이지
@@ -41,7 +43,31 @@ public class reservationController {
     	pag = new reservationPagination(mediCnt, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
     	model.addAttribute("paging", pag);
     	model.addAttribute("viewAll", rs.mediSelectList(pag));
+    	model.addAttribute("search", 0);
     	
+		return "am/reservation/reservationPage";
+	}
+
+	@GetMapping("reservationSearch")
+	public String reservationSearch(@RequestParam String mName, Model model, reservationPagination pag,
+									@RequestParam(value = "nowPage", required = false)String nowPage,
+									@RequestParam(value = "cntPerPage", required = false)String cntPerPage) {
+		int mediCnt = rs.mediSearch(mName); //검색한 이름 리스트 갯수 가져오기
+		
+		if(nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "10"; //한 페이지에 노출되는 갯수
+		}else if(nowPage == null) {
+			nowPage = "1";
+		}else if(cntPerPage == null) {
+			cntPerPage = "10";
+		}
+		pag = new reservationPagination(mediCnt, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+    	model.addAttribute("paging", pag);
+    	model.addAttribute("viewAll", rs.mediSelectSearch(mName, pag));
+    	model.addAttribute("search", 1);
+    	model.addAttribute("mName", mName);
+		
 		return "am/reservation/reservationPage";
 	}
 	
@@ -69,18 +95,22 @@ public class reservationController {
 	@GetMapping("reservationPopup")//예약완료후팝업창
 	public String reservationPopup(Model model, HttpSession session) {
 		//로그인한 사람 정보
-		model.addAttribute("cId", session.getAttribute(LoginSession.cLOGIN).toString());
+		model.addAttribute("cId", session.getAttribute(LoginSession.cLOGIN));
 		
 		return "am/reservation/reservationPopup";
 	}
 	
 	@ResponseBody
 	@PostMapping("reservationRegister") //병원 예약 DB 등록
-	public String reservationRegister(@RequestBody Map<String, Object> map, HttpSession session) {
+	public Map<String, String> reservationRegister(@RequestBody Map<String, Object> map, HttpSession session) {
 		map.put("cId", session.getAttribute(LoginSession.cLOGIN).toString());
-		int result = rs.reservationRegister(map);
 		
-		return Integer.toString(result);
+		Map<String, String> result = new HashMap<String, String>();
+		
+		result.put("result", Integer.toString(rs.reservationRegister(map)));
+		result.put("userId", session.getAttribute(LoginSession.cLOGIN).toString());
+		
+		return result;
 	}
 	
 
@@ -92,9 +122,7 @@ public class reservationController {
 		model.addAttribute("list",rs.reservationList(id));
 		
 		int customerCnt = rs.reservationList(id).size();  // 전체 병원 갯수
-		
-		System.out.println(customerCnt);
-	     
+			     
     	if (nowPage == null && cntPerPage == null) { 
     		nowPage = "1";
     		cntPerPage = "4";  // 한 페이지에 노출되는 글 갯수
@@ -106,7 +134,6 @@ public class reservationController {
     	
     	pag = new customerPagination(customerCnt, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
     	
-    	System.out.println("pag" + pag);
     	model.addAttribute("paging", pag);
     	model.addAttribute("viewAll", rs.customerResList(id, pag));
 		
