@@ -181,7 +181,7 @@
 			return false;
 		}
 		if($("#pName option:selected").val() == ""){
-			alert("동물을 선택해주세요"); //동물 선택 안했을 때
+			alert("동물을 선택하거나 추가해주세요"); //동물 선택 안했을 때
 			return false;
 		}
 		if($("input[name=rContent]:radio:checked").length == 0){
@@ -230,9 +230,7 @@
 			error : () => {
 				console.log("문제 발생");
 			}
-		}) 
-		
-		
+		}) 	
 		
 	}
 	
