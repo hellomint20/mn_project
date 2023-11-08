@@ -145,6 +145,7 @@ public class reservationServiceImpl implements reservationService{
 		}else {
 			apply = "√Îº“";
 		}
+		System.out.println("ser " +apply);
 		return rm.reserState(apply, num);
 	}
 	

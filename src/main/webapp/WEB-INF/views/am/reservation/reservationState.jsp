@@ -53,7 +53,7 @@ function Popup(rNum){
 	<div class="r_table">
 		<div class="buttonbox">
 			<button type="button" id="btn_2">새로운접수</button>
-			<button type="button" id="btn_2">승인/취소</button>
+			<button type="button" id="btn_3">승인/취소</button>
 
 		</div>
 		<div style="clear: both;"></div>

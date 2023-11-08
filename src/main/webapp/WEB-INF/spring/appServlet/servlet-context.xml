@@ -27,8 +27,9 @@
 	</beans:bean>
 	
 
-	<context:component-scan	base-package="com.care.am" />
 
+	<context:component-scan	base-package="com.care.am" />
+	
 	<beans:bean id="autoLogin" class="com.care.am.common.AutoLoginInterceptor" />
 	<beans:bean id="customInter" class="com.care.am.common.CustomerInterceptor" />
 	<beans:bean id="mediInter" class="com.care.am.common.MediInterceptor" />

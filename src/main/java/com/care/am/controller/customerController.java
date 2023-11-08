@@ -20,11 +20,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.care.am.common.LoginSession;
 import com.care.am.dto.customerDTO;
 import com.care.am.service.customer.customerService;
+import com.care.am.service.loginLogic.loginLogicService;
+import com.google.gson.Gson;
 
 @Controller
 public class customerController{
 	
 	@Autowired customerService cs;
+	@Autowired loginLogicService lls;
 	
 	
 	//로그인 관련
@@ -237,4 +240,34 @@ public class customerController{
 		}
 	    out.print( msg );
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+//		// 2번
+//		// 카카오 로그인
+//	   @GetMapping("kakaologin")
+//	   public String kakaoCallback(@RequestParam String code) {
+//	      System.out.println(code);
+//	      String access_token = lls.getKakaoAccessToken(code);
+//	      System.out.println(access_token);
+//	      try {
+//	         customerDTO userInfo = lls.createKakaoUser(access_token);
+//	         String temp = "";
+//	         Gson g = new Gson();
+//	         temp = g.toJson(userInfo);
+//	         System.out.println(temp);
+//	         return temp;
+//	      } catch (Exception e) {
+//	         e.printStackTrace();
+//	         return "am/";
+//	      }
+//	   }
+	
+
+	
 }

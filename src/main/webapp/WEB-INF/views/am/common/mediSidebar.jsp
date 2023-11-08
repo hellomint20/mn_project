@@ -7,7 +7,7 @@
 <title>side bar</title>
 	<link href="/am/css/bootstrap/bootstrap.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="/am/css/sidebar.css">
+    <link rel="stylesheet" href="/am/css/mediSidebar.css">
     
 </head>
 <body>
@@ -17,7 +17,7 @@
 		<li>
         	<a href="/am/mediInfo?id=${mediId }">
         		<span class="icon"></span>
-        		<span class="title">병원페이지</span>
+        		<span class="title">병원 정보</span>
         	</a>
         </li>
         <li>

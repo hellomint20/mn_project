@@ -30,9 +30,10 @@ public class mailController implements LoginSession{
 		
 		return "redirect:/customerLogin";
 	}
-	@RequestMapping(value="/reserState1/{toMail}/{mId}", method=RequestMethod.GET)
+	@RequestMapping(value="/reserState1/{toMail}/{mId}/", method=RequestMethod.GET)
 	String sendMail(@PathVariable String toMail, @PathVariable String mId, 
 						HttpServletResponse res)throws Exception{
+		System.out.println("state1");
 		String title = "AniMedi 예약현황입니다.";
 		String msg = "AniMedi에서 발송된 메일입니다.\n\n";
 		msg += "고객님의 예약이 확정되어 연락드립니다\n";
@@ -42,7 +43,7 @@ public class mailController implements LoginSession{
 		mails.tempPwdSendMail(toMail,title,msg);
 		// 받는사람 메일 / 제목 / 내용
 		
-		return "redirect:/am/reservationList?id="+ mId;
+		return "redirect:/reservationState?id="+ mId;
 	}
 	
 	@RequestMapping(value="/reserState2/{toMail}/{cont}/{mId}/", method=RequestMethod.GET)
@@ -59,6 +60,6 @@ public class mailController implements LoginSession{
 		mails.tempPwdSendMail(toMail,title,msg);
 		// 받는사람 메일 / 제목 / 내용
 		
-		return "redirect:/am/reservationList?id="+ mId;
+		return "redirect:/reservationState?id="+ mId;
 	}
 }

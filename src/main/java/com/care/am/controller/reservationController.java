@@ -83,7 +83,6 @@ public class reservationController {
     public String reserState2(@RequestParam String email,@RequestParam int num,
         @RequestParam String mId, @RequestParam String cont) {
 		int result = rs.reserState(num, 0);
-		
 		if(result == 1) {
 			String toMail = email;
 			return "redirect:/reserState2/"+toMail+"/"+cont+"/"+mId+"/";

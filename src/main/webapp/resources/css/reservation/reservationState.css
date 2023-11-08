@@ -8,7 +8,7 @@
     border-collapse: collapse;
 }
 
-#btn_2 {
+#btn_2, #btn_3{
     background-color: #0B1F54;
     padding: 8px 30px !important;
     width: 150px;
@@ -21,12 +21,13 @@
     float: left;
 }
 
-#btn_2:hover {
+#btn_2:hover, #btn_3:hover {
     background-color: #0b1f5430;
     color : black;
+    border: 0;
 }
 
-.col-100{
+.col-100 {
     width: 100%;
 }
 
@@ -35,27 +36,31 @@
 	 margin-left : 340px;
 }
 
-.col-100{
+table {
     text-align: center;
     font-size: 14px;
     background-color : white;
-    border-style: solid black;
-
 }
 
 
-#basic {
+th {
     background-color: #0b1f5430;
     height: 50px;
     color: black;
     font-size: 17px;
 }
 
-#table2 tr,
-#table2 td {
+
+td {
     padding: 23px 0px;
     border: 1px solid black;
     font-size: 15px;
+}
+
+#table2 tr{
+	padding: 23px 0px;
+    font-size: 15px;
+    border-width: 1px;
 }
 
 a{
