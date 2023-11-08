@@ -101,12 +101,11 @@ public class reservationServiceImpl implements reservationService {
 		countMap.put("mId", map.get("mId"));
 		countMap.put("rDate", day);
 		countMap.put("rTime", time);
-		System.out.println("register" + countMap);
 		
 		int result = 0;
 		
 		Integer.parseInt(String.valueOf(rm.peopleCount(countMap).get("count(*)")));
-		System.out.println(Integer.parseInt(String.valueOf(rm.peopleCount(countMap).get("count(*)"))));
+		
 		if(Integer.parseInt(String.valueOf(rm.peopleCount(countMap).get("count(*)"))) >= 3) {
 			result = 99;
 		}else {
@@ -118,9 +117,7 @@ public class reservationServiceImpl implements reservationService {
 		return result;
 	} 
 	
-	public Map<String, String> reservationCount(Map<String, Object> map) { ////시간별 예약자 수 확인
-	
-		System.out.println("count"+map);
+	public Map<String, String> reservationCount(Map<String, Object> map) { ////시간별 예약자 수 확인	
 		
 		List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
 		list = rm.reservationCount(map);
@@ -149,8 +146,6 @@ public class reservationServiceImpl implements reservationService {
 		listmap = rm.customerResList(id,start, end );
 		try {
 			for (int i = 0; i <= listmap.size(); i++) {
-
-				Map<String, String> map = new HashMap<String, String>();
 
 				listmap.get(i).put("year", listmap.get(i).get("r_date").split("-")[0]);
 				listmap.get(i).put("month", listmap.get(i).get("r_date").split("-")[1]);

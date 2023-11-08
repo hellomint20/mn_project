@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -25,7 +24,6 @@
 	function buildCalendar() {
 
 		let firstDate = new Date(nowMonth.getFullYear(), nowMonth.getMonth(), 1); // 이번달 1일
-		console.log(firstDate)
 		let lastDate = new Date(nowMonth.getFullYear(), nowMonth.getMonth() + 1, 0); // 이번달 마지막날
 
 		let tbody_Calendar = document.querySelector(".Calendar > tbody");
@@ -111,7 +109,6 @@
 		for(var i=1; i<timeList.length; i+=7){
 				document.getElementById(timeList.slice(i, i+5)).disabled = false;
 				$("label[for='"+timeList.slice(i, i+5)+"']").css('background-color','');
-				console.log("변환")
 		}
 		
 		let mName = $("#mName").text();
@@ -127,7 +124,6 @@
 		form['mId'] = document.getElementById("mId").value;
 		form['mName'] = mName;
 		form['rDate'] = checkDay;
-		console.log(form)
 		
 		$.ajax({
 			url : "/am/reservationCount", type : "post",
@@ -142,7 +138,7 @@
 				}
 			},
 			error : () => {
-				console.log("문제 발생");
+				alert("문제 발생");
 			}
 		})
 	}	
@@ -213,33 +209,26 @@
 		<div class="reservation-form">
 
 			<div class="box-hospital-name">
-				<strong><b id="mName">${mediInfo['m_name']}</b> 예약</strong>
-				<input type="hidden" id="mId" value=${mediInfo['m_id']}>
+				<strong><b id="mName">${mediInfo['m_name']}</b> 예약</strong> <input type="hidden" id="mId" value=${mediInfo['m_id']}>
 			</div>
 
 			<div class="box-container-left">
 				<div class="label">
-					<label for="rName">예약자 성함</label><br> <label for="rTel">전화번호</label><br>
-					<label for="pName">동물이름</label><br>
+					<label for="rName">예약자 성함</label><br> <label for="rTel">전화번호</label><br> <label for="pName">동물이름</label><br>
 				</div>
 				<div class="input-form">
-					<input type="text" id="rName" name="cId" placeholder="홍길동" required><br>
-					<input type="tel" id="rTel" name="cPhone" oninput="hypenAdd(this)"
-						placeholder="010-1234-5678"><br>
-						
-					<select id="pName" required>
+					<input type="text" id="rName" name="cId" placeholder="홍길동" required><br> <input type="tel" id="rTel" name="cPhone"
+						oninput="hypenAdd(this)" placeholder="010-1234-5678"><br> <select id="pName" required>
 						<option value="">선택하세요</option>
 						<c:forEach var="list" items="${p_list}">
-						<option value="connecting" id="p_name">${list['p_name']}</option>
+							<option value="connecting" id="p_name">${list['p_name']}</option>
 						</c:forEach>
 					</select><br>
 				</div>
 			</div>
 			<div class="content">
-				<label for="rContent">접수내용</label><br> 
-					<input type="radio" name="rContent" id="clinic" value="진료">진료 
-					<input type="radio" name="rContent" id="check" value="검진">검진 
-					<input type="radio" name="rContent" id="vaccin" value="접종">접종
+				<label for="rContent">접수내용</label><br> <input type="radio" name="rContent" id="clinic" value="진료">진료 <input type="radio"
+					name="rContent" id="check" value="검진">검진 <input type="radio" name="rContent" id="vaccin" value="접종">접종
 			</div>
 		</div>
 		<div class="box-container-right">
@@ -248,8 +237,7 @@
 					<thead>
 						<tr>
 							<td onClick="prevCalendar();" style="cursor: pointer;">&#60;</td>
-							<td colspan="5"><span id="calYear"></span>년 <span
-								id="calMonth"></span>월</td>
+							<td colspan="5"><span id="calYear"></span>년 <span id="calMonth"></span>월</td>
 							<td onClick="nextCalendar();" style="cursor: pointer;">&#62;</td>
 						</tr>
 						<tr>
@@ -270,25 +258,25 @@
 
 			<div class="timeList" id="totalTimeList">
 				<c:forEach var="AM" items="${timeList}" varStatus="vs" step="3">
-					<div class="btn-group btn-group-lg" >
+					<div class="btn-group btn-group-lg">
 						<c:choose>
 							<c:when test="${vs.index == 0}">
-								<input type="radio" class="btn-check" name="vbtn-radio"	id="${timeList[vs.index]}" value="${timeList[vs.index]}" autocomplete="off"> 
+								<input type="radio" class="btn-check" name="vbtn-radio" id="${timeList[vs.index]}" value="${timeList[vs.index]}" autocomplete="off">
 								<label id="reservationTime" class="btn btn-outline-dark" for="${timeList[vs.index]}">${timeList[vs.index]}</label>
 							</c:when>
 							<c:otherwise>
-								<input type="radio" class="btn-check" name="vbtn-radio"	id="${timeList[vs.index]}" value="${timeList[vs.index]}" autocomplete="off" > 
+								<input type="radio" class="btn-check" name="vbtn-radio" id="${timeList[vs.index]}" value="${timeList[vs.index]}" autocomplete="off">
 								<label id="reservationTime" class="btn btn-outline-dark" for="${timeList[vs.index]}">${timeList[vs.index]}</label>
 							</c:otherwise>
 						</c:choose>
-						
+
 						<c:if test="${timeList[vs.index+1] != null}">
-							<input type="radio" class="btn-check" name="vbtn-radio"	id="${timeList[vs.index+1]}" value="${timeList[vs.index+1]}" autocomplete="off" > 
+							<input type="radio" class="btn-check" name="vbtn-radio" id="${timeList[vs.index+1]}" value="${timeList[vs.index+1]}" autocomplete="off">
 							<label id="reservationTime" class="btn btn-outline-dark" for="${timeList[vs.index+1]}">${timeList[vs.index+1]}</label>
 						</c:if>
-						
+
 						<c:if test="${timeList[vs.index+2] != null}">
-							<input type="radio" class="btn-check" name="vbtn-radio"	id="${timeList[vs.index+2]}" value="${timeList[vs.index+2]}" autocomplete="off" >
+							<input type="radio" class="btn-check" name="vbtn-radio" id="${timeList[vs.index+2]}" value="${timeList[vs.index+2]}" autocomplete="off">
 							<label id="reservationTime" class="btn btn-outline-dark" for="${timeList[vs.index+2]}">${timeList[vs.index+2]}</label>
 						</c:if>
 					</div>

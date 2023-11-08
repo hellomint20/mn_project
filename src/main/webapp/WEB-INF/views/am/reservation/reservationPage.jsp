@@ -119,7 +119,6 @@
 	<script type="text/javascript">
 
     function filter(){
-    	console.log(document.getElementById("mediSearch").value)
     	let mName = document.getElementById("mediSearch").value;
     	
         if(!document.getElementById("mediSearch").value){
@@ -130,14 +129,11 @@
       }
 	
 	function detailView(mediId) {
-		console.log(mediId);	
 		$.ajax({
 			url : "reservation/mediInfo", type : "post",
 			data : mediId,
 			contentType : "application/json; charset=utf-8",
 			success : (mediInfo) => {
-				console.log("통신 성공")
-				console.log(mediInfo)
 				let name = mediInfo['m_name'];
 				
 				document.getElementById("mediDetail").innerHTML ="{ "+mediInfo['m_name'] + " } 상세 정보";
@@ -148,7 +144,7 @@
 				document.getElementById("mId").value =  mediInfo['m_id']
 			},
 			error : () => {
-				console.log("문제 발생")
+				alert("문제 발생")
 			}
 		})
 		
@@ -156,7 +152,6 @@
 	}
 	
 	function Xclose(){
-		console.log("X")
 		$("#detailDiv").css("display", "none");
 	}
 	
