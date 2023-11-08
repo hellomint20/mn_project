@@ -39,14 +39,14 @@
       </c:choose>
       </div>
       <div id="headerLogo">
-         <a href="/am/reservationState?id=${mediId }"><img src="/am/resources/img/logo2.png"
+         <a href="/am/reservationStateWait?id=${mediId }"><img src="/am/resources/img/logo2.png"
             width="250px" height="100px"></a>
       </div>
 	<c:choose>
 		<c:when test="${mediId != null}">
 			<div class="all-h">
 				<div id="headerLogo">
-					<a href="/am/reservationState?id=${mediId }"> 
+					<a href="/am/reservationStateWait?id=${mediId }"> 
 					<img src="/am/resources/img/logo2.png" width="250px" height="100px"></a>
 				</div>
 				<div id="imgHeader">

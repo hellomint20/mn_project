@@ -46,18 +46,23 @@ public class reservationController {
 		return "am/reservation/reservationList";
 	}
 	
-	//병원 예약상태 관련(병원 기준)
-	@GetMapping("reservationState") //병원 예약상태
+	//병원 예약상태 관련(병원 기준 - 새로운 접수)
+	@GetMapping("reservationStateWait") //병원 예약상태
 	public String reservationState(@RequestParam String id, Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
-		
 		
 		model.addAttribute("wait", rs.waitList(id, page)); //새로운접수
 		model.addAttribute("waitPaging", rs.waitListPaging(page, id));
 		
+		return "am/reservation/reservationStateWait";
+	}
+	
+	//병원 예약상태 관련(병원기준 - 승인취소)
+	@GetMapping("reservationStateAC")
+	public String reservationStateAC(@RequestParam String id, Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
 		model.addAttribute("ac", rs.ACList(id, page)); //승인취소
 		model.addAttribute("ACPaging", rs.ACListPaging(page, id));
 		
-		return "am/reservation/reservationState";
+		return "am/reservation/reservationStateAC";
 	}
 	
 	@GetMapping("reservationCancel") 

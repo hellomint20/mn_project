@@ -115,7 +115,7 @@
 	
 	<!-- 병원 새로운 접수 리스트 -->
 	<select id="waitList" parameterType="hashMap" resultType="map">
-		select r_time, r_content, r_apply, r_date, p_type
+		select r_time, r_content, r_apply, r_date, p_type, r_num
 		from reservation, pet
 		where m_id = ${mId} and  r_apply = "대기"
 		order by r_date 
