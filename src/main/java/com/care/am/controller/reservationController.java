@@ -20,7 +20,8 @@ import com.care.am.service.reservation.reservationService;
 @Controller
 public class reservationController {
 
-	@Autowired reservationService rs;
+	@Autowired 
+	private reservationService rs;
 	
 	//병원 예약 관련(손님 기준)
 	@GetMapping("reservation") //병원 예약 기본 페이지
@@ -161,6 +162,18 @@ public class reservationController {
 	@PostMapping("reservationCount") //시간별 예약자 수 확인
 	public Map<String, String> reservationCount(@RequestBody Map<String, Object> map) {
 		return rs.reservationCount(map);
+	}
+	
+	@ResponseBody
+	@PostMapping("reservationCheck")
+	public String reservationCheck(HttpSession session, @RequestBody Map<String, String> map ) {
+		String size = "";
+		
+		if(rs.reservationCheck(map) != null) {
+			size = "1";
+		} 
+		
+		return size;
 	}
 
 }

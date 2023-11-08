@@ -11,19 +11,23 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 @Component
 public class ReservationInterceptor extends HandlerInterceptorAdapter implements LoginSession {
-	   public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-			   															throws Exception {
-		   
-	      HttpSession session = request.getSession();
-	      if(session.getAttribute(cLOGIN) == null) {
-	         
-	         response.setContentType("text/html; charset=UTF-8");
-	         PrintWriter out = response.getWriter();
-	         out.print("<script>alert('로그인 후 이용 가능합니다.');"
-	        		 +"location.href='/am/customerLogin';</script>");
-	      
-	         return false;
-	      }
-	      return true;
-	   }
+	
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+		HttpSession session = request.getSession();
+		String cId = session.getAttribute(cLOGIN).toString();
+		
+		//로그인 없이 페이지 접근
+
+		if (cId == null) {
+
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.print("<script>alert('로그인 후 이용 가능합니다.');" + "location.href='/am/customerLogin';</script>");
+
+			return false;
+		}
+		
+		return true;
+	}
+	
 }

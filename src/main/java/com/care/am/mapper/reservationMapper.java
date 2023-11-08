@@ -25,4 +25,5 @@ public interface reservationMapper {
 	public Map<String, Object> peopleCount(Map<String, Object> map);
 	public List<Map<String, String>> mediSelectList(reservationPagination pag);
 	public List<Map<String, String>> customerResList(@Param("id") String id, @Param("start") String start, @Param("end") String end);
+	public Map<String, String> reservationCheck(Map<String, String> map);
 }

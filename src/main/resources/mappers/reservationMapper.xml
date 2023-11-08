@@ -117,5 +117,11 @@
 		WHERE RN BETWEEN ${start} AND ${end}
 		]]>
 	</select>
+	
+	<select id="reservationCheck" resultType="map">
+		select reservation.m_id, reservation.r_date, reservation.r_time,pet.p_num
+			from reservation join pet on reservation.p_num = pet.p_num
+			where m_id=#{mId} and r_date = #{rDate} and r_time = #{rTime} and p_name=#{pName};
+	</select>
 
 </mapper>
