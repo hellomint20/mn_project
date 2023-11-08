@@ -118,7 +118,7 @@
 		select r_time, r_content, r_apply, r_date, p_type, r_num
 		from reservation, pet
 		where m_id = ${mId} and  r_apply = "대기"
-		order by r_date 
+		order by r_date,r_time  
 		limit #{start}, #{limit}
 	</select>
 	
@@ -134,7 +134,7 @@
 		select r_time, r_content, r_apply, r_date, p_type
 		from reservation, pet
 		where m_id = ${mId} and not r_apply in ("대기")
-		order by r_date 
+		order by r_date, r_time 
 		limit #{start}, #{limit}
 	</select>
 	
