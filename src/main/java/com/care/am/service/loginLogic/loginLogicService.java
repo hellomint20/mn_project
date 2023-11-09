@@ -1,13 +1,12 @@
 package com.care.am.service.loginLogic;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,12 +16,11 @@ import org.springframework.stereotype.Service;
 import com.care.am.dto.customerDTO;
 import com.care.am.mapper.customerMapper;
 import com.care.am.service.customer.customerService;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 @Service
-public class loginLogicService {
+public class loginLogicService{
 
 	Logger logger = LoggerFactory.getLogger(loginLogicService.class);
 
@@ -44,7 +42,7 @@ public class loginLogicService {
             String postParams = "grant_type=authorization_code" +
                     "&client_id=552b94427c4a76a3adae3c4f8183915b" +
                     "&redirect_uri=http://localhost:8090/am/kakaoCallback" +
-                    "&code=" + code;
+		            "&code=" + code;
 
             // 요청 파라미터를 전송
             con.setDoOutput(true);
@@ -77,21 +75,19 @@ public class loginLogicService {
 
 
 	public customerDTO createKakaoUser(String token) throws Exception {
-	    customerDTO mVO = new customerDTO(); // 로그인 한 회원 정보 담을 VO
+	    customerDTO mVO = new customerDTO(); // 사용자 정보를 담을 mVO
 
 	    try {
-	    	String reqURL = "https://kapi.kakao.com/v2/user/me";
+	        String reqURL = "https://kapi.kakao.com/v2/user/me";
 	        URL obj = new URL(reqURL);
 	        HttpURLConnection conn = (HttpURLConnection) obj.openConnection();
 
-	        conn.setRequestMethod("POST");
-	        conn.setDoOutput(true);
+	        // 요청을 GET으로 설정 (카카오 API 요청 시 GET 방식 사용)
+	        conn.setRequestMethod("GET");
 	        conn.setRequestProperty("Authorization", "Bearer " + token);
-
 	        int responseCode = conn.getResponseCode();
-	        System.out.println("create responseCode : " + responseCode);
-
-	        BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+	        System.out.println(responseCode);
+	        BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), StandardCharsets.UTF_8));
 	        StringBuilder result = new StringBuilder();
 	        String line;
 
@@ -102,17 +98,18 @@ public class loginLogicService {
 
 	        JsonParser parser = new JsonParser();
 	        JsonObject jsonObject = parser.parse(result.toString()).getAsJsonObject();
-	        JsonObject properties = jsonObject.getAsJsonObject("properties");
-	        JsonObject kakao_account = jsonObject.getAsJsonObject("kakao_account");
-	        String nickname = properties.get("nickname").getAsString();
-	        String email = kakao_account.get("email").getAsString();
+	        JsonObject kakaoAccount = jsonObject.getAsJsonObject("kakao_account");
+	        String nickname = kakaoAccount.getAsJsonObject("profile").get("nickname").getAsString();
+	        String email = kakaoAccount.get("email").getAsString();
 
 	        // 이미 등록된 회원인지 확인
 	        customerDTO kakaoChk = cm.kakaoCheck(email);
 	        if (kakaoChk == null) {
-	            String member_code = cs.makeRandomPw();
-	            mVO.setcId("k");
-	            mVO.setcPw(member_code);
+	        	String[] k_mail = email.split("@");
+	        	String kId = k_mail[0];
+	        	
+	            mVO.setcId(kId);
+	            mVO.setcPw("kakao");
 	            mVO.setcName(nickname);
 	            mVO.setcTel("010-1111-1111");
 	            mVO.setcEmail(email);
@@ -120,7 +117,7 @@ public class loginLogicService {
 	            // 회원 등록
 	            int registrationResult = cm.register(mVO);
 	            if (registrationResult == 1) {
-	                return cm.kakaoCheck(mVO.getcEmail());
+	                return mVO;
 	            }
 	        } else {
 	            return kakaoChk;
@@ -130,4 +127,5 @@ public class loginLogicService {
 	    }
 	    return null;
 	}
+
 }

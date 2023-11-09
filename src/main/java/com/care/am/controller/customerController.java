@@ -21,7 +21,6 @@ import com.care.am.common.LoginSession;
 import com.care.am.dto.customerDTO;
 import com.care.am.service.customer.customerService;
 import com.care.am.service.loginLogic.loginLogicService;
-import com.google.gson.Gson;
 
 @Controller
 public class customerController{
@@ -256,10 +255,10 @@ public class customerController{
 //	      String access_token = lls.getKakaoAccessToken(code);
 //	      System.out.println(access_token);
 //	      try {
-//	         customerDTO userInfo = lls.createKakaoUser(access_token);
 //	         String temp = "";
 //	         Gson g = new Gson();
 //	         temp = g.toJson(userInfo);
+//	         customerDTO userInfo = lls.createKakaoUser(access_token);
 //	         System.out.println(temp);
 //	         return temp;
 //	      } catch (Exception e) {

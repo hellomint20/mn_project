@@ -51,53 +51,10 @@
 		<div>
 			간편 로그인
 			<a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=552b94427c4a76a3adae3c4f8183915b&redirect_uri=http://localhost:8090/am/kakaoCallback">카카오</a>
-			<ul>
-				<li onclick="kakaoLogin();"><a href="javascript:void(0)">kakao</a></li>
-				<li onclick="kakaoLogout();"><a href="javascript:void(0)">logout</a></li>
-			</ul>
 		</div>
 	</form>
 </body>
-
-	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-	<script>
-		Kakao.init('61eb6f16c6579789a47613966c3ee01b'); //발급받은 키 중 javascript키를 사용해준다.
-		console.log("sdk: " +Kakao.isInitialized()); // sdk초기화여부판단 // true 나옴
-		//카카오로그인
-		function kakaoLogin() {
-		    Kakao.Auth.login({
-		      success: function (response) {
-		        Kakao.API.request({
-		          url: '/v2/user/me',
-		          success: function (response) {
-		        	  console.log("success: "+response)
-		          },
-		          fail: function (error) {
-		            console.log("error: "+error)
-		          },
-		        })
-		      },
-		      fail: function (error) {
-		        console.log(error)
-		      },
-		    })
-		  }
-		//카카오로그아웃  
-		function kakaoLogout() {
-		    if (Kakao.Auth.getAccessToken()) {
-		      Kakao.API.request({
-		        url: '/v1/user/logout',
-		        success: function (response) {
-		        	console.log(response)
-		        },
-		        fail: function (error) {
-		          console.log(error)
-		        },
-		      })
-		      Kakao.Auth.setAccessToken(undefined)
-		    }
-		  }  
-	</script>
-
-
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+	
 </html>
