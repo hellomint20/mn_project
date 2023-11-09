@@ -43,12 +43,14 @@
 					<br>
 					<div style="display: block; text-align: center; margin-top: 20px;">
 						<c:if test="${paging.startPage != 1 }">
-							<c:when test="${ search == 0 }">
-								<a href="/am/reservation?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
-							</c:when>
-							<c:otherwise>
-								<a href="/am/reservationSearch?mName=${mName}&nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
-							</c:otherwise>
+							<c:choose>
+								<c:when test="${ search == 0 }">
+									<a href="/am/reservation?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+								</c:when>
+								<c:otherwise>
+									<a href="/am/reservationSearch?mName=${mName}&nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+								</c:otherwise>
+							</c:choose>
 						</c:if>
 						<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
 							<c:choose>
