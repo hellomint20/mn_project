@@ -22,7 +22,7 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 </head>
 <body>
-	<form class="form-signin" action="customerLogin" method="post">
+	<form class="form-signin" action="cusloginChk" method="post">
 		<a href="/am"><img class="mb-2"
 			src="/am/resources/img/common/logoLogin.png" width="270px"
 			height="110px"></a>

@@ -72,11 +72,11 @@ public class customerController{
 		apiResult = naverLoginBO.getUserProfile(oauthToken);
 		model.addAttribute("result", apiResult);
 		customerDTO dto = cs.naverLogin(apiResult);
+		System.out.println("디티오겟아이디:"+dto.getcId());
 		session.setAttribute(LoginSession.cLOGIN, dto.getcId());
         return "am/customer/naverLoginSuccess";
-
+        
 	}
-	
 
 	@PostMapping("cusloginChk") //손님 로그인 확인
 	public String loginChk(@RequestParam String id, 
@@ -84,6 +84,8 @@ public class customerController{
 						@RequestParam(required=false, defaultValue="off")String autoLogin,
 						RedirectAttributes rs,
 						HttpServletResponse res) throws Exception {
+		System.out.println("아이디:"+id);
+		System.out.println("아이디:"+pw);
 		
 		int result = cs.logChk(id,pw);
 		if(result == 1) {

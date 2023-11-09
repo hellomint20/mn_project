@@ -42,6 +42,6 @@
     </delete>
    
    <select id="kakaoCheck" resultMap="customer">
-   		select * from customer where c_email= #{cEmail}
+   		select * from customer where c_email = #{cEmail}
    </select>
 </mapper>
