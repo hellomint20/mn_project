@@ -7,7 +7,6 @@
 <meta charset="UTF-8">
 <title>보호자 예약확인</title>
 <link rel="stylesheet" href="/am/css/reservation/c_reservation.css">
-
 <script type="text/javascript">
 	function selChange() {
 		var sel = document.getElementById('cntPerPage').value;
@@ -21,11 +20,10 @@
 			location.href='/am/reservationCancel?id=${userId}&num='+num;
 	}
 </script>
-
 </head>
 <body>
-	<%@ include file="../default/header_page.jsp"%>
-	<%@ include file="../common/sidebar.jsp"%>
+	<%@ include file = "../default/header_page.jsp" %>
+	<%@ include file = "../common/customerSidebar.jsp" %>
 
 	<div class="board_wrap">
 		<div class="board_title">
