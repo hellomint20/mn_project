@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="/am/css/customer/delete.css">
 <body>
 	<%@ include file = "../default/header_page.jsp" %>
+	<%@ include file = "../common/mediSidebar.jsp" %>
 
 	<div class="all">	
 	<form action="mediDelete" method="post">

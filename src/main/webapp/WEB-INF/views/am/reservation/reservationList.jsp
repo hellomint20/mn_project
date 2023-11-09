@@ -23,7 +23,7 @@ function selChange() {
 </head>
 <body>
 	<%@ include file = "../default/header_page.jsp" %>
-	<%@ include file = "../common/sidebar.jsp" %>
+	<%@ include file = "../common/customerSidebar.jsp" %>
 
 	<div class="board_wrap">
 		<div class="board_title">

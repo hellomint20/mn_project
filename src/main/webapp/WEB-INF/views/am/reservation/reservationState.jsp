@@ -6,7 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="/am/css/bootstrap/bootstrap.css" rel="stylesheet">
 <link rel="stylesheet" href="/am/css/reservation/reservationState.css">
 
 <script
@@ -49,7 +48,7 @@ function Popup(rNum){
 <body>
 
 	<%@ include file="../default/header_page.jsp"%>
-
+	<%@ include file="../common/mediSidebar.jsp"%>
 
 	<div class="r_table">
 		<div class="buttonbox">
@@ -59,81 +58,81 @@ function Popup(rNum){
 		</div>
 		<div style="clear: both;"></div>
 		<div style="width: 800px; height: 400px;">
-				<!-- 새로운 접수 테이블 -->
-				<div id="table2" width="900px">
-					<table class="col-100 col">
-						<colgroup>
-							<col width="30%">
-							<col width="20%">
-							<col width="20%">
-							<col width="20%">
-						</colgroup>
-						<thead>
+			<!-- 새로운 접수 테이블 -->
+			<div id="table2" width="900px">
+				<table class="col-100">
+					<colgroup>
+						<col width="30%">
+						<col width="20%">
+						<col width="20%">
+						<col width="20%">
+					</colgroup>
+					<thead>
+						<tr>
+							<th id="basic">날짜</th>
+							<th id="basic">시간</th>
+							<th id="basic">과</th>
+							<th id="basic">접수내용</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="wait" items="${waitList }">
+
 							<tr>
-								<th>날짜</th>
-								<th>시간</th>
-								<th>과</th>
-								<th>접수내용</th>
+								<td><a href="#" onclick="Popup(${wait.r_num})">
+								${wait.year }년 ${wait.month }월
+										${wait.day }일</a></td>
+								<td>${wait.hour }시${wait.min }분</td>
+								<td>${wait.p_type }</td>
+								<td>${wait.r_content }</td>
 							</tr>
-						</thead>
-						<tbody>
-
-							
-								<c:forEach var="wait" items="${waitList }">
-								
-									<tr>
-										<td><a href="#" onclick="Popup(${wait.r_num})">${wait.year }년 ${wait.month }월 ${wait.day }일</a></td>
-										<td>${wait.hour }시 ${wait.min }분</td>
-										<td>${wait.p_type }</td>
-										<td>${wait.r_content }</td>
-									</tr>
-								</c:forEach>
-							
-							
-						</tbody>
-					</table>
-				</div>
+						</c:forEach>
 
 
-				<!-- 승인/취소 테이블 -->
-				<!-- 접수상태에 '취소'들어올 시 그 열 글씨 색 gray로 변경 -->
-				<div id="table3" width="800px">
-					<table class="col-100 col">
-						<colgroup>
-							<col width="30%">
-							<col width="15%">
-							<col width="20%">
-							<col width="17.5%">
-							<col width="17.5%">
-						</colgroup>
-						<thead>
+					</tbody>
+				</table>
+			</div>
+
+
+			<!-- 승인/취소 테이블 -->
+			<!-- 접수상태에 '취소'들어올 시 그 열 글씨 색 gray로 변경 -->
+			<div id="table3" width="800px">
+				<table class="col-100 col">
+					<colgroup>
+						<col width="30%">
+						<col width="15%">
+						<col width="20%">
+						<col width="17.5%">
+						<col width="17.5%">
+					</colgroup>
+					<thead>
+						<tr>
+							<th id="basic">날짜</th>
+							<th id="basic">시간</th>
+							<th id="basic">과</th>
+							<th id="basic">접수내용</th>
+							<th id="basic">접수상태</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="list" items="${list }">
 							<tr>
-								<th>날짜</th>
-								<th>시간</th>
-								<th>과</th>
-								<th>접수내용</th>
-								<th>접수상태</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="list" items="${list }">
-							<tr>
-								<td>${list.year }년 ${list.month }월 ${list.day }일</td>
-								<td>${list.hour }시 ${list.min }분</td>
+								<td>${list.year }년${list.month }월 ${list.day }일</td>
+								<td>${list.hour }시${list.min }분</td>
 								<td>${list.p_type }</td>
 								<td>${list.r_content }</td>
 								<td>${list.r_apply }</td>
 							</tr>
-							</c:forEach>
-							
+						</c:forEach>
 
-						</tbody>
-					</table>
-					
-				</div>
+
+					</tbody>
+				</table>
+
+			</div>
 		</div>
 	</div>
-	
-	
+
+
 </body>
 </html>

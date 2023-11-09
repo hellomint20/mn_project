@@ -34,6 +34,7 @@ import com.care.am.dto.customerDTO;
 import com.care.am.naver.NaverLoginBO;
 import com.care.am.service.customer.customerService;
 import com.github.scribejava.core.model.OAuth2AccessToken;
+import com.care.am.service.loginLogic.loginLogicService;
 
 @Controller
 public class customerController{
@@ -50,6 +51,8 @@ public class customerController{
 	private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
 		this.naverLoginBO = naverLoginBO;
 	}
+	@Autowired loginLogicService lls;
+	
 	
 	//로그인 관련
 	@GetMapping("customerRegister") //손님 회원가입 페이지
@@ -64,11 +67,6 @@ public class customerController{
 	      PrintWriter out = res.getWriter();
 	      out.print( msg );
 	}
-	
-//	@GetMapping("customerLogin") //로그인 페이지
-//	public String login() {
-//		return "am/customer/customerLogin";
-//	}
 	
 	
 	@RequestMapping(value = "customerLogin", method = {RequestMethod.GET, RequestMethod.POST}) //로그인 페이지
@@ -319,4 +317,9 @@ public class customerController{
 		}
 	    out.print( msg );
 	}
-}
+}	
+	
+	
+	
+	
+	

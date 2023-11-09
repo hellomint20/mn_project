@@ -191,4 +191,8 @@ public class customerServiceImpl implements customerService {
 			}
 		return GetMessage.getMessage("비밀번호가 틀렸습니다", "/am/customerPwdChk?id=" + dto.getcId());
 	}
+	
+
+	
+
 }

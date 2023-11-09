@@ -23,7 +23,9 @@
 			console.log(num);
 			console.log(email);
 			location.href="/am/reserState1?num="+num+"&email="+email+"&mId="+'${mediId}';
-			window.close();
+			setTimeout(function() {
+			    window.close();
+			}, 3000);
 		}
 		
 		function nook_Form(num) {
@@ -56,7 +58,9 @@
 		    form.appendChild(contInput);
 		    document.body.appendChild(form);
 		    form.submit();
-		    window.close();
+		    setTimeout(function() {
+			    window.close();
+			  }, 3000);
 		}
 		
 		
@@ -69,7 +73,6 @@
 </head>
 <body>
 
-	
 	<h1 id="title">상세내용</h1>
 	<br>
 

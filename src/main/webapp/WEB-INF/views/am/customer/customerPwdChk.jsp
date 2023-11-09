@@ -10,7 +10,7 @@
 	<link rel="stylesheet" href="/am/css/customer/delete.css">
 <body>
 	<%@ include file = "../default/header_page.jsp" %>
-	<%@ include file = "../common/sidebar.jsp" %>
+	<%@ include file = "../common/customerSidebar.jsp" %>
 	
 	
 	<div class="all">
