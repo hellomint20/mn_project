@@ -4,21 +4,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.social.connect.Connection;
-import org.springframework.social.google.api.Google;
-import org.springframework.social.google.api.impl.GoogleTemplate;
-import org.springframework.social.google.api.plus.Person;
-import org.springframework.social.google.api.plus.PlusOperations;
-import org.springframework.social.google.connect.GoogleConnectionFactory;
-import org.springframework.social.oauth2.AccessGrant;
-import org.springframework.social.oauth2.GrantType;
-import org.springframework.social.oauth2.OAuth2Operations;
-import org.springframework.social.oauth2.OAuth2Parameters;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -33,25 +22,22 @@ import com.care.am.common.LoginSession;
 import com.care.am.dto.customerDTO;
 import com.care.am.naver.NaverLoginBO;
 import com.care.am.service.customer.customerService;
-import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.care.am.service.loginLogic.loginLogicService;
+import com.github.scribejava.core.model.OAuth2AccessToken;
 
 @Controller
 public class customerController{
-	
-	@Autowired
-	private GoogleConnectionFactory googleConnectionFactory;
-	@Autowired
-	private OAuth2Parameters googleOAuth2Parameters;
-
 	@Autowired customerService cs;
+	
+	@Autowired loginLogicService lls;
+	
 	private NaverLoginBO naverLoginBO;
 	private String apiResult = null;
+
 	@Autowired
 	private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
 		this.naverLoginBO = naverLoginBO;
 	}
-	@Autowired loginLogicService lls;
 	
 	
 	//로그인 관련
@@ -74,11 +60,6 @@ public class customerController{
 		/*네이버*/
 		String naverAuthUrl = naverLoginBO.getAuthorizational(session);
 		model.addAttribute("url", naverAuthUrl);
-		/* 구글 */
-		OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
-		String url = oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE, googleOAuth2Parameters);
-		System.out.println("구글:" + url);
-		model.addAttribute("google_url", url);
 		
 		return "am/customer/customerLogin";
 	}
@@ -95,30 +76,7 @@ public class customerController{
         return "am/customer/naverLoginSuccess";
 
 	}
-	// 구글 Callback호출 메소드
-	@RequestMapping(value = "/googlecallback", method = { RequestMethod.GET, RequestMethod.POST })
-	public String googlecallback(HttpServletRequest request, HttpServletResponse response, HttpSession session,
-									Model model, @RequestParam String code)throws IOException {
-		OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
-        AccessGrant accessGrant = oauthOperations.exchangeForAccess(code , googleOAuth2Parameters.getRedirectUri(), null);
-        String accessToken = accessGrant.getAccessToken();
-        Long expireTime = accessGrant.getExpireTime();
-        
-        if (expireTime != null && expireTime < System.currentTimeMillis()) {
-            accessToken = accessGrant.getRefreshToken();
-            System.out.printf("accessToken is expired. refresh token = {}", accessToken);
-        }
-        Connection<Google> connection = googleConnectionFactory.createConnection(accessGrant);
-        Google google = connection == null ? new GoogleTemplate(accessToken) : connection.getApi();
-        
-        PlusOperations plusOperations = google.plusOperations();
-        Person profile = plusOperations.getGoogleProfile();
-        System.out.println("구글프로파일"+profile);
-//        customerDTO dto = cs.googleLogin(profile); 
-
-
-		return "am/customer/googleSuccess";
-	}
+	
 
 	@PostMapping("cusloginChk") //손님 로그인 확인
 	public String loginChk(@RequestParam String id, 

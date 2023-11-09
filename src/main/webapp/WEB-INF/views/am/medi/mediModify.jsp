@@ -73,7 +73,7 @@ setTimeout(function(){
 				
 				<div class="info-content">
 				   		<input type="text" class="t_b" name="mId" readonly value="${info.dto.mId }" ><br>
-				   		<input type="text" class="t_b" name="mName" value=" ${info.dto.mName }"><br>
+				   		<input type="text" class="t_b" name="mName" value="${info.dto.mName }"><br>
 				   		<input type="text" class="t_b_post" name="mAddr" id="addr1" value="${info.addr1 }" >
 				   		<input type="button" class="btn btn-dark" onclick="daumPost()" value="주소검색">
 				   		<input type="text" class="t_b" name="mAddr" id="addr2" value="${info.addr2 }" ><br>

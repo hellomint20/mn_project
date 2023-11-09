@@ -27,34 +27,15 @@
 	</beans:bean>
 	
 
-<<<<<<< HEAD
 	<context:component-scan	base-package="com.care.am" />
 	<beans:bean id="naverLoginBO" class="com.care.am.naver.NaverLoginBO"></beans:bean>
-=======
->>>>>>> b7e1dff30e18b6542767fbe51b68785c0b5d9830
 
-	<context:component-scan	base-package="com.care.am" />
 	
 	<beans:bean id="autoLogin" class="com.care.am.common.AutoLoginInterceptor" />
 	<beans:bean id="customInter" class="com.care.am.common.CustomerInterceptor" />
 	<beans:bean id="mediInter" class="com.care.am.common.MediInterceptor" />
 	<!-- NaverLoginBO Class에 대한 Bean설정 추가 -->
 	<beans:bean id="reserInter" class="com.care.am.common.ReservationInterceptor" />
-	
-	<!-- google Class Bean설정 추가 -->
-	<!-- 클라이언트ID와 보안비밀 세팅-->
-	<beans:bean id="googleConnectionFactory"
-		class="org.springframework.social.google.connect.GoogleConnectionFactory">
-		<beans:constructor-arg value="481904311940-48g6tbsltu3g2op7upb6rtqp3qvs338g.apps.googleusercontent.com" />
-		<beans:constructor-arg value="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" />
-	</beans:bean>
-	<!-- 승인된 자바스크립트 원본과 승인된 리디렉션 URI -->
-	<beans:bean id="googleOAuth2Parameters" class="org.springframework.social.oauth2.OAuth2Parameters">
-		<beans:property name="scope" value="https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email" />
-		<beans:property name="redirectUri" value="http://localhost:8090/am/googlecallback" />
-	</beans:bean>
-		
-	
 	<interceptors>
 		<interceptor>
 			<mapping path="/" />
