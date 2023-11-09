@@ -43,13 +43,10 @@ function Popup(rNum){
 }
 
  </script>
-
-
 </head>
 <body>
 
 	<%@ include file="../default/header_page.jsp"%>
-
 
 	<div class="r_table">
 		<div class="buttonbox">
@@ -77,10 +74,7 @@ function Popup(rNum){
 							</tr>
 						</thead>
 						<tbody>
-
-							
 								<c:forEach var="wait" items="${waitList }">
-								
 									<tr>
 										<td><a onclick="Popup(${wait.r_num})">${wait.year }년 ${wait.month }월 ${wait.day }일</a></td>
 										<td>${wait.hour }시 ${wait.min }분</td>
@@ -88,13 +82,9 @@ function Popup(rNum){
 										<td>${wait.r_content }</td>
 									</tr>
 								</c:forEach>
-							
-							
 						</tbody>
 					</table>
 				</div>
-
-
 				<!-- 승인/취소 테이블 -->
 				<!-- 접수상태에 '취소'들어올 시 그 열 글씨 색 gray로 변경 -->
 				<div id="table3" width="800px">
@@ -125,15 +115,10 @@ function Popup(rNum){
 								<td>${list.r_apply }</td>
 							</tr>
 							</c:forEach>
-							
-
 						</tbody>
-					</table>
-					
+					</table>	
 				</div>
 		</div>
 	</div>
-	
-	
 </body>
 </html>

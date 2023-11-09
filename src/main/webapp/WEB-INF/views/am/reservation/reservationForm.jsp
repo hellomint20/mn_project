@@ -116,6 +116,18 @@
 		
 		if ($(".futureDay.choiceDay").val() == undefined){ //선택된 날짜가 오늘 이후가 아니라면
 			checkDay += $(".today.choiceDay").text();
+			
+		// 오늘 날짜 클릭시 지난 시간 disabled 처리
+		var nowTime = new Date();
+		let time = nowTime.getHours()+1 +":"+nowTime.getMinutes();
+		console.log(time);
+		for(var i=1; i<timeList.length; i+=7){
+			if(timeList.slice(i, i+5) <= time){
+				$("label[for='"+timeList.slice(i, i+5)+"']").css('background-color','#e2e5e8');
+				document.getElementById(timeList.slice(i, i+5)).disabled = true;
+			}
+		}
+		
 		}else{
 			checkDay += $(".futureDay.choiceDay").text();
 		}

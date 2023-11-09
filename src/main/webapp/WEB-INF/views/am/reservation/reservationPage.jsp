@@ -34,20 +34,23 @@
 						<c:forEach items="${viewAll }" var="list">
 							<tr class="listTr">
 								<td>${list.RN}</td>
-								<td id="mediList"><button class="listBtn" type="button"
-										onclick="detailView('${list['m_id']}')">${list['m_name']}</button></td>
+								<td id="mediList">
+									<button class="listBtn" type="button" onclick="detailView('${list['m_id']}')">${list['m_name']}</button>
+								</td>
 							</tr>
 						</c:forEach>
 					</table>
 					<br>
 					<div style="display: block; text-align: center; margin-top: 20px;">
 						<c:if test="${paging.startPage != 1 }">
-							<c:when test="${ search == 0 }">
-								<a href="/am/reservation?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
-							</c:when>
-							<c:otherwise>
-								<a href="/am/reservationSearch?mName=${mName}&nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
-							</c:otherwise>
+							<c:choose>
+								<c:when test="${ search == 0 }">
+									<a href="/am/reservation?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+								</c:when>
+								<c:otherwise>
+									<a href="/am/reservationSearch?mName=${mName}&nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+								</c:otherwise>
+							</c:choose>
 						</c:if>
 						<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
 							<c:choose>
@@ -65,12 +68,14 @@
 							</c:choose>
 						</c:forEach>
 						<c:if test="${paging.endPage != paging.lastPage}">
-							<c:when test="${search == 0 }">
-								<a href="/am/reservation?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
-							</c:when>
-							<c:otherwise>
-								<a href="/am/reservationSearch?mName=${mName}&nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
-							</c:otherwise>
+							<c:choose>
+								<c:when test="${search == 0 }">
+									<a href="/am/reservation?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
+								</c:when>
+								<c:otherwise>
+									<a href="/am/reservationSearch?mName=${mName}&nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
+								</c:otherwise>
+							</c:choose>
 						</c:if>
 					</div>
 				</div>
@@ -135,13 +140,17 @@
 			contentType : "application/json; charset=utf-8",
 			success : (mediInfo) => {
 				let name = mediInfo['m_name'];
+				let mPhoto = mediInfo['m_photo'];
+				let imgSrc = "/am/resources/img/"+mPhoto;
 				
 				document.getElementById("mediDetail").innerHTML ="{ "+mediInfo['m_name'] + " } 상세 정보";
 				document.getElementById("mediName").innerHTML = mediInfo['m_name'];
 				document.getElementById("mediAddr").innerHTML = mediInfo['m_addr'];
 				document.getElementById("mediTime").innerHTML = mediInfo['open_time']+" - "+mediInfo['close_time'];
 				document.getElementById("mediTel").innerHTML = mediInfo['m_tel'];
-				document.getElementById("mId").value =  mediInfo['m_id']
+				document.getElementById("mId").value =  mediInfo['m_id'];
+				document.getElementById("mediPhoto").innerHTML = `<img src=` +imgSrc+` width="230px;" height="200px;"></td>`
+				
 			},
 			error : () => {
 				alert("문제 발생")

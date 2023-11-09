@@ -138,6 +138,25 @@ public class reservationController {
 		return "am/reservation/reservationList";
 	}
 	
+	//병원 예약상태 관련(병원 기준 - 새로운 접수)
+	@GetMapping("reservationStateWait") //병원 예약상태
+	public String reservationState(@RequestParam String id, Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
+		
+		model.addAttribute("wait", rs.waitList(id, page)); //새로운접수
+		model.addAttribute("waitPaging", rs.waitListPaging(page, id));
+		
+		return "am/reservation/reservationStateWait";
+	}
+	
+	//병원 예약상태 관련(병원기준 - 승인취소)
+	@GetMapping("reservationStateAC")
+	public String reservationStateAC(@RequestParam String id, Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
+		model.addAttribute("ac", rs.ACList(id, page)); //승인취소
+		model.addAttribute("ACPaging", rs.ACListPaging(page, id));
+		
+		return "am/reservation/reservationStateAC";
+	}
+	
 	@GetMapping("reservationCancel") 
 	public void reservationCancel(@RequestParam String id, @RequestParam int num,
 								HttpServletResponse res) throws Exception {
@@ -146,16 +165,9 @@ public class reservationController {
 		PrintWriter out = res.getWriter();
 		out.print(msg);
 	}
-
-	@GetMapping("reservationState")
-	public String reservationState(@RequestParam String id, Model model, @RequestParam(required = false, defaultValue = "1") int num) {
-		model.addAttribute("list", rs.mediReservationList(id));
-		model.addAttribute("waitList", rs.mediReservationWaitList(id));
-		
-		return "am/reservation/reservationState";
-	}
 	
 	// 예약 승인 메일
+	
 	@GetMapping("reserState1") 
 	public String reserState1(@RequestParam int num, @RequestParam String email, @RequestParam String mId) {
 		int result = rs.reserState(num, 1);
@@ -199,6 +211,8 @@ public class reservationController {
 		if(rs.reservationCheck(map) != null) {
 			size = "1";
 		} 
+		
+		map.put("cId", session.getAttribute(LoginSession.cLOGIN).toString());
 		
 		return size;
 	}

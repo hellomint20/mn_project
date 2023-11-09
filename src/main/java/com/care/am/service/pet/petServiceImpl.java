@@ -34,6 +34,8 @@ public class petServiceImpl implements petService {
 		
 		if(originName != "") {
 			dto.setpPhoto(pfs.saveFile(file));
+		}else {
+			dto.setpPhoto("petDefault.jpg");
 		}
 		int result = pm.petRegister(dto);
 		String msg ="", url="";
