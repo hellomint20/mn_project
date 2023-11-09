@@ -39,6 +39,7 @@ public class kakaoContoller {
 			System.out.println("ctrl: " +accessToken);
 			customerDTO userInfo = lls.createKakaoUser(accessToken);
 			session.setAttribute(LoginSession.cLOGIN, userInfo.getcId());
+			session.setAttribute(LoginSession.sLOGIN, userInfo.getcPw());
 			String redirect_uri = "/am";
 			response.sendRedirect(redirect_uri);
 			} catch (Exception e) {

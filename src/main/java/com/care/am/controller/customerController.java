@@ -242,31 +242,4 @@ public class customerController{
 	
 	
 	
-	
-	
-	
-	
-	
-//		// 2번
-//		// 카카오 로그인
-//	   @GetMapping("kakaologin")
-//	   public String kakaoCallback(@RequestParam String code) {
-//	      System.out.println(code);
-//	      String access_token = lls.getKakaoAccessToken(code);
-//	      System.out.println(access_token);
-//	      try {
-//	         String temp = "";
-//	         Gson g = new Gson();
-//	         temp = g.toJson(userInfo);
-//	         customerDTO userInfo = lls.createKakaoUser(access_token);
-//	         System.out.println(temp);
-//	         return temp;
-//	      } catch (Exception e) {
-//	         e.printStackTrace();
-//	         return "am/";
-//	      }
-//	   }
-	
-
-	
 }
