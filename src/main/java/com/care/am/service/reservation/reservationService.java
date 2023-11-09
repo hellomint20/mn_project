@@ -20,4 +20,9 @@ public interface reservationService {
 	public int mediSearch(String mName); //검색한 이름 리스트 갯수 가져오기
 	public List<Map<String, String>> mediSelectSearch(String mName, reservationPagination pag); //pag 해당하는 만큼 검색 리스트 가져오기
 	public Map<String, String> reservationCheck(Map<String, String> map);
+	public String reserCancel(String id, int num);
+	public int reserState(int num, int state);
+	public List<Map<String, String>> mediReservationList(String id);
+	public List<Map<String, String>> mediReservationWaitList(String id);
+	public Map<String, String> reservationInfo(int rNum);
 }
