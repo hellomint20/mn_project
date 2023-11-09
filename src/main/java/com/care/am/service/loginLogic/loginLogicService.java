@@ -103,7 +103,7 @@ public class loginLogicService{
 	        String email = kakaoAccount.get("email").getAsString();
 
 	        // 이미 등록된 회원인지 확인
-	        customerDTO kakaoChk = cm.kakaoCheck(email);
+	        customerDTO kakaoChk = cm.emailCheck(email);
 	        if (kakaoChk == null) {
 	        	String[] k_mail = email.split("@");
 	        	String kId = k_mail[0];

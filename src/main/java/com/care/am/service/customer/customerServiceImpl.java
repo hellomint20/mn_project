@@ -48,7 +48,6 @@ public class customerServiceImpl implements customerService {
 		HashMap<String, Object> map = new HashMap<>();
 		Map<String, Object> data = mapper.readValue(apiResult, Map.class);
 		JSONParser jsonParser = new JSONParser();
-		
 		JSONObject jsonObject = (JSONObject) jsonParser.parse(apiResult);
 		jsonObject = (JSONObject) jsonObject.get("response");
 
@@ -56,15 +55,21 @@ public class customerServiceImpl implements customerService {
 		map.put("cName", jsonObject.get("name"));
 		map.put("cTel", jsonObject.get("mobile"));
 		String email = (String) ((Map<String, Object>) data.get("response")).get("email");
-		String id = email.split("@")[0];
-		customerDTO dto = cm.getCustomer(id);
+		
+		customerDTO dto = cm.emailCheck(email);
 		if(dto == null) { // 네이버 아이디로 회원가입된 정보가 없다면
-			dto.setcId(id);
-			dto.setcName(map.get("cName").toString());
-			dto.setcEmail(map.get("cEmail").toString()); 
-			dto.setcTel(map.get("cTel").toString());
-			dto.setcPw("naver");
-			cm.register(dto);
+			String id = email.split("@")[0];
+			System.out.println(id);
+			
+			customerDTO nd = new customerDTO();
+			
+			nd.setcId(id);
+			nd.setcName(map.get("cName").toString());
+			nd.setcEmail(map.get("cEmail").toString()); 
+			nd.setcTel(map.get("cTel").toString());
+			nd.setcPw("naver");
+			cm.register(nd);
+			return nd;
 		}
 		return dto;
 	}

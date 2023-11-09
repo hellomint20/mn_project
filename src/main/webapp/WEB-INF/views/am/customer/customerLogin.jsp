@@ -22,7 +22,7 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 </head>
 <body>
-	<form class="form-signin" action="customerLogin" method="post">
+	<form class="form-signin" action="cusloginChk" method="post">
 		<a href="/am"><img class="mb-2"
 			src="/am/resources/img/common/logoLogin.png" width="270px"
 			height="110px"></a>
@@ -47,13 +47,15 @@
 			<hr>
 		</div>
 		<div>
-			<!-- 네이버 로그인 화면으로 이동 시키는 URL -->
-		<div id="snsLogin">
-		<div id="naver_id_login" style="text-align:center"><a href="${url}">
-		<img width="50px" src="/am/resources/img/common/btnG_아이콘원형.png"/></a></div>
-			<!-- 카카오 로그인 화면으로 이동 시키는 URL -->
-			<a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=552b94427c4a76a3adae3c4f8183915b&redirect_uri=http://localhost:8090/am/kakaoCallback">
-			<img width="50px" src="/am/resources/img/common/카카오로그인.png"/></a></div></div>
+			<div id="snsLogin">
+					<!-- 네이버 로그인 화면으로 이동 시키는 URL -->
+				<div id="naver_id_login" style="text-align:center"><a href="${url}">
+				<img width="50px" src="/am/resources/img/common/btnG_아이콘원형.png"/></a></div>
+					<!-- 카카오 로그인 화면으로 이동 시키는 URL -->
+				<a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=552b94427c4a76a3adae3c4f8183915b&redirect_uri=http://localhost:8090/am/kakaoCallback">
+				<img width="50px" src="/am/resources/img/common/카카오로그인.png"/></a>
+			</div>
+		</div>
 		</form>
 
 </body>

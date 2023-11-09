@@ -64,6 +64,7 @@ public class customerController{
 		return "am/customer/customerLogin";
 	}
 	
+	
 	@RequestMapping(value= "/navercallback", method= {RequestMethod.GET, RequestMethod.POST}) //네이버 로그인 콜백
 	public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session) throws Exception {
 		System.out.println("naverCallback!");
@@ -73,6 +74,7 @@ public class customerController{
 		model.addAttribute("result", apiResult);
 		customerDTO dto = cs.naverLogin(apiResult);
 		session.setAttribute(LoginSession.cLOGIN, dto.getcId());
+		session.setAttribute(LoginSession.sLOGIN, dto.getcPw());
         return "am/customer/naverLoginSuccess";
 
 	}
@@ -84,7 +86,6 @@ public class customerController{
 						@RequestParam(required=false, defaultValue="off")String autoLogin,
 						RedirectAttributes rs,
 						HttpServletResponse res) throws Exception {
-		
 		int result = cs.logChk(id,pw);
 		if(result == 1) {
 			rs.addAttribute("id",id);
