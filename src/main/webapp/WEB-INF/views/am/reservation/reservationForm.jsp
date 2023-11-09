@@ -222,8 +222,7 @@
 			error : () => {
 				console.log("문제 발생");
 			}
-		}) 
-			
+		}) 	
 	}
 	
 	 const hypenAdd = (target) => {

@@ -74,12 +74,11 @@
 			data : JSON.stringify(map),
 			contentType : "application/json; charset=utf-8",
 			success : (result) => {
-
 				if(result['result'] == '1'){
 					alert("예약이 접수 되었습니다.");
 					window.opener.location.href="/am/reservationList?id="+result['userId']
 					window.close();
-				}else if(result.result == 99){
+				}else if(result['result'] == '99'){
 					alert("이미 예약이 꽉 찼습니다");
 					window.opener.location.href="/am/reservation";
 					window.close();

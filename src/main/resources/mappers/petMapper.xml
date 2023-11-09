@@ -4,4 +4,46 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.care.am.mapper.petMapper">
 
+	<resultMap type="com.care.am.dto.petDTO" id="pet">
+		<id property="pNum" column="p_num"/>
+		<result property="pName" column="p_name"/>
+		<result property="pSection" column="p_section"/>
+		<result property="pType" column="p_type"/>
+		<result property="pAge" column="p_age"/>
+		<result property="pSex" column="p_sex"/>
+		<result property="cId" column="c_id" />
+		<result property="pPhoto" column="p_photo"/>
+	</resultMap>
+	
+	<resultMap type="com.care.am.dto.typeDTO" id="type">
+		<result property="tNum" column="t_num"/>
+		<result property="pType" column="p_type"/>
+	</resultMap>
+	
+	<select id="petList" resultMap="pet">
+		select * from pet where c_id=#{cId}
+	</select>
+	
+	<insert id="petRegister">
+		insert into pet values(p_num,#{pName},#{pSection},#{pType},#{pAge},#{pSex},#{cId},#{pPhoto})
+	</insert>
+	
+	<select id="petInfo" resultMap="pet">
+		select * from pet where p_num=#{pNum};
+	</select>
+	
+	<select id="petType" resultMap="type">
+		select * from type where t_num=#{tNum};
+	</select>
+	
+	<delete id="petDel">
+		delete from pet where p_num=#{pNum};
+	</delete>
+	
+	<update id="petModify">
+		update pet set p_name=#{pName},p_age=#{pAge}, p_section=#{pSection}, p_type=#{pType}, p_sex=#{pSex}, p_photo=#{pPhoto}
+		 where p_num=#{pNum}
+	</update>
+	
+	
 </mapper>

@@ -1,13 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>예약정보</title>
-<link
-	href="https://cdn.jsdelivr.net/gh/sunn-us/SUITE/fonts/static/woff2/SUITE.css"
-	rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/gh/sunn-us/SUITE/fonts/static/woff2/SUITE.css" rel="stylesheet">
 <link href="/am/css/reservation/reservationState.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <style>
@@ -16,7 +13,7 @@
 }
 </style>
 
-	<script type="text/javascript">
+<script type="text/javascript">
 		
 		function ok_Form(num) {
 			let email = document.getElementById("cemail").value;
@@ -72,7 +69,6 @@
 	</script>
 </head>
 <body>
-
 	<h1 id="title">상세내용</h1>
 	<br>
 
@@ -80,14 +76,14 @@
 	<div class="popup">
 		<input type="hidden" id="cemail" value="${info.c_email }">
 		<table class="popup_table">
-			
+
 			<tr>
 				<td>예약날짜</td>
-				<td>${info.year }년 ${info.month }월 ${info.day }일</td>
+				<td>${info.year }년${info.month }월 ${info.day }일</td>
 			</tr>
 			<tr>
 				<td>예약시간</td>
-				<td>${info.hour}시 ${info.min}분</td>
+				<td>${info.hour}시${info.min}분</td>
 			</tr>
 			<tr>
 				<td>보호자(예약자) 성명</td>
@@ -99,7 +95,7 @@
 			</tr>
 			<tr>
 				<td>진료동물</td>
-				<td>${info.p_section } | ${info.p_type }(${info.p_name })</td>
+				<td>${info.p_type }(${info.p_name })</td>
 			</tr>
 			<tr>
 				<td>성별</td>
@@ -121,8 +117,6 @@
 		</div>
 	</div>
 
-
-
 	<div class="rap_button">
 		<div class="popup_no_box">
 			<button type="button" id="btn_no">취소</button>
@@ -131,13 +125,13 @@
 			<button type="button" id="btn_ok" onclick="ok_Form(${num})">확인</button>
 		</div>
 	</div>
-	
-	
-	<div id="Toggle" style="display:none">
+
+
+	<div id="Toggle" style="display: none">
 		<textarea id="reason" placeholder="취소사유를 작성해주세요"></textarea>
-		
+
 		<button type="button" id="btn_nook" onclick="nook_Form(${num})">취소완료</button>
 	</div>
-	
+
 </body>
 </html>

@@ -15,7 +15,7 @@ public class MailConfig {
 		jms.setHost("smtp.gmail.com"); //google smtp 
 		jms.setPort(587);
 		jms.setUsername("mn.animedi@gmail.com"); // 보내는계정 
-		jms.setPassword("bsxvovxjatrkfsuh");
+		jms.setPassword("smkjpxtagbobvxzc");
 		
 		Properties prop = new Properties();                 // 아래는 모두 기본설정
         prop.setProperty("mail.transport.protocol", "smtp");       //메일전송 프로토콜 = smtp 

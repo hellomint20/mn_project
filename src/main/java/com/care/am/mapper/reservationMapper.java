@@ -2,10 +2,8 @@ package com.care.am.mapper;
 
 import java.util.List;
 import java.util.Map;
-
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-
 import com.care.am.dto.mediDTO;
 import com.care.am.dto.petDTO;
 import com.care.am.page.reservationPagination;
@@ -26,8 +24,10 @@ public interface reservationMapper {
 	public List<Map<String, String>> mediSelectList(reservationPagination pag);
 	public List<Map<String, String>> customerResList(@Param("id") String id, @Param("start") String start, @Param("end") String end);
 	public Map<String, String> reservationCheck(Map<String, String> map);
+	public int reserCancel(int num);
 	public int reserState(@Param("apply") String apply, @Param("num") int num);
 	public List<Map<String , String>> mediReservationList(String mId);
 	public List<Map<String, String>> mediReservationWaitList(String mId);
 	public Map<String, String> reservationInfo(int rNum);
+
 }

@@ -13,7 +13,7 @@
 	
 	<div class="all">
 		<div class="all_title">
-			<strong>비밀번호 확인</strong>
+			<strong>정보 수정</strong>
 			<p>비밀번호를 입력해주세요</p>
 		</div>
 	<form action="customerPwdChk" method="post">

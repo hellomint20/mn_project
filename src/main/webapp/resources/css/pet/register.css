@@ -28,6 +28,9 @@ p {
 #t_b {
 	height: 35px;
 }
+#writeType {
+	height: 35px;
+}
 .rb {
 	word-spacing: 50px;
 }
@@ -40,6 +43,11 @@ p {
 	margin-left: 40px;
 }
 
+#pPhoto {
+	display: inline-block;
+	width: 180px;
+	height: 200px;
+}
 
 .info-pic {
 	display: inline-block;
@@ -50,7 +58,7 @@ p {
 }
 
 .pic-btn {
-	margin-top: 185px;
+	margin-top: 10px;
 }
 
 
