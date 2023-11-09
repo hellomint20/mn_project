@@ -27,13 +27,15 @@
 	</beans:bean>
 	
 
-
 	<context:component-scan	base-package="com.care.am" />
+	<beans:bean id="naverLoginBO" class="com.care.am.naver.NaverLoginBO"></beans:bean>
+
 	
 	<beans:bean id="autoLogin" class="com.care.am.common.AutoLoginInterceptor" />
 	<beans:bean id="customInter" class="com.care.am.common.CustomerInterceptor" />
 	<beans:bean id="mediInter" class="com.care.am.common.MediInterceptor" />
-	
+	<!-- NaverLoginBO Class에 대한 Bean설정 추가 -->
+	<beans:bean id="reserInter" class="com.care.am.common.ReservationInterceptor" />
 	<interceptors>
 		<interceptor>
 			<mapping path="/" />
@@ -58,6 +60,13 @@
 			<mapping path="/mediModify" />
 			<mapping path="/reservationState" />
 			<beans:ref bean="mediInter" />
+		</interceptor>
+	</interceptors>
+	
+		<interceptors>
+		<interceptor>
+			<mapping path="/reservationForm/page" />
+			<beans:ref bean="reserInter" />
 		</interceptor>
 	</interceptors>
 </beans:beans>

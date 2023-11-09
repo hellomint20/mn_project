@@ -39,6 +39,5 @@
 		    <button type="button" class="b2" onclick="location.href='/am/customerPwdChg?id=${userId}'">비밀번호 변경</button>
 	    </c:if>
 	</div>
-	
 </body>
 </html>

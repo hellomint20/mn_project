@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Service;
 import com.care.am.common.GetMessage;
 import com.care.am.dto.customerDTO;
 import com.care.am.mapper.customerMapper;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
 public class customerServiceImpl implements customerService {
@@ -38,6 +41,38 @@ public class customerServiceImpl implements customerService {
 			return GetMessage.getMessage("회원가입 성공", "/am/customerLogin");
 		}
 		return GetMessage.getMessage("회원가입 실패", "/am/customerRegister");
+	}
+	
+	public customerDTO naverLogin(String apiResult) throws Exception {
+		ObjectMapper mapper = new ObjectMapper();
+		HashMap<String, Object> map = new HashMap<>();
+		Map<String, Object> data = mapper.readValue(apiResult, Map.class);
+		JSONParser jsonParser = new JSONParser();
+		
+		JSONObject jsonObject = (JSONObject) jsonParser.parse(apiResult);
+		jsonObject = (JSONObject) jsonObject.get("response");
+
+		map.put("cEmail", jsonObject.get("email"));
+		map.put("cName", jsonObject.get("name"));
+		map.put("cTel", jsonObject.get("mobile"));
+		String email = (String) ((Map<String, Object>) data.get("response")).get("email");
+		String id = email.split("@")[0];
+		customerDTO dto = cm.getCustomer(id);
+		if(dto == null) { // 네이버 아이디로 회원가입된 정보가 없다면
+			dto.setcId(id);
+			dto.setcName(map.get("cName").toString());
+			dto.setcEmail(map.get("cEmail").toString()); 
+			dto.setcTel(map.get("cTel").toString());
+			dto.setcPw("naver");
+			cm.register(dto);
+		}
+		return dto;
+	}
+	
+	public customerDTO googleLogin(String profile) {
+		System.out.println(profile);
+		
+		return null;
 	}
 	
 	public String customerSearchId(String inputName, String inputEmail) {

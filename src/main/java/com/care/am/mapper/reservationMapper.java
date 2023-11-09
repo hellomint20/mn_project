@@ -2,18 +2,20 @@ package com.care.am.mapper;
 
 import java.util.List;
 import java.util.Map;
+
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.care.am.dto.mediDTO;
 import com.care.am.dto.petDTO;
-import org.apache.ibatis.annotations.Param;
+import com.care.am.page.reservationPagination;
 
 @Mapper
 public interface reservationMapper {
 	public List<Map<String, String>> reservationList(String cId);
 	public List<Map<String, mediDTO>> mediList(); //병원 리스트
-	public Map<String, Object> mediInfo(String mediName); //병원 상세정보
-	public Map<String, Object> mediTime(String name); //병원 Time
+	public Map<String, Object> mediInfo(String mediId); //병원 상세정보
+	public Map<String, Object> mediTime(String mediId); //병원 Time
 	public List<Map<String, petDTO>> petList(String id); //사용자 pet list
 	public List<Map<String, petDTO>> petList(); //사용자 pet list
 	public int reservationRegister(Map<String, Object> map); //병원 예약 
@@ -26,4 +28,6 @@ public interface reservationMapper {
 	public Map<String, String> reservationInfo(int rNum);
 	//public int selectListCount();
 	//public List<Map<String, Object>> allList(@Param("s") int start, @Param("e") int end);
+	public List<Map<String, String>> mediSelectList(reservationPagination pag);
+	public List<Map<String, String>> customerResList(@Param("id") String id, @Param("start") String start, @Param("end") String end);
 }

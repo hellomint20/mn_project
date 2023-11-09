@@ -1,27 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Login</title>
 <link href="/am/resources/css/common/login.css" rel="stylesheet">
-<link rel="canonical"
-	href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
-
+<link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
 <!-- Bootstrap core CSS -->
 <link href="/am/resources/css/common/bootstrap.css" rel="stylesheet">
-
 <!-- Custom styles for this template -->
-<link
-	href="https://cdn.jsdelivr.net/gh/sunn-us/SUITE/fonts/static/woff2/SUITE.css"
-	rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/gh/sunn-us/SUITE/fonts/static/woff2/SUITE.css" rel="stylesheet">
+
 <style>
 * {
 	font-family: 'SUITE', sans-serif !important;
 }
 </style>
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 </head>
 <body>
 	<form class="form-signin" action="customerLogin" method="post">
@@ -49,12 +47,14 @@
 			<hr>
 		</div>
 		<div>
-			간편 로그인
-			<a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=552b94427c4a76a3adae3c4f8183915b&redirect_uri=http://localhost:8090/am/kakaoCallback">카카오</a>
-		</div>
-	</form>
+			<!-- 네이버 로그인 화면으로 이동 시키는 URL -->
+		<div id="snsLogin">
+		<div id="naver_id_login" style="text-align:center"><a href="${url}">
+		<img width="50px" src="/am/resources/img/common/btnG_아이콘원형.png"/></a></div>
+			<!-- 카카오 로그인 화면으로 이동 시키는 URL -->
+			<a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=552b94427c4a76a3adae3c4f8183915b&redirect_uri=http://localhost:8090/am/kakaoCallback">
+			<img width="50px" src="/am/resources/img/common/카카오로그인.png"/></a></div></div>
+		</form>
+
 </body>
-	
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
-	
 </html>
