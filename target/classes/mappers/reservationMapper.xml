@@ -27,6 +27,15 @@
 		<result property="pPhoto" column="pPhoto" />
 	</resultMap>
 	
+	<resultMap type="com.care.am.dto.customerDTO" id="customer">
+		<id property="cId" column="c_id"/>
+		<result property="cPw" column="c_pw"/>
+		<result property="cName" column="c_name"/>
+		<result property="cTel" column="c_tel"/>
+		<result property="cEmail" column="c_email"/>
+		<result property="cSessionId" column="c_session"/>
+	</resultMap>
+	
 	<select id="reservationList" resultType="map">
 		select reservation.r_num, reservation.r_date, reservation.r_time, pet.p_name, medi.m_name, reservation.r_apply, reservation.r_content
 		from reservation
@@ -144,29 +153,51 @@
 		update reservation set r_apply=#{apply} where r_num=#{num}
 	</update>
 
-
-	<select id="mediReservationList" resultType="map">
-		select
-	reservation.r_date, reservation.r_time, pet.p_type, reservation.r_content, reservation.r_apply
-		from reservation left join pet
-			on reservation.p_num = pet.p_num
-				where reservation.m_id = #{mId} and not r_apply in ("대기")
-	</select>
-	
-	<select id="mediReservationWaitList" resultType="map">
-		select
-		reservation.r_num, reservation.r_date, reservation.r_time, pet.p_type, reservation.r_content, reservation.r_apply
-		from reservation left join pet
-			on reservation.p_num = pet.p_num
-		where reservation.m_id = #{mId} and r_apply= "대기"
-	</select>
-	
+	<!-- 병원 팝업 예약 정보 -->
 	<select id="reservationInfo" resultType="map">
 		select customer.c_email, reservation.r_date, reservation.r_time, reservation.r_name, customer.c_tel, pet.p_section, pet.p_type, pet.p_name, pet.p_sex, pet.p_age, reservation.r_content, pet.p_photo
 		from reservation 
 		join customer on reservation.c_id = customer.c_id
     	join pet on reservation.p_num = pet.p_num
 		where reservation.r_num = #{rNum}
+	</select>
+	
+	<!-- 병원 새로운 접수 리스트 -->
+	<select id="waitList" parameterType="hashMap" resultType="map">
+		select r.r_time, r.r_content, r.r_apply, r.r_date, p.p_type, r.r_num
+		from reservation r, pet p
+		where r.m_id = #{mId} and r_apply="대기"
+		and r.p_num = p.p_num
+		order by r.r_date
+		limit #{start}, #{limit}
+	</select>
+	
+	<!-- 병원 새로운 접수 페이징 -->
+	<select id="waitListPaging" resultType="Integer">
+		select count(*)
+		from reservation r, pet p
+		where r.m_id = #{mId} and r_apply="대기"
+		and r.p_num = p.p_num
+		order by r.r_date;
+	</select>
+	
+	<!-- 병원 승인취소 리스트 -->
+	<select id="ACList" parameterType="hashMap" resultType="map">
+		select r.r_time, r.r_content, r.r_apply, r.r_date, p.p_type
+		from reservation r, pet p
+		where r.m_id = #{mId} and not r_apply in ("대기")
+		and r.p_num = p.p_num
+		order by r.r_date
+		limit #{start}, #{limit}
+	</select>
+	
+	<!-- 병원 승인취소 페이징 -->
+	<select id="ACListPaging" resultType="Integer">
+		select count(*)
+		from reservation r, pet p
+		where r.m_id = #{mId} and not r_apply in ("대기")
+		and r.p_num = p.p_num
+		order by r.r_date;
 	</select>
 
 </mapper>

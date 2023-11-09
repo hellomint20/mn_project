@@ -10,6 +10,8 @@ import com.care.am.page.reservationPagination;
 
 @Mapper
 public interface reservationMapper {
+	//public List<Map<String , Object>> mediReservationList(String mId);
+	
 	public List<Map<String, String>> reservationList(String cId);
 	public List<Map<String, mediDTO>> mediList(); //병원 리스트
 	public int mediSearch(String mName); //검색한 이름 리스트 갯수 가져오기
@@ -28,6 +30,11 @@ public interface reservationMapper {
 	public int reserState(@Param("apply") String apply, @Param("num") int num);
 	public List<Map<String , String>> mediReservationList(String mId);
 	public List<Map<String, String>> mediReservationWaitList(String mId);
-	public Map<String, String> reservationInfo(int rNum);
-
+	public Map<String, String> reservationInfo(int rNum); //병원 팝업 예약 정보
+	public List<Map<String, Object>> waitList(Map<String, Object> pageMap); //병원 새로운 접수 리스트
+	public Integer waitListPaging(String mId); //병원 새로운 접수 페이징
+	public List<Map<String, Object>> ACList(Map<String, Object> pageMap); //병원 승인취소 리스트
+	public Integer ACListPaging(String mId); // 병원 승인취소 페이징
+	
 }
+
