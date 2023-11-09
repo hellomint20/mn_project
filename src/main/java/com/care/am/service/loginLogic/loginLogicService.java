@@ -108,7 +108,7 @@ public class loginLogicService{
 	        // 이미 등록된 회원인지 확인
 	        customerDTO kakaoChk = cm.getCustomer(kId);
 	        if (kakaoChk == null) {
-	            mVO.setcId(kId);
+	            mVO.setcId(kId+"_kakao");
 	            mVO.setcPw("kakao");
 	            mVO.setcName(nickname);
 	            mVO.setcTel("010-1111-1111");

@@ -62,7 +62,7 @@ public class customerServiceImpl implements customerService {
 		System.out.println("dto"+dto);
 		if(dto == null) { // 네이버 아이디로 회원가입된 정보가 없다면
 			customerDTO ndto = new customerDTO();
-			ndto.setcId(id);
+			ndto.setcId(id+"_naver");
 			ndto.setcName(map.get("cName").toString());
 			ndto.setcEmail(map.get("cEmail").toString()); 
 			ndto.setcTel(map.get("cTel").toString());
