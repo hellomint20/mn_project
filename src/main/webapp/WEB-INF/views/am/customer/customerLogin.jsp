@@ -45,6 +45,12 @@
 		<!-- 네이버 로그인 화면에서 ID, PW를 올바르게 입력하면 callback 메소드 실행 요청 -->
 		<div id="naver_id_login" style="text-align:center"><a href="${url}">
 		<img width="50px" src="/am/resources/img/common/btnG_아이콘원형.png"/></a></div>
+		<!-- 구글 로그인 화면으로 이동 시키는 URL -->
+		<!-- 구글 로그인 화면에서 ID, PW를 올바르게 입력하면 oauth2callback 메소드 실행 요청-->
+		<div id="google_id_login" style="text-align:center"><a href="${google_url}">
+		<img width="230" src="/am/resources/img/common/btn_google_signin_dark_normal_web@2x.png"/></a></div>
+		<a href="https://accounts.google.com/o/oauth2/auth/oauthchooseaccount?client_id=481904311940-48g6tbsltu3g2op7upb6rtqp3qvs338g.apps.googleusercontent.com&response_type=code&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fplus.login%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&redirect_uri=http%3A%2F%2Flocalhost%3A8090%2Fam%2Fgooglecallback&service=lso&o2v=1&theme=glif&flowName=GeneralOAuthFlow">구글</a>
+		
 	</div>
 	</form>
 	  			

@@ -4,10 +4,21 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.social.connect.Connection;
+import org.springframework.social.google.api.Google;
+import org.springframework.social.google.api.impl.GoogleTemplate;
+import org.springframework.social.google.api.plus.Person;
+import org.springframework.social.google.api.plus.PlusOperations;
+import org.springframework.social.google.connect.GoogleConnectionFactory;
+import org.springframework.social.oauth2.AccessGrant;
+import org.springframework.social.oauth2.GrantType;
+import org.springframework.social.oauth2.OAuth2Operations;
+import org.springframework.social.oauth2.OAuth2Parameters;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -27,6 +38,11 @@ import com.github.scribejava.core.model.OAuth2AccessToken;
 @Controller
 public class customerController{
 	
+	@Autowired
+	private GoogleConnectionFactory googleConnectionFactory;
+	@Autowired
+	private OAuth2Parameters googleOAuth2Parameters;
+
 	@Autowired customerService cs;
 	private NaverLoginBO naverLoginBO;
 	private String apiResult = null;
@@ -57,28 +73,55 @@ public class customerController{
 	
 	@RequestMapping(value = "customerLogin", method = {RequestMethod.GET, RequestMethod.POST}) //로그인 페이지
 	public String login(Model model, HttpSession session) {
+		/*네이버*/
 		String naverAuthUrl = naverLoginBO.getAuthorizational(session);
 		model.addAttribute("url", naverAuthUrl);
+		/* 구글 */
+		OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
+		String url = oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE, googleOAuth2Parameters);
+		System.out.println("구글:" + url);
+		model.addAttribute("google_url", url);
 		
 		return "am/customer/customerLogin";
 	}
 	
 	@RequestMapping(value= "/navercallback", method= {RequestMethod.GET, RequestMethod.POST}) //네이버 로그인 콜백
 	public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session) throws Exception {
-		System.out.println("Callback!");
-		
+		System.out.println("naverCallback!");
 		OAuth2AccessToken oauthToken;
 		oauthToken = naverLoginBO.getAccessToken(session, code, state);
 		apiResult = naverLoginBO.getUserProfile(oauthToken);
-		System.out.println(naverLoginBO.getUserProfile(oauthToken).toString());
 		model.addAttribute("result", apiResult);
 		customerDTO dto = cs.naverLogin(apiResult);
 		session.setAttribute(LoginSession.cLOGIN, dto.getcId());
-		System.out.println("네이버세션값"+session.getAttribute(LoginSession.cLOGIN));
         return "am/customer/naverLoginSuccess";
 
 	}
-	
+	// 구글 Callback호출 메소드
+	@RequestMapping(value = "/googlecallback", method = { RequestMethod.GET, RequestMethod.POST })
+	public String googlecallback(HttpServletRequest request, HttpServletResponse response, HttpSession session,
+									Model model, @RequestParam String code)throws IOException {
+		OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
+        AccessGrant accessGrant = oauthOperations.exchangeForAccess(code , googleOAuth2Parameters.getRedirectUri(), null);
+        String accessToken = accessGrant.getAccessToken();
+        Long expireTime = accessGrant.getExpireTime();
+        
+        if (expireTime != null && expireTime < System.currentTimeMillis()) {
+            accessToken = accessGrant.getRefreshToken();
+            System.out.printf("accessToken is expired. refresh token = {}", accessToken);
+        }
+        Connection<Google> connection = googleConnectionFactory.createConnection(accessGrant);
+        Google google = connection == null ? new GoogleTemplate(accessToken) : connection.getApi();
+        
+        PlusOperations plusOperations = google.plusOperations();
+        Person profile = plusOperations.getGoogleProfile();
+        System.out.println("구글프로파일"+profile);
+//        customerDTO dto = cs.googleLogin(profile); 
+
+
+		return "am/customer/googleSuccess";
+	}
+
 	@PostMapping("cusloginChk") //손님 로그인 확인
 	public String loginChk(@RequestParam String id, 
 						@RequestParam String pw,

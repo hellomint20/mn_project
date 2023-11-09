@@ -69,6 +69,12 @@ public class customerServiceImpl implements customerService {
 		return dto;
 	}
 	
+	public customerDTO googleLogin(String profile) {
+		System.out.println(profile);
+		
+		return null;
+	}
+	
 	public String customerSearchId(String inputName, String inputEmail) {
 		customerDTO dto = cm.customerSearchId(inputName, inputEmail);
 		String result="";

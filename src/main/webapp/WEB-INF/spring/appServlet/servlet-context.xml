@@ -36,6 +36,20 @@
 	<!-- NaverLoginBO Class에 대한 Bean설정 추가 -->
 	<beans:bean id="reserInter" class="com.care.am.common.ReservationInterceptor" />
 	
+	<!-- google Class Bean설정 추가 -->
+	<!-- 클라이언트ID와 보안비밀 세팅-->
+	<beans:bean id="googleConnectionFactory"
+		class="org.springframework.social.google.connect.GoogleConnectionFactory">
+		<beans:constructor-arg value="481904311940-48g6tbsltu3g2op7upb6rtqp3qvs338g.apps.googleusercontent.com" />
+		<beans:constructor-arg value="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" />
+	</beans:bean>
+	<!-- 승인된 자바스크립트 원본과 승인된 리디렉션 URI -->
+	<beans:bean id="googleOAuth2Parameters" class="org.springframework.social.oauth2.OAuth2Parameters">
+		<beans:property name="scope" value="https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email" />
+		<beans:property name="redirectUri" value="http://localhost:8090/am/googlecallback" />
+	</beans:bean>
+		
+	
 	<interceptors>
 		<interceptor>
 			<mapping path="/" />
