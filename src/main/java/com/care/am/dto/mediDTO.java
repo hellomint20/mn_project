@@ -12,6 +12,8 @@ public class mediDTO {
 	String lunchEndTime;
 	String closeTime;
 	String mSession;
+	
+	
 	public String getmName() {
 		return mName;
 	}

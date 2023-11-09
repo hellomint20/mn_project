@@ -4,7 +4,7 @@
 }
 
 .board_wrap {
-    width: 70%;
+    width: 45%;
     margin: 100px 450px;
 }
 
@@ -93,4 +93,9 @@
 }
 .board_list .listbox:last-child{
 	 border-bottom: 1px solid #000;
+}
+
+a.pageLink{
+	text-decoration: none;
+	color: black;
 }

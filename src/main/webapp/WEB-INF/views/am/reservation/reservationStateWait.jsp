@@ -92,7 +92,7 @@
 					<c:choose>
 						<%-- 요청한 페이지에 있는 경우 현재 페이지 번호는 텍스트만 보이게 --%>
 						<c:when test="${i eq waitPaging.page}">
-							<span>${i}</span>
+							<span style="font-weight: bold;">${i}</span>
 						</c:when>
 
 						<c:otherwise>

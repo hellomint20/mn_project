@@ -42,19 +42,55 @@
 		join medi ON reservation.m_id = medi.m_id
 		join pet ON reservation.p_num = pet.p_num where reservation.c_id=#{cId} order by reservation.r_date asc, reservation.r_time asc 
 	</select>
+	
+	<select id="customerResList" resultType="map">
+		SELECT *
+			FROM (
+				SELECT format(@rownum:= @rownum+1, 0) as RN, A.*
+					FROM (
+						select reservation.r_num, reservation.r_date, reservation.r_time, pet.p_name, medi.m_name,
+								reservation.r_apply, reservation.r_content
+									from reservation
+											join medi ON reservation.m_id = medi.m_id
+											join pet ON reservation.p_num = pet.p_num where reservation.c_id=#{id} order
+											by reservation.r_date desc, reservation.r_time asc
+							) A, (select @rownum :=0,0) R
+				) B
+		WHERE RN BETWEEN ${start} AND ${end}
+	</select> 
 
 	<select id="mediList" resultType="map">
 		select * from medi
 	</select>
 	
+	<select id="mediSearch" resultType="int">
+		select count(*) from medi where m_name like CONCAT('%', #{mName}, '%')
+	</select>
+	
+	<select id="mediSelectSearch" resultType="map">
+		<![CDATA[
+		SELECT *
+   			FROM (
+      				SELECT format(@rownum:= @rownum+1, 0) as RN, A.* 
+         				FROM (
+               				SELECT * 
+              					 FROM medi 
+              					 	WHERE m_name LIKE CONCAT('%', #{mName}, '%')
+                  						ORDER BY m_name ASC 
+               					) A, (select @rownum :=0,0) R
+         		) B
+		WHERE RN BETWEEN ${start} AND ${end}
+		]]>
+	</select>
+	
 	<select id="mediInfo" resultType="map">
-		select * from medi where m_name = #{mediName}
+		select * from medi where m_id = #{mediId}
 	</select>
 	
 	<select id="mediTime" resultType="map">
 		select open_time, lunch_start_time, close_time, lunch_end_time
 			from medi 
-		where m_name = #{name}
+		where m_id = #{mediId}
 	</select>
 
 	<select id="petList" resultType="map">
@@ -64,38 +100,52 @@
 	<insert id="reservationRegister">
 		    insert into reservation 
       		(r_num, m_id, p_num, c_id, r_content, r_date, r_time, r_name, r_tel)
-      		values (r_num, 
-            (select m_id from medi where m_name=#{mName}), 
-            (select p_num from pet where p_name=#{pName}),#{cId}, #{rContent}, #{rDate}, #{rTime}, #{rName}, #{rTel});
+      		values (r_num, #{mId}, 
+            (select p_num from pet where p_name=#{pName} and c_id=#{cId} ),#{cId}, #{rContent}, #{rDate}, #{rTime}, #{rName}, #{rTel})
 	</insert>
-	
-	<select id="reservationDate" resultType="map">
-		select DISTINCT r_date 
-			from reservation 
-		where m_id=(select m_id from medi where m_name=#{mName})
-		order by r_date desc;
-	</select>
-	
+
 	<select id="reservationTime" resultType="map">
 		select count(r_time) 
 			from reservation 
-		where r_date=#{date} order by r_time asc;
+		where r_date=#{date} order by r_time asc
 	</select>
 	
 	<select id="reservationCount" resultType="map">
 		select r_time, count(*) 
 			from reservation 
-		where m_id=(select m_id from medi where m_name=#{mName}) and 
-				r_date =#{rDate} group by r_time;
+		where m_id=#{mId} and 
+				r_date =#{rDate} group by r_time
 	</select>
 	
 	<select id="peopleCount" resultType="map">
 		select count(*) 
 			from reservation 
-		where m_id=(select m_id from medi where m_name=#{mName}) 
-				and r_date = #{rDate} and r_time = #{rTime};
+		where m_id=#{mId} 
+				and r_date = #{rDate} and r_time = #{rTime}
 	</select>
 	
+	<select id="mediSelectList" resultType="map">
+	<![CDATA[
+		SELECT *
+   			FROM (
+      				SELECT format(@rownum:= @rownum+1, 0) as RN, A.* 
+         				FROM (
+               				SELECT * 
+              					 FROM medi 
+                  					ORDER BY m_name ASC 
+               					) A, (select @rownum :=0,0) R
+         		) B
+		WHERE RN BETWEEN ${start} AND ${end}
+		]]>
+	</select>
+	
+	<select id="reservationCheck" resultType="map">
+		     select reservation.m_id, reservation.r_date, reservation.r_time,pet.p_num
+         from reservation join pet on reservation.p_num = pet.p_num and pet.c_id=#{cId}
+         where m_id=#{mId} and r_date = #{rDate} and r_time = #{rTime} and p_name=#{pName};
+   
+	</select>
+
 	<update id="reserCancel">
 		update reservation set r_apply="취소" where r_num=#{rNum}
 	</update>
@@ -150,6 +200,5 @@
 		and r.p_num = p.p_num
 		order by r.r_date;
 	</select>
-	
 
 </mapper>
