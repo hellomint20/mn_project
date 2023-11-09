@@ -102,12 +102,12 @@ public class loginLogicService{
 	        String nickname = kakaoAccount.getAsJsonObject("profile").get("nickname").getAsString();
 	        String email = kakaoAccount.get("email").getAsString();
 
+	        String[] k_mail = email.split("@");
+	        String kId = k_mail[0];
+	        
 	        // 이미 등록된 회원인지 확인
-	        customerDTO kakaoChk = cm.emailCheck(email);
+	        customerDTO kakaoChk = cm.getCustomer(kId);
 	        if (kakaoChk == null) {
-	        	String[] k_mail = email.split("@");
-	        	String kId = k_mail[0];
-	        	
 	            mVO.setcId(kId);
 	            mVO.setcPw("kakao");
 	            mVO.setcName(nickname);

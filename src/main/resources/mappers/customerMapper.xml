@@ -40,8 +40,5 @@
     <delete id="customerDelete">
     	delete from customer where c_id=#{cId};
     </delete>
-   
-   <select id="emailCheck" resultMap="customer">
-   		select * from customer where c_email= #{cEmail}
-   </select>
+
 </mapper>

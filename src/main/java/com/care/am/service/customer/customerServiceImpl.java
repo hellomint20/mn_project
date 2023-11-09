@@ -48,29 +48,29 @@ public class customerServiceImpl implements customerService {
 		HashMap<String, Object> map = new HashMap<>();
 		Map<String, Object> data = mapper.readValue(apiResult, Map.class);
 		JSONParser jsonParser = new JSONParser();
+		
 		JSONObject jsonObject = (JSONObject) jsonParser.parse(apiResult);
 		jsonObject = (JSONObject) jsonObject.get("response");
-
 		map.put("cEmail", jsonObject.get("email"));
 		map.put("cName", jsonObject.get("name"));
 		map.put("cTel", jsonObject.get("mobile"));
-		String email = (String) ((Map<String, Object>) data.get("response")).get("email");
 		
-		customerDTO dto = cm.emailCheck(email);
+		String email = (String) ((Map<String, Object>) data.get("response")).get("email");
+		String id = email.split("@")[0];
+		customerDTO dto = new customerDTO(); 
+		dto = cm.getCustomer(id);
+		System.out.println("dto"+dto);
 		if(dto == null) { // 네이버 아이디로 회원가입된 정보가 없다면
-			String id = email.split("@")[0];
-			System.out.println(id);
-			
-			customerDTO nd = new customerDTO();
-			
-			nd.setcId(id);
-			nd.setcName(map.get("cName").toString());
-			nd.setcEmail(map.get("cEmail").toString()); 
-			nd.setcTel(map.get("cTel").toString());
-			nd.setcPw("naver");
-			cm.register(nd);
-			return nd;
+			customerDTO ndto = new customerDTO();
+			ndto.setcId(id);
+			ndto.setcName(map.get("cName").toString());
+			ndto.setcEmail(map.get("cEmail").toString()); 
+			ndto.setcTel(map.get("cTel").toString());
+			ndto.setcPw("naver");
+			cm.register(ndto);
+			return ndto;
 		}
+		
 		return dto;
 	}
 	
@@ -197,4 +197,7 @@ public class customerServiceImpl implements customerService {
 		return GetMessage.getMessage("비밀번호가 틀렸습니다", "/am/customerPwdChk?id=" + dto.getcId());
 	}
 	
+
+	
+
 }
