@@ -152,7 +152,6 @@ public class reservationServiceImpl implements reservationService{
 	public List<Map<String, Object>> waitList(String mId, int page) { // 병원 새로운접수 리스트
 
 		int pagingStart = (page - 1) * pagingLimit;
-		System.out.println("pagingStart"+pagingStart);
 
 		Map<String, Object> pageMap = new HashMap<String, Object>();
 		pageMap.put("start", pagingStart);

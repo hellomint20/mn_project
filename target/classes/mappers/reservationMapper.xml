@@ -117,7 +117,7 @@
 	<select id="waitList" parameterType="hashMap" resultType="map">
 		select r.r_time, r.r_content, r.r_apply, r.r_date, p.p_type, r.r_num
 		from reservation r, pet p
-		where r.m_id = "4" and r_apply="대기"
+		where r.m_id = #{mId} and r_apply="대기"
 		and r.p_num = p.p_num
 		order by r.r_date
 		limit #{start}, #{limit}
