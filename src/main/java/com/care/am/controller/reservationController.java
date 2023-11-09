@@ -212,6 +212,8 @@ public class reservationController {
 			size = "1";
 		} 
 		
+		map.put("cId", session.getAttribute(LoginSession.cLOGIN).toString());
+		
 		return size;
 	}
 
