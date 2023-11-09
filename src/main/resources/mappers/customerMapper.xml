@@ -41,7 +41,4 @@
     	delete from customer where c_id=#{cId};
     </delete>
    
-   <select id="kakaoCheck" resultMap="customer">
-   		select * from customer where c_email = #{cEmail}
-   </select>
 </mapper>

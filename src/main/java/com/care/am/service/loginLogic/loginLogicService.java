@@ -101,13 +101,11 @@ public class loginLogicService{
 	        JsonObject kakaoAccount = jsonObject.getAsJsonObject("kakao_account");
 	        String nickname = kakaoAccount.getAsJsonObject("profile").get("nickname").getAsString();
 	        String email = kakaoAccount.get("email").getAsString();
-
+	        String[] k_mail = email.split("@");
+	       	String kId = k_mail[0];
 	        // 이미 등록된 회원인지 확인
-	        customerDTO kakaoChk = cm.kakaoCheck(email);
+	        customerDTO kakaoChk = cm.getCustomer(kId);
 	        if (kakaoChk == null) {
-	        	String[] k_mail = email.split("@");
-	        	String kId = k_mail[0];
-	        	
 	            mVO.setcId(kId);
 	            mVO.setcPw("kakao");
 	            mVO.setcName(nickname);
