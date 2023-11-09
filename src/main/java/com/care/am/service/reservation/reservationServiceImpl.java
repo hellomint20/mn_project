@@ -152,6 +152,7 @@ public class reservationServiceImpl implements reservationService{
 	public List<Map<String, Object>> waitList(String mId, int page) { // 병원 새로운접수 리스트
 
 		int pagingStart = (page - 1) * pagingLimit;
+		System.out.println("pagingStart"+pagingStart);
 
 		Map<String, Object> pageMap = new HashMap<String, Object>();
 		pageMap.put("start", pagingStart);
@@ -186,10 +187,13 @@ public class reservationServiceImpl implements reservationService{
 
 		// 전체 페이지 갯수 계산(10/3=3.33333 => 4)
 		int maxPage = (int) (Math.ceil((double) listCount / pagingLimit));
+		
 		// 시작 페이지 값 계산(1, 4, 7, 10, ~~~~)
 		int startPage = (((int) (Math.ceil((double) page / blockLimit))) - 1) * blockLimit + 1;
+		
 		// 끝 페이지 값 계산(3, 6, 9, 12, ~~~~)
 		int endPage = startPage + blockLimit - 1;
+		
 		if (endPage > maxPage) {
 			endPage = maxPage;
 		}
@@ -226,7 +230,7 @@ public class reservationServiceImpl implements reservationService{
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}		
+		}
 		return ACList;
 
 	}
@@ -235,13 +239,16 @@ public class reservationServiceImpl implements reservationService{
 
 		// 전체 글 갯수 조회
 		int listCount = rm.ACListPaging(mId); // 13
-
+		
 		// 전체 페이지 갯수 계산(10/3=3.33333 => 4)
 		int maxPage = (int) (Math.ceil((double) listCount / pagingLimit));
+		
 		// 시작 페이지 값 계산(1, 4, 7, 10, ~~~~)
 		int startPage = (((int) (Math.ceil((double) page / blockLimit))) - 1) * blockLimit + 1;
+		
 		// 끝 페이지 값 계산(3, 6, 9, 12, ~~~~)
 		int endPage = startPage + blockLimit - 1;
+		
 		if (endPage > maxPage) {
 			endPage = maxPage;
 		}

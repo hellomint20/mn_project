@@ -115,34 +115,40 @@
 	
 	<!-- 병원 새로운 접수 리스트 -->
 	<select id="waitList" parameterType="hashMap" resultType="map">
-		select r_time, r_content, r_apply, r_date, p_type, r_num
-		from reservation, pet
-		where m_id = ${mId} and  r_apply = "대기"
-		order by r_date,r_time  
+		select r.r_time, r.r_content, r.r_apply, r.r_date, p.p_type, r.r_num
+		from reservation r, pet p
+		where r.m_id = "4" and r_apply="대기"
+		and r.p_num = p.p_num
+		order by r.r_date
 		limit #{start}, #{limit}
 	</select>
 	
 	<!-- 병원 새로운 접수 페이징 -->
 	<select id="waitListPaging" resultType="Integer">
-		select 
-		count(*) from reservation left join pet on reservation.p_num = pet.p_num
-		where reservation.m_id = #{mId} and not reservation.r_apply in('대기')
+		select count(*)
+		from reservation r, pet p
+		where r.m_id = #{mId} and r_apply="대기"
+		and r.p_num = p.p_num
+		order by r.r_date;
 	</select>
 	
 	<!-- 병원 승인취소 리스트 -->
 	<select id="ACList" parameterType="hashMap" resultType="map">
-		select r_time, r_content, r_apply, r_date, p_type
-		from reservation, pet
-		where m_id = ${mId} and not r_apply in ("대기")
-		order by r_date, r_time 
+		select r.r_time, r.r_content, r.r_apply, r.r_date, p.p_type
+		from reservation r, pet p
+		where r.m_id = #{mId} and not r_apply in ("대기")
+		and r.p_num = p.p_num
+		order by r.r_date
 		limit #{start}, #{limit}
 	</select>
 	
 	<!-- 병원 승인취소 페이징 -->
 	<select id="ACListPaging" resultType="Integer">
-		select 
-		count(*) from reservation left join pet on reservation.p_num = pet.p_num
-		where reservation.m_id = #{mId} and not reservation.r_apply in('대기')
+		select count(*)
+		from reservation r, pet p
+		where r.m_id = #{mId} and not r_apply in ("대기")
+		and r.p_num = p.p_num
+		order by r.r_date;
 	</select>
 	
 

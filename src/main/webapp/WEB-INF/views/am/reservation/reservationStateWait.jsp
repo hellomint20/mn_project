@@ -77,7 +77,7 @@
 				<c:choose>
 					<%-- 현재 페이지가 1페이지면 이전 글자만 보여줌 --%>
 					<c:when test="${waitPaging.page<=1}">
-						<span></span>
+						<span>[이전]</span>
 					</c:when>
 					<%-- 1페이지가 아닌 경우에는 [이전]을 클릭하면 현재 페이지보다 1 작은 페이지 요청 --%>
 					<c:otherwise>
@@ -103,7 +103,7 @@
 
 				<c:choose>
 					<c:when test="${waitPaging.page>=waitPaging.maxPage}">
-						<span></span>
+						<span>[다음]</span>
 					</c:when>
 					<c:otherwise>
 						<a
@@ -115,7 +115,6 @@
 
 		</div>
 	</div>
-
 
 </body>
 </html>
