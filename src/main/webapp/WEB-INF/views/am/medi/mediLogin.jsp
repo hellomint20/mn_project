@@ -45,8 +45,7 @@
 			<a class="loginAtag" href="mediRegister">회원가입</a> &nbsp; | &nbsp; 
 			<a class="loginAtag" href="mediSearchIdPw">아이디/비밀번호 찾기</a>
 		</div>
-		<hr>
-		간편 로그인
+		
 	</form>
 </body>
 </html>

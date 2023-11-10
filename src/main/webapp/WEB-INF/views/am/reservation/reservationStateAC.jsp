@@ -26,7 +26,6 @@
 
 	<%@ include file="../default/header_page.jsp"%>
 
-
 	<div class="r_table">
 		<div class="buttonbox">
 			<a href="/am/reservationStateWait?id=${mediId }"><button

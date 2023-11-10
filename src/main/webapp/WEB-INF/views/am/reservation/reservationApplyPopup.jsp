@@ -21,7 +21,8 @@
 			console.log(email);
 			location.href="/am/reserState1?num="+num+"&email="+email+"&mId="+'${mediId}';
 			setTimeout(function() {
-			    window.close();
+				window.close();
+				window.opener.location.reload();
 			}, 3000);
 		}
 		
@@ -56,7 +57,8 @@
 		    document.body.appendChild(form);
 		    form.submit();
 		    setTimeout(function() {
-			    window.close();
+		    	window.close();
+				window.opener.location.reload();
 			  }, 3000);
 		}
 		
