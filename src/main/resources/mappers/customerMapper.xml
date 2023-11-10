@@ -40,5 +40,4 @@
     <delete id="customerDelete">
     	delete from customer where c_id=#{cId};
     </delete>
-   
 </mapper>

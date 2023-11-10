@@ -8,19 +8,22 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.care.am.dto.pageDTO;
+import com.care.am.mapper.reservationMapper;
 import com.care.am.common.GetMessage;
 import com.care.am.dto.mediDTO;
 import com.care.am.dto.petDTO;
-import com.care.am.mapper.reservationMapper;
 import com.care.am.page.customerPagination;
 import com.care.am.page.reservationPagination;
 
 @Service
-public class reservationServiceImpl implements reservationService {
-
-	@Autowired
-	reservationMapper rm;
-
+public class reservationServiceImpl implements reservationService{
+	
+	@Autowired reservationMapper rm;
+	
+	int pagingLimit = 5; // 페이지당 보여줄 글 개수
+	int blockLimit = 5; // 하단에 보여줄 페이지 번호 개수
+	
 	public List<Map<String, String>> reservationList(String cId) {
 		List<Map<String, String>> listmap = new ArrayList<Map<String, String>>();
 		listmap = rm.reservationList(cId);
@@ -33,17 +36,26 @@ public class reservationServiceImpl implements reservationService {
 
 				listmap.get(i).put("hour", listmap.get(i).get("r_time").split("-")[0]);
 				listmap.get(i).put("min", listmap.get(i).get("r_time").split("-")[1]);
-
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		return listmap;
 	}
 
 	public List<Map<String, mediDTO>> mediList() { // 병원 리스트
 		return rm.mediList();
+	}
+	
+	public int mediSearch(String mName) { //검색한 이름 리스트 갯수 가져오기
+		return rm.mediSearch(mName);
+	}
+	
+	public List<Map<String, String>> mediSelectSearch(String mName, reservationPagination pag){ //pag 해당하는 만큼 검색 리스트 가져오기
+		String start = pag.getStart()+"";
+		String end = pag.getEnd()+"";
+		
+		return rm.mediSelectSearch(mName, start, end);
 	}
 
 	public Map<String, Object> mediInfo(String mediId) { // 병원 상세정보
@@ -94,25 +106,68 @@ public class reservationServiceImpl implements reservationService {
 		countMap.put("mId", map.get("mId"));
 		countMap.put("rDate", day);
 		countMap.put("rTime", time);
-		System.out.println("register" + countMap);
 
 		int result = 0;
 
 		Integer.parseInt(String.valueOf(rm.peopleCount(countMap).get("count(*)")));
-		System.out.println(Integer.parseInt(String.valueOf(rm.peopleCount(countMap).get("count(*)"))));
-		if (Integer.parseInt(String.valueOf(rm.peopleCount(countMap).get("count(*)"))) >= 3) {
+		
+		if(Integer.parseInt(String.valueOf(rm.peopleCount(countMap).get("count(*)"))) >= 3) {
+			
 			result = 99;
+			
 		} else {
 			map.put("rDate", day);
 			map.put("rTime", time);
+			System.out.println(map);
 			result = rm.reservationRegister(map);
 		}
 
 		return result;
 	}
 	
-	
-	
+	public Map<String, String> reservationCount(Map<String, Object> map) { ////시간별 예약자 수 확인	
+		
+		List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
+		list = rm.reservationCount(map);
+		
+		Map<String, String> rDateCount = new HashMap<String, String>();
+		
+		for(int i=0; i<list.size(); i++) {
+			String rTime = list.get(i).get("r_time").toString().split("-")[0]+":"+list.get(i).get("r_time").toString().split("-")[1];
+			rDateCount.put(rTime, list.get(i).get("count(*)").toString());
+		}	
+		return rDateCount; 
+	}
+
+	@Override
+	public List<Map<String, String>> mediSelectList(reservationPagination pag) {
+		return rm.mediSelectList(pag);
+	}
+
+	@Override
+	public List<Map<String, String>> customerResList( String id, customerPagination pag) {
+		
+		String start = pag.getStart()+"";
+		String end = pag.getEnd()+"";
+		
+		List<Map<String, String>> listmap = new ArrayList<Map<String, String>>();
+		listmap = rm.customerResList(id,start, end );
+		try {
+			for (int i = 0; i <= listmap.size(); i++) {
+
+				listmap.get(i).put("year", listmap.get(i).get("r_date").split("-")[0]);
+				listmap.get(i).put("month", listmap.get(i).get("r_date").split("-")[1]);
+				listmap.get(i).put("day", listmap.get(i).get("r_date").split("-")[2]);
+
+				listmap.get(i).put("hour", listmap.get(i).get("r_time").split("-")[0]);
+				listmap.get(i).put("min", listmap.get(i).get("r_time").split("-")[1]);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return listmap;
+	}
+		
 	@Override
 	public String reserCancel(String id, int num) {
 		int result = rm.reserCancel(num);
@@ -137,103 +192,122 @@ public class reservationServiceImpl implements reservationService {
 		return rm.reserState(apply, num);
 	}
 
+	public List<Map<String, Object>> waitList(String mId, int page) { // 병원 새로운접수 리스트
 
-	@Override
-	public List<Map<String, String>> mediSelectList(reservationPagination pag) {
-		return rm.mediSelectList(pag);
-	}
+		int pagingStart = (page - 1) * pagingLimit;
 
-	@Override
-	public List<Map<String, String>> customerResList(String id, customerPagination pag) {
+		Map<String, Object> pageMap = new HashMap<String, Object>();
+		pageMap.put("start", pagingStart);
+		pageMap.put("limit", pagingLimit);
+		pageMap.put("mId", mId);
 
-		String start = pag.getStart() + "";
-		String end = pag.getEnd() + "";
-
-		List<Map<String, String>> listmap = new ArrayList<Map<String, String>>();
-		listmap = rm.customerResList(id, start, end);
-		try {
-			for (int i = 0; i <= listmap.size(); i++) {
-
-				Map<String, String> map = new HashMap<String, String>();
-
-				listmap.get(i).put("year", listmap.get(i).get("r_date").split("-")[0]);
-				listmap.get(i).put("month", listmap.get(i).get("r_date").split("-")[1]);
-				listmap.get(i).put("day", listmap.get(i).get("r_date").split("-")[2]);
-
-				listmap.get(i).put("hour", listmap.get(i).get("r_time").split("-")[0]);
-				listmap.get(i).put("min", listmap.get(i).get("r_time").split("-")[1]);
-
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return listmap;
-	}
-
-
-	
-	public Map<String, String> reservationCount(Map<String, Object> map) { ////시간별 예약자 수 확인
-	
-		System.out.println("count"+map);
+		List<Map<String, Object>> waitList = new ArrayList<Map<String, Object>>();
+		waitList = rm.waitList(pageMap);
 		
-		List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
-		list = rm.reservationCount(map);
-		
-		Map<String, String> rDateCount = new HashMap<String, String>();
-		
-		for(int i=0; i<list.size(); i++) {
-			String rTime = list.get(i).get("r_time").toString().split("-")[0]+":"+list.get(i).get("r_time").toString().split("-")[1];
-			rDateCount.put(rTime, list.get(i).get("count(*)").toString());
-		}	
-		return rDateCount; 
-	}
-		
-
-	public List<Map<String, String>> mediReservationList(String mId){
-		
-		List<Map<String, String>> listMap = new ArrayList<Map<String,String>>();
-		listMap = rm.mediReservationList(mId);
-		try {
-			for(int i =0; i<listMap.size(); i++) {
-				Map<String, String> map = new HashMap<String, String>();
-				
-				listMap.get(i).put("year", listMap.get(i).get("r_date").split("-")[0]);
-				listMap.get(i).put("month", listMap.get(i).get("r_date").split("-")[1]);
-				listMap.get(i).put("day", listMap.get(i).get("r_date").split("-")[2]);
-
-				listMap.get(i).put("hour", listMap.get(i).get("r_time").split("-")[0]);
-				listMap.get(i).put("min", listMap.get(i).get("r_time").split("-")[1]);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return listMap;
-	}
-
-	
-
-	public List<Map<String, String>> mediReservationWaitList(String mId) {
-
-		List<Map<String, String>> waitList = new ArrayList<Map<String, String>>();
-		waitList = rm.mediReservationWaitList(mId);
-
 		try {
 			for (int i = 0; i < waitList.size(); i++) {
 				Map<String, String> map = new HashMap<String, String>();
 
-				waitList.get(i).put("year", waitList.get(i).get("r_date").split("-")[0]);
-				waitList.get(i).put("month", waitList.get(i).get("r_date").split("-")[1]);
-				waitList.get(i).put("day", waitList.get(i).get("r_date").split("-")[2]);
+				waitList.get(i).put("year", waitList.get(i).get("r_date").toString().split("-")[0]);
+				waitList.get(i).put("month", waitList.get(i).get("r_date").toString().split("-")[1]);
+				waitList.get(i).put("day", waitList.get(i).get("r_date").toString().split("-")[2]);
 
-				waitList.get(i).put("hour", waitList.get(i).get("r_time").split("-")[0]);
-				waitList.get(i).put("min", waitList.get(i).get("r_time").split("-")[1]);
+				waitList.get(i).put("hour", waitList.get(i).get("r_time").toString().split("-")[0]);
+				waitList.get(i).put("min", waitList.get(i).get("r_time").toString().split("-")[1]);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return waitList;
+	}
+
+	@Override
+	public Map<String, String> reservationCheck(Map<String, String> map) {
+		map.put("rTime", map.get("rTime").replace(":", "-"));
+		
+		return rm.reservationCheck(map);
+
+	}	
+		
+	// 병원 새로운접수 페이징
+	public pageDTO waitListPaging(int page, String mId) {
+
+		// 전체 글 갯수 조회
+		int listCount = rm.waitListPaging(mId); // 13
+
+		// 전체 페이지 갯수 계산(10/3=3.33333 => 4)
+		int maxPage = (int) (Math.ceil((double) listCount / pagingLimit));
+		
+		// 시작 페이지 값 계산(1, 4, 7, 10, ~~~~)
+		int startPage = (((int) (Math.ceil((double) page / blockLimit))) - 1) * blockLimit + 1;
+		
+		// 끝 페이지 값 계산(3, 6, 9, 12, ~~~~)
+		int endPage = startPage + blockLimit - 1;
+		
+		if (endPage > maxPage) {
+			endPage = maxPage;
+		}
+		pageDTO pageDTO = new pageDTO();
+		pageDTO.setPage(page);
+		pageDTO.setMaxPage(maxPage);
+		pageDTO.setStartPage(startPage);
+		pageDTO.setEndPage(endPage);
+		return pageDTO;
+	}
+	
+	public List<Map<String, Object>> ACList(String mId, int page) { // 병원 승인취소 리스트
+
+		int pagingStart = (page - 1) * pagingLimit;
+
+		Map<String, Object> pageMap = new HashMap<String, Object>();
+		pageMap.put("start", pagingStart);
+		pageMap.put("limit", pagingLimit);
+		pageMap.put("mId", mId);
+
+		List<Map<String, Object>> ACList = new ArrayList<Map<String, Object>>();
+		ACList = rm.ACList(pageMap);
+		
+		try {
+			for (int i = 0; i < ACList.size(); i++) {
+				Map<String, String> map = new HashMap<String, String>();
+
+				ACList.get(i).put("year", ACList.get(i).get("r_date").toString().split("-")[0]);
+				ACList.get(i).put("month", ACList.get(i).get("r_date").toString().split("-")[1]);
+				ACList.get(i).put("day", ACList.get(i).get("r_date").toString().split("-")[2]);
+
+				ACList.get(i).put("hour", ACList.get(i).get("r_time").toString().split("-")[0]);
+				ACList.get(i).put("min", ACList.get(i).get("r_time").toString().split("-")[1]);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			}
+		return ACList;
+		
+	}
+
+	public pageDTO ACListPaging(int page, String mId) { // 병원 승인취소 페이징
+
+		// 전체 글 갯수 조회
+		int listCount = rm.ACListPaging(mId); // 13
+		
+		// 전체 페이지 갯수 계산(10/3=3.33333 => 4)
+		int maxPage = (int) (Math.ceil((double) listCount / pagingLimit));
+		
+		// 시작 페이지 값 계산(1, 4, 7, 10, ~~~~)
+		int startPage = (((int) (Math.ceil((double) page / blockLimit))) - 1) * blockLimit + 1;
+		
+		// 끝 페이지 값 계산(3, 6, 9, 12, ~~~~)
+		int endPage = startPage + blockLimit - 1;
+		
+		if (endPage > maxPage) {
+			endPage = maxPage;
+		}
+		pageDTO pageDTO = new pageDTO();
+		pageDTO.setPage(page);
+		pageDTO.setMaxPage(maxPage);
+		pageDTO.setStartPage(startPage);
+		pageDTO.setEndPage(endPage);
+		return pageDTO;
 	}
 
 	public Map<String, String> reservationInfo(int rNum) {

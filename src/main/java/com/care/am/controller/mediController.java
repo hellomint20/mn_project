@@ -106,7 +106,7 @@ public class mediController {
 		System.out.println("세션값"+LoginSession.mLOGIN);
 		System.out.println("세션값22:"+session.getAttribute(LoginSession.mLOGIN));
 		
-		return "redirect:reservationState?id="+id;
+		return "redirect:reservationStateWait?id="+id;
 	}
 
 	@GetMapping("mediSearchIdPw") // 아이디/비밀번호 찾기 페이지
@@ -272,6 +272,5 @@ public class mediController {
 		}
 	    out.print( msg );
 	}
-	
-	
 }
+

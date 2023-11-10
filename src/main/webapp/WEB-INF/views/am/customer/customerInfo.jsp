@@ -33,11 +33,11 @@
 	  			${dto.cEmail}<br>
 	  		</div>
 		</div>
-		  	 <c:if test="${dto.cPw != 'naver'}">
+		
+		<c:if test="${sns eq null }">
 		    <button type="button" class="b" onclick="location.href='/am/customerPwdChk?id=${userId}'">수정</button>
 		    <button type="button" class="b2" onclick="location.href='/am/customerPwdChg?id=${userId}'">비밀번호 변경</button>
-			</c:if>
-		</div>
-
+	    </c:if>
+	</div>
 </body>
 </html>

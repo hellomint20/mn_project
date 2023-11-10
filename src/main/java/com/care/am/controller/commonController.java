@@ -53,6 +53,7 @@ public class commonController {
 		}	
 		session.removeAttribute(LoginSession.cLOGIN);
 		session.removeAttribute(LoginSession.mLOGIN);
+		session.removeAttribute(LoginSession.sLOGIN);
 		session.invalidate();
 	
 		return "redirect:/";
@@ -97,59 +98,5 @@ public class commonController {
 		} 
 	
 }
-	
-	
-	/*rest api*/
-	
-//	
-//	 public MultiValueMap<String, String> accessTokenParams(String grantType,String clientSecret, String clientId,String code,String redirect_uri) {
-//        MultiValueMap<String, String> accessTokenParams = new LinkedMultiValueMap<>();
-//        accessTokenParams.add("grant_type", grantType);
-//        accessTokenParams.add("client_id", clientId);
-//         accessTokenParams.add("client_secret", clientSecret);
-//        accessTokenParams.add("code", code); // 응답으로 받은 코드
-//        accessTokenParams.add("redirect_uri", redirect_uri); 
-//        return accessTokenParams;
-//    }
-//
-//	 public void naverToken(String code, HttpServletResponse response) throws IOException {
-//        RestTemplate rt = new RestTemplate();
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
-//        MultiValueMap<String, String> accessTokenParams = accessTokenParams("authorization_code",NAVER_CLIENT_SECRET,NAVER_CLIENT_ID ,code,NAVER_REDIRECT_URI);
-//        HttpEntity<MultiValueMap<String, String>> accessTokenRequest = new HttpEntity<>(accessTokenParams, headers);
-//        ResponseEntity<String> accessTokenResponse = rt.exchange(
-//                NAVER_TOKEN_URI,
-//                HttpMethod.POST,
-//                accessTokenRequest,
-//                String.class);
-//        try {
-//            JSONParser jsonParser = new JSONParser();
-//            String header = "Bearer " + code;
-//            Map<String, String> requestHeaders = new HashMap<>();
-//            requestHeaders.put("Authorization", header);
-//            String responseBody = get(NAVER_USER_INFO_URI, requestHeaders);
-//            JSONObject parse = (JSONObject) JSONParser.parse(responseBody);
-//            	
-//            JSONObject responseParse = (JSONObject) parse.get("response");
-//            String encodeUserName = (String) responseParse.get("name");
-//            String loginId = (String) responseParse.get("id");
-//            String email = (String) responseParse.get("email");
-//            String phoneNumber = (String) responseParse.get("mobile_e164");
-//            String userName = new String(encodeUserName.getBytes(StandardCharsets.UTF_8));
-//            User user = new UserRequest("social_" + loginId, userName, encode.encode("네이버"), email, phoneNumber).naverOAuthToEntity();
-//            if (userRepository.existsByLoginId(user.getLoginId()) == false) {
-//                userRepository.save(user);
-//            }
-//            String access_token = tokenProvider.create(new PrincipalDetails(user));
-//            response.addHeader("Authorization","Bearer " + access_token);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-//	
-//	
-//	
-//	
-//	
+
 	
