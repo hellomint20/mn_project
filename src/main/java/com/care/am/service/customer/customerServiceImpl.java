@@ -56,10 +56,9 @@ public class customerServiceImpl implements customerService {
 		map.put("cTel", jsonObject.get("mobile"));
 		
 		String email = (String) ((Map<String, Object>) data.get("response")).get("email");
-		String id = email.split("@")[0];
+		String id = email.split("@")[0]+"_naver";
 		customerDTO dto = new customerDTO(); 
 		dto = cm.getCustomer(id);
-		System.out.println("dto"+dto);
 		if(dto == null) { // 네이버 아이디로 회원가입된 정보가 없다면
 			customerDTO ndto = new customerDTO();
 			ndto.setcId(id);
