@@ -11,6 +11,7 @@ import java.nio.charset.StandardCharsets;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.care.am.dto.customerDTO;
@@ -26,6 +27,12 @@ public class loginLogicService{
 
 	@Autowired customerMapper cm;
 	@Autowired customerService cs;
+	
+	BCryptPasswordEncoder encoder;
+	
+	public loginLogicService() {
+		encoder = new BCryptPasswordEncoder();
+	}
 
 	public String getKakaoAccessToken(String code) {
 		
@@ -103,15 +110,16 @@ public class loginLogicService{
 	        String email = kakaoAccount.get("email").getAsString();
 
 	        String[] k_mail = email.split("@");
-	        String kId = k_mail[0];
-	        
+	        String kId = k_mail[0]+"_kakao";
+	        String pwd = cs.makeRandomPw();
+
 	        // 이미 등록된 회원인지 확인
 	        customerDTO kakaoChk = cm.getCustomer(kId);
 	        if (kakaoChk == null) {
-	            mVO.setcId(kId+"_kakao");
-	            mVO.setcPw("kakao");
+	            mVO.setcId(kId);
+	            mVO.setcPw(encoder.encode(pwd));
 	            mVO.setcName(nickname);
-	            mVO.setcTel("010-1111-1111");
+	            mVO.setcTel("null");
 	            mVO.setcEmail(email);
 
 	            // 회원 등록
