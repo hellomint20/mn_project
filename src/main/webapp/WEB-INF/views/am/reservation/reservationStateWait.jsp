@@ -59,7 +59,7 @@
 					<tbody>
 						<c:forEach var="wait" items="${wait }">
 							<tr>
-								<td><a href="#" onclick="Popup(${wait.r_num})">${wait.year }년 ${wait.month }월 ${wait.day }일</a></td>
+								<td><a onclick="Popup(${wait.r_num})">${wait.year }년 ${wait.month }월 ${wait.day }일</a></td>
 								<td>${wait.hour }시${wait.min }분</td>
 								<td>${wait.p_type }</td>
 								<td>${wait.r_content }</td>

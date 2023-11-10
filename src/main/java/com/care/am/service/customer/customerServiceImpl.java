@@ -56,7 +56,7 @@ public class customerServiceImpl implements customerService {
 		map.put("cTel", jsonObject.get("mobile"));
 		
 		String email = (String) ((Map<String, Object>) data.get("response")).get("email");
-		String id = email.split("@")[0];
+		String id = email.split("@")[0]+"_naver";
 		customerDTO dto = new customerDTO(); 
 		dto = cm.getCustomer(id);
 		System.out.println("dto"+dto);

@@ -17,11 +17,10 @@
 		
 		function ok_Form(num) {
 			let email = document.getElementById("cemail").value;
-			console.log(num);
-			console.log(email);
 			location.href="/am/reserState1?num="+num+"&email="+email+"&mId="+'${mediId}';
 			setTimeout(function() {
 			    window.close();
+			    window.opener.location.reload();
 			}, 3000);
 		}
 		
