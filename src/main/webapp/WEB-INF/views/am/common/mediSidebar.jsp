@@ -27,7 +27,7 @@
         	</a>
         </li>
         <li>
-        	<a href="/am/reservationState?id=${mediId }">
+        	<a href="/am/reservationStateWait?id=${mediId }">
         		<span class="icon"></span>
         		<span class="title">예약 관리</span>
         	</a>

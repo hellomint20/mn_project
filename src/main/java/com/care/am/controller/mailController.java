@@ -43,7 +43,7 @@ public class mailController implements LoginSession{
 		mails.tempPwdSendMail(toMail,title,msg);
 		// 받는사람 메일 / 제목 / 내용
 		
-		return "redirect:/reservationState?id="+ mId;
+		return "redirect:/reservationStateWait?id="+ mId;
 	}
 	
 	@RequestMapping(value="/reserState2/{toMail}/{cont}/{mId}/", method=RequestMethod.GET)
@@ -60,6 +60,6 @@ public class mailController implements LoginSession{
 		mails.tempPwdSendMail(toMail,title,msg);
 		// 받는사람 메일 / 제목 / 내용
 		
-		return "redirect:/reservationState?id="+ mId;
+		return "redirect:/reservationStateWait?id="+ mId;
 	}
 }
