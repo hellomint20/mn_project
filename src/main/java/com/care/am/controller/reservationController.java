@@ -23,8 +23,8 @@ public class reservationController {
 
 	@Autowired 
 	private reservationService rs;
-	
-	//병원 예약 관련(손님 기준)
+
+//병원 예약 관련(손님 기준)
 	@GetMapping("reservation") //병원 예약 기본 페이지
 	public String reservation(Model model, reservationPagination pag
 			, @RequestParam(value="nowPage", required=false)String nowPage
@@ -118,7 +118,7 @@ public class reservationController {
 	public String reservationList(@RequestParam String id, Model model, customerPagination pag
 			, @RequestParam(value="nowPage", required=false)String nowPage
 			, @RequestParam(value="cntPerPage", required=false)String cntPerPage) {
-		
+				
 		int customerCnt = rs.reservationList(id).size();  // 전체 병원 갯수
 			     
     	if (nowPage == null && cntPerPage == null) { 
@@ -157,7 +157,7 @@ public class reservationController {
 		return "am/reservation/reservationStateAC";
 	}
 	
-	@GetMapping("reservationCancel") 
+	@GetMapping("reservationCancel")  //병원예약취소
 	public void reservationCancel(@RequestParam String id, @RequestParam int num,
 								HttpServletResponse res) throws Exception {
 		String msg = rs.reserCancel(id, num);
@@ -165,8 +165,6 @@ public class reservationController {
 		PrintWriter out = res.getWriter();
 		out.print(msg);
 	}
-	
-	// 예약 승인 메일
 	
 	@GetMapping("reserState1") 
 	public String reserState1(@RequestParam int num, @RequestParam String email, @RequestParam String mId) {
@@ -196,7 +194,7 @@ public class reservationController {
 		model.addAttribute("num", rNum);
 		return "am/reservation/reservationApplyPopup";
 	}
-
+	
 	@ResponseBody
 	@PostMapping("reservationCount") //시간별 예약자 수 확인
 	public Map<String, String> reservationCount(@RequestBody Map<String, Object> map) {
@@ -216,5 +214,4 @@ public class reservationController {
 		
 		return size;
 	}
-
 }

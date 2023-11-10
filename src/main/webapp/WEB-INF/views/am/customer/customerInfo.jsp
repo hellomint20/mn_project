@@ -11,7 +11,7 @@
 </head>
 <body>
 	<%@ include file = "../default/header_page.jsp" %>
-	<%@ include file = "../common/sidebar.jsp" %>
+	<%@ include file = "../common/customerSidebar.jsp" %>
 	
 	<div class="all">
 		<div class="all_title">
@@ -33,10 +33,11 @@
 	  			${dto.cEmail}<br>
 	  		</div>
 		</div>
-	   
-	    <button type="button" class="b" onclick="location.href='/am/customerPwdChk?id=${userId}'">수정</button>
-	    <button type="button" class="b2" onclick="location.href='/am/customerPwdChg?id=${userId}'">비밀번호 변경</button>
+		
+		<c:if test="${sns eq null }">
+		    <button type="button" class="b" onclick="location.href='/am/customerPwdChk?id=${userId}'">수정</button>
+		    <button type="button" class="b2" onclick="location.href='/am/customerPwdChg?id=${userId}'">비밀번호 변경</button>
+	    </c:if>
 	</div>
-	
 </body>
 </html>

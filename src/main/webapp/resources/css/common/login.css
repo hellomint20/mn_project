@@ -63,3 +63,11 @@ a.loginAtag{
 label{
 	margin-left:10px;
 }
+#snsLogin{
+	
+	margin-left:100px;
+	display: flex;	
+}
+#naver_id_login{
+	margin-right:15px;
+}

@@ -9,9 +9,9 @@
 
 <link rel="stylesheet" href="/am/css/medi/pwdChk.css">
 
-
 <body>
-<%@ include file = "../default/header_page.jsp" %>
+	<%@ include file = "../default/header_page.jsp" %>
+	<%@ include file = "../common/mediSidebar.jsp" %>
 
 	<div class="all">
 		<div class="all_title">

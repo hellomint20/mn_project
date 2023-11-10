@@ -9,9 +9,18 @@
 	<link rel="stylesheet" href="/am/css/customer/delete.css">
 <body>
 	<%@ include file = "../default/header_page.jsp" %>
-	<%@ include file = "../common/sidebar.jsp" %>
+	<%@ include file = "../common/customerSidebar.jsp" %>
 
 	<div class="all">	
+	<c:choose>
+		<c:when test="${dto.cPw == 'naver' }">
+		<div class="all_title">
+			<strong>탈퇴하기</strong>
+			<p>네이버 로그인환경입니다</p>
+		</div>
+		<div class="info"></div>
+		</c:when>
+		<c:otherwise>
 	<form action="customerDelete" method="post">
 		<div class="all_title">
 			<strong>탈퇴하기</strong>
@@ -28,8 +37,9 @@
 				<input type="password" id="t_b" name="pw" required>
 			</div>
 		</div>
-		
-		<button type="submit" class="b">탈퇴하기</button></form>
+		<button type="submit" class="b">탈퇴하기</button>
+		</form>	
+		</c:otherwise></c:choose>
 	</div>
 </body>
 </html>

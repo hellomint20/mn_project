@@ -14,17 +14,30 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.care.am.common.LoginSession;
 import com.care.am.dto.customerDTO;
+import com.care.am.naver.NaverLoginBO;
 import com.care.am.service.customer.customerService;
+import com.care.am.service.loginLogic.loginLogicService;
+import com.github.scribejava.core.model.OAuth2AccessToken;
 
 @Controller
 public class customerController{
-	
 	@Autowired customerService cs;
+	
+	@Autowired loginLogicService lls;
+	
+	private NaverLoginBO naverLoginBO;
+	private String apiResult = null;
+
+	@Autowired
+	private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
+		this.naverLoginBO = naverLoginBO;
+	}
 	
 	
 	//로그인 관련
@@ -41,18 +54,38 @@ public class customerController{
 	      out.print( msg );
 	}
 	
-	@GetMapping("customerLogin") //로그인 페이지
-	public String login() {
+	
+	@RequestMapping(value = "customerLogin", method = {RequestMethod.GET, RequestMethod.POST}) //로그인 페이지
+	public String login(Model model, HttpSession session) {
+		/*네이버*/
+		String naverAuthUrl = naverLoginBO.getAuthorizational(session);
+		model.addAttribute("url", naverAuthUrl);
+		
 		return "am/customer/customerLogin";
 	}
 	
-	@PostMapping("customerLogin") //손님 로그인 확인
+	
+	@RequestMapping(value= "/navercallback", method= {RequestMethod.GET, RequestMethod.POST}) //네이버 로그인 콜백
+	public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session) throws Exception {
+		System.out.println("naverCallback!");
+		OAuth2AccessToken oauthToken;
+		oauthToken = naverLoginBO.getAccessToken(session, code, state);
+		apiResult = naverLoginBO.getUserProfile(oauthToken);
+		model.addAttribute("result", apiResult);
+		customerDTO dto = cs.naverLogin(apiResult);
+		session.setAttribute(LoginSession.cLOGIN, dto.getcId());
+		session.setAttribute(LoginSession.sLOGIN, dto.getcPw());
+        return "am/customer/naverLoginSuccess";
+
+	}
+	
+
+	@PostMapping("cusloginChk") //손님 로그인 확인
 	public String loginChk(@RequestParam String id, 
 						@RequestParam String pw,
 						@RequestParam(required=false, defaultValue="off")String autoLogin,
 						RedirectAttributes rs,
 						HttpServletResponse res) throws Exception {
-		
 		int result = cs.logChk(id,pw);
 		if(result == 1) {
 			rs.addAttribute("id",id);
@@ -89,6 +122,7 @@ public class customerController{
 			cs.keepLogin(session.getId(),id);
 		}
 		session.setAttribute(LoginSession.cLOGIN, id); // 체크안했으면 그냥 세션만 만들어줘
+		
 		System.out.println("세션값"+LoginSession.cLOGIN);
 		System.out.println("세션값:22"+session.getAttribute(LoginSession.cLOGIN));
 		return "redirect:/";
@@ -157,7 +191,10 @@ public class customerController{
 	}
 	
 	@GetMapping("customerPwdChk") // 비밀번호 확인페이지
-	public String customerPwdChk(@RequestParam String id) {
+	public String customerPwdChk(@RequestParam String id,Model model) {
+		customerDTO dto = cs.getCustomerInfo(id);
+		model.addAttribute("dto", dto);
+		
 		return "am/customer/customerPwdChk";
 	}
 	
@@ -214,7 +251,9 @@ public class customerController{
 	}
 	
 	@GetMapping("customerDelete") //손님 탈퇴 페이지
-	public String delete() {
+	public String delete(@RequestParam String id,Model model) {
+		customerDTO dto = cs.getCustomerInfo(id);
+		model.addAttribute("dto", dto);
 		return "am/customer/customerDelete";
 	}
 	
@@ -237,4 +276,4 @@ public class customerController{
 		}
 	    out.print( msg );
 	}
-}
+}	

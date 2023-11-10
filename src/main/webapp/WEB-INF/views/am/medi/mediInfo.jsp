@@ -6,15 +6,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="/am/css/bootstrap/bootstrap.css" rel="stylesheet">
 <link rel="stylesheet" href="/am/css/medi/info.css">
 
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
  
- <%@ include file = "../default/header_page.jsp" %>
-	
+ 	<%@ include file = "../default/header_page.jsp" %>
+	<%@ include file = "../common/mediSidebar.jsp" %>
 </head>
 <body>
+
 	<div class="all">
 		<div class="all_title">
 			<strong>${info.dto.mName }</strong>
