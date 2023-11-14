@@ -16,8 +16,6 @@ public interface customerMapper {
 	public int customerPwdChg(customerDTO dto);
 	public int customerModify(customerDTO dto);
 	public int customerDelete(customerDTO dto);
-	public customerDTO kakaoCheck(String email);
-	public customerDTO emailCheck(String email);
 }
 
 

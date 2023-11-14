@@ -142,15 +142,30 @@ public class reservationController {
 		return "am/reservation/reservationStateWait";
 	}
 	
-	@GetMapping("reservationStateAC")
-	public String reservationStateAC(@RequestParam String id, Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
-		model.addAttribute("ac", rs.ACList(id, page));
-		model.addAttribute("ACPaging", rs.ACListPaging(page, id));
-		
-		return "am/reservation/reservationStateAC";
+	@GetMapping("reservationStateA")
+	public String reservationStateA(@RequestParam String id, Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
+		model.addAttribute("a", rs.AList(id, page)); //�������
+		model.addAttribute("APaging", rs.AListPaging(page, id));
+		return "am/reservation/reservationStateA";
 	}
 	
-	@GetMapping("reservationCancel") 
+	
+	@PostMapping("reservationStateA")
+	public String reservationStateA(@RequestParam int r_fix, @RequestParam String id, @RequestParam int r_num) {
+		rs.fix(id, r_fix, r_num);
+		
+		return "redirect:/reservationStateA?id="+id;
+	}
+	
+		@GetMapping("reservationStateC")
+		public String reservationStateC(@RequestParam String id, Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
+			model.addAttribute("c", rs.CList(id, page)); //�������
+			model.addAttribute("CPaging", rs.CListPaging(page, id));
+			
+			return "am/reservation/reservationStateC";
+		}
+	
+	@GetMapping("reservationCancel")
 	public void reservationCancel(@RequestParam String id, @RequestParam int num,
 								HttpServletResponse res) throws Exception {
 		String msg = rs.reserCancel(id, num);

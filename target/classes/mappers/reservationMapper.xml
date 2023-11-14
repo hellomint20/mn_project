@@ -14,7 +14,7 @@
 		<result property="rApply" column="r_apply"/>
 		<result property="rName" column="r_name"/>
 		<result property="rTel" column="r_tel"/>
-		<result property="rFix" column="r_fix"/>
+		<result property="r_fix" column="r_fix"/>
 	</resultMap>
 	
 	<resultMap type="com.care.am.dto.petDTO" id="pet">
@@ -183,21 +183,21 @@
 		order by r.r_date;
 	</select>
 	
-	<!-- 병원 승인취소 리스트 -->
-	<select id="ACList" parameterType="hashMap" resultType="map">
-		select r.r_time, r.r_content, r.r_apply, r.r_date, p.p_type
+	<!-- 병원 승인 리스트 -->
+	<select id="AList" parameterType="hashMap" resultType="map">
+		select r.r_time, r.r_content, r.r_apply, r.r_date, p.p_type,r_num,r_fix
 		from reservation r, pet p
-		where r.m_id = #{mId} and not r_apply in ("대기")
+		where r.m_id = #{mId} and r_apply="확정"
 		and r.p_num = p.p_num
 		order by r.r_date
 		limit #{start}, #{limit}
 	</select>
 	
-	<!-- 병원 승인취소 페이징 -->
-	<select id="ACListPaging" resultType="Integer">
+	<!-- 병원 승인 페이징 -->
+	<select id="AListPaging" resultType="Integer">
 		select count(*)
 		from reservation r, pet p
-		where r.m_id = #{mId} and not r_apply in ("대기")
+		where r.m_id = #{mId} and r_apply="확정"
 		and r.p_num = p.p_num
 		order by r.r_date;
 	</select>
@@ -207,4 +207,28 @@
 			join medi on reservation.m_id = medi.m_id
 				where r_num=#{rNum};
 	</select>
+	<!-- 병원 취소 리스트 -->
+	<select id="CList" parameterType="hashMap" resultType="map">
+		select r.r_time, r.r_content, r.r_apply, r.r_date, p.p_type
+		from reservation r, pet p
+		where r.m_id = #{mId} and r_apply="취소"
+		and r.p_num = p.p_num
+		order by r.r_date
+		limit #{start}, #{limit}
+	</select>
+	
+	<!-- 병원 취소 페이징 -->
+	<select id="CListPaging" resultType="Integer">
+		select count(*)
+		from reservation r, pet p
+		where r.m_id = #{mId} and r_apply="취소"
+		and r.p_num = p.p_num
+		order by r.r_date;
+	</select>
+	
+	<!-- 진료여부  -->
+	<update id="fix">
+		update reservation set r_fix = 1 where m_id = #{mId} and r_num = #{Rnum}
+	</update>
+
 </mapper>

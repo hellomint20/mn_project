@@ -9,19 +9,16 @@
 <link href="/am/css/bootstrap/bootstrap.css" rel="stylesheet">
 <link rel="stylesheet" href="/am/css/reservation/reservationState.css">
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <script type="text/javascript">
-	function Popup(rNum){
-		console.log(rNum);
-		var popupURI1='/am/reservationApplyPopup?rNum='+rNum ;
+	function Popup(rNum) {
+		var popupURI1 = '/am/reservationApplyPopup?rNum=' + rNum;
 		var reserv = encodeURI(popupURI1);
-	    var popup = window.open(reserv, '예약수락', 'width=600px,height=700px,scrollbars=yes,resizable=no');
+		var popup = window.open(reserv, '예약수락',
+				'width=600px,height=700px,scrollbars=yes,resizable=no');
 	}
 </script>
-
-
 
 
 </head>
@@ -38,11 +35,13 @@
 		</div>
 		<div style="clear: both;"></div>
 		<div style="width: 800px; height: 400px;">
-			<!-- 새로운 접수 테이블 -->
-			<div id="waitTable" width="900px">
+
+			<!-- 승인/취소 테이블 -->
+			<div id="ACTable" width="800px">
 				<table class="col-100 col">
 					<colgroup>
 						<col width="30%">
+						<col width="20%">
 						<col width="20%">
 						<col width="20%">
 						<col width="20%">
@@ -53,66 +52,70 @@
 							<th>시간</th>
 							<th>과</th>
 							<th>접수내용</th>
+							<th>접수상태</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="wait" items="${wait }">
+						<c:forEach var="c" items="${c }">
 							<tr>
-								<td><a href="#" onclick="Popup(${wait.r_num})">${wait.year }년 ${wait.month }월 ${wait.day }일</a></td>
-								<td>${wait.hour }시${wait.min }분</td>
-								<td>${wait.p_type }</td>
-								<td>${wait.r_content }</td>
+								<td>${c.year }년${c.month }월${c.day }일</td>
+								<td>${c.hour }시${c.min }분</td>
+								<td>${c.p_type }</td>
+								<td>${c.r_content }</td>
+								<td>${c.r_apply }</td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
-				<c:if test="${wait.size()==0 }">
-					<div id="size">새로운 접수 내역이 없습니다.</div>
+				<c:if test="${c.size()==0 }">
+					<div id="size">승인/취소 내역이 없습니다.</div>
 				</c:if>
 			</div>
+			<!-- 승인 취소 테이블div -->
 
-			<div class="waitPage">
+			<div class="acPage">
 				<c:choose>
 					<%-- 현재 페이지가 1페이지면 이전 글자만 보여줌 --%>
-					<c:when test="${waitPaging.page<=1}">
+					<c:when test="${CPaging.page<=1}">
 						<span></span>
 					</c:when>
 					<%-- 1페이지가 아닌 경우에는 [이전]을 클릭하면 현재 페이지보다 1 작은 페이지 요청 --%>
 					<c:otherwise>
 						<a
-							href="/am/reservationStateWait?id=${mediId }&page=${waitPaging.page-1}">[이전]</a>
+							href="/am/reservationStateC?id=${mediId }&page=${CPaging.page-1}">[이전]</a>
 					</c:otherwise>
 				</c:choose>
 
 				<%--  for(int i=startPage; i<=endPage; i++)      --%>
-				<c:forEach begin="${waitPaging.startPage}"
-					end="${waitPaging.endPage}" var="i" step="1">
+				<c:forEach begin="${CPaging.startPage}" end="${CPaging.endPage}"
+					var="i" step="1">
 					<c:choose>
 						<%-- 요청한 페이지에 있는 경우 현재 페이지 번호는 텍스트만 보이게 --%>
-						<c:when test="${i eq waitPaging.page}">
-							<span style="font-weight: bold;">${i}</span>
+						<c:when test="${i eq CPaging.page}">
+							<span style="font-weight: bold;" >${i}</span>
 						</c:when>
 
 						<c:otherwise>
-							<a href="/am/reservationStateWait?id=${mediId }&page=${i}">${i}</a>
+							<a href="/am/reservationStateC?id=${mediId }&page=${i}">${i}</a>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
 
 				<c:choose>
-					<c:when test="${waitPaging.page>=waitPaging.maxPage}">
+					<c:when test="${CPaging.page>=CPaging.maxPage}">
 						<span></span>
 					</c:when>
 					<c:otherwise>
 						<a
-							href="/am/reservationStateWait?id=${mediId }&page=${waitPaging.page+1}">[다음]</a>
+							href="/am/reservationStateC?id=${mediId }&page=${CPaging.page+1}">[다음]</a>
 					</c:otherwise>
 				</c:choose>
 			</div>
-			<!-- waitPage div --> 
+			<!-- acPage div -->
 
 		</div>
 	</div>
+
 
 </body>
 </html>
