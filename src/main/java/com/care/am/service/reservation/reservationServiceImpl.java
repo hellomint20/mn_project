@@ -13,6 +13,7 @@ import com.care.am.mapper.reservationMapper;
 import com.care.am.common.GetMessage;
 import com.care.am.dto.mediDTO;
 import com.care.am.dto.petDTO;
+import com.care.am.dto.reservationDTO;
 import com.care.am.page.customerPagination;
 import com.care.am.page.reservationPagination;
 
@@ -321,6 +322,13 @@ public class reservationServiceImpl implements reservationService{
 		info.put("month", info.get("r_date").split("-")[1]);
 		info.put("day", info.get("r_date").split("-")[2]);
 
+		return info;
+	}
+
+	@Override
+	public Map<String, String> getResInfo(int num) {
+		Map<String, String> info = new HashMap<String, String>();
+		info = rm.getResInfo(num);		
 		return info;
 	}
 

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import com.care.am.dto.mediDTO;
 import com.care.am.dto.petDTO;
+import com.care.am.dto.reservationDTO;
 import com.care.am.page.customerPagination;
 import com.care.am.page.reservationPagination;
 import com.care.am.dto.pageDTO;
@@ -28,5 +29,6 @@ public interface reservationService {
 	public pageDTO ACListPaging(int page, String mId); //º´¿ø ½ÂÀÎÃë¼Ò ÆäÀÌÂ¡
 	public String reserCancel(String id, int num);
 	public int reserState(int num, int state);
+	public Map<String, String> getResInfo(int num);
 
 }

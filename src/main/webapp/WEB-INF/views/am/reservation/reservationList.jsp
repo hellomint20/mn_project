@@ -40,6 +40,7 @@
 					<div class="r_content">접수 내용</div>
 					<div class="r_apply">예약 현황</div>
 					<div class="r_cancel">예약 취소</div>
+					<div class="r_fix">병원 후기</div>
 				</div>
 				<!-- for문으로 리스트 뽑아오기 -->
 				<c:choose>
@@ -53,8 +54,7 @@
 						<c:forEach items="${viewAll }" var="list">
 							<div class="listbox">
 								<div class="r_date">
-									<a onclick="Popup(${list.r_num})">${list.year}년
-										${list.month}월 ${list.day}일</a>
+									${list.year}년${list.month}월 ${list.day}일
 								</div>
 								<div class="r_time">${list.hour	}시${list.min}분</div>
 								<div class="p_name">${list.p_name}</div>
@@ -64,6 +64,11 @@
 								<div class="r_cancel">
 									<c:if test="${list.r_apply eq '대기'}">
 										<button onclick="reserCancel(${list.r_num})">취소</button>
+									</c:if>
+								</div>
+								<div class="r_fix">
+									<c:if test="${list.r_fix == 1}">
+										<button onclick="location.href='/am/fixedForm?num=${list.r_num}'">작성</button>
 									</c:if>
 								</div>
 							</div>
