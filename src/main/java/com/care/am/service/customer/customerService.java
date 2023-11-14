@@ -6,7 +6,6 @@ public interface customerService {
 	public String register(customerDTO dto);
 	public String customerSearchId(String inputName, String inputEmail);
 	public customerDTO naverLogin(String apiResult) throws Exception;
-	public customerDTO googleLogin(String profile);
 	public customerDTO customerSearchPw(String inputId, String inputName, String inputTel);
 	public String makeRandomPw();
 	public int customerPwChg(String tempPwd, customerDTO dto);

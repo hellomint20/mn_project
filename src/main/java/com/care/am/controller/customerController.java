@@ -167,7 +167,7 @@ public class customerController{
 			if(result ==1) {
 				String toMail = dto.getcEmail();
 				String content = tempPwd;
-				return "redirect:/customerSearchPw/"+"mong_jini@naver.com"+"/"+content+"/";
+				return "redirect:/customerSearchPw/"+toMail+"/"+content+"/";
 			}
 			System.out.println(tempPwd);
 		}

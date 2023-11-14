@@ -18,6 +18,7 @@
 	   <property name="jdbcUrl" value="jdbc:mysql://192.168.0.134:3306/mn_db" />
 	   <property name="username" value="min" />
 	   <property name="password" value="alswl00!@" />
+
 	</bean>
 	
 	<!-- hikariConfig를 설정된 값을 토대로 DB에 연결된 bean얻어옴 -->
@@ -33,4 +34,6 @@
 	
 	<!-- 해당 위치의 interface를 빈으로 등록  -->
 	<mybatis-spring:scan base-package="com.care.am.mapper"/>
+	
 </beans>
+
