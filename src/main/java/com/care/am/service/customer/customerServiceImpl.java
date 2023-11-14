@@ -15,7 +15,6 @@ import com.care.am.common.GetMessage;
 import com.care.am.dto.customerDTO;
 import com.care.am.mapper.customerMapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 @Service
 public class customerServiceImpl implements customerService {
 
@@ -73,12 +72,6 @@ public class customerServiceImpl implements customerService {
       }
       
       return dto;
-   }
-   
-   public customerDTO googleLogin(String profile) {
-      System.out.println(profile);
-      
-      return null;
    }
    
    public String customerSearchId(String inputName, String inputEmail) {

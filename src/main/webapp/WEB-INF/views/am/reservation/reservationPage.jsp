@@ -143,7 +143,7 @@
 				let mPhoto = mediInfo['m_photo'];
 				let imgSrc = "/am/resources/img/"+mPhoto;
 				
-				document.getElementById("mediDetail").innerHTML ="{ "+mediInfo['m_name'] + " } 상세 정보";
+				document.getElementById("mediDetail").innerHTML = ""+mediInfo['m_name'] + " 상세 정보";
 				document.getElementById("mediName").innerHTML = mediInfo['m_name'];
 				document.getElementById("mediAddr").innerHTML = mediInfo['m_addr'];
 				document.getElementById("mediTime").innerHTML = mediInfo['open_time']+" - "+mediInfo['close_time'];
