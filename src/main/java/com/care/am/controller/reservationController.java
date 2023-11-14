@@ -148,14 +148,31 @@ public class reservationController {
 		return "am/reservation/reservationStateWait";
 	}
 	
-	//병원 예약상태 관련(병원기준 - 승인취소)
-	@GetMapping("reservationStateAC")
-	public String reservationStateAC(@RequestParam String id, Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
-		model.addAttribute("ac", rs.ACList(id, page)); //승인취소
-		model.addAttribute("ACPaging", rs.ACListPaging(page, id));
+	//병원 예약상태 관련(병원기준 - 승인리스트)
+	@GetMapping("reservationStateA")
+	public String reservationStateA(@RequestParam String id, Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
+		model.addAttribute("a", rs.AList(id, page)); //승인취소
+		model.addAttribute("APaging", rs.AListPaging(page, id));
 		
-		return "am/reservation/reservationStateAC";
+		return "am/reservation/reservationStateA";
 	}
+	
+	//병원 예약상태 관련(병원기준 - 승인리스트) - 진료완료 여부
+	@PostMapping("reservationStateA")
+	public String reservationStateA(@RequestParam int r_fix, @RequestParam String id, @RequestParam int r_num) {
+		rs.fix(id, r_fix, r_num);
+		
+		return "redirect:/reservationStateA?id="+id;
+	}
+	
+	//병원 예약상태 관련(병원기준 - 취소리스트)
+		@GetMapping("reservationStateC")
+		public String reservationStateC(@RequestParam String id, Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
+			model.addAttribute("c", rs.CList(id, page)); //승인취소
+			model.addAttribute("CPaging", rs.CListPaging(page, id));
+			
+			return "am/reservation/reservationStateC";
+		}
 	
 	@GetMapping("reservationCancel")  //병원예약취소
 	public void reservationCancel(@RequestParam String id, @RequestParam int num,
