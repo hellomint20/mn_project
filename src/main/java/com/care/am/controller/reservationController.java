@@ -144,22 +144,22 @@ public class reservationController {
 	
 	@GetMapping("reservationStateA")
 	public String reservationStateA(@RequestParam String id, Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
-		model.addAttribute("a", rs.AList(id, page)); //�������
+		model.addAttribute("a", rs.AList(id, page));
 		model.addAttribute("APaging", rs.AListPaging(page, id));
 		return "am/reservation/reservationStateA";
 	}
 	
 	
 	@PostMapping("reservationStateA")
-	public String reservationStateA(@RequestParam int r_fix, @RequestParam String id, @RequestParam int r_num) {
+	public String reservationStateA(@RequestParam int r_fix, @RequestParam String id, @RequestParam int r_num, @RequestParam int page) {
 		rs.fix(id, r_fix, r_num);
 		
-		return "redirect:/reservationStateA?id="+id;
+		return "redirect:/reservationStateA?id="+id+"&page="+page;
 	}
 	
 		@GetMapping("reservationStateC")
 		public String reservationStateC(@RequestParam String id, Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
-			model.addAttribute("c", rs.CList(id, page)); //�������
+			model.addAttribute("c", rs.CList(id, page)); //占쏙옙占쏙옙占쏙옙占�
 			model.addAttribute("CPaging", rs.CListPaging(page, id));
 			
 			return "am/reservation/reservationStateC";

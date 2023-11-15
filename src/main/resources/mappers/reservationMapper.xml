@@ -203,7 +203,7 @@
 	</select>
 	
 	<select id="getResInfo" resultType="map">
-		select reservation.r_date, medi.m_name from reservation
+		select reservation.r_date, reservation.r_num, medi.m_name from reservation
 			join medi on reservation.m_id = medi.m_id
 				where r_num=#{rNum};
 	</select>

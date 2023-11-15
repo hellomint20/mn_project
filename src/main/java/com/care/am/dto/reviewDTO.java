@@ -1,14 +1,21 @@
 package com.care.am.dto;
 
-public class boardDTO {
+public class reviewDTO {
 	int rvNo;
 	String cId;
 	String mName;
 	String rvCont;
 	String rvDate;
 	String rDate;
+	String rvTitle;
 	
 	
+	public String getRvTitle() {
+		return rvTitle;
+	}
+	public void setRvTitle(String rvTitle) {
+		this.rvTitle = rvTitle;
+	}
 	public String getRvDate() {
 		return rvDate;
 	}

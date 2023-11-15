@@ -40,11 +40,11 @@
 			<div id="ACTable" width="800px">
 				<table class="col-100 col">
 					<colgroup>
-						<col width="30%">
+						<col width="25%">
 						<col width="20%">
 						<col width="20%">
 						<col width="20%">
-						<col width="20%">
+						<col width="15%">
 					</colgroup>
 					<thead>
 						<tr>

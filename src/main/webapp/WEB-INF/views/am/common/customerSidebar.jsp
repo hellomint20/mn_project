@@ -72,6 +72,12 @@
 		        		<span class="sns_title">예약 관리</span>
 		        	</a>
 		        </li>
+		        <li>
+		        	<a href="/am/board/myReview?id=${userId }">
+		        		<span class="sns_icon"></span>
+		        		<span class="sns_title">내가 쓴 후기</span>
+		        	</a>
+		        </li>
 		    </ul>
 		</div>
 	</c:otherwise>
