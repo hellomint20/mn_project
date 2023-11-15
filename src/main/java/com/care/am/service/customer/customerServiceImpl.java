@@ -29,50 +29,48 @@ public class customerServiceImpl implements customerService {
 
    public String register(customerDTO dto) {
       int result = 0;
-
-      dto.setcPw(encoder.encode(dto.getcPw()));
-      try {
-         result = cm.register(dto);
-      } catch (Exception e) {
-         e.printStackTrace();
-      }
-      if (result == 1) {
-         return GetMessage.getMessage("회원가입 성공", "/am/customerLogin");
-      }
-      return GetMessage.getMessage("회원가입 실패", "/am/customerRegister");
-   }
-   
-   public customerDTO naverLogin(String apiResult) throws Exception {
-      ObjectMapper mapper = new ObjectMapper();
-      HashMap<String, Object> map = new HashMap<>();
-      Map<String, Object> data = mapper.readValue(apiResult, Map.class);
-      JSONParser jsonParser = new JSONParser();
-      
-      JSONObject jsonObject = (JSONObject) jsonParser.parse(apiResult);
-      jsonObject = (JSONObject) jsonObject.get("response");
-      map.put("cEmail", jsonObject.get("email"));
-      map.put("cName", jsonObject.get("name"));
-      map.put("cTel", jsonObject.get("mobile"));
-      
-      String email = (String) ((Map<String, Object>) data.get("response")).get("email");
-      String id = email.split("@")[0]+"_naver";
-      customerDTO dto = new customerDTO(); 
-      dto = cm.getCustomer(id);
-      System.out.println("dto"+dto);
-      String pwd = makeRandomPw();
-      if(dto == null) { // 네이버 아이디로 회원가입된 정보가 없다면
-         customerDTO ndto = new customerDTO();
-         ndto.setcId(id);
-         ndto.setcName(map.get("cName").toString());
-         ndto.setcEmail(map.get("cEmail").toString()); 
-         ndto.setcTel(map.get("cTel").toString());
-         ndto.setcPw(encoder.encode(pwd));
-         cm.register(ndto);
-         return ndto;
-      }
-      
-      return dto;
-   }
+		dto.setcPw(encoder.encode(dto.getcPw()));
+		try {
+			result = cm.register(dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if (result == 1) {
+			return GetMessage.getMessage("회원가입 성공", "/am/customerLogin");
+		}
+		return GetMessage.getMessage("회원가입 실패", "/am/customerRegister");
+	}
+	
+	public customerDTO naverLogin(String apiResult) throws Exception {
+		ObjectMapper mapper = new ObjectMapper();
+		HashMap<String, Object> map = new HashMap<>();
+		Map<String, Object> data = mapper.readValue(apiResult, Map.class);
+		JSONParser jsonParser = new JSONParser();
+		
+		JSONObject jsonObject = (JSONObject) jsonParser.parse(apiResult);
+		jsonObject = (JSONObject) jsonObject.get("response");
+		map.put("cEmail", jsonObject.get("email"));
+		map.put("cName", jsonObject.get("name"));
+		map.put("cTel", jsonObject.get("mobile"));
+		
+		String email = (String) ((Map<String, Object>) data.get("response")).get("email");
+		String id = email.split("@")[0]+"_naver";
+		customerDTO dto = new customerDTO(); 
+		dto = cm.getCustomer(id);
+		System.out.println("dto"+dto);
+		if(dto == null) { // 네이버 아이디로 회원가입된 정보가 없다면
+			customerDTO ndto = new customerDTO();
+			ndto.setcId(id);
+			ndto.setcName(map.get("cName").toString());
+			ndto.setcEmail(map.get("cEmail").toString()); 
+			ndto.setcTel(map.get("cTel").toString());
+			ndto.setcPw("naver");
+			cm.register(ndto);
+			return ndto;
+		}
+		
+		return dto;
+	}
    
    public String customerSearchId(String inputName, String inputEmail) {
       customerDTO dto = cm.customerSearchId(inputName, inputEmail);

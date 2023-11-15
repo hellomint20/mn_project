@@ -13,7 +13,6 @@ public interface reservationService {
 	public Map<String, Object> mediInfo(String mediName); //병원 상세정보
 	public List<String> mediTime(String name); //병원 Time
 	public List<Map<String , petDTO>> petList(String id); //사용자 pet lists
-	public int reservationRegister(Map<String, Object> map); //병원 예약 
 	public Map<String, String> reservationCount(Map<String, Object> map); ////시간별 예약자 수 확인
 	public List<Map<String, String>> reservationList(String id);
 	public List<Map<String, String>> mediSelectList(reservationPagination pag);

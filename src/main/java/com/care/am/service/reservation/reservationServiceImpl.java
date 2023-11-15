@@ -94,36 +94,6 @@ public class reservationServiceImpl implements reservationService{
 	public List<Map<String, petDTO>> petList(String id) { // 사용자 pet list
 		return rm.petList(id);
 	}
-
-	public int reservationRegister(Map<String, Object> map) { // 병원 예약
-
-		String year = map.get("rDate").toString().replace("년 ", "-");
-		String month = year.replace("월 ", "-");
-		String day = month.replace("일", "");
-		String time = map.get("rTime").toString().replace(":", "-");
-
-		Map<String, Object> countMap = new HashMap<String, Object>();
-		countMap.put("mId", map.get("mId"));
-		countMap.put("rDate", day);
-		countMap.put("rTime", time);
-
-		int result = 0;
-
-		Integer.parseInt(String.valueOf(rm.peopleCount(countMap).get("count(*)")));
-		
-		if(Integer.parseInt(String.valueOf(rm.peopleCount(countMap).get("count(*)"))) >= 3) {
-			
-			result = 99;
-			
-		} else {
-			map.put("rDate", day);
-			map.put("rTime", time);
-			System.out.println(map);
-			result = rm.reservationRegister(map);
-		}
-
-		return result;
-	}
 	
 	public Map<String, String> reservationCount(Map<String, Object> map) { ////시간별 예약자 수 확인	
 		

@@ -100,20 +100,7 @@ public class reservationController {
 		
 		return "am/reservation/reservationPopup";
 	}
-	
-	@ResponseBody
-	@PostMapping("reservationRegister") //병원 예약 DB 등록
-	public Map<String, String> reservationRegister(@RequestBody Map<String, Object> map, HttpSession session) {
-		map.put("cId", session.getAttribute(LoginSession.cLOGIN).toString());
-		
-		Map<String, String> result = new HashMap<String, String>();
-		
-		result.put("result", Integer.toString(rs.reservationRegister(map)));
-		result.put("userId", session.getAttribute(LoginSession.cLOGIN).toString());
-		
-		return result;
-	}	
-	
+
 	@GetMapping("reservationList") //손님 예약 리스트
 	public String reservationList(@RequestParam String id, Model model, customerPagination pag
 			, @RequestParam(value="nowPage", required=false)String nowPage

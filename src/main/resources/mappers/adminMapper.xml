@@ -11,4 +11,29 @@
 		<result property="regiApply" column="regi_apply"/>
 	</resultMap>
 	
+	<insert id="resRegister" useGeneratedKeys="true" keyColumn="r_num" keyProperty="rNum">		
+		insert into reservation
+		(r_num, m_id, p_num, c_id, r_content, r_date, r_time, r_name, r_tel)
+		values (r_num, #{mId},
+		(select p_num from pet where p_name=#{pName} and c_id=#{cId} ),#{cId},
+		#{rContent}, #{rDate}, #{rTime}, #{rName}, #{rTel})
+	</insert>
+	
+	<insert id="payRegister">
+		insert into payment
+			(pay_num, pay_date, r_num)
+		values
+			(pay_num, now(), #{rNum})
+	</insert>
+	
+	<insert id="getImpUid">
+		insert into payment
+			(pay_num, pay_date, r_num, pay_id)
+		values
+			(pay_num, now(), #{rNum}, getImpUid)
+	</insert>
+	
+	
+	
+
 </mapper>

@@ -97,13 +97,6 @@
 		select * from pet where c_id = #{c_id}
 	</select>
 	
-	<insert id="reservationRegister">
-		    insert into reservation 
-      		(r_num, m_id, p_num, c_id, r_content, r_date, r_time, r_name, r_tel)
-      		values (r_num, #{mId}, 
-            (select p_num from pet where p_name=#{pName} and c_id=#{cId} ),#{cId}, #{rContent}, #{rDate}, #{rTime}, #{rName}, #{rTel})
-	</insert>
-
 	<select id="reservationTime" resultType="map">
 		select count(r_time) 
 			from reservation 
