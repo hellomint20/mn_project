@@ -13,9 +13,13 @@
 	
 	<insert id="payRegister">
 		insert into payment
-			(pay_num, pay_date, r_num)
+			(pay_num, pay_date, r_num, pay_id)
 		values
-			(pay_num, now(), #{rNum})
+			(pay_num, now(), #{rNum}, #{payId})
 	</insert>
+	
+	<select id="getImpUid" resultType="string">
+		select pay_id from payment where r_num=#{rNum}
+	</select>
 
 </mapper>

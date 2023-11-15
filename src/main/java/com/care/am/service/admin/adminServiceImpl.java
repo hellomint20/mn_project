@@ -7,25 +7,21 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.URL;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.util.EntityUtils;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.expression.ExpressionException;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
+import com.care.am.dto.cancleBuyDTO;
 import com.care.am.mapper.adminMapper;
 import com.care.am.mapper.reservationMapper;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
@@ -58,7 +54,7 @@ public class adminServiceImpl implements adminService{
 				am.resRegister(map);
 				System.out.println(map.get("rNum"));
 				int rNum = Integer.parseInt(String.valueOf(map.get("rNum")));
-				result = am.payRegister(rNum);
+				result = am.payRegister(map.get("rNum").toString(), map.get("impUid").toString());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -69,16 +65,40 @@ public class adminServiceImpl implements adminService{
     public static final String impKey = "1221163661378568";
     public static final String impSecret = "FsZsjC291mrfnLngPLepGgN3R5jxJukbmMmg9oG8dTuyvkjKQpiFEaiPED97F6r6nwNWttDYwBYUjs24";     
 
-    public int orderCancle(Map<String, Object> map) throws Exception {
-		if(!orderList.getImp_uid().equals("")) {
-			String token = payService.getToken(); 
-			Long price = orderList.getTotalPrice();
-			Long refundPrice = price ;
-			payService.payMentCancle(token, orderList.getImp_uid(), refundPrice+"", "환불");
+    //예약 취소
+    public void orderCancle(String rNum) {
+    	int result = 0;
+    	String impUid = am.getImpUid(rNum);
+    	cancleBuy(impUid);
+    	
+    	//예약 테이블 삭제 기능
+    }
+    
+    //결제 취소
+    public void cancleBuy(String impUid) {
+    	try {
+    		String token = null;
+    		token = getToken();
+    		
+    		HttpHeaders headers = new HttpHeaders();
+    		headers.clear();
+    		headers.add("Authorization", token);
+    		
+    		JSONObject body = new JSONObject();
+    		body.clear();
+    		body.put("imp_uid", impUid);
+    		
+    		HttpEntity<JSONObject> entity = new HttpEntity<JSONObject>(body, headers);
+    		
+    		RestTemplate restTemplate = new RestTemplate();
+    		
+    		cancleBuyDTO cancle = restTemplate.postForObject("https://api.iamport.kr/payments/cancel", entity, cancleBuyDTO.class);
+    		System.out.println(cancle+ " full cancle");
+    	} catch (Exception e) {
+			e.printStackTrace();
 		}
-		
-		return adminDAO.orderCancle((orderList.getOrderNum()));
-}
+    }
+    
     
 	public String getToken() throws Exception {
 
@@ -113,38 +133,36 @@ public class adminServiceImpl implements adminService{
 
 		br.close();
 		conn.disconnect();
-
+		System.out.println("왔나");
 		return token;
 	}
 	
-  /*  public static final String IMPORT_TOKEN_URL = "https://api.iamport.kr/users/getToken"; 
-    
-    public static final String KEY = "1221163661378568";
-    public static final String SECRET = "FsZsjC291mrfnLngPLepGgN3R5jxJukbmMmg9oG8dTuyvkjKQpiFEaiPED97F6r6nwNWttDYwBYUjs24";     
-    
-    public String getImportToken() { // 아임포트 인증(토큰)을 받아주는 함수 
-        String result = ""; 
-        HttpClient client = HttpClientBuilder.create().build();
-        HttpPost post = new HttpPost(IMPORT_TOKEN_URL); 
-        Map<String,String> m =new HashMap<String,String>(); 
-        m.put("imp_key", KEY); 
-        m.put("imp_secret", SECRET); 
-        try { post.setEntity(new UrlEncodedFormEntity(convertParameter(m))); 
-            HttpResponse res = client.execute(post); 
-            ObjectMapper mapper = new ObjectMapper(); 
-            String body = EntityUtils.toString(res.getEntity()); 
-            JsonNode rootNode = mapper.readTree(body); 
-            JsonNode resNode = rootNode.get("response"); 
-            result = resNode.get("access_token").asText(); 
-        } catch (Exception e) { 
-            e.printStackTrace(); 
-        }         
-        return result;
-    }
+	public void payMentCancle(String access_token, String imp_uid, String amount,String reason) throws IOException, ExpressionException {
+		System.out.println("imp_uid = " + imp_uid);
+		HttpsURLConnection conn = null;
+		URL url = new URL("https://api.iamport.kr/payments/cancel");
 
-	private List<? extends NameValuePair> convertParameter(Map<String, String> m) {
-		// TODO Auto-generated method stub
-		return null;
-	}*/
+		conn = (HttpsURLConnection) url.openConnection();
 
+		conn.setRequestMethod("POST");
+		conn.setRequestProperty("Content-type", "application/json");
+		conn.setRequestProperty("Accept", "application/json");
+		conn.setRequestProperty("Authorization", access_token);
+		conn.setDoOutput(true);
+		
+		JsonObject json = new JsonObject();
+
+		json.addProperty("reason", reason);
+		json.addProperty("imp_uid", imp_uid);
+		json.addProperty("amount", amount);
+		
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
+
+		bw.write(json.toString());
+		bw.flush();
+		bw.close();
+		System.out.println("왔나");
+		BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"));			
+		
+	}
 }
