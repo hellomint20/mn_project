@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.care.am.mapper.adminMapper">
+	<insert id="resRegister" useGeneratedKeys="true" keyColumn="r_num" keyProperty="rNum">		
+		insert into reservation
+		(r_num, m_id, p_num, c_id, r_content, r_date, r_time, r_name, r_tel)
+		values (r_num, #{mId},
+		(select p_num from pet where p_name=#{pName} and c_id=#{cId} ),#{cId},
+		#{rContent}, #{rDate}, #{rTime}, #{rName}, #{rTel})
+	</insert>
+	
+	<insert id="payRegister">
+		insert into payment
+			(pay_num, pay_date, r_num)
+		values
+			(pay_num, now(), #{rNum})
+	</insert>
+
+</mapper>
