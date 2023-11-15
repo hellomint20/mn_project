@@ -87,6 +87,7 @@
 	        	type : "POST",
 	        	url : "/am/verifyIamport/" + rsp.imp_uid 
 	        }).done(function(data) {
+	        	console.log(rsp.imp_uid)
 	        	// 위의 rsp.paid_amount 와 data.response.amount를 비교한후 로직 실행 (import 서버검증)
 	        	if(rsp.paid_amount == data.response.amount){
 		        	alert("결제 및 결제검증완료");
@@ -99,6 +100,7 @@
 		    		map['pName'] = document.getElementById("pName").innerText;
 		    		map['rContent'] = document.getElementById("rContent").innerText;
 		    		map['rTel'] = document.getElementById("rTel").innerText;
+		    		map['impUid'] = rsp.imp_uid;
 		    		
 		        	$.ajax({
 		    			url : "/am/payResRegister", type : "post",

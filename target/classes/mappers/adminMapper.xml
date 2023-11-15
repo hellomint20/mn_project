@@ -3,14 +3,6 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.care.am.mapper.adminMapper">
-
-	<resultMap type="com.care.am.dto.adminDTO" id="admin">
-		<id property="aId" column="a_id"/>
-		<result property="aPw" column="a_pw"/>
-		<result property="mId" column="m_id"/>
-		<result property="regiApply" column="regi_apply"/>
-	</resultMap>
-	
 	<insert id="resRegister" useGeneratedKeys="true" keyColumn="r_num" keyProperty="rNum">		
 		insert into reservation
 		(r_num, m_id, p_num, c_id, r_content, r_date, r_time, r_name, r_tel)
@@ -21,19 +13,13 @@
 	
 	<insert id="payRegister">
 		insert into payment
-			(pay_num, pay_date, r_num)
-		values
-			(pay_num, now(), #{rNum})
-	</insert>
-	
-	<insert id="getImpUid">
-		insert into payment
 			(pay_num, pay_date, r_num, pay_id)
 		values
-			(pay_num, now(), #{rNum}, getImpUid)
+			(pay_num, now(), #{rNum}, #{payId})
 	</insert>
 	
-	
-	
+	<select id="getImpUid" resultType="string">
+		select pay_id from payment where r_num=#{rNum}
+	</select>
 
 </mapper>

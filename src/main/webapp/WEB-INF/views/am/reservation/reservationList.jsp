@@ -17,7 +17,8 @@
 		let msg = confirm("정말로 취소하시겠습니까?");
 		console.log(num)
 		if (msg == true)	
-			location.href='/am/reservationCancel?id=${userId}&num='+num;
+			//location.href='/am/reservationCancel?id=${userId}&num='+num;
+			location.href='/am/payResRefund?rNum='+num;
 	}
 </script>
 </head>
