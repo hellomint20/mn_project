@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.care.am.mapper.reviewMapper">
+  	<resultMap type="com.care.am.dto.reviewDTO" id="review">
+		<id property="rvNo" column="rv_no"/>
+		<result property="cId" column="c_id"/>
+		<result property="mName" column="m_name"/>
+		<result property="rvCont" column="rv_cont"/>
+		<result property="rvDate" column="rv_date"/>
+		<result property="rDate" column="r_date"/>
+		<result property="rvTitle" column="rv_title"/>
+	</resultMap>
+	
+	<select id="boardList" resultMap="review">
+		select * from review order by rv_no desc
+	</select>
+
+	<select id="reviewList" resultMap="review">
+		select * from review where c_id =#{cId} order by rv_no desc
+	</select>
+	
+  </mapper>
+  
+  

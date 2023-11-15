@@ -38,6 +38,6 @@ public interface reservationMapper {
 	public Integer AListPaging(String mId); // 병원 승인 페이징
 	public List<Map<String, Object>> CList(Map<String, Object> pageMap); //병원 취소 리스트
 	public Integer CListPaging(String mId); // 병원 취소 페이징
-	public int fix(@Param("mId") String mId,  int r_fix, @Param("Rnum") int Rnum); //진료여부 확정
+	public int fix(@Param("mId") String mId,  @Param("rFix") int r_fix, @Param("Rnum") int Rnum); //진료여부 확정
 }
 

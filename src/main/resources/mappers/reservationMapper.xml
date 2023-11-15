@@ -189,7 +189,7 @@
 		from reservation r, pet p
 		where r.m_id = #{mId} and r_apply="확정"
 		and r.p_num = p.p_num
-		order by r.r_date
+		order by r.r_fix asc, r.r_date asc
 		limit #{start}, #{limit}
 	</select>
 	
@@ -228,7 +228,7 @@
 	
 	<!-- 진료여부  -->
 	<update id="fix">
-		update reservation set r_fix = 1 where m_id = #{mId} and r_num = #{Rnum}
+		update reservation set r_fix = #{rFix} where m_id = #{mId} and r_num = #{Rnum}
 	</update>
 
 </mapper>

@@ -19,11 +19,14 @@
 				'width=600px,height=700px,scrollbars=yes,resizable=no');
 	}
 	
-	function fix(){
-		const r_fix = confirm("진료가 끝났다면 확인을 눌러 주세요.");
-		if(r_fix == true){
-			document.r_fix = 1;
-		}
+	function show(num) {
+		let msg = confirm("진료를 완료하셨다면 완료 버튼을\n진료를 하지 않으셨다면 취소를 눌려주세요");
+		let rFixInput = document.getElementsByName("r_fix")[0];
+	    if (msg == true) {
+	        rFixInput.value = 1;
+	    } else {
+	        rFixInput.value = 2;
+	    }
 	}
 </script>
 
@@ -47,12 +50,12 @@
 			<div id="ACTable" width="800px">
 				<table class="col-100 col">
 					<colgroup>
-						<col width="23%">
-						<col width="15%">
 						<col width="20%">
-						<col width="13%">
-						<col width="13%">
-						<col width="23%">
+						<col width="20%">
+						<col width="15%">
+						<col width="15%">
+						<col width="15%">
+						<col width="15%">
 					</colgroup>
 					<thead>
 						<tr>
@@ -74,15 +77,16 @@
 								<td>${a.r_apply }</td>
 								<td>
 								<form action="reservationStateA" method="post">
-									<input type="hidden" name="r_fix" value="1">
+									<input type="hidden" name="r_fix">
 									<input type="hidden" name="id" value="${mediId }">
 									<input type="hidden" name="r_num" value="${a.r_num }">
+									<input type="hidden" name="page" value="${APaging.page}">
 									<c:choose>
-										<c:when test="${a.r_fix ==1 }">
-										<button id="fix"onclick="fix()" disabled="disabled">완료</button>
+										<c:when test="${a.r_fix != 0 }">
+											<button id="fix" disabled="disabled">완료</button>
 										</c:when>
 										<c:otherwise>
-											<button id="fix"onclick="fix()">완료</button>
+											<button id="fix" onclick="show()">완료</button>
 										</c:otherwise>
 									</c:choose>
 								</form>

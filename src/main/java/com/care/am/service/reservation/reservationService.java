@@ -31,7 +31,7 @@ public interface reservationService {
 	public pageDTO CListPaging(int page, String mId); //병원 취소 페이징
 	public String reserCancel(String id, int num);
 	public int reserState(int num, int state);
-	public Map<String, String> getResInfo(int num);
+	public Map<String, String> getResInfo(int num); // 후기작성 페이지 정보
 	public void fix(String mId, int r_fix, int r_num); //진료여부 확정
 
 }

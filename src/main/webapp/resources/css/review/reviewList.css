@@ -1,0 +1,87 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.board_wrap {
+    width: 52%;
+    margin: 100px 350px;
+}
+
+.board_title {
+    margin-bottom: 18px;
+}
+
+.board_title strong {
+    font-size: 3rem;
+}
+
+.board_title p {
+    font-size: 1rem;
+}
+
+.board_list {
+    width: 800px;
+    border-top: 2px solid #000;
+}
+
+.board_list > div {
+    border-bottom: 1px solid #ddd;
+    font-size: 0;
+}
+
+.board_list > div.top {
+    border-bottom: 1px solid #999;
+}
+
+.board_list > div > div {
+    display: inline-block;
+    padding: 15px 0;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.board_list > div.top > div {
+    font-weight: 650;
+}
+
+.board_list .rv_no {
+    width: 10%;
+    text-align: center;
+}
+
+.board_list .rv_title {
+    width: 25%;
+    text-align: center;
+}
+
+.board_list .rv_date {
+    width: 25%;
+    text-align: center;
+}
+
+.board_list .m_name {
+	width: 25%;
+    text-align: center;
+}
+
+.board_list .c_id {
+    width: 15%;
+    text-alingn: left;
+}
+
+.board_list .listIsNull{
+	width:100%;
+	text-align: center;
+}
+.board_list .listbox{
+	width:100%;
+}
+.board_list .listbox:last-child{
+	 border-bottom: 1px solid #000;
+}
+
+a.pageLink{
+	text-decoration: none;
+	color: black;
+}
