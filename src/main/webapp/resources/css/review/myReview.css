@@ -1,5 +1,5 @@
 * {
-    margin: 0;
+    margin: 0;y
     padding: 0;
 }
 
@@ -57,16 +57,14 @@
     resize: none;
     padding: 10px 20px; 
 }
-
-
-
 .btn_a {
 	margin-top: 30px;
 	margin-left: 250px;
 }
 
-.btn_a .cancel{
+#modi{
 	margin-right: 50px;
+	margin-left: 120px;
 	border: none;
 	width: 80px;
 	height: 40px;
@@ -80,31 +78,11 @@
 		0px rgba(0, 0, 0, .1), 4px 4px 5px 0px rgba(0, 0, 0, .1);
 	background: linear-gradient(0deg, #1b4c68 0%, #1b4c68 100%);
 }
-.btn_a .completed{
-	margin-left: 50px;
-	border: none;
-	width: 80px;
-	height: 40px;
-	color: #fff;
-	border-radius: 5px;
-	font-weight: 500;
-	transition: all 0.3s ease;
-	position: relative;
-	display: inline-block;
-	box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5), 7px 7px 20px
-		0px rgba(0, 0, 0, .1), 4px 4px 5px 0px rgba(0, 0, 0, .1);
-	background: linear-gradient(0deg, #1b4c68 0%, #1b4c68 100%);
-}
-
-.btn_a .cancel:hover {
+#modi:hover {
    	background: linear-gradient(0deg, #73b4db 0%, #73b4db 100%);
 	opacity: 0.8;
 }
-.btn_a .completed:hover {
-   	background: linear-gradient(0deg, #73b4db 0%, #73b4db 100%);
-	opacity: 0.8;
+.view{
+	font-size: 15px;
+	font-weight:initial
 }
-.btn btn-dark{
-	background-color: #EAEAEA;
-}
-
