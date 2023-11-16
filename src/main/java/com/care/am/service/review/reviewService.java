@@ -10,8 +10,8 @@ import com.care.am.dto.reviewDTO;
 public interface reviewService {
 	public List<reviewDTO> boardList();
 	public List<reviewDTO> reviewList(String id);
-	
 	public reviewDTO myReview(int num);
-	
-	public String fixedForm(reviewDTO dto, int num);
+	public String fixedForm(reviewDTO dto, String id, int num);
+	public String modiForm(reviewDTO dto);
+	public String delete(String id, int num);
 }

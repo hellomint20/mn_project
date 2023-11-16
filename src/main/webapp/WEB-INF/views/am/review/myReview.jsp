@@ -42,7 +42,7 @@
 			<c:if test="${userId eq detail.cId }">
 				<div class="btn_a">
 				    <button type="button" id="modi" onclick="location.href='/am/modiForm?num=${detail.rvNo}'">수정</button>
-				    <button type="button" id="modi" onclick="location.href='/am/delete?num=${detail.rvNo}'">삭제</button>
+				    <button type="button" id="modi" onclick="location.href='/am/delete?id=${userId }&num=${detail.rvNo}'">삭제</button>
 		    	</div>
 	    	</c:if>
 		</form>		

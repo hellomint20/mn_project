@@ -26,20 +26,7 @@ public class reviewServiceImpl implements reviewService{
 	public List<reviewDTO> reviewList(String id) {
 		return bm.reviewList(id);
 	}
-	/*
-	public Map<String, Object> myReview(String id, int num) {
-		
-		reviewDTO dto = bm.myReview(id, num);
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("dto",dto);
-		System.out.println(map.size());
-		System.out.println(dto.getcId());
-		System.out.println(dto.getmName());
-		System.out.println(dto.getRvCont());
-		System.out.println(dto.getRvTitle());
-		
-		return map;
-	}*/
+	
 	
 	public reviewDTO myReview(int num){
 		reviewDTO dto = new reviewDTO();
@@ -53,16 +40,39 @@ public class reviewServiceImpl implements reviewService{
 	}
 	
 	
-	public String fixedForm(reviewDTO dto, int num) {
+	public String fixedForm(reviewDTO dto, String id, int num) {
 		int result =0;
+		int fixResult = 0;
 		
 		result = bm.fixedForm(dto);
-		
-		if(result == 1) {
-			return GetMessage.getMessage("리뷰가 등록되었습니다!", "/am/fixedForm?num="+num); //나중에 경로 수정
+		if(result==1) {
+			try {
+				fixResult = bm.fixResult(num);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
-		return GetMessage.getMessage("리뷰 등록에 실패했습니다.", "/am/fixedForm");
+		if(fixResult == 1) {
+			return GetMessage.getMessage("리뷰가 등록되었습니다!", "/am/reviewList?id="+id);
+		}
+		return GetMessage.getMessage("리뷰 등록에 실패했습니다.", "/am/reservationList?id="+id);
 	}
 	
-
+	public String modiForm(reviewDTO dto) {
+		int result = 0;
+		result = bm.modiForm(dto);
+		if(result ==1) {
+			return GetMessage.getMessage("리뷰가 수정되었습니다.", "/am/myReview?num="+dto.getRvNo());
+		}
+		return GetMessage.getMessage("리뷰 수정에 실패했습니다.", "/am/modiForm?num="+dto.getRvNo());
+	}
+	
+	public String delete(String id, int num) {
+		int result = 0;
+		result = bm.delete(num);
+		if(result==1) {
+			return GetMessage.getMessage("리뷰가 삭제되었습니다.", "/am/reviewList?id="+id);
+		}
+		return GetMessage.getMessage("리뷰 삭제에 실패했습니다.", "/am/myReview?num="+num);
+	}
 }

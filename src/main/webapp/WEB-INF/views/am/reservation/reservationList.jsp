@@ -67,9 +67,14 @@
 									</c:if>
 								</div>
 								<div class="r_fix">
-									<c:if test="${list.r_fix == 1}">
-										<button onclick="location.href='/am/fixedForm?num=${list.r_num}'">작성</button>
-									</c:if>
+									<c:choose>
+										<c:when test="${list.r_fix == 1}">
+											<button onclick="location.href='/am/fixedForm?id=${userId }&num=${list.r_num}'">작성</button>
+										</c:when>
+										<c:otherwise>
+											<button disabled="disabled">작성</button>
+										</c:otherwise>
+									</c:choose>
 								</div>
 							</div>
 						</c:forEach>

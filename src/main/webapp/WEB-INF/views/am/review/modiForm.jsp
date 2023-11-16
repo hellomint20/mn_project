@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/am/css/review/myReview.css">
+<link rel="stylesheet" href="/am/css/review/modiForm.css">
 </head>
 <body>
 	<%@ include file = "../default/header_page.jsp" %>
@@ -16,18 +16,23 @@
 			<strong>수정</strong>
 			<p>후기 수정</p>
 		</div>
-		<form action="#" method="post">
+		<form action="modiForm" method="post">
 			<div class="board_list_wrap">
 				<div class="board_list">
 					<div class="top">
-						<div class="c_id">작성자 | ${list.cId}</div>
-						<div class="r_date">방문 날짜 | ${list.rDate}</div>
-						<div class="m_name">병원 | ${list.mName}</div>
+						<div class="c_id"><input type="hidden" value="${list.cId}" name="cId">작성자 | ${list.cId}</div>
+						<div class="r_date"><input type="hidden" value="${list.rDate}" name="rDate"> 방문 날짜 | ${list.rDate}</div>
+						<div class="m_name"><input type="hidden" value="${list.mName}" name="mName">병원 | ${list.mName}</div>
+						<input type="hidden" name="rvNo" value="${list.rvNo }">
+						<input type="hidden" name="rvDate" value="${list.rvDate }">
 					</div>
 				</div>
 				
+				<div class="title">
+					<input type="text" class="rvTitle" style="resize: none;" placeholder="${list.rvTitle }" name="rvTitle" value="${list.rvTitle }">
+				</div>
 				<div>
-					<textarea placeholder="후기를 작성해 주세요">${list.rvCont }</textarea>
+					<input type="text" class="rvCont" style="resize: none;" placeholder="${list.rvCont }" name="rvCont" value="${list.rvCont }">
 				</div>
 			</div>
 			<div class="btn_a">

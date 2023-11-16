@@ -14,13 +14,17 @@
 		<result property="rvTitle" column="rv_title"/>
 	</resultMap>
 	
-	<resultMap type="com.care.am.dto.customerDTO" id="customer">
-		<id property="cId" column="c_id"/>
-		<result property="cPw" column="c_pw"/>
-		<result property="cName" column="c_name"/>
-		<result property="cTel" column="c_tel"/>
-		<result property="cEmail" column="c_email"/>
-		<result property="cSessionId" column="c_session"/>
+	<resultMap type="com.care.am.dto.reservationDTO" id="reservation">
+		<id property="rNum" column="r_num"/>
+		<result property="mId" column="m_id"/>
+		<result property="cId" column="c_id"/>
+		<result property="rContent" column="r_content"/>
+		<result property="rDate" column="r_date"/>
+		<result property="rTime" column="r_time"/>
+		<result property="rApply" column="r_apply"/>
+		<result property="rName" column="r_name"/>
+		<result property="rTel" column="r_tel"/>
+		<result property="r_fix" column="r_fix"/>
 	</resultMap>
 	
 	<select id="boardList" resultMap="review">
@@ -39,6 +43,18 @@
 	<select id="myReview" resultMap="review">
 		select * from review where rv_no = #{rvNo}
 	</select>
+	
+	<update id="fixResult">
+		update reservation set r_fix=3 where r_num=#{rNum}
+	</update>
+	
+	<update id="modiForm">
+		update review set rv_cont=#{rvCont}, rv_title=#{rvTitle} where rv_no=#{rvNo}
+	</update>
+	
+	<delete id="delete">
+		delete from review where rv_no=#{rvNo}
+	</delete>
 
 
 </mapper>
