@@ -57,14 +57,15 @@
     resize: none;
     padding: 10px 20px; 
 }
+
+
 .btn_a {
-	margin-top: 30px;
-	margin-left: 250px;
+	margin-top: 20px;
+	margin-left: 300px;
 }
 
-#modi{
+.btn_a #modi{
 	margin-right: 50px;
-	margin-left: 120px;
 	border: none;
 	width: 80px;
 	height: 40px;
@@ -78,10 +79,17 @@
 		0px rgba(0, 0, 0, .1), 4px 4px 5px 0px rgba(0, 0, 0, .1);
 	background: linear-gradient(0deg, #1b4c68 0%, #1b4c68 100%);
 }
-#modi:hover {
+
+
+.btn_a #modi:hover {
    	background: linear-gradient(0deg, #73b4db 0%, #73b4db 100%);
 	opacity: 0.8;
 }
+
+.btn btn-dark{
+	background-color: #EAEAEA;
+}
+
 .view{
 	font-size: 15px;
 	font-weight:initial

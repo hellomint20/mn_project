@@ -45,7 +45,7 @@
 							<div class="listbox">
 								<div class="rv_no">${list.rvNo }</div>
 								<div class="m_name">${list.mName}</div>
-								<div class="rv_title">${list.rvTitle }</div>
+								<div class="rv_title"><a href="/am/myReview?num=${list.rvNo}">${list.rvTitle }</a></div>
 								<div class="rv_date">
 									${list.rvDate }
 								</div>

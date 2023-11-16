@@ -54,8 +54,21 @@ public class reviewController {
 	}
 	
 	@GetMapping("myReview")
-	public String myReview() {
+	public String myReview(@RequestParam int num, Model model) {
+		model.addAttribute("detail", bs.myReview(num));
 		return "am/review/myReview";
+	}
+	
+	@GetMapping("modiForm")
+	public String modiForm(@RequestParam int num, Model model) {
+		model.addAttribute("list", bs.myReview(num));
+		System.out.println(bs.myReview(num).getcId());
+		System.out.println(bs.myReview(num).getmName());
+		System.out.println(bs.myReview(num).getRvCont());
+		System.out.println(bs.myReview(num).getrDate());
+		System.out.println(bs.myReview(num).getRvNo());
+		System.out.println(bs.myReview(num).getRvTitle());
+		return "am/review/modiForm";
 	}
 	
 	

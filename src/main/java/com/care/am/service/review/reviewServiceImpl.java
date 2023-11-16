@@ -1,6 +1,9 @@
 package com.care.am.service.review;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +26,32 @@ public class reviewServiceImpl implements reviewService{
 	public List<reviewDTO> reviewList(String id) {
 		return bm.reviewList(id);
 	}
+	/*
+	public Map<String, Object> myReview(String id, int num) {
+		
+		reviewDTO dto = bm.myReview(id, num);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("dto",dto);
+		System.out.println(map.size());
+		System.out.println(dto.getcId());
+		System.out.println(dto.getmName());
+		System.out.println(dto.getRvCont());
+		System.out.println(dto.getRvTitle());
+		
+		return map;
+	}*/
+	
+	public reviewDTO myReview(int num){
+		reviewDTO dto = new reviewDTO();
+		try {
+			dto = bm.myReview(num);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println(dto);
+		return dto;
+	}
+	
 	
 	public String fixedForm(reviewDTO dto, int num) {
 		int result =0;

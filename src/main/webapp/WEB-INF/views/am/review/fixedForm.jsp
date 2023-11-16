@@ -31,7 +31,7 @@
 					</div>
 				</div>
 				
-				<div>
+				<div class="title">
 					<textarea class="rvTitle" style="resize: none;" placeholder="제목를 작성해 주세요" name="rvTitle"></textarea>
 				</div>
 				<div>

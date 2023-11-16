@@ -57,7 +57,10 @@
     resize: none;
     padding: 10px 20px; 
 }
-
+.title{
+	width: 800px;
+	border-bottom: 1px solid gray;
+}
 
 
 .btn_a {
