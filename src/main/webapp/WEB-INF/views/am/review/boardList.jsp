@@ -18,13 +18,13 @@
 </head>
 <body>
 	<%@ include file = "../default/header_page.jsp" %>
-	<c:if test="${userId}">
+	<c:if test="${userId != null}">
 		<%@ include file = "../common/customerSidebar.jsp" %>
 	</c:if>
 
 	<div class="board_wrap">
 		<div class="board_title">
-			<strong>게시판</strong>
+			<strong>전체 게시판</strong>
 			<p>방문한 병원의 후기를 작성해주세요</p>
 		</div>
 		<div class="board_list_wrap">

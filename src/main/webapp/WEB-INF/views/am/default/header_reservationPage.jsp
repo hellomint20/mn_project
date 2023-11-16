@@ -29,7 +29,7 @@
 					| <a href="/am/customerLogin" id="text">로그인</a>
 			</c:if>
 			<c:if test="${userId != null }">
-				<span id="headerText"><a href="/am/customerInfo?id=${userId}"
+				<a href="/am/customerInfo?id=${userId}"
 					id="text">마이페이지</a> | <a href="/am/logout" id="text">로그아웃</a>
 			</c:if>
 				</span>
