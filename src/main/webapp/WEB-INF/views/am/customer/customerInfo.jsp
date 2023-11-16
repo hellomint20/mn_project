@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,9 +13,8 @@
 <body>
 	<%@ include file = "../default/header_page.jsp" %>
 	<%@ include file = "../common/customerSidebar.jsp" %>
-	<%@ include file = "../common/recentlyView.jsp" %>
-	
-	
+	<%@ include file="../common/recentlyView.jsp" %>
+
 	<div class="all">
 		<div class="all_title">
 			<strong>회원 정보</strong>

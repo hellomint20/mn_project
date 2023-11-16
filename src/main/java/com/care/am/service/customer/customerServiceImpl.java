@@ -223,17 +223,10 @@ public class customerServiceImpl implements customerService {
 	}
 
 	public List<Map<String, String>> getRecentlyView(List<String> recentlyViewed, String cId) {
-		List<String> cklist = new ArrayList<String>();
+//		List<String> cklist = new ArrayList<String>();
 		List<Map<String, String>> getView = new ArrayList<Map<String, String>>();
 		if (recentlyViewed.size() != 0) {
-			for (int i = 0; i <3; i++) {
-				cklist.add(i, recentlyViewed.get(i).split("/")[0]);
-				if (cId.equals(cklist.get(i).toString())) {
-					getView = cm.getRecentlyView(cId);
-					System.out.println("서비스 리스트 내놔"+getView.get(i));
-				}
-			}
-			
+			getView = cm.getRecentlyView(cId);
 			return getView;
 		}
 		return null;

@@ -206,9 +206,33 @@ public class customerController {
 
 	// 손님정보 관련
 	@GetMapping("customerInfo") // 손님 개인정보 페이지
-	public String info(@RequestParam String id, Model model) {
+	public String info(@RequestParam String id, HttpServletRequest req, Model model, HttpSession session) {
 		customerDTO dto = cs.getCustomerInfo(id);
 		model.addAttribute("dto", dto);
+
+		// 현재 요청의 모든 쿠키 가져오기
+		Cookie[] cookies = req.getCookies();
+		String cId = session.getAttribute(LoginSession.cLOGIN).toString();
+		System.out.println(cookies);
+		// 가져온 쿠키를 기반으로 최근에 본 병원 목록 생성
+		List<String> recentlyViewed = new ArrayList<>();
+		List<Map<String, String>> getViewList = new ArrayList<Map<String, String>>();
+		if (cookies != null) {
+			for (Cookie cookie : cookies) {
+				if (cookie.getName().startsWith("cookie")) {
+					// "cookie"로 시작하는 쿠키의 값을 추출하여 목록에 추가
+					recentlyViewed.add(cookie.getValue());
+					// model.addAttribute("list",recentlyViewedHospitals);
+				}
+			}
+			session.removeAttribute("recentlyViewList");
+			getViewList = cs.getRecentlyView(recentlyViewed, cId);
+			session.setAttribute("recentlyViewList", getViewList);
+			//model.addAttribute("recentlyViewList", getViewList);
+
+		} else {
+			System.out.println("null");
+		}
 
 		return "am/customer/customerInfo";
 	}
@@ -318,31 +342,4 @@ public class customerController {
 		cs.addrecentlyView(viewCookie.getValue());
 
 	}
-
-		@GetMapping("recentlyView")
-		public String getRecentlyView(HttpServletRequest req, Model model,HttpSession session) {
-			// 현재 요청의 모든 쿠키 가져오기
-			Cookie[] cookies = req.getCookies();
-			String cId = session.getAttribute(LoginSession.cLOGIN).toString();
-			System.out.println(cookies);
-			// 가져온 쿠키를 기반으로 최근에 본 병원 목록 생성
-			List<String> recentlyViewed = new ArrayList<>();
-			List<Map<String, String>> getViewList = new ArrayList<Map<String,String>>();
-			if (cookies != null) {
-				for (Cookie cookie : cookies) {
-					if (cookie.getName().startsWith("cookie")) {
-						// "cookie"로 시작하는 쿠키의 값을 추출하여 목록에 추가
-						recentlyViewed.add(cookie.getValue());
-						// model.addAttribute("list",recentlyViewedHospitals);
-					}
-				}
-				getViewList = cs.getRecentlyView(recentlyViewed,cId);
-				model.addAttribute("viewList",getViewList);
-				
-			} else {
-				System.out.println("null");
-			}
-			return "am/common/recentlyView";
-		}
-	
-	}
+}

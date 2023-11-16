@@ -72,9 +72,13 @@
     	delete from recently_view where c_id = #{cId}
     </delete>
 	<select id="getRecentlyView"  resultType="map">
-		SELECT rv.rv_no, rv.c_id, rv.m_id, m.m_name, m.m_photo
+		SELECT MAX(rv.rv_no) AS rv_no, rv.c_id, rv.m_id, m.m_name, m.m_photo
 		FROM recently_view rv
-		JOIN medi m ON rv.m_id = m.m_id where rv.c_id=#{cId} order by rv.rv_no limit 3
+		JOIN medi m ON rv.m_id = m.m_id 
+		WHERE rv.c_id=#{cId} 
+		GROUP BY rv.c_id, rv.m_id, m.m_name, m.m_photo
+		ORDER BY rv_no DESC 
+		LIMIT 3;
 	</select>
 	
 </mapper>

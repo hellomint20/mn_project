@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +11,7 @@
 <link rel="stylesheet" href="/am/css/common/recentlyView.css">
 <script type="text/javascript">
 $(document).ready(function () {
+	
     var tmp = parseInt($("#whole_box").css('top'));
 
     $(window).scroll(function () {
@@ -22,43 +24,19 @@ $(document).ready(function () {
     }).scroll();
 });
 </script>
-
 </head>
 <body>
+
 		<div class="whole_box">
-			<b>최근 본 병원</b>
+			<b>최근 본 병원</b> 
 			<div class="recently_box">
-			<c:forEach items="${viewList }" var="viewList">
-					<div>
-					<b>${viewList.m_name}</b><Br>
-					${viewList.m_photo}
-				</div>
-			</c:forEach>
-			</div>
-		</div><body>
-		<div class="whole_box">
-			<b>최근 본 병원</b>
-			<div class="recently_box">
-			<c:forEach items="${viewList }" var="viewList">
-					<div>
-					<b>${viewList.m_name}</b><Br>
-					${viewList.m_photo}
-				</div>
-			</c:forEach>
+				<c:forEach items="${sessionScope.recentlyViewList}" var="view">
+		                <div>
+		                    <b>${view.m_name}</b><br>
+		                    <img src="/am/resources/img/${view.m_photo}" width="100px" height="100px">
+		                </div>
+		            </c:forEach>
 			</div>
 		</div>
-</body><body>
-		<div class="whole_box">
-			<b>최근 본 병원</b>
-			<div class="recently_box">
-			<c:forEach items="${viewList }" var="viewList">
-					<div>
-					<b>${viewList.m_name}</b><Br>
-					${viewList.m_photo}
-				</div>
-			</c:forEach>
-			</div>
-		</div>
-</body>
 </body>
 </html>
