@@ -12,6 +12,8 @@
 <body>
 	<%@ include file = "../default/header_page.jsp" %>
 	<%@ include file = "../common/customerSidebar.jsp" %>
+	<%@ include file = "../common/recentlyView.jsp" %>
+	
 	
 	<div class="all">
 		<div class="all_title">

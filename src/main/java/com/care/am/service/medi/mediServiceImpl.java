@@ -49,7 +49,9 @@ public class mediServiceImpl implements mediService{
 			return GetMessage.getMessage("회원가입 실패", "/am/mediRegister");
 		}
 	}
-
+	public boolean mediIdCheck(String id) {
+		return mm.mediIdCheck(id);
+	}
 	public int logChk(String id, String pw) {
 	      mediDTO dto = mm.getMedi(id);
 	      int result =1;

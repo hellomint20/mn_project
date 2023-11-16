@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import = "java.net.URLEncoder" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -135,6 +136,17 @@
 	
 	function detailView(mediId) {
 		$.ajax({
+		    url: 'customer/recentlyView',
+		    type: 'POST',
+		    data: mediId,
+		    contentType : "application/json; charset=utf-8",
+		    success: function(response) {
+		    },
+		    error: function(error) {
+		    }
+		});
+		
+		$.ajax({
 			url : "reservation/mediInfo", type : "post",
 			data : mediId,
 			contentType : "application/json; charset=utf-8",
@@ -150,13 +162,11 @@
 				document.getElementById("mediTel").innerHTML = mediInfo['m_tel'];
 				document.getElementById("mId").value =  mediInfo['m_id'];
 				document.getElementById("mediPhoto").innerHTML = `<img src=` +imgSrc+` width="230px;" height="200px;"></td>`
-				
 			},
 			error : () => {
 				alert("문제 발생")
 			}
 		})
-		
 		$("#detailDiv").css("display", "block");
 	}
 	

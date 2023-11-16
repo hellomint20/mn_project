@@ -11,6 +11,7 @@ public interface mediMapper {
 	 	  public mediDTO getMedi(String id);
 		  public void keepLogin(Map<String, Object> map);
 		  public int mediRegister(mediDTO dto);
+		  public boolean mediIdCheck(String id);
 		  public mediDTO getMediSession( String mSession );
 		  public mediDTO mediSearchId(@Param("inputName") String inputName,@Param("inputTel") String inputTel);
 		  public int mediModify(mediDTO dto);

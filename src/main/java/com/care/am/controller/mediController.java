@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -33,7 +36,24 @@ public class mediController {
 	public String mediRegister() {
 		return "am/medi/mediRegister";
 	}
-
+	@PostMapping("/mediIdCheck")
+	@ResponseBody
+	public ResponseEntity<Boolean> mediIdCheck(String id) {
+		System.out.println("ConfirmId.........");
+		System.out.println("id : " + id);
+		boolean result = true;
+		
+		if(id.trim().isEmpty()) {
+			result = false;
+		} else {
+			if (ms.mediIdCheck(id)) {
+				result = false;
+			} else {
+				result = true;
+			}
+		}
+		return new ResponseEntity<>(result, HttpStatus.OK);
+	}
 	@PostMapping("mediRegister") // 병원 회원가입 적용
 	public void mediRegister(mediDTO dto, HttpServletRequest req, HttpServletResponse res) {
 		String[] addr = req.getParameterValues("mAddr");

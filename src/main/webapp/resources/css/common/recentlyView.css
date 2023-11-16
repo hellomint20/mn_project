@@ -1,0 +1,37 @@
+
+.whole_box{
+	position: fixed;
+	width: 120px;
+	margin-right: -695px;
+	top: 200px;
+	right: 50%;
+	text-align: center;
+	height:500px;
+}
+
+
+.recently_box{
+	width: 120px;
+	position : absolute;
+	margin-top:10px;
+    height: 450px;
+    border-radius: 20px;
+    border: 2px solid #1b4c68;
+}
+.recently_box div:nth-child(1){
+	height: 33.3%;
+	border:1px solid #f5f5f5;
+	border-radius: 20px;
+}
+.recently_box div:nth-child(2){
+	margin-top:1px;
+   border:1px solid #f5f5f5;
+   border-radius: 20px;
+   height: 33.3%;
+}
+.recently_box  div:nth-child(3){
+	margin-top:1px;
+   border:1px solid #f5f5f5;
+   border-radius: 20px;
+   height: 33%;
+}

@@ -15,7 +15,7 @@
 	font-family: 'SUITE', sans-serif !important;
 }
 </style>
-
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="/am/resources/js/daumPost.js"></script>
 <script>
@@ -25,7 +25,39 @@
    .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
 }
 </script>
-
+ <script type="text/javascript">
+    $(document).ready(function() {
+    	//ID 중복 확인
+    	//id를 입력할 수 있는 input text 영역을 벗어나면 동작한다.
+    	$("#id").on("focusout", function() {
+    		
+    		var id = $("#id").val();
+    		
+    		if(id == '' || id.length == 0) {
+    			$("#label1").css("color", "red").text("공백은 ID로 사용할 수 없습니다.");
+    			return false;
+    		}
+    		
+        	//Ajax로 전송
+        	$.ajax({
+        		url : '/am/mediIdCheck',
+        		data : {
+        			id : id
+        		},
+        		type : 'POST',
+        		dataType : 'json',
+        		success : function(result) {
+        			if (result == true) {
+        				$("#label1").css("color", "black").text("사용 가능한 ID 입니다.");
+        			} else{
+        				$("#label1").css("color", "red").text("사용 불가능한 ID 입니다.");
+        				$("#id").val('');
+        			}
+        		}
+        	}); //End Ajax
+    	});
+    })
+</script>
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="/am/resources/css/bootstrap/bootstrap.css">
 
@@ -77,8 +109,9 @@
 			<div id="registerFormContent" class="form-group row">
 				<label for="inputId" class="col-sm-3 col-form-label">아이디</label>
 				<div class="col-sm-7">
-					<input type="text" name="mId" class="form-control" id="inputId"
-						placeholder="inputId" required>
+					<input type="text" name="mId" class="form-control" id="id"
+						placeholder="inputId" autofocus>
+					<label id="label1" style="text-align: left"></label>
 				</div>
 			</div>
 			<div id="registerFormContent" class="form-group row">

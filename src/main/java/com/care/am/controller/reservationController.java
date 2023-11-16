@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.care.am.common.LoginSession;
 import com.care.am.page.customerPagination;
 import com.care.am.page.reservationPagination;
+import com.care.am.service.customer.customerService;
 import com.care.am.service.reservation.reservationService;
 
 @Controller
@@ -77,6 +81,8 @@ public class reservationController {
 	public Map<String, Object> mediInfo(@RequestBody String mediId){
 		return rs.mediInfo(mediId);
 	}
+	
+	
 
 	@PostMapping("reservationForm/page") //병원 예약 페이지
 	public String reservationFormPage(@RequestParam String mediId, Model model, HttpSession session ) {
