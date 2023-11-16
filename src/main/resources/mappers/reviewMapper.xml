@@ -3,6 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="com.care.am.mapper.reviewMapper">
+  
   	<resultMap type="com.care.am.dto.reviewDTO" id="review">
 		<id property="rvNo" column="rv_no"/>
 		<result property="cId" column="c_id"/>
@@ -11,6 +12,15 @@
 		<result property="rvDate" column="rv_date"/>
 		<result property="rDate" column="r_date"/>
 		<result property="rvTitle" column="rv_title"/>
+	</resultMap>
+	
+	<resultMap type="com.care.am.dto.customerDTO" id="customer">
+		<id property="cId" column="c_id"/>
+		<result property="cPw" column="c_pw"/>
+		<result property="cName" column="c_name"/>
+		<result property="cTel" column="c_tel"/>
+		<result property="cEmail" column="c_email"/>
+		<result property="cSessionId" column="c_session"/>
 	</resultMap>
 	
 	<select id="boardList" resultMap="review">
@@ -25,6 +35,10 @@
 		insert into review(rv_no, c_id, m_name, rv_cont, rv_date, r_date, rv_title) 
 		values(rv_no, #{cId}, #{mName}, #{rvCont}, curdate(), #{rDate}, #{rvTitle})
 	</insert>
+	
+	<select id="myReview" resultType="map">
+		select * from review where c_id = #{id} and rv_no = #{num}
+	</select>
 
 
 </mapper>

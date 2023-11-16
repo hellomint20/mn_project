@@ -14,26 +14,26 @@
 	<div class="board_wrap">
 		<div class="board_title">
 			<strong>내가 쓴 후기</strong>
-			<p>님이 작성하신 후기입니다.</p>
+			<p>${useId }님이 작성하신 후기입니다.</p>
 		</div>
 		<form action="fixedForm" method="post">
 			<div class="board_list_wrap">
 				<div class="board_list">
 					<div class="top">
 						<div class="c_id" name="cId" >작성자    
-							<div class="view">작성자작성자</div>
+							<div class="view">${useId}</div>
 						</div>
-						<div class="r_date" name="rDate" >방문 날짜
-							<div class="view">방문날짜날짜</div>
+						<div class="r_date" name="rDate" >작성 날짜
+							<div class="view">${detail.rv_date }</div>
 						</div>
 						<div class="m_name" name="mName">방문 병원
-							<div class="view">병원이름병원이름</div>
+							<div class="view">${detail.m_name }</div>
 						</div>
 						<div class="rv_title" name="rvTitle">제목 
-							<div class="view">제목제목</div>
+							<div class="view">${detail.rv_title }</div>
 						</div>
 						<div class="rv_cont" name="rvCont">작성내용 
-							<div class="view">네용내용</div>
+							<div class="view">${detal.rv_cont }</div>
 						</div>
 					</div>
 				</div>

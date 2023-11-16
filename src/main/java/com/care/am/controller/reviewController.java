@@ -54,7 +54,11 @@ public class reviewController {
 	}
 	
 	@GetMapping("myReview")
-	public String myReview() {
+	public String myReview(@RequestParam String id, @RequestParam int num, Model model) {
+		
+		model.addAttribute("detail", bs.myReview(id, num));
+		System.out.println("con: "+bs.myReview(id, num));
+		
 		return "am/review/myReview";
 	}
 	

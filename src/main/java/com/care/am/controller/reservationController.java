@@ -159,7 +159,7 @@ public class reservationController {
 	
 		@GetMapping("reservationStateC")
 		public String reservationStateC(@RequestParam String id, Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
-			model.addAttribute("c", rs.CList(id, page)); //占쏙옙占쏙옙占쏙옙占�
+			model.addAttribute("c", rs.CList(id, page));
 			model.addAttribute("CPaging", rs.CListPaging(page, id));
 			
 			return "am/reservation/reservationStateC";
