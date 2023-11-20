@@ -29,10 +29,10 @@
 				</div>
 				
 				<div class="title">
-					<input type="text" class="rvTitle" style="resize: none;" placeholder="${list.rvTitle }" name="rvTitle" value="${list.rvTitle }">
+					<textarea type="text" class="rvTitle" style="resize: none;" placeholder="${list.rvTitle }" name="rvTitle" value="${list.rvTitle }"></textarea>
 				</div>
 				<div>
-					<input type="text" class="rvCont" style="resize: none;" placeholder="${list.rvCont }" name="rvCont" value="${list.rvCont }">
+					<textarea type="text" class="rvCont" style="resize: none;" placeholder="${list.rvCont }" name="rvCont" value="${list.rvCont }"></textarea>
 				</div>
 			</div>
 			<div class="btn_a">
