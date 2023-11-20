@@ -23,7 +23,6 @@ public interface customerMapper {
 	public int addRecentlyView(recentlyViewDTO rDto);
 	public void delRecentlyView(String cId);
 	public List<Map<String, String>> getRecentlyView(String cId);
-	
 }
 
 

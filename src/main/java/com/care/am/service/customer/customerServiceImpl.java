@@ -7,8 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.Cookie;
-
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +14,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.care.am.common.GetMessage;
-import com.care.am.common.LoginSession;
 import com.care.am.dto.customerDTO;
 import com.care.am.dto.recentlyViewDTO;
 import com.care.am.mapper.customerMapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mysql.cj.Session;
 
 @Service
 public class customerServiceImpl implements customerService {
@@ -38,17 +34,20 @@ public class customerServiceImpl implements customerService {
 	public String register(customerDTO dto) { //회원가입
 		int result = 0;
 
-		dto.setcPw(encoder.encode(dto.getcPw()));
-		try {
-			result = cm.register(dto);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		if (result == 1) {
-			return GetMessage.getMessage("회원가입 성공", "/am/customerLogin");
-		}
-		return GetMessage.getMessage("회원가입 실패", "/am/customerRegister");
-	}
+
+      dto.setcPw(encoder.encode(dto.getcPw()));
+      try {
+         result = cm.register(dto);
+      } catch (Exception e) {
+         e.printStackTrace();
+      }
+      if (result == 1) {
+         return GetMessage.getMessage("회원가입 성공", "/am/customerLogin");
+      }
+      return GetMessage.getMessage("회원가입 실패", "/am/customerRegister");
+   }
+   
+
 
 	public boolean idCheck(String id) { // 회원가입시 아이디 중복확인
 		return cm.idCheck(id);
