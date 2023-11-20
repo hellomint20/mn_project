@@ -2,7 +2,7 @@
 .whole_box{
 	position: fixed;
 	width: 120px;
-	margin-right: -695px;
+	margin-right: -690px;
 	top: 200px;
 	right: 50%;
 	text-align: center;
@@ -19,19 +19,32 @@
     border: 2px solid #1b4c68;
 }
 .recently_box div:nth-child(1){
+	padding-top:10px;
 	height: 33.3%;
 	border:1px solid #f5f5f5;
 	border-radius: 20px;
 }
 .recently_box div:nth-child(2){
 	margin-top:1px;
+	padding-top:10px;
    border:1px solid #f5f5f5;
    border-radius: 20px;
    height: 33.3%;
 }
 .recently_box  div:nth-child(3){
 	margin-top:1px;
+	padding-top:10px;
    border:1px solid #f5f5f5;
    border-radius: 20px;
    height: 33%;
+}
+
+b{
+	padding-top: 10px;
+}
+button{
+	background-color:white;
+	border: none;
+    outline:none;
+	
 }

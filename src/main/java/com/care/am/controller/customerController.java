@@ -53,12 +53,12 @@ public class customerController {
 	}
 
 	// 로그인 관련
-	@GetMapping("customerRegister") // 손님 회원가입 페이지
+	@GetMapping("customerRegister") // 보호자 회원가입 페이지
 	public String register() {
 		return "am/customer/customerRegister";
 	}
 
-	@PostMapping("/idCheck")
+	@PostMapping("/idCheck") //회원가입시 아이디 중복확인
 	@ResponseBody
 	public ResponseEntity<Boolean> idCheck(String id) {
 		System.out.println("ConfirmId.........");
@@ -110,7 +110,7 @@ public class customerController {
 
 	}
 
-	@PostMapping("cusloginChk") // 손님 로그인 확인
+	@PostMapping("cusloginChk") // 보호자 로그인 확인
 	public String loginChk(@RequestParam String id, @RequestParam String pw,
 			@RequestParam(required = false, defaultValue = "off") String autoLogin, RedirectAttributes rs,
 			HttpServletResponse res) throws Exception {
@@ -199,13 +199,13 @@ public class customerController {
 
 	}
 
-	@GetMapping("customerSearchPw")
+	@GetMapping("customerSearchPw") //보호자 비밀번호 찾기
 	public String customerSearchPw() {
 		return "am/customer/customerSearchPw";
 	}
 
-	// 손님정보 관련
-	@GetMapping("customerInfo") // 손님 개인정보 페이지
+	// 보호자정보 관련
+	@GetMapping("customerInfo") // 보호자 개인정보 페이지
 	public String info(@RequestParam String id, HttpServletRequest req, Model model, HttpSession session) {
 		customerDTO dto = cs.getCustomerInfo(id);
 		model.addAttribute("dto", dto);
@@ -214,6 +214,8 @@ public class customerController {
 		Cookie[] cookies = req.getCookies();
 		String cId = session.getAttribute(LoginSession.cLOGIN).toString();
 		System.out.println(cookies);
+		
+		
 		// 가져온 쿠키를 기반으로 최근에 본 병원 목록 생성
 		List<String> recentlyViewed = new ArrayList<>();
 		List<Map<String, String>> getViewList = new ArrayList<Map<String, String>>();
@@ -275,14 +277,14 @@ public class customerController {
 
 	}
 
-	@GetMapping("customerModify") // 손님 개인정보 수정 페이지
+	@GetMapping("customerModify") // 보호자 개인정보 수정 페이지
 	public String modify(@RequestParam String id, Model model) {
 		customerDTO dto = cs.getCustomerInfo(id);
 		model.addAttribute("dto", dto);
 		return "am/customer/customerModify";
 	}
 
-	@PostMapping("customerModify") // 손님 개인정보 수정 적용
+	@PostMapping("customerModify") // 보호자 개인정보 수정 적용
 	public void modify(customerDTO dto, HttpServletResponse res) {
 		String msg = "";
 		msg = cs.customerModify(dto);
@@ -296,14 +298,14 @@ public class customerController {
 		out.print(msg);
 	}
 
-	@GetMapping("customerDelete") // 손님 탈퇴 페이지
+	@GetMapping("customerDelete") // 보호자 탈퇴 페이지
 	public String delete(@RequestParam String id, Model model) {
 		customerDTO dto = cs.getCustomerInfo(id);
 		model.addAttribute("dto", dto);
 		return "am/customer/customerDelete";
 	}
 
-	@PostMapping("customerDelete") // 손님 탈퇴
+	@PostMapping("customerDelete") // 보호자 탈퇴
 	public void delete(HttpSession session, @CookieValue(value = "loginCookie", required = false) Cookie cookie,
 			customerDTO dto, @RequestParam String pw, HttpServletResponse res) {
 		String msg = "";
@@ -329,9 +331,7 @@ public class customerController {
 			@CookieValue(value = "recentlyCookie", required = false) Cookie cookie, HttpServletResponse res,
 			HttpServletRequest req) {
 		String cId = session.getAttribute(LoginSession.cLOGIN).toString();
-		System.out.println("cId:" + cId);
-		System.out.println("mId:" + mediId);
-		int limitTime = 60 * 60 * 24; //
+		int limitTime = 60 * 60 * 24; //24시간
 		SimpleDateFormat date = new SimpleDateFormat("HHmmss"); // 현재시간 포맷해서 가져오기
 		String fd = date.format(new Date());
 		Cookie viewCookie = new Cookie("cookie" + fd, cId + "/" + mediId); // 쿠키명에 현재시간을 넣어서 생성

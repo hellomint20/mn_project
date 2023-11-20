@@ -31,11 +31,11 @@ public class customerServiceImpl implements customerService {
 
 	BCryptPasswordEncoder encoder;
 
-	public customerServiceImpl() {
+	public customerServiceImpl() { //암호화
 		encoder = new BCryptPasswordEncoder();
 	}
 
-	public String register(customerDTO dto) {
+	public String register(customerDTO dto) { //회원가입
 		int result = 0;
 
 		dto.setcPw(encoder.encode(dto.getcPw()));
@@ -50,11 +50,11 @@ public class customerServiceImpl implements customerService {
 		return GetMessage.getMessage("회원가입 실패", "/am/customerRegister");
 	}
 
-	public boolean idCheck(String id) {
+	public boolean idCheck(String id) { // 회원가입시 아이디 중복확인
 		return cm.idCheck(id);
 	}
 
-	public customerDTO naverLogin(String apiResult) throws Exception {
+	public customerDTO naverLogin(String apiResult) throws Exception { //네이버로그인
 		ObjectMapper mapper = new ObjectMapper();
 		HashMap<String, Object> map = new HashMap<>();
 		Map<String, Object> data = mapper.readValue(apiResult, Map.class);
@@ -86,13 +86,8 @@ public class customerServiceImpl implements customerService {
 		return dto;
 	}
 
-	public customerDTO googleLogin(String profile) {
-		System.out.println(profile);
 
-		return null;
-	}
-
-	public String customerSearchId(String inputName, String inputEmail) {
+	public String customerSearchId(String inputName, String inputEmail) { // 보호자 아이디 찾기
 		customerDTO dto = cm.customerSearchId(inputName, inputEmail);
 		String result = "";
 		if (dto != null) {
@@ -101,7 +96,7 @@ public class customerServiceImpl implements customerService {
 		return result;
 	}
 
-	public customerDTO customerSearchPw(String inputId, String inputName, String inputTel) {
+	public customerDTO customerSearchPw(String inputId, String inputName, String inputTel) { //보호자 비밀번호 찾기
 		customerDTO dto = cm.getCustomer(inputId);
 		if (dto != null) {
 			if (inputName.equals(dto.getcName()) && inputTel.equals(dto.getcTel())) {
@@ -112,7 +107,7 @@ public class customerServiceImpl implements customerService {
 		return null;
 	}
 
-	public String makeRandomPw() {
+	public String makeRandomPw() { // 임시비밀번호 만들기
 		StringBuffer sb = new StringBuffer();
 		SecureRandom sr = new SecureRandom();
 		char[] charSet = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F',
@@ -129,13 +124,13 @@ public class customerServiceImpl implements customerService {
 		return sb.toString();
 	}
 
-	public int customerPwChg(String tempPwd, customerDTO dto) {
+	public int customerPwChg(String tempPwd, customerDTO dto) { // 보호자 비밀번호 변경
 		dto.setcPw(encoder.encode(tempPwd));
 		int result = cm.customerPwChg(dto);
 		return result;
 	}
 
-	public int logChk(String id, String pw) {
+	public int logChk(String id, String pw) { //보호자 로그인 체크
 		customerDTO dto = cm.getCustomer(id);
 		int result = 0;
 		if (dto != null) {
@@ -146,23 +141,23 @@ public class customerServiceImpl implements customerService {
 		return result;
 	}
 
-	public void keepLogin(String cSessionId, String cId) {
+	public void keepLogin(String cSessionId, String cId) { // 자동로그인 유지
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("cSessionId", cSessionId);
 		map.put("cId", cId);
 		cm.keepLogin(map);
 	}
 
-	public customerDTO getCustomerInfo(String cId) {
+	public customerDTO getCustomerInfo(String cId) { // 보호자 회원정보 가져오기
 		customerDTO dto = cm.getCustomer(cId);
 		return dto;
 	}
 
-	public customerDTO getCustomerSessionId(String cSessionId) {
+	public customerDTO getCustomerSessionId(String cSessionId) { 
 		return cm.getCustomerSessionId(cSessionId);
 	}
 
-	public String customerPwdChk(String id, String pw) {
+	public String customerPwdChk(String id, String pw) { // 비밀번호 확인
 		customerDTO dto = cm.getCustomer(id);
 		if (dto != null) {
 			if (encoder.matches(pw, dto.getcPw()) || pw.equals(dto.getcPw())) {
@@ -173,7 +168,7 @@ public class customerServiceImpl implements customerService {
 		return GetMessage.getMessage("비밀번호가 틀렸습니다", "/am/customerPwdChk?id=" + id);
 	}
 
-	public String customerPwdChg(customerDTO dto, String pw, String newPw) {
+	public String customerPwdChg(customerDTO dto, String pw, String newPw) { // 비밀번호 변경
 		dto = cm.getCustomer(dto.getcId());
 		int result = 0;
 		if (encoder.matches(pw, dto.getcPw()) || pw.equals(dto.getcPw())) {
@@ -186,7 +181,7 @@ public class customerServiceImpl implements customerService {
 		return GetMessage.getMessage("비밀번호가 틀렸습니다", "/am/customerPwdChg?id=" + dto.getcId());
 	}
 
-	public String customerModify(customerDTO dto) {
+	public String customerModify(customerDTO dto) { // 보호자 회원정보 수정
 		int result = 0;
 		result = cm.customerModify(dto);
 		if (result == 1) {
@@ -195,7 +190,7 @@ public class customerServiceImpl implements customerService {
 		return GetMessage.getMessage("정보수정에 실패했습니다.", "/am/customerModify?id=" + dto.getcId());
 	}
 
-	public String customerDelete(customerDTO dto, String pw) {
+	public String customerDelete(customerDTO dto, String pw) { // 보호자 회원 탈퇴
 		dto = cm.getCustomer(dto.getcId());
 		int result = 0;
 		if (encoder.matches(pw, dto.getcPw()) || pw.equals(dto.getcPw())) {
@@ -207,7 +202,7 @@ public class customerServiceImpl implements customerService {
 		return GetMessage.getMessage("비밀번호가 틀렸습니다", "/am/customerPwdChk?id=" + dto.getcId());
 	}
 
-	public void addrecentlyView(String mediCookie) {
+	public void addrecentlyView(String mediCookie) { // 최근 본 병원추가
 		recentlyViewDTO rvDTO = new recentlyViewDTO();
 		String cId = mediCookie.split("/")[0];
 		String mId = mediCookie.split("/")[1];
@@ -217,12 +212,12 @@ public class customerServiceImpl implements customerService {
 	}
 	
 
-	public void delRecentlyView(String cId) {
+	public void delRecentlyView(String cId) { // 최근 본 병원 데이터 삭제
 		cm.delRecentlyView(cId);
 		
 	}
 
-	public List<Map<String, String>> getRecentlyView(List<String> recentlyViewed, String cId) {
+	public List<Map<String, String>> getRecentlyView(List<String> recentlyViewed, String cId) { // 최근 본 병원 리스트 가져오기
 //		List<String> cklist = new ArrayList<String>();
 		List<Map<String, String>> getView = new ArrayList<Map<String, String>>();
 		if (recentlyViewed.size() != 0) {

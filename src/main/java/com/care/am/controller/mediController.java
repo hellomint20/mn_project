@@ -36,7 +36,7 @@ public class mediController {
 	public String mediRegister() {
 		return "am/medi/mediRegister";
 	}
-	@PostMapping("/mediIdCheck")
+	@PostMapping("/mediIdCheck") // 병원회원가입시 아이디 중복확인
 	@ResponseBody
 	public ResponseEntity<Boolean> mediIdCheck(String id) {
 		System.out.println("ConfirmId.........");
@@ -176,12 +176,12 @@ public class mediController {
 		}
 	}
 	
-	@GetMapping("mediNewPwd") // 비밀번호 재설정
+	@GetMapping("mediNewPwd") // 비밀번호 재설정 페이지
 	public String mediNewPwd(String id,Model model) {
 		model.addAttribute("id", id);
 		return "am/medi/mediNewPwd";
 	}
-	@PostMapping("mediNewPwd")
+	@PostMapping("mediNewPwd")	// 병원 비밀번호 재설정
 	public void mediNewPwd(@RequestParam String id, 
 						@RequestParam String newPw,
 						HttpServletResponse res) {
@@ -232,7 +232,7 @@ public class mediController {
 		return "am/medi/mediPwdChg";
 	}
 	
-	@PostMapping("mediPwdChg")
+	@PostMapping("mediPwdChg") // 비밀번호 변경
 	public void mediPwdChg(mediDTO dto, HttpServletResponse res, @RequestParam String pw, @RequestParam String newPw) throws Exception{
 		
 		String msg="";
@@ -269,7 +269,7 @@ public class mediController {
 		out.print(msg);
 		
 	}
-	@GetMapping("mediDelete")
+	@GetMapping("mediDelete") // 병원 탈퇴 페이지
 	public String delete() {
 		return "am/medi/mediDelete";
 	}
