@@ -59,21 +59,9 @@
     width: 21%;
     text-align: center;
 }
-<<<<<<< HEAD
-
-.board_list .rv_title > a {
-    text-decoration: none;
-    color: black;
-}
-
-.board_list .rv_date {
-    width: 25%;
-    text-align: center;
-=======
 .rv_title > a {
 	text-decoration: none;
 	color: black;
->>>>>>> 141c359f343124054c2f1142e134f66ca3d1008b
 }
 
 .board_list .m_name {
@@ -95,6 +83,11 @@
 }
 .board_list .listbox:last-child{
 	 border-bottom: 1px solid #000;
+}
+
+a.pageLink{
+	text-decoration: none;
+	color: black;
 }
 
 .page{

@@ -42,9 +42,7 @@
 								<div class="rv_no">${list.rvNo }</div>
 								<div class="m_name">${list.mName}</div>
 								<div class="rv_title"><a href="/am/myReview?num=${list.rvNo }">${list.rvTitle }</a></div>
-								<div class="rv_date">
-									${list.rvDate }
-								</div>
+								<div class="rv_date">${list.rvDate }</div>
 								<div class="c_id">${list.cId}</div>
 							</div>
 						</c:forEach>

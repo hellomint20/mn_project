@@ -45,6 +45,10 @@
 		values(rv_no, #{cId}, #{mName}, #{rvCont}, curdate(), #{rDate}, #{rvTitle})
 	</insert>
 	
+	<update id="fixResult">
+		update reservation set r_fix=3 where r_num=#{rNum}
+	</update>
+	
 	<delete id="delete">
 		delete from review where rv_no=#{rvNo}
 	</delete>

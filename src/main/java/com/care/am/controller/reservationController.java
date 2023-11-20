@@ -167,8 +167,10 @@ public class reservationController {
 	
 	@GetMapping("reservationCancel")
 	public void reservationCancel(@RequestParam String id, @RequestParam int num,
+								@RequestParam(value="nowPage", required=false) int nowPage, 
+								@RequestParam(value="cntPerPage", required=false) int cntPerPage,
 								HttpServletResponse res) throws Exception {
-		String msg = rs.reserCancel(id, num);
+		String msg = rs.reserCancel(id, num, nowPage, cntPerPage);
 		res.setContentType("text/html; charset=utf-8");
 		PrintWriter out = res.getWriter();
 		out.print(msg);
