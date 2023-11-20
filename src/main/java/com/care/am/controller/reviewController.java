@@ -25,14 +25,8 @@ public class reviewController {
 	@Autowired reservationService rs;
 	@Autowired reviewService bs;
 	
-	@GetMapping("fixedForm")
-	public String fixedForm(@RequestParam int num, Model model) {
-		Map<String, String> info =  rs.getResInfo(num);
-		model.addAttribute("info", info);
-		return "am/review/fixedForm";
-	}
-	
-	@GetMapping("boardList")
+
+	@GetMapping("boardList")	// 전체 게시판
 	public String boardList(Model model, reviewPagination rp,
 							@RequestParam(value="nowPage", required = false)String nowPage,
 							@RequestParam(value="cntPerPage", required = false)String cntPerPage) {
@@ -60,7 +54,7 @@ public class reviewController {
 		return "am/review/boardList";
 	}
 	
-	@GetMapping("reviewList")
+	@GetMapping("reviewList")	// 개인 게시판 리스트
 	public String reviewList(Model model, @RequestParam String id,reviewPagination rp,
 							@RequestParam(value="nowPage", required = false)String nowPage,
 							@RequestParam(value="cntPerPage", required = false)String cntPerPage) {
@@ -88,32 +82,51 @@ public class reviewController {
 		return "am/review/reviewList";
 	}
 	
-	
-	@PostMapping("fixedForm")
-	public void fixedForm (reviewDTO dto, @RequestParam int num,HttpServletResponse res) throws Exception{		
-		String msg = bs.fixedForm(dto, num);
-		res.setContentType("text/html; charset=utf-8");
-		PrintWriter out = res.getWriter();
-		out.print(msg);
-	}
-	
-	@GetMapping("myReview")
+	@GetMapping("myReview")		// 내가 쓴 후기 상세보기
 	public String myReview(@RequestParam int num, Model model) {
 		model.addAttribute("detail", bs.myReview(num));
 		return "am/review/myReview";
 	}
 	
-	@GetMapping("modiForm")
+	@GetMapping("fixedForm")	// 리뷰 등록 창
+	public String fixedForm(@RequestParam int num,@RequestParam String id, Model model) {
+		Map<String, String> info =  rs.getResInfo(num);
+		model.addAttribute("info", info);
+		return "am/review/fixedForm";
+	}
+	
+	@PostMapping("fixedForm") 	// 리뷰 등록
+	public void fixedForm (reviewDTO dto, @RequestParam int num, HttpServletResponse res) throws Exception{		
+		String id = dto.getcId();
+		
+		String msg = bs.fixedForm(dto,id, num);
+		res.setContentType("text/html; charset=utf-8");
+		PrintWriter out = res.getWriter();
+		out.print(msg);
+	}
+	
+	@GetMapping("modiForm") 	// 후기 수정 페이지
 	public String modiForm(@RequestParam int num, Model model) {
 		model.addAttribute("list", bs.myReview(num));
-		System.out.println(bs.myReview(num).getcId());
-		System.out.println(bs.myReview(num).getmName());
-		System.out.println(bs.myReview(num).getRvCont());
-		System.out.println(bs.myReview(num).getrDate());
-		System.out.println(bs.myReview(num).getRvNo());
-		System.out.println(bs.myReview(num).getRvTitle());
 		return "am/review/modiForm";
 	}
 	
+	@PostMapping("modiForm")	// 후기 수정
+	public void modiForm(reviewDTO dto, HttpServletResponse res) throws Exception {
+		String msg = bs.modiForm(dto);
+		res.setContentType("text/html; charset=utf-8");
+		PrintWriter out = res.getWriter();
+		out.print(msg);
+	}
+	
+	@GetMapping("delete")		// 후기 삭제
+	public void delete(@RequestParam int num,@RequestParam String id, HttpServletResponse res)throws Exception {
+		System.out.println(num);
+		
+		String msg = bs.delete(id, num);
+		res.setContentType("text/html; charset=utf-8");
+		PrintWriter out = res.getWriter();
+		out.print(msg);
+	}
 	
 }

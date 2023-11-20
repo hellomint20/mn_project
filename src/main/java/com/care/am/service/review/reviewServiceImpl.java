@@ -41,7 +41,7 @@ public class reviewServiceImpl implements reviewService{
 		return bm.myReviewList(id, start, end);
 	}
 
-	
+	@Override	// 후기 상세보기
 	public reviewDTO myReview(int num){
 		reviewDTO dto = new reviewDTO();
 		try {
@@ -53,16 +53,42 @@ public class reviewServiceImpl implements reviewService{
 		return dto;
 	}
 	
-	public String fixedForm(reviewDTO dto, int num) {
+	@Override	// 후기 작성
+	public String fixedForm(reviewDTO dto, String id, int num) {
 		int result =0;
+		int fixResult = 0;
 		
 		result = bm.fixedForm(dto);
-		
-		if(result == 1) {
-			return GetMessage.getMessage("리뷰가 등록되었습니다!", "/am/fixedForm?num="+num); //나중에 경로 수정
+		if(result==1) {
+			try {
+				fixResult = bm.fixResult(num);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
-		return GetMessage.getMessage("리뷰 등록에 실패했습니다.", "/am/fixedForm");
+		if(fixResult == 1) {
+			return GetMessage.getMessage("리뷰가 등록되었습니다!", "/am/reviewList?id="+id);
+		}
+		return GetMessage.getMessage("리뷰 등록에 실패했습니다.", "/am/reservationList?id="+id);
 	}
 	
-
+	@Override	// 후기 수정
+	public String modiForm(reviewDTO dto) {
+		int result = 0;
+		result = bm.modiForm(dto);
+		if(result ==1) {
+			return GetMessage.getMessage("리뷰가 수정되었습니다.", "/am/myReview?num="+dto.getRvNo());
+		}
+		return GetMessage.getMessage("리뷰 수정에 실패했습니다.", "/am/modiForm?num="+dto.getRvNo());
+	}
+	
+	@Override	// 후기 삭제
+	public String delete(String id, int num) {
+		int result = 0;
+		result = bm.delete(num);
+		if(result==1) {
+			return GetMessage.getMessage("리뷰가 삭제되었습니다.", "/am/reviewList?id="+id);
+		}
+		return GetMessage.getMessage("리뷰 삭제에 실패했습니다.", "/am/myReview?num="+num);
+	}
 }

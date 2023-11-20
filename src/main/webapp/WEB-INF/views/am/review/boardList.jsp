@@ -74,10 +74,4 @@
 		
 	</div>
 </body>
-	<script type="text/javascript">
-		function selChange() {
-			var sel = document.getElementById('cntPerPage').value;
-			location.href="/am/boardList?nowPage=${paging.nowPage}&cntPerPage="+sel;
-		}
-	</script>
 </html>

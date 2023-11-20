@@ -20,9 +20,9 @@
 			<div class="board_list_wrap">
 				<div class="board_list">
 					<div class="top">
-						<div class="c_id" name="cId" >작성자 | ${userId}</div>
-						<div class="r_date" name="rDate" >방문 날짜 | ${info.r_date}</div>
-						<div class="m_name" name="mName">방문 병원 | ${info.m_name}</div>
+						<div class="c_id" >작성자 | ${userId}</div>
+						<div class="r_date">방문 날짜 | ${info.r_date}</div>
+						<div class="m_name">방문 병원 | ${info.m_name}</div>
 						
 						<input type="hidden" name="num" value="${info.r_num }">
 						<input type="hidden" name="cId" value="${userId}">
@@ -40,7 +40,7 @@
 			</div>
 			<div class="btn_a">
 			    <button type="button" class="cancel" onclick="location.href='/am/reservationList?id=${userId}'">취소</button>
-			    <button type="submit" class="completed">저장</button>
+			    <button type="submit" class="completed" >저장</button>
 			    
 	    	</div>
 		</form>		

@@ -15,5 +15,8 @@ public interface reviewService {
 	public List<reviewDTO> myReviewList(reviewPagination rp, String id);
 
 	public reviewDTO myReview(int num);
-	public String fixedForm(reviewDTO dto, int num);
+	public String fixedForm(reviewDTO dto, String id, int num);
+	public String modiForm(reviewDTO dto);
+	public String delete(String id, int num);
+	
 }

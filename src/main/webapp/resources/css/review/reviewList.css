@@ -46,14 +46,20 @@
 }
 
 .board_list .rv_no {
-    width: 10%;
+    width: 11%;
     text-align: center;
 }
 
 .board_list .rv_title {
-    width: 25%;
+    width: 26%;
+    text-align: center;
+    color: black;
+}
+.board_list .rv_date {
+    width: 21%;
     text-align: center;
 }
+<<<<<<< HEAD
 
 .board_list .rv_title > a {
     text-decoration: none;
@@ -63,15 +69,20 @@
 .board_list .rv_date {
     width: 25%;
     text-align: center;
+=======
+.rv_title > a {
+	text-decoration: none;
+	color: black;
+>>>>>>> 141c359f343124054c2f1142e134f66ca3d1008b
 }
 
 .board_list .m_name {
-	width: 25%;
+	width: 17%;
     text-align: center;
 }
 
 .board_list .c_id {
-    width: 15%;
+    width: 25%;
     text-alingn: left;
 }
 

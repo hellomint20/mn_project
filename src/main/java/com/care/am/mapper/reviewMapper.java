@@ -17,4 +17,8 @@ public interface reviewMapper {
 
 	public reviewDTO myReview(int num);
 	public int fixedForm(reviewDTO dto);
+	public int fixResult(int num);
+	public int modiForm(reviewDTO dto);
+	public int delete(int num);
+	
 }

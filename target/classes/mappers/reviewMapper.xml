@@ -44,6 +44,9 @@
 		insert into review(rv_no, c_id, m_name, rv_cont, rv_date, r_date, rv_title) 
 		values(rv_no, #{cId}, #{mName}, #{rvCont}, curdate(), #{rDate}, #{rvTitle})
 	</insert>
-
+	
+	<delete id="delete">
+		delete from review where rv_no=#{rvNo}
+	</delete>
 
 </mapper>

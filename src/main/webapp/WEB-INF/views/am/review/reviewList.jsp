@@ -68,6 +68,7 @@
 				<a href="/am/reviewList?id=${userId }&nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
 			</c:if>
 		</div>
+		
 	</div>
 </body>
 </html>
