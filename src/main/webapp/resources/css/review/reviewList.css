@@ -53,11 +53,15 @@
 .board_list .rv_title {
     width: 26%;
     text-align: center;
+    color: black;
 }
-
 .board_list .rv_date {
     width: 21%;
     text-align: center;
+}
+.rv_title > a {
+	text-decoration: none;
+	color: black;
 }
 
 .board_list .m_name {

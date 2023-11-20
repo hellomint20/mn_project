@@ -171,6 +171,7 @@ a{
 
 .rap_button{
 	margin-top:10x;
+	display: flex;
 }
 
 .popup_table{

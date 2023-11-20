@@ -31,9 +31,12 @@
 		select * from review order by rv_no desc
 	</select>
 
+	<!-- 리스트 뽑아온거 -->
 	<select id="reviewList" resultMap="review">
 		select * from review where c_id =#{cId} order by rv_no desc
 	</select>
+	
+	
 	
 	<insert id="fixedForm">
 		insert into review(rv_no, c_id, m_name, rv_cont, rv_date, r_date, rv_title) 

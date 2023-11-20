@@ -21,14 +21,14 @@
 			<div class="board_list_wrap">
 				<div class="board_list">
 					<div class="top">
-						<div class="c_id" name="cId" >작성자    
-							<div class="view">${detail.cId}</div>
-						</div>
-						<div class="r_date" name="rDate" >작성 날짜
-							<div class="view">${detail.rvDate }</div>
-						</div>
-						<div class="m_name" name="mName">방문 병원
-							<div class="view">${detail.mName }</div>
+						<div class="flex">
+							
+							<div class="m_name" name="mName">방문 병원
+								<div class="view">${detail.mName }</div>
+							</div>
+							<div class="rv_date" name="rv_date">작성 날짜
+								<div class="view">${detail.rvDate }</div>
+							</div>
 						</div>
 						<div class="rv_title" name="rvTitle">제목 
 							<div class="view">${detail.rvTitle }</div>
@@ -36,6 +36,7 @@
 						<div class="rv_cont" name="rvCont">작성내용 
 							<div class="view">${detail.rvCont }</div>
 						</div>
+						<div class="r_date" name="rDate" >방문 날짜&nbsp;&nbsp;<span class="view">${detail.rvDate }</span></div>
 					</div>
 				</div>
 			</div>

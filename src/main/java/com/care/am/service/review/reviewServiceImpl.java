@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.care.am.common.GetMessage;
+import com.care.am.dto.pageDTO;
 import com.care.am.dto.reviewDTO;
 import com.care.am.mapper.reviewMapper;
 
@@ -16,7 +17,6 @@ import com.care.am.mapper.reviewMapper;
 public class reviewServiceImpl implements reviewService{
 
 	@Autowired reviewMapper bm;
-	
 	@Override
 	public List<reviewDTO> boardList() {
 		return bm.boardList();
@@ -26,7 +26,6 @@ public class reviewServiceImpl implements reviewService{
 	public List<reviewDTO> reviewList(String id) {
 		return bm.reviewList(id);
 	}
-	
 	
 	public reviewDTO myReview(int num){
 		reviewDTO dto = new reviewDTO();

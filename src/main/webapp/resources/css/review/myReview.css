@@ -31,7 +31,7 @@
 }
 
 .board_list > div.top {
-    border-bottom: 1px solid #999;
+    border-bottom: 2px solid #000;
 }
 
 .board_list > div > div {
@@ -41,6 +41,16 @@
 
 .board_list > div.top > div {
     font-weight: 650;
+}
+
+.r_date{
+	width: 34%
+}
+.m_name{
+	width: 34%
+}
+.rc_date{
+	width: 32%
 }
 
 .rvCont {
@@ -56,6 +66,10 @@
     border: none;
     resize: none;
     padding: 10px 20px; 
+}
+.flex{
+	display: flex;
+	border-bottom: 1px solid gray;
 }
 
 
