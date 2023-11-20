@@ -3,7 +3,6 @@ package com.care.am.controller;
 import java.util.Map;
 
 import java.io.PrintWriter;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.care.am.dto.reviewDTO;
+import com.care.am.page.reviewPagination;
 import com.care.am.service.reservation.reservationService;
 import com.care.am.service.review.reviewService;
 
@@ -33,14 +33,58 @@ public class reviewController {
 	}
 	
 	@GetMapping("boardList")
-	public String boardList(Model model) {
-		model.addAttribute("list", bs.boardList());
+	public String boardList(Model model, reviewPagination rp,
+							@RequestParam(value="nowPage", required = false)String nowPage,
+							@RequestParam(value="cntPerPage", required = false)String cntPerPage) {
+
+		int total = bs.reviewAll();
+		
+		System.out.println(total);
+		System.out.println(nowPage);
+		System.out.println(cntPerPage);
+		
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "5";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) { 
+			cntPerPage = "5";
+		}
+		
+		rp = new reviewPagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		model.addAttribute("paging", rp);
+		model.addAttribute("list", bs.reviewSel(rp));
+		System.out.println("ctrl: " +bs.reviewSel(rp));
+		
 		return "am/review/boardList";
 	}
 	
 	@GetMapping("reviewList")
-	public String reviewList(Model model, @RequestParam String id) {
-		model.addAttribute("list", bs.reviewList(id));
+	public String reviewList(Model model, @RequestParam String id,reviewPagination rp,
+							@RequestParam(value="nowPage", required = false)String nowPage,
+							@RequestParam(value="cntPerPage", required = false)String cntPerPage) {
+		
+		int total = bs.myReviewAll(id);
+		
+		System.out.println(total);
+		System.out.println(nowPage);
+		System.out.println(cntPerPage);
+		
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "5";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) { 
+			cntPerPage = "5";
+		}
+		
+		rp = new reviewPagination(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		model.addAttribute("paging", rp);
+		model.addAttribute("list", bs.myReviewList(rp, id));
+		System.out.println("ctrl: " +bs.myReviewList(rp, id));
+		
 		return "am/review/reviewList";
 	}
 	

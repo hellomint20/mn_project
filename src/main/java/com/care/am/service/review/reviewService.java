@@ -1,17 +1,19 @@
 package com.care.am.service.review;
 
 import java.util.List;
-import java.util.Map;
-
-import org.apache.ibatis.annotations.Param;
 
 import com.care.am.dto.reviewDTO;
+import com.care.am.page.reviewPagination;
 
 public interface reviewService {
-	public List<reviewDTO> boardList();
-	public List<reviewDTO> reviewList(String id);
-	
+	//page(boardList)
+	public int reviewAll();
+	public List<reviewDTO> reviewSel(reviewPagination rp);
+
+	//page(reviewList)
+	public int myReviewAll(String id);
+	public List<reviewDTO> myReviewList(reviewPagination rp, String id);
+
 	public reviewDTO myReview(int num);
-	
 	public String fixedForm(reviewDTO dto, int num);
 }

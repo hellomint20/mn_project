@@ -10,7 +10,9 @@
 </head>
 <body>
 	<%@ include file = "../default/header_page.jsp" %>
-	<%@ include file = "../common/customerSidebar.jsp" %>
+	<c:if test="${userId != null}">
+		<%@ include file = "../common/customerSidebar.jsp" %>
+	</c:if>
 	
 	<div class="board_wrap">
 		<div class="board_title">

@@ -55,6 +55,11 @@
     text-align: center;
 }
 
+.board_list .rv_title > a {
+    text-decoration: none;
+    color: black;
+}
+
 .board_list .rv_date {
     width: 25%;
     text-align: center;
@@ -81,7 +86,13 @@
 	 border-bottom: 1px solid #000;
 }
 
-a.pageLink{
+.page{
+	display: block;
+	text-align: center;
+	margin-top: 20px;
+	
+}
+.page > a{
 	text-decoration: none;
 	color: black;
 }
