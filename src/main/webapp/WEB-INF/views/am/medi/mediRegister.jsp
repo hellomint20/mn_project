@@ -33,8 +33,8 @@
     		
     		var id = $("#id").val();
     		
-    		if(id == '' || id.length == 0) {
-    			$("#label1").css("color", "red").text("공백은 ID로 사용할 수 없습니다.");
+    		if(id == '' || id.length == 0 || !/^[a-zA-Z0-9]+$/.test(id)) {
+    			$("#label1").css("color", "red").text("공백 또는 한글은 ID로 사용할 수 없습니다.");
     			return false;
     		}
     		
