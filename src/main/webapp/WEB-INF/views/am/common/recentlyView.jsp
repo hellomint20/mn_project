@@ -30,6 +30,7 @@ $(document).ready(function () {
 		<div class="whole_box">
 			<b>최근 본 병원</b> 
 			<div class="recently_box">
+			
 				<c:forEach items="${sessionScope.recentlyViewList}" var="view">
 		                <div>
 		                <form action="reservationForm/page" method="post">
@@ -37,9 +38,7 @@ $(document).ready(function () {
 		                <button type="submit"><img src="/am/resources/img/${view.m_photo}" width="100px" height="100px"><br>
 		                <b>${view.m_name}</b>
 		                </button>
-		               
 		                </form>
-		                
 		                </div>
 		            </c:forEach>
 			</div>

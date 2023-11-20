@@ -99,7 +99,6 @@ public class customerServiceImpl implements customerService {
 		customerDTO dto = cm.getCustomer(inputId);
 		if (dto != null) {
 			if (inputName.equals(dto.getcName()) && inputTel.equals(dto.getcTel())) {
-				System.out.println("아이디, 이름, 전화번호 다 일치 > 임시비밀번호 발급");
 				return dto;
 			}
 		}

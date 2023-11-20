@@ -193,7 +193,6 @@ public class customerController {
 				String content = tempPwd;
 				return "redirect:/customerSearchPw/" + toMail + "/" + content + "/";
 			}
-			System.out.println(tempPwd);
 		}
 		return "redirect:/customerSearchIdPw";
 
@@ -231,6 +230,7 @@ public class customerController {
 			getViewList = cs.getRecentlyView(recentlyViewed, cId);
 			session.setAttribute("recentlyViewList", getViewList);
 			//model.addAttribute("recentlyViewList", getViewList);
+			
 
 		} else {
 			System.out.println("null");
