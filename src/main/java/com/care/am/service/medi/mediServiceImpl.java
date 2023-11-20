@@ -43,7 +43,7 @@ public class mediServiceImpl implements mediService{
 			e.printStackTrace();
 		}
 		if(result==1) {
-			return GetMessage.getMessage("회원가입 성공! 영업 시간은 09:00 - 18:00 / 점심 시간은 12:00 - 13:00 로 자동 설정되어있습니다 변경 필요 시 마이페이지에서 수정해주세요!", "/am/mediLogin");
+			return GetMessage.getMessage("회원가입 성공!\\n영업 시간은 09:00 - 18:00 \\n점심 시간은 12:00 - 13:00 로 자동 설정되어있습니다\\n변경 필요 시 마이페이지에서 수정해주세요!", "/am/mediLogin");
 		}
 		else {
 			return GetMessage.getMessage("회원가입 실패", "/am/mediRegister");
