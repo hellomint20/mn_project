@@ -46,14 +46,15 @@ public class mailController implements LoginSession{
 		return "redirect:/reservationStateWait?id="+ mId;
 	}
 	
-	@RequestMapping(value="/reserState2/{toMail}/{cont}/{mId}/", method=RequestMethod.GET)
-	String sendMail(@PathVariable String toMail, @PathVariable String cont,@PathVariable String mId, 
+	@RequestMapping(value="/reserState2/{toMail}/{cont}/{mId}/{payment}/", method=RequestMethod.GET)
+	String sendMail(@PathVariable String toMail, @PathVariable String cont,@PathVariable String mId, @PathVariable String payment,
 						HttpServletResponse res)throws Exception{
 		
 		String title = "AniMedi 예약현황입니다.";
 		String msg = "AniMedi에서 발송된 메일입니다.\n\n";
 		msg += "고객님의 예약이 취소되어 연락드립니다\n";
-		msg += "예약 취소 사유: "+ cont+ "\n\n";
+		msg += "예약 취소 사유: "+ cont+ "\n";
+		msg += "예약금 "+ payment+ "원이 환불되었습니다.\n\n";
 		msg += "죄송합니다 다음에 이용해주시길 바랍니다.\n\n";
 		msg += "오늘도 좋은 하루 보내세요";
 		

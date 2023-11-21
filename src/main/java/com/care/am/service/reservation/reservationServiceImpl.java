@@ -139,16 +139,9 @@ public class reservationServiceImpl implements reservationService{
 	}
 		
 	@Override
-	public String reserCancel(String id, int num) {
+	public int reserCancel(int num) {
 		int result = rm.reserCancel(num);
-		System.out.println("ser" + result);
-		String msg = "", url = "/am/reservationList?id=" + id;
-		if (result == 1) {
-			msg = "예약이 취소되었습니다";
-		} else {
-			msg = "예약 취소에 실패하였습니다";
-		}
-		return GetMessage.getMessage(msg, url);
+		return result;
 	}
 
 	@Override

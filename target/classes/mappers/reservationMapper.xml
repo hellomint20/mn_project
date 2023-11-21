@@ -52,8 +52,8 @@
 								reservation.r_apply, reservation.r_content
 									from reservation
 											join medi ON reservation.m_id = medi.m_id
-											join pet ON reservation.p_num = pet.p_num where reservation.c_id=#{id} order
-											by reservation.r_date desc, reservation.r_time asc
+											join pet ON reservation.p_num = pet.p_num where reservation.c_id=#{id} 
+											order by reservation.r_num desc
 							) A, (select @rownum :=0,0) R
 				) B
 		WHERE RN BETWEEN ${start} AND ${end}

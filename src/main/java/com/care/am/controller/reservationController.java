@@ -1,10 +1,7 @@
 package com.care.am.controller;
 
-import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
-import java.io.PrintWriter;
-import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,8 +11,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.care.am.common.LoginSession;
+import com.care.am.dto.customerDTO;
 import com.care.am.page.customerPagination;
 import com.care.am.page.reservationPagination;
+import com.care.am.service.customer.customerService;
+import com.care.am.service.payment.paymentService;
 import com.care.am.service.reservation.reservationService;
 
 @Controller
@@ -23,6 +23,12 @@ public class reservationController {
 
 	@Autowired 
 	private reservationService rs;
+	
+	@Autowired
+	private paymentService as;
+	
+	@Autowired
+	private customerService cs;
 
 //병원 예약 관련(손님 기준)
 	@GetMapping("reservation") //병원 예약 기본 페이지
@@ -95,8 +101,14 @@ public class reservationController {
 
 	@GetMapping("reservationPopup")//예약완료후팝업창
 	public String reservationPopup(Model model, HttpSession session) {
+		
+		customerDTO dto = cs.getCustomerInfo(session.getAttribute(LoginSession.cLOGIN).toString());
+		String email1 = dto.getcEmail().split("@")[0];
+		String email2 = dto.getcEmail().split("@")[1];
 		//로그인한 사람 정보
-		model.addAttribute("cId", session.getAttribute(LoginSession.cLOGIN));
+		model.addAttribute("customer", dto);
+		model.addAttribute("email1", email1);
+		model.addAttribute("email2", email2);
 		
 		return "am/reservation/reservationPopup";
 	}
@@ -144,14 +156,14 @@ public class reservationController {
 		return "am/reservation/reservationStateAC";
 	}
 	
-	@GetMapping("reservationCancel")  //병원예약취소
+/*	@GetMapping("reservationCancel")  //병원예약취소
 	public void reservationCancel(@RequestParam String id, @RequestParam int num,
 								HttpServletResponse res) throws Exception {
 		String msg = rs.reserCancel(id, num);
 		res.setContentType("text/html; charset=utf-8");
 		PrintWriter out = res.getWriter();
 		out.print(msg);
-	}
+	}*/
 	
 	@GetMapping("reserState1") 
 	public String reserState1(@RequestParam int num, @RequestParam String email, @RequestParam String mId) {
@@ -164,19 +176,25 @@ public class reservationController {
 	}
 	
 	@PostMapping("reserState2")
-    public String reserState2(@RequestParam String email,@RequestParam int num,
-        @RequestParam String mId, @RequestParam String cont) {
-		int result = rs.reserState(num, 0);
-		if(result == 1) {
-			String toMail = email;
-			return "redirect:/reserState2/"+toMail+"/"+cont+"/"+mId+"/";
+	public String reserState2(@RequestParam String email, @RequestParam int num, @RequestParam String mId,
+			@RequestParam String cont) {
+		String cancle = "";
+		String payment = "5000";
+		// 결제 취소
+		cancle = as.payCancle(Integer.toString(num), payment);
+		if ("0".equals(cancle)) {
+			int result = 0;
+			result = rs.reserState(num, 0);
+			if (result == 1) {
+				String toMail = email;
+				return "redirect:/reserState2/" + toMail + "/" + cont + "/" + mId + "/"+ payment + "/";
+			}
 		}
 		return "redirect:/reservationState";
 	}
 
 	@GetMapping("reservationApplyPopup") 
 	public String reservationApplyPopup(@RequestParam int rNum, Model model) {
-		System.out.println(rNum);
 		model.addAttribute("info", rs.reservationInfo(rNum));
 		model.addAttribute("num", rNum);
 		return "am/reservation/reservationApplyPopup";

@@ -25,7 +25,7 @@ public interface reservationService {
 	public pageDTO waitListPaging(int page, String mId); //병원 새로운 접수 페이징
 	public List<Map<String, Object>> ACList(String mId, int page); //병원 승인취소 리스트
 	public pageDTO ACListPaging(int page, String mId); //병원 승인취소 페이징
-	public String reserCancel(String id, int num);
+	public int reserCancel(int num);
 	public int reserState(int num, int state);
 
 }
