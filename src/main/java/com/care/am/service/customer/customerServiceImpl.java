@@ -216,7 +216,6 @@ public class customerServiceImpl implements customerService {
 	}
 
 	public List<Map<String, String>> getRecentlyView(List<String> recentlyViewed, String cId) { // 최근 본 병원 리스트 가져오기
-//		List<String> cklist = new ArrayList<String>();
 		List<Map<String, String>> getView = new ArrayList<Map<String, String>>();
 		if (recentlyViewed.size() != 0) {
 			getView = cm.getRecentlyView(cId);
