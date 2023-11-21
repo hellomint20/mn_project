@@ -20,7 +20,10 @@
 	<select id="getMedi" resultMap="medi">
 		select * from medi where m_id=#{mId}
 	</select>
-
+	
+	<select id="mediIdCheck" resultType="boolean">
+		select count(*) from medi where m_id= #{id}
+	</select>
 	<update id="keepLogin">
 		update medi set m_session=#{mSession} where m_id=#{mId}
 	</update>
@@ -48,4 +51,8 @@
 	<delete id="mediDelete">
     	delete from medi where m_id=#{mId};
     </delete>
+    
+    <select id="getPhoto" resultMap="medi">
+    	select m_photo from medi where m_id=#{mId}
+    </select>
 </mapper>

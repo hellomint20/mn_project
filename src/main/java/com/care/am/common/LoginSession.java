@@ -6,3 +6,4 @@ public interface LoginSession {
 	
 	public String sLOGIN = "sns";
 }
+                                                                                                                                

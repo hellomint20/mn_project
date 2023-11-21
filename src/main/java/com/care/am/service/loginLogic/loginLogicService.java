@@ -103,6 +103,7 @@ public class loginLogicService{
            }
            br.close();
 
+
            JsonParser parser = new JsonParser();
            JsonObject jsonObject = parser.parse(result.toString()).getAsJsonObject();
            JsonObject kakaoAccount = jsonObject.getAsJsonObject("kakao_account");

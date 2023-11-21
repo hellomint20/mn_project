@@ -25,7 +25,7 @@ import com.google.gson.JsonObject;
 
 @Service
 public class paymentServiceImpl implements paymentService{
-	@Autowired paymentMapper am;
+	@Autowired paymentMapper pm;
 	@Autowired reservationMapper rm;
 	
 	public int payResRegister(Map<String, Object> map) { // 병원 예약
@@ -48,8 +48,8 @@ public class paymentServiceImpl implements paymentService{
 			map.put("rDate", day);
 			map.put("rTime", time);
 			try {
-				am.resRegister(map);
-				result = am.payRegister(map.get("rNum").toString(), map.get("impUid").toString());
+				pm.resRegister(map);
+				result = pm.payRegister(map.get("rNum").toString(), map.get("impUid").toString());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -62,7 +62,7 @@ public class paymentServiceImpl implements paymentService{
 
     public String payCancle(String rNum, String pay) {
     	String cancle = "";
-    	String impUid = am.getImpUid(rNum);
+    	String impUid = pm.getImpUid(rNum);
     	try {
     		cancle = cancleBuy(impUid, pay); //결제 취소
 		} catch (Exception e) {
@@ -126,7 +126,6 @@ public class paymentServiceImpl implements paymentService{
 
 		br.close();
 		conn.disconnect();
-		System.out.println("?��?��");
 		return token;
 	}
 }

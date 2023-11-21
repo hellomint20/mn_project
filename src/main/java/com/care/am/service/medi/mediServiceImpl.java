@@ -43,13 +43,15 @@ public class mediServiceImpl implements mediService{
 			e.printStackTrace();
 		}
 		if(result==1) {
-			return GetMessage.getMessage("회원가입 성공! 영업 시간은 09:00 - 18:00 /n점심 시간은 12:00 - 13:00 로 자동 설정되어있습니다 /n변경 필요 시 마이페이지에서 수정해주세요!", "/am/mediLogin");
+			return GetMessage.getMessage("회원가입 성공!\\n영업 시간은 09:00 - 18:00 \\n점심 시간은 12:00 - 13:00 로 자동 설정되어있습니다\\n변경 필요 시 마이페이지에서 수정해주세요!", "/am/mediLogin");
 		}
 		else {
 			return GetMessage.getMessage("회원가입 실패", "/am/mediRegister");
 		}
 	}
-
+	public boolean mediIdCheck(String id) {
+		return mm.mediIdCheck(id);
+	}
 	public int logChk(String id, String pw) {
 	      mediDTO dto = mm.getMedi(id);
 	      int result =1;
@@ -129,7 +131,6 @@ public class mediServiceImpl implements mediService{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
 		}
 		return GetMessage.getMessage("비밀번호가 틀렸습니다.", "/am/mediPwdChk?id="+id);
 	}
@@ -153,6 +154,7 @@ public class mediServiceImpl implements mediService{
 	}
 	
 	public String mediModify(mediDTO dto, MultipartFile file, String[] addr) {
+		
 		// 주소
 		String ad ="";
 		for(String a:addr) {
@@ -161,12 +163,13 @@ public class mediServiceImpl implements mediService{
 		dto.setmAddr(ad); //합쳐진 주소 dto에 넣어줘
 		
 		//file 
-		String dbImg = mm.getMedi(dto.getmId()).getmPhoto(); 
-		
-		String originName = file.getOriginalFilename();		 
+		String dbImg = mm.getMedi(dto.getmId()).getmPhoto(); //디비에 저장되어있는 사진 이름
+		mfs.deleteImage(dbImg);
+		String originName = file.getOriginalFilename();	
 		
 		if(originName=="") { //파일 선택이 없다면  //
 			dto.setmPhoto(dbImg); //디비에 있던 원래 파일 저장
+			
 		}else { // 파일 선택이 있다면
 			dto.setmPhoto(mfs.saveFile(file)); //새로운 파일 저장
 		}

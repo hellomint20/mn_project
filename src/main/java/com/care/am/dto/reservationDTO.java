@@ -11,7 +11,14 @@ public class reservationDTO {
 	String rApply;
 	String rName;
 	String rTel;
+	int rFix;
 	
+	public int getrFix() {
+		return rFix;
+	}
+	public void setrFix(int rFix) {
+		this.rFix = rFix;
+	}
 	public int getrNum() {
 		return rNum;
 	}

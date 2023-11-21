@@ -9,6 +9,7 @@
 
 	<link href="/am/css/bootstrap/bootstrap.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="/am/css/customerSidebar.css">
     
 </head>
@@ -42,6 +43,12 @@
 		        	</a>
 		        </li>
 		        <li>
+		        	<a href="/am/reviewList?id=${userId }">
+		        		<span class="icon"></span>
+		        		<span class="title">게시글 관리</span>
+		        	</a>
+		        </li>
+		        <li>
 		        	<a href="/am/customerDelete?id=${userId }">
 		        		<span class="icon"></span>
 		        		<span class="title">회원 탈퇴</span>
@@ -70,6 +77,12 @@
 		        	<a href="/am/reservationList?id=${userId }">
 		        		<span class="sns_icon"></span>
 		        		<span class="sns_title">예약 관리</span>
+		        	</a>
+		        </li>
+		        <li>
+		        	<a href="/am/reviewList?id=${userId }">
+		        		<span class="sns_icon"></span>
+		        		<span class="sns_title">게시글 관리</span>
 		        	</a>
 		        </li>
 		    </ul>

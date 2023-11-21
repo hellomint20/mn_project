@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,7 +27,6 @@
 		var checkYear = date.slice(0, 4);
 		var checkMonth = date.slice(6, 8);
 		var checkDay = date.slice(10, 12);
-		console.log(checkYear, checkMonth, checkDay);
 		if(checkYear-year == 0 && checkMonth-month == 0 && checkDay-day == 1){ //전 날일 때
 			return 2500;
 		}else {
@@ -70,7 +69,8 @@
 <body>
 	<%@ include file = "../default/header_page.jsp" %>
 	<%@ include file = "../common/customerSidebar.jsp" %>
-
+	<%@ include file="../common/recentlyView.jsp" %>
+	
 	<div class="board_wrap">
 		<div class="board_title">
 			<strong>예약 정보</strong>
@@ -87,6 +87,7 @@
 					<div class="r_content">접수 내용</div>
 					<div class="r_apply">예약 현황</div>
 					<div class="r_cancel">예약 취소</div>
+					<div class="r_fix">병원 후기</div>
 				</div>
 				<!-- for문으로 리스트 뽑아오기 -->
 				<c:choose>
@@ -109,14 +110,16 @@
 								<div class="r_content">${list.r_content}</div>
 								<div class="r_apply">${list.r_apply}</div>
 								<div class="r_cancel">
-									<c:set var="now" value="<%=new java.util.Date()%>" />
-									<fmt:formatDate var="nYear" value="${now}" pattern="yyyy" />
-									<fmt:formatDate var="nMonth" value="${now}" pattern="MM" />
-									<fmt:formatDate var="nDay" value="${now}" pattern="dd" />
+								
+								<c:set var="now" value="<%=new java.util.Date()%>" />
+								<fmt:formatDate var="nYear" value="${now}" pattern="yyyy" />
+								<fmt:formatDate var="nMonth" value="${now}" pattern="MM" />
+								<fmt:formatDate var="nDay" value="${now}" pattern="dd" />
+															
 									<c:choose>
 										<c:when test="${list.r_apply eq '대기'}">
 											<c:choose>
-												<c:when test="${list.year == nYear and list.month == nMonth and list.day == nDay }">
+												<c:when test="${list.year == nYear and list.month == nMonth and list.day == nDay}">
 													<span class="nowCancle">취소 불가능</span>
 												</c:when>
 												<c:otherwise>
@@ -124,6 +127,16 @@
 												</c:otherwise>
 											</c:choose>
 										</c:when>
+									</c:choose>
+								</div>
+								<div class="r_fix">
+									<c:choose>
+										<c:when test="${list.r_fix == 1}">
+											<button onclick="location.href='/am/fixedForm?id=${userId }&num=${list.r_num}'">작성</button>
+										</c:when>
+										<c:otherwise>
+											<button disabled="disabled">작성</button>
+										</c:otherwise>
 									</c:choose>
 								</div>
 							</div>
