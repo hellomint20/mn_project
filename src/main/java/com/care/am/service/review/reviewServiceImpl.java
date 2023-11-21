@@ -1,32 +1,47 @@
 package com.care.am.service.review;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.care.am.common.GetMessage;
-import com.care.am.dto.pageDTO;
 import com.care.am.dto.reviewDTO;
 import com.care.am.mapper.reviewMapper;
+import com.care.am.page.reviewPagination;
 
 @Service
 public class reviewServiceImpl implements reviewService{
 
 	@Autowired reviewMapper bm;
-	@Override
-	public List<reviewDTO> boardList() {
-		return bm.boardList();
-	}
-
-	@Override
-	public List<reviewDTO> reviewList(String id) {
-		return bm.reviewList(id);
+	
+	@Override	// 전체 글 수 조회
+	public int reviewAll() {
+		return bm.reviewAll();
 	}
 	
+	@Override	// 페이징 후 글 조회
+	public List<reviewDTO> reviewSel(reviewPagination rp) {
+		int start = rp.getStart();
+		int end = rp.getCntPerPage();
+		System.out.println("serIMPL:" +rp.getCntPerPage());
+		System.out.println("serIMPL:" + start + end);
+		System.out.println("serIMPL:" +bm.reviewSel(start, end));
+		return bm.reviewSel(start, end);
+	}
+
+	@Override	// 개인 글 수 조회
+	public int myReviewAll(String id) {
+		return bm.myReviewAll(id);
+	}
+
+	@Override	// 페이징 후 개인 글 조회
+	public List<reviewDTO> myReviewList(reviewPagination rp, String id) {
+		int start = rp.getStart();
+		int end = rp.getCntPerPage();
+		return bm.myReviewList(id, start, end);
+	}
+
+	@Override	// 후기 상세보기
 	public reviewDTO myReview(int num){
 		reviewDTO dto = new reviewDTO();
 		try {
@@ -38,7 +53,7 @@ public class reviewServiceImpl implements reviewService{
 		return dto;
 	}
 	
-	
+	@Override	// 후기 작성
 	public String fixedForm(reviewDTO dto, String id, int num) {
 		int result =0;
 		int fixResult = 0;
@@ -57,6 +72,7 @@ public class reviewServiceImpl implements reviewService{
 		return GetMessage.getMessage("리뷰 등록에 실패했습니다.", "/am/reservationList?id="+id);
 	}
 	
+	@Override	// 후기 수정
 	public String modiForm(reviewDTO dto) {
 		int result = 0;
 		result = bm.modiForm(dto);
@@ -66,6 +82,7 @@ public class reviewServiceImpl implements reviewService{
 		return GetMessage.getMessage("리뷰 수정에 실패했습니다.", "/am/modiForm?num="+dto.getRvNo());
 	}
 	
+	@Override	// 후기 삭제
 	public String delete(String id, int num) {
 		int result = 0;
 		result = bm.delete(num);

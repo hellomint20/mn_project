@@ -8,16 +8,11 @@
 <title>보호자 예약확인</title>
 <link rel="stylesheet" href="/am/css/reservation/c_reservation.css">
 <script type="text/javascript">
-	function selChange() {
-		var sel = document.getElementById('cntPerPage').value;
-		location.href="reservationList?id=${userId}&nowPage=${paging.nowPage}&cntPerPage="+sel;
-	}
-
 	function reserCancel(num) {
 		let msg = confirm("정말로 취소하시겠습니까?");
 		console.log(num)
 		if (msg == true)	
-			location.href='/am/reservationCancel?id=${userId}&num='+num;
+			location.href='/am/reservationCancel?id=${userId}&num='+num+'&nowPage='+${paging.nowPage}+'&cntPerPage='+${paging.cntPerPage};
 	}
 </script>
 </head>

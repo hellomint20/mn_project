@@ -170,14 +170,15 @@ public class reservationServiceImpl implements reservationService{
 	}
 		
 	@Override
-	public String reserCancel(String id, int num) {
+	public String reserCancel(String id, int num, int nowPage, int cntPerPage) {
+		System.out.println( nowPage + cntPerPage);
 		int result = rm.reserCancel(num);
 		System.out.println("ser" + result);
-		String msg = "", url = "/am/reservationList?id=" + id;
+		String msg = "", url = "/am/reservationList?id="+id+"&nowPage="+nowPage+"&cntPerPage="+cntPerPage;
 		if (result == 1) {
 			msg = "예약이 취소되었습니다";
 		} else {
-			msg = "예약 취소에 실패하였습니다";
+			msg = "예약취소에 실패하였습니다";
 		}
 		return GetMessage.getMessage(msg, url);
 	}

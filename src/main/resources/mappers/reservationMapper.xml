@@ -37,6 +37,9 @@
 		<result property="cSessionId" column="c_session"/>
 	</resultMap>
 	
+	
+	
+	
 	<select id="reservationList" resultType="map">
 		select reservation.r_num, reservation.r_date, reservation.r_time, pet.p_name, medi.m_name, reservation.r_apply, reservation.r_content
 		from reservation

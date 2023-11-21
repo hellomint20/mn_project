@@ -8,13 +8,6 @@
 <title>게시판</title>
 	<link rel="stylesheet" href="/am/css/review/reviewList.css">
 	<link href="/am/css/bootstrap/bootstrap.css" rel="stylesheet">
-	
-<script type="text/javascript">
-	function selChange() {
-		var sel = document.getElementById('cntPerPage').value;
-		location.href="reservationList?id=${userId}&nowPage=${paging.nowPage}&cntPerPage="+sel;
-	}
-</script>
 </head>
 <body>
 	<%@ include file = "../default/header_page.jsp" %>
@@ -43,21 +36,38 @@
 							<div class="listIsNull">후기가 없습니다. 후기를 작성해 주세요</div>
 						</div>
 					</c:when>
-					<c:when test="${list.size()!=0 }">
+					<c:when test="${list.size() != 0 }">
 						<c:forEach items="${list }" var="list">
 							<div class="listbox">
 								<div class="rv_no">${list.rvNo }</div>
 								<div class="m_name">${list.mName}</div>
 								<div class="rv_title"><a href="/am/myReview?num=${list.rvNo }">${list.rvTitle }</a></div>
-								<div class="rv_date">
-									${list.rvDate }
-								</div>
+								<div class="rv_date">${list.rvDate }</div>
 								<div class="c_id">${list.cId}</div>
 							</div>
 						</c:forEach>
 					</c:when>
 				</c:choose>
 			</div>
+		</div>
+		
+		<div class="page" >		
+			<c:if test="${paging.startPage != 1 }">
+				<a href="/am/boardList?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+			</c:if>
+			<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+				<c:choose>
+					<c:when test="${p == paging.nowPage }">
+						<b>${p }</b>
+					</c:when>
+					<c:when test="${p != paging.nowPage }">
+						<a href="/am/boardList?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+					</c:when>
+				</c:choose>
+			</c:forEach>
+			<c:if test="${paging.endPage != paging.lastPage}">
+				<a href="/am/boardList?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
+			</c:if>
 		</div>
 		
 	</div>
