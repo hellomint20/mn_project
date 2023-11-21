@@ -48,4 +48,8 @@
 	<delete id="mediDelete">
     	delete from medi where m_id=#{mId};
     </delete>
+    
+    <select id="getPhoto" resultMap="medi">
+    	select m_photo from medi where m_id=#{mId}
+    </select>
 </mapper>

@@ -16,4 +16,5 @@ public interface mediMapper {
 		  public int mediModify(mediDTO dto);
 		  public int mediPwdChg(mediDTO dto);
 		  public int mediDelete(mediDTO dto);
+		  public String getPhoto(String id);
 }
