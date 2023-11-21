@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -33,7 +36,24 @@ public class mediController {
 	public String mediRegister() {
 		return "am/medi/mediRegister";
 	}
-
+	@PostMapping("/mediIdCheck") // 병원회원가입시 아이디 중복확인
+	@ResponseBody
+	public ResponseEntity<Boolean> mediIdCheck(String id) {
+		System.out.println("ConfirmId.........");
+		System.out.println("id : " + id);
+		boolean result = true;
+		
+		if(id.trim().isEmpty()) {
+			result = false;
+		} else {
+			if (ms.mediIdCheck(id)) {
+				result = false;
+			} else {
+				result = true;
+			}
+		}
+		return new ResponseEntity<>(result, HttpStatus.OK);
+	}
 	@PostMapping("mediRegister") // 병원 회원가입 적용
 	public void mediRegister(mediDTO dto, HttpServletRequest req, HttpServletResponse res) {
 		String[] addr = req.getParameterValues("mAddr");
@@ -156,12 +176,12 @@ public class mediController {
 		}
 	}
 	
-	@GetMapping("mediNewPwd") // 비밀번호 재설정
+	@GetMapping("mediNewPwd") // 비밀번호 재설정 페이지
 	public String mediNewPwd(String id,Model model) {
 		model.addAttribute("id", id);
 		return "am/medi/mediNewPwd";
 	}
-	@PostMapping("mediNewPwd")
+	@PostMapping("mediNewPwd")	// 병원 비밀번호 재설정
 	public void mediNewPwd(@RequestParam String id, 
 						@RequestParam String newPw,
 						HttpServletResponse res) {
@@ -212,7 +232,7 @@ public class mediController {
 		return "am/medi/mediPwdChg";
 	}
 	
-	@PostMapping("mediPwdChg")
+	@PostMapping("mediPwdChg") // 비밀번호 변경
 	public void mediPwdChg(mediDTO dto, HttpServletResponse res, @RequestParam String pw, @RequestParam String newPw) throws Exception{
 		
 		String msg="";
@@ -249,7 +269,7 @@ public class mediController {
 		out.print(msg);
 		
 	}
-	@GetMapping("mediDelete")
+	@GetMapping("mediDelete") // 병원 탈퇴 페이지
 	public String delete() {
 		return "am/medi/mediDelete";
 	}
