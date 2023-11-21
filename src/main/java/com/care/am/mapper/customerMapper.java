@@ -19,7 +19,6 @@ public interface customerMapper {
 	public int customerPwdChg(customerDTO dto);
 	public int customerModify(customerDTO dto);
 	public int customerDelete(customerDTO dto);
-	
 	public int addRecentlyView(recentlyViewDTO rDto);
 	public void delRecentlyView(String cId);
 	public List<Map<String, String>> getRecentlyView(String cId);

@@ -31,10 +31,9 @@
 
 	<div class="r_table">
 		<div class="buttonbox">
-			<a href="/am/reservationStateWait?id=${mediId }"><button
-					type="button" id="wait">새로운접수</button></a> <a
-				href="/am/reservationStateAC?id=${mediId }"><button
-					type="button" id="ac">승인/취소</button></a>
+			<a href="/am/reservationStateWait?id=${mediId }"><button type="button" id="wait">새로운접수</button></a> 
+			<a href="/am/reservationStateA?id=${mediId }"><button type="button" id="wait">승인</button></a>
+			<a href="/am/reservationStateC?id=${mediId }"><button type="button" id="wait">취소</button></a>
 
 		</div>
 		<div style="clear: both;"></div>

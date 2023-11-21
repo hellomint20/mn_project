@@ -225,5 +225,3 @@ public class customerServiceImpl implements customerService {
 		return null;
 	}
 }
-
-

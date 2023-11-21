@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.care.am.mapper.reviewMapper">
+  
+  	<resultMap type="com.care.am.dto.reviewDTO" id="review">
+		<id property="rvNo" column="rv_no"/>
+		<result property="cId" column="c_id"/>
+		<result property="mName" column="m_name"/>
+		<result property="rvCont" column="rv_cont"/>
+		<result property="rvDate" column="rv_date"/>
+		<result property="rDate" column="r_date"/>
+		<result property="rvTitle" column="rv_title"/>
+	</resultMap>
+	
+	<resultMap type="com.care.am.dto.reservationDTO" id="reservation">
+		<id property="rNum" column="r_num"/>
+		<result property="mId" column="m_id"/>
+		<result property="cId" column="c_id"/>
+		<result property="rContent" column="r_content"/>
+		<result property="rDate" column="r_date"/>
+		<result property="rTime" column="r_time"/>
+		<result property="rApply" column="r_apply"/>
+		<result property="rName" column="r_name"/>
+		<result property="rTel" column="r_tel"/>
+		<result property="r_fix" column="r_fix"/>
+	</resultMap>
+	
+	<select id="boardList" resultMap="review">
+		select * from review order by rv_no desc
+	</select>
+
+	<!-- 리스트 뽑아온거 -->
+	<select id="reviewList" resultMap="review">
+		select * from review where c_id =#{cId} order by rv_no desc
+	</select>
+	
+	
+	
+	<insert id="fixedForm">
+		insert into review(rv_no, c_id, m_name, rv_cont, rv_date, r_date, rv_title) 
+		values(rv_no, #{cId}, #{mName}, #{rvCont}, curdate(), #{rDate}, #{rvTitle})
+	</insert>
+	
+	<select id="myReview" resultMap="review">
+		select * from review where rv_no = #{rvNo}
+	</select>
+	
+	<update id="fixResult">
+		update reservation set r_fix=3 where r_num=#{rNum}
+	</update>
+	
+	<update id="modiForm">
+		update review set rv_cont=#{rvCont}, rv_title=#{rvTitle} where rv_no=#{rvNo}
+	</update>
+	
+	<delete id="delete">
+		delete from review where rv_no=#{rvNo}
+	</delete>
+
+
+</mapper>

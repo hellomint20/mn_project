@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import com.care.am.dto.mediDTO;
 import com.care.am.dto.petDTO;
+import com.care.am.dto.reservationDTO;
 import com.care.am.page.reservationPagination;
 
 @Mapper
@@ -32,7 +33,11 @@ public interface reservationMapper {
 	public Map<String, String> reservationInfo(int rNum); //병원 팝업 예약 정보
 	public List<Map<String, Object>> waitList(Map<String, Object> pageMap); //병원 새로운 접수 리스트
 	public Integer waitListPaging(String mId); //병원 새로운 접수 페이징
-	public List<Map<String, Object>> ACList(Map<String, Object> pageMap); //병원 승인취소 리스트
-	public Integer ACListPaging(String mId); // 병원 승인취소 페이징
+	public Map<String, String> getResInfo(int num);
+	public List<Map<String, Object>> AList(Map<String, Object> pageMap); //병원 승인 리스트
+	public Integer AListPaging(String mId); // 병원 승인 페이징
+	public List<Map<String, Object>> CList(Map<String, Object> pageMap); //병원 취소 리스트
+	public Integer CListPaging(String mId); // 병원 취소 페이징
+	public int fix(@Param("mId") String mId,  @Param("rFix") int r_fix, @Param("Rnum") int Rnum); //진료여부 확정
 }
 

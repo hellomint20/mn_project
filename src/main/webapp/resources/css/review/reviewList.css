@@ -45,55 +45,33 @@
     font-weight: 650;
 }
 
-.board_list .r_date {
-    width: 20%;
+.board_list .rv_no {
+    width: 11%;
     text-align: center;
 }
 
-.board_list .r_time {
-    width: 14%;
+.board_list .rv_title {
+    width: 26%;
+    text-align: center;
+    color: black;
+}
+.board_list .rv_date {
+    width: 21%;
     text-align: center;
 }
-
-.board_list .p_name {
-	width: 13%;
-    text-align: center;
+.rv_title > a {
+	text-decoration: none;
+	color: black;
 }
 
 .board_list .m_name {
-    width: 13%;
+	width: 17%;
+    text-align: center;
+}
+
+.board_list .c_id {
+    width: 25%;
     text-alingn: left;
-}
-
-.board_list .r_content {
-    width: 10%;
-    text-align: center;
-}
-
-.board_list .r_apply {
-    width: 10%;
-    text-align: center;
-}
-
-.board_list .r_cancel {
-	width: 10%;
-    text-align: center;
-}
-
-.board_list .r_fix {
-	width: 10%;
-    text-align: center;
-}
-
-.board_list .r_cancel button{
-	border: 0;
-	border-bottom: 1px solid;
-  	background-color: transparent;
-}
-
-.board_list .r_fix button{
-	border: 0;
-  	background-color: transparent;
 }
 
 .board_list .listIsNull{

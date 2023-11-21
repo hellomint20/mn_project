@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import com.care.am.dto.mediDTO;
 import com.care.am.dto.petDTO;
+import com.care.am.dto.reservationDTO;
 import com.care.am.page.customerPagination;
 import com.care.am.page.reservationPagination;
 import com.care.am.dto.pageDTO;
@@ -24,9 +25,13 @@ public interface reservationService {
 	public Map<String, String> reservationInfo(int rNum); //병원 팝업 예약 정보
 	public List<Map<String, Object>> waitList(String mId, int page); //병원 새로운접수 리스트
 	public pageDTO waitListPaging(int page, String mId); //병원 새로운 접수 페이징
-	public List<Map<String, Object>> ACList(String mId, int page); //병원 승인취소 리스트
-	public pageDTO ACListPaging(int page, String mId); //병원 승인취소 페이징
+	public List<Map<String, Object>> AList(String mId, int page); //병원 승인 리스트
+	public pageDTO AListPaging(int page, String mId); //병원 승인 페이징
+	public List<Map<String, Object>> CList(String mId, int page); //병원 취소 리스트
+	public pageDTO CListPaging(int page, String mId); //병원 취소 페이징
 	public String reserCancel(String id, int num);
 	public int reserState(int num, int state);
+	public Map<String, String> getResInfo(int num); // 후기작성 페이지 정보
+	public void fix(String mId, int r_fix, int r_num); //진료여부 확정
 
 }
