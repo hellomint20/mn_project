@@ -159,6 +159,7 @@ public class customerController{
 	public String customerSearchPw(@RequestParam String inputId, 
 								@RequestParam String inputName, 
 								@RequestParam String inputTel,HttpServletResponse res) {
+		
 		customerDTO dto = cs.customerSearchPw(inputId,inputName,inputTel);
 		String tempPwd ="";
 		if(dto !=null) {

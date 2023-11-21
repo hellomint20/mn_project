@@ -16,7 +16,7 @@
 	
 	<div class="board_wrap">
 		<div class="board_title">
-			<strong>후기</strong>
+			<strong>병원 후기</strong>
 			<p>${detail.cId }님이 작성하신 ${detail.mName } 병원 후기입니다.</p>
 		</div>
 		<form action="fixedForm" method="post">
@@ -24,21 +24,18 @@
 				<div class="board_list">
 					<div class="top">
 						<div class="flex">
-							
-							<div class="m_name" name="mName">방문 병원
-								<div class="view">${detail.mName }</div>
-							</div>
-							<div class="rv_date" name="rv_date">작성 날짜
-								<div class="view">${detail.rvDate }</div>
-							</div>
+							<div class="m_name">방문 병원</div>
+								<span class="view">${detail.mName }</span>
+							<div class="r_date">방문 날짜</div>
+								<span class="view">${detail.rDate }</span>
+							<div class="rv_date">작성 날짜	</div>
+								<span class="view">${detail.rvDate }</span>
 						</div>
-						<div class="rv_title" name="rvTitle">제목 
-							<div class="view">${detail.rvTitle }</div>
+						<div class="titleAll">
+							<div class="rv_title">제목</div>
+								<div class="view">${detail.rvTitle }</div>
 						</div>
-						<div class="rv_cont" name="rvCont">작성내용 
-							<div class="view">${detail.rvCont }</div>
-						</div>
-						<div class="r_date" name="rDate" >방문 날짜&nbsp;&nbsp;<span class="view">${detail.rvDate }</span></div>
+						<div class="rv_cont"><span class="view">${detail.rvCont }</span></div>
 					</div>
 				</div>
 			</div>

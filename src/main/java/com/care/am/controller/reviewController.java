@@ -84,7 +84,9 @@ public class reviewController {
 	
 	@GetMapping("myReview")		// 내가 쓴 후기 상세보기
 	public String myReview(@RequestParam int num, Model model) {
-		model.addAttribute("detail", bs.myReview(num));
+		reviewDTO dto = bs.myReview(num);
+		dto.setRvCont(dto.getRvCont().replace("\n", "<br>"));
+		model.addAttribute("detail", dto);
 		return "am/review/myReview";
 	}
 	
@@ -98,7 +100,6 @@ public class reviewController {
 	@PostMapping("fixedForm") 	// 리뷰 등록
 	public void fixedForm (reviewDTO dto, @RequestParam int num, HttpServletResponse res) throws Exception{		
 		String id = dto.getcId();
-		
 		String msg = bs.fixedForm(dto,id, num);
 		res.setContentType("text/html; charset=utf-8");
 		PrintWriter out = res.getWriter();
@@ -107,7 +108,8 @@ public class reviewController {
 	
 	@GetMapping("modiForm") 	// 후기 수정 페이지
 	public String modiForm(@RequestParam int num, Model model) {
-		model.addAttribute("list", bs.myReview(num));
+		reviewDTO dto = bs.myReview(num);
+		model.addAttribute("list", dto);
 		return "am/review/modiForm";
 	}
 	
