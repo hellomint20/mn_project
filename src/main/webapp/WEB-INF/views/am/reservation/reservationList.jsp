@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -7,12 +8,62 @@
 <meta charset="UTF-8">
 <title>보호자 예약확인</title>
 <link rel="stylesheet" href="/am/css/reservation/c_reservation.css">
+<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+
 <script type="text/javascript">
+
+	function selChange() {
+		var sel = document.getElementById('cntPerPage').value;
+		location.href="reservationList?id=${userId}&nowPage=${paging.nowPage}&cntPerPage="+sel;
+	}
+	
+	function get_Date(num){
+		let date = document.getElementById(num).innerHTML;
+		
+		var nowTime = new Date();
+		var year = nowTime.getFullYear(); //현재 년도
+		var month = nowTime.getMonth()+1; //현재 월	
+		var day = nowTime.getDate(); //현재 일
+		<!-- ///////////////////////////////////// -->
+		var checkYear = date.slice(0, 4);
+		var checkMonth = date.slice(6, 8);
+		var checkDay = date.slice(10, 12);
+		if(checkYear-year == 0 && checkMonth-month == 0 && checkDay-day == 1){ //전 날일 때
+			return 2500;
+		}else {
+			return 5000;
+		}
+	}
+
 	function reserCancel(num) {
-		let msg = confirm("정말로 취소하시겠습니까?");
-		console.log(num)
-		if (msg == true)	
-			location.href='/am/reservationCancel?id=${userId}&num='+num+'&nowPage='+${paging.nowPage}+'&cntPerPage='+${paging.cntPerPage};
+		let payment = get_Date(num);
+		
+		let msg = confirm("예약 접수일이 내일입니다. \n취소 시 "+payment+"원이 환불됩니다. \n정말로 취소하시겠습니까?");
+		if (msg == true){	
+			let cId = document.getElementById("cId").value;
+			
+			var map = {};
+			map['num'] = num;
+			map['payment'] = payment;
+			
+			$.ajax({
+				url : "/am/payResRefund", type: "post",
+				data : JSON.stringify(map),
+				contentType : "application/json; charset=utf-8",
+				success : (result) => {
+					if(result == '1'){
+						alert("예약 취소 및 예약금이 환불되었습니다.")
+						location.href='/am/reservationList?id='+cId;
+					}else{
+						alert("문제 발생")
+						return false;
+					}
+				},
+				error : () => {
+					alert("문제 발생")
+				}
+			})
+		}
 	}
 </script>
 </head>
@@ -20,12 +71,13 @@
 	<%@ include file = "../default/header_page.jsp" %>
 	<%@ include file = "../common/customerSidebar.jsp" %>
 	<%@ include file="../common/recentlyView.jsp" %>
-
+	
 	<div class="board_wrap">
 		<div class="board_title">
 			<strong>예약 정보</strong>
-			<p>예약 현황이 확정되었는지 꼭 확인해주세요!</p>
+			<p>예약 현황이 확정되었는지 꼭 확인해주세요! &nbsp; &nbsp;<span class="mesCancle">※ 예약 당일에는 취소가 불가능합니다.</span></p>
 		</div>
+		<input type="hidden" id="cId" value="${userId}">
 		<div class="board_list_wrap">
 			<div class="board_list">
 				<div class="top">
@@ -50,7 +102,8 @@
 						<c:forEach items="${viewAll }" var="list">
 							<div class="listbox">
 								<div class="r_date">
-									${list.year}년${list.month}월 ${list.day}일
+									<a onclick="Popup(${list.r_num})">
+									<span id="${list.r_num}">${list.year}년 ${list.month}월 ${list.day}일</span></a>
 								</div>
 								<div class="r_time">${list.hour	}시${list.min}분</div>
 								<div class="p_name">${list.p_name}</div>
@@ -58,9 +111,24 @@
 								<div class="r_content">${list.r_content}</div>
 								<div class="r_apply">${list.r_apply}</div>
 								<div class="r_cancel">
-									<c:if test="${list.r_apply eq '대기'}">
-										<button onclick="reserCancel(${list.r_num})">취소</button>
-									</c:if>
+								
+								<c:set var="now" value="<%=new java.util.Date()%>" />
+								<fmt:formatDate var="nYear" value="${now}" pattern="yyyy" />
+								<fmt:formatDate var="nMonth" value="${now}" pattern="MM" />
+								<fmt:formatDate var="nDay" value="${now}" pattern="dd" />
+															
+									<c:choose>
+										<c:when test="${list.r_apply eq '대기'}">
+											<c:choose>
+												<c:when test="${list.year == nYear and list.month == nMonth and list.day == nDay}">
+													<span class="nowCancle">취소 불가능</span>
+												</c:when>
+												<c:otherwise>
+													<button onclick="reserCancel(${list.r_num})">취소</button>
+												</c:otherwise>
+											</c:choose>
+										</c:when>
+									</c:choose>
 								</div>
 								<div class="r_fix">
 									<c:choose>

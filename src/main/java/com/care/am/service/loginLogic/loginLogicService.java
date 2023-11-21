@@ -109,7 +109,7 @@ public class loginLogicService{
            JsonObject kakaoAccount = jsonObject.getAsJsonObject("kakao_account");
            String nickname = kakaoAccount.getAsJsonObject("profile").get("nickname").getAsString();
            String email = kakaoAccount.get("email").getAsString();
-
+	   
            String[] k_mail = email.split("@");
            String kId = k_mail[0]+"_kakao";
            String pwd = cs.makeRandomPw();

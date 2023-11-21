@@ -1,13 +1,7 @@
 package com.care.am.controller;
 
-import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
-import java.io.PrintWriter;
-
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,9 +11,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.care.am.common.LoginSession;
+import com.care.am.dto.customerDTO;
 import com.care.am.page.customerPagination;
 import com.care.am.page.reservationPagination;
 import com.care.am.service.customer.customerService;
+import com.care.am.service.payment.paymentService;
 import com.care.am.service.reservation.reservationService;
 
 @Controller
@@ -27,6 +23,12 @@ public class reservationController {
 
 	@Autowired 
 	private reservationService rs;
+	
+	@Autowired
+	private paymentService as;
+	
+	@Autowired
+	private customerService cs;
 
 	@GetMapping("reservation")
 	public String reservation(Model model, reservationPagination pag
@@ -81,8 +83,6 @@ public class reservationController {
 		return rs.mediInfo(mediId);
 	}
 	
-	
-
 	@PostMapping("reservationForm/page")
 	public String reservationFormPage(@RequestParam String mediId, Model model, HttpSession session ) {
 		
@@ -97,23 +97,17 @@ public class reservationController {
 
 	@GetMapping("reservationPopup")
 	public String reservationPopup(Model model, HttpSession session) {
-		model.addAttribute("cId", session.getAttribute(LoginSession.cLOGIN));
+	
+		customerDTO dto = cs.getCustomerInfo(session.getAttribute(LoginSession.cLOGIN).toString());
+		String email1 = dto.getcEmail().split("@")[0];
+		String email2 = dto.getcEmail().split("@")[1];
+		//로그인한 사람 정보
+		model.addAttribute("customer", dto);
+		model.addAttribute("email1", email1);
+		model.addAttribute("email2", email2);
 		
 		return "am/reservation/reservationPopup";
 	}
-	
-	@ResponseBody
-	@PostMapping("reservationRegister")
-	public Map<String, String> reservationRegister(@RequestBody Map<String, Object> map, HttpSession session) {
-		map.put("cId", session.getAttribute(LoginSession.cLOGIN).toString());
-		
-		Map<String, String> result = new HashMap<String, String>();
-		
-		result.put("result", Integer.toString(rs.reservationRegister(map)));
-		result.put("userId", session.getAttribute(LoginSession.cLOGIN).toString());
-		
-		return result;
-	}	
 	
 	@GetMapping("reservationList")
 	public String reservationList(@RequestParam String id, Model model, customerPagination pag
@@ -135,6 +129,7 @@ public class reservationController {
     	
     	model.addAttribute("paging", pag);
     	model.addAttribute("viewAll", rs.customerResList(id, pag));
+    	System.out.println(rs.customerResList(id, pag));
 		
 		return "am/reservation/reservationList";
 	}
@@ -156,30 +151,12 @@ public class reservationController {
 	}
 	
 	
-	@PostMapping("reservationStateA")
-	public String reservationStateA(@RequestParam int r_fix, @RequestParam String id, @RequestParam int r_num, @RequestParam int page) {
-		rs.fix(id, r_fix, r_num);
+	@GetMapping("reservationStateC")
+	public String reservationStateC(@RequestParam String id, Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
+		model.addAttribute("c", rs.CList(id, page));
+		model.addAttribute("CPaging", rs.CListPaging(page, id));
 		
-		return "redirect:/reservationStateA?id="+id+"&page="+page;
-	}
-	
-		@GetMapping("reservationStateC")
-		public String reservationStateC(@RequestParam String id, Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
-			model.addAttribute("c", rs.CList(id, page));
-			model.addAttribute("CPaging", rs.CListPaging(page, id));
-			
-			return "am/reservation/reservationStateC";
-		}
-	
-	@GetMapping("reservationCancel")
-	public void reservationCancel(@RequestParam String id, @RequestParam int num,
-								@RequestParam(value="nowPage", required=false) int nowPage, 
-								@RequestParam(value="cntPerPage", required=false) int cntPerPage,
-								HttpServletResponse res) throws Exception {
-		String msg = rs.reserCancel(id, num, nowPage, cntPerPage);
-		res.setContentType("text/html; charset=utf-8");
-		PrintWriter out = res.getWriter();
-		out.print(msg);
+		return "am/reservation/reservationStateC";
 	}
 	
 	@GetMapping("reserState1") 
@@ -193,19 +170,25 @@ public class reservationController {
 	}
 	
 	@PostMapping("reserState2")
-    public String reserState2(@RequestParam String email,@RequestParam int num,
-        @RequestParam String mId, @RequestParam String cont) {
-		int result = rs.reserState(num, 0);
-		if(result == 1) {
-			String toMail = email;
-			return "redirect:/reserState2/"+toMail+"/"+cont+"/"+mId+"/";
+	public String reserState2(@RequestParam String email, @RequestParam int num, @RequestParam String mId,
+			@RequestParam String cont) {
+		String cancle = "";
+		String payment = "5000";
+		// 결제 취소
+		cancle = as.payCancle(Integer.toString(num), payment);
+		if ("0".equals(cancle)) {
+			int result = 0;
+			result = rs.reserState(num, 0);
+			if (result == 1) {
+				String toMail = email;
+				return "redirect:/reserState2/" + toMail + "/" + cont + "/" + mId + "/"+ payment + "/";
+			}
 		}
 		return "redirect:/reservationState";
 	}
 
 	@GetMapping("reservationApplyPopup") 
 	public String reservationApplyPopup(@RequestParam int rNum, Model model) {
-		System.out.println(rNum);
 		model.addAttribute("info", rs.reservationInfo(rNum));
 		model.addAttribute("num", rNum);
 		return "am/reservation/reservationApplyPopup";
@@ -225,9 +208,7 @@ public class reservationController {
 		if(rs.reservationCheck(map) != null) {
 			size = "1";
 		} 
-		
 		map.put("cId", session.getAttribute(LoginSession.cLOGIN).toString());
-		
 		return size;
 	}
 }

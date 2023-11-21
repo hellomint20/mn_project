@@ -10,10 +10,8 @@ import org.springframework.stereotype.Service;
 
 import com.care.am.dto.pageDTO;
 import com.care.am.mapper.reservationMapper;
-import com.care.am.common.GetMessage;
 import com.care.am.dto.mediDTO;
 import com.care.am.dto.petDTO;
-import com.care.am.dto.reservationDTO;
 import com.care.am.page.customerPagination;
 import com.care.am.page.reservationPagination;
 
@@ -95,36 +93,6 @@ public class reservationServiceImpl implements reservationService{
 	public List<Map<String, petDTO>> petList(String id) { // 사용자 pet list
 		return rm.petList(id);
 	}
-
-	public int reservationRegister(Map<String, Object> map) { // 병원 예약
-
-		String year = map.get("rDate").toString().replace("년 ", "-");
-		String month = year.replace("월 ", "-");
-		String day = month.replace("일", "");
-		String time = map.get("rTime").toString().replace(":", "-");
-
-		Map<String, Object> countMap = new HashMap<String, Object>();
-		countMap.put("mId", map.get("mId"));
-		countMap.put("rDate", day);
-		countMap.put("rTime", time);
-
-		int result = 0;
-
-		Integer.parseInt(String.valueOf(rm.peopleCount(countMap).get("count(*)")));
-		
-		if(Integer.parseInt(String.valueOf(rm.peopleCount(countMap).get("count(*)"))) >= 3) {
-			
-			result = 99;
-			
-		} else {
-			map.put("rDate", day);
-			map.put("rTime", time);
-			System.out.println(map);
-			result = rm.reservationRegister(map);
-		}
-
-		return result;
-	}
 	
 	public Map<String, String> reservationCount(Map<String, Object> map) { ////시간별 예약자 수 확인	
 		
@@ -155,10 +123,10 @@ public class reservationServiceImpl implements reservationService{
 		listmap = rm.customerResList(id,start, end );
 		try {
 			for (int i = 0; i <= listmap.size(); i++) {
-
-				listmap.get(i).put("year", listmap.get(i).get("r_date").split("-")[0]);
-				listmap.get(i).put("month", listmap.get(i).get("r_date").split("-")[1]);
-				listmap.get(i).put("day", listmap.get(i).get("r_date").split("-")[2]);
+				//r_date=2023- 12- 06 str1.trim()
+				listmap.get(i).put("year", listmap.get(i).get("r_date").split("-")[0].trim());
+				listmap.get(i).put("month", listmap.get(i).get("r_date").split("-")[1].trim());
+				listmap.get(i).put("day", listmap.get(i).get("r_date").split("-")[2].trim());
 
 				listmap.get(i).put("hour", listmap.get(i).get("r_time").split("-")[0]);
 				listmap.get(i).put("min", listmap.get(i).get("r_time").split("-")[1]);
@@ -170,17 +138,9 @@ public class reservationServiceImpl implements reservationService{
 	}
 		
 	@Override
-	public String reserCancel(String id, int num, int nowPage, int cntPerPage) {
-		System.out.println( nowPage + cntPerPage);
+	public int reserCancel(int num) {
 		int result = rm.reserCancel(num);
-		System.out.println("ser" + result);
-		String msg = "", url = "/am/reservationList?id="+id+"&nowPage="+nowPage+"&cntPerPage="+cntPerPage;
-		if (result == 1) {
-			msg = "예약이 취소되었습니다";
-		} else {
-			msg = "예약취소에 실패하였습니다";
-		}
-		return GetMessage.getMessage(msg, url);
+		return result;
 	}
 
 	@Override

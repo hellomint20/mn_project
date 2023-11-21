@@ -17,8 +17,6 @@
 		
 		function ok_Form(num) {
 			let email = document.getElementById("cemail").value;
-			console.log(num);
-			console.log(email);
 			location.href="/am/reserState1?num="+num+"&email="+email+"&mId="+'${mediId}';
 			setTimeout(function() {
 				window.close();
@@ -27,6 +25,7 @@
 		}
 		
 		function nook_Form(num) {
+			
 		    var form = document.createElement('form');
 		    form.method = 'POST';
 		    form.action = '/am/reserState2'; // POST 요청을 처리할 엔드포인트 URL
@@ -54,6 +53,7 @@
 		    contInput.name = 'cont';
 		    contInput.value = encodeURIComponent(document.getElementById("reason").value);
 		    form.appendChild(contInput);
+		    
 		    document.body.appendChild(form);
 		    form.submit();
 		    setTimeout(function() {
@@ -61,7 +61,6 @@
 				window.opener.location.reload();
 			  }, 3000);
 		}
-		
 		
 		$(function (){
 			$("#btn_no").click(function (){

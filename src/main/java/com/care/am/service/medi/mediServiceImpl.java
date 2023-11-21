@@ -131,7 +131,6 @@ public class mediServiceImpl implements mediService{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
 		}
 		return GetMessage.getMessage("비밀번호가 틀렸습니다.", "/am/mediPwdChk?id="+id);
 	}
