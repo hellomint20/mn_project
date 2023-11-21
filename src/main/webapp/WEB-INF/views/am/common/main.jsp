@@ -107,9 +107,6 @@
 						</div>
 					</div>
 				</c:if>
-				<div id="admin">
-				<a href="adminLogin" style="text-decoration: none; color: white">관리자 로그인</a>
-				</div>
 			</div>
 		</div>
 	</div>
