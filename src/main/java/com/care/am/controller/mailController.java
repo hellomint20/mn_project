@@ -1,5 +1,6 @@
 package com.care.am.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ public class mailController implements LoginSession{
 	@Autowired mailService mails;
 	
 	@RequestMapping(value="/customerSearchPw/{toMail}/{content}/", method=RequestMethod.GET)
-	String tempPwdSendMail(@PathVariable String toMail, @PathVariable String content, HttpServletResponse res)throws Exception{
+	String tempPwdSendMail(@PathVariable String toMail, @PathVariable String content, HttpServletResponse res, HttpServletRequest req)throws Exception{
 		String title = "임시비밀번호 발급 메일입니다.";
 		String pwd = content;
 		
@@ -27,8 +28,9 @@ public class mailController implements LoginSession{
 		
 		mails.tempPwdSendMail(toMail,title,msg);
 						// 받는사람 메일 / 제목 / 내용
-		
-		return "redirect:/customerLogin";
+		req.setAttribute("msg","등록된 메일주소로 임시비밀번호 발송했습니다.");
+		req.setAttribute("url","/am/customerLogin");
+		return "am/common/alert";
 	}
 	@RequestMapping(value="/reserState1/{toMail}/{mId}/", method=RequestMethod.GET)
 	String sendMail(@PathVariable String toMail, @PathVariable String mId, 

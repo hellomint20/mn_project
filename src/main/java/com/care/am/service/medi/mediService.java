@@ -8,6 +8,7 @@ import com.care.am.dto.mediDTO;
 
 public interface mediService {
 	public String mediRegister(mediDTO dto,String[] addr);
+	public boolean mediIdCheck(String id);
 	public int logChk(String id, String pw);
 	public void keepLogin(String mSessionId, String cId);
 	public Map<String, Object> getMedi(String id);

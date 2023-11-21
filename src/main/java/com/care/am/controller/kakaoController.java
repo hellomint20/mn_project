@@ -17,9 +17,9 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 @RestController
-public class kakaoContoller {
+public class kakaoController {
 
-	Logger logger = LoggerFactory.getLogger(kakaoContoller.class);
+	Logger logger = LoggerFactory.getLogger(kakaoController.class);
 
 	@Autowired
 	loginLogicService lls;
