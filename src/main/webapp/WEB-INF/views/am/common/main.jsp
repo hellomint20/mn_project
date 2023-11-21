@@ -33,9 +33,7 @@
 			<div id="rightMain">
 				<c:if test="${mediId ==null }">
 					<div id="rightMaincontainer">
-
 						<div id="rightMainContent">
-
 							<a href="mediSearch" style="text-decoration: none; color: black">
 								<div id="rightMainContentFirst">
 									<img src="/am/resources/img/main/dogMain.jpg" class="rounded"
@@ -92,8 +90,8 @@
 								<div id="rightMainMypageCotainer">
 									<div id="rightMainMypageContent">
 									<div id="mediContent">
-									<a href="reservationState?id=${mediId }">
-										<img src="/am/resources/img/main/reservList.png" width="270px;"
+									<a href="reservationStateWait?id=${mediId }">
+										<img src="/am/resources/img/main/reserList.png" width="270px;"
 											height="120px;" style="border: solid white;"></a></div>
 										<div id="mediMypage">
 										<a href="mediInfo?id=${mediId }">
@@ -105,7 +103,6 @@
 								</div>
 							</div>
 						</div>
-					</div>
 				</c:if>
 			</div>
 		</div>
