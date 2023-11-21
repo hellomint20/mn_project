@@ -58,7 +58,7 @@ public class customerController {
 		return "am/customer/customerRegister";
 	}
 
-	@PostMapping("/idCheck") //회원가입시 아이디 중복확인
+	@PostMapping("/idCheck") // 회원가입시 아이디 중복확인
 	@ResponseBody
 	public ResponseEntity<Boolean> idCheck(String id) {
 		System.out.println("ConfirmId.........");
@@ -182,7 +182,7 @@ public class customerController {
 
 	@PostMapping("customerSearchPw") // 비밀번호 찾기
 	public String customerSearchPw(@RequestParam String inputId, @RequestParam String inputName,
-			@RequestParam String inputTel, HttpServletResponse res) {
+			@RequestParam String inputTel, HttpServletResponse res, HttpServletRequest req) {
 		customerDTO dto = cs.customerSearchPw(inputId, inputName, inputTel);
 		String tempPwd = "";
 		if (dto != null) {
@@ -191,14 +191,18 @@ public class customerController {
 			if (result == 1) {
 				String toMail = dto.getcEmail();
 				String content = tempPwd;
+				
 				return "redirect:/customerSearchPw/" + toMail + "/" + content + "/";
+				}
+			} else{
+				req.setAttribute("msg", "정보가 일치하지 않습니다.");
+				req.setAttribute("url", "customerSearchIdPw");
+				return "am/common/alert";
 			}
-		}
-		return "redirect:/customerSearchIdPw";
-
+		return "redirect:/am/customerLogin";
 	}
 
-	@GetMapping("customerSearchPw") //보호자 비밀번호 찾기
+	@GetMapping("customerSearchPw") // 보호자 비밀번호 찾기
 	public String customerSearchPw() {
 		return "am/customer/customerSearchPw";
 	}
@@ -213,8 +217,7 @@ public class customerController {
 		Cookie[] cookies = req.getCookies();
 		String cId = session.getAttribute(LoginSession.cLOGIN).toString();
 		System.out.println(cookies);
-		
-		
+
 		// 가져온 쿠키를 기반으로 최근에 본 병원 목록 생성
 		List<String> recentlyViewed = new ArrayList<>();
 		List<Map<String, String>> getViewList = new ArrayList<Map<String, String>>();
@@ -229,8 +232,7 @@ public class customerController {
 			session.removeAttribute("recentlyViewList");
 			getViewList = cs.getRecentlyView(recentlyViewed, cId);
 			session.setAttribute("recentlyViewList", getViewList);
-			//model.addAttribute("recentlyViewList", getViewList);
-			
+			// model.addAttribute("recentlyViewList", getViewList);
 
 		} else {
 			System.out.println("null");
@@ -331,7 +333,7 @@ public class customerController {
 			@CookieValue(value = "recentlyCookie", required = false) Cookie cookie, HttpServletResponse res,
 			HttpServletRequest req) {
 		String cId = session.getAttribute(LoginSession.cLOGIN).toString();
-		int limitTime = 60 * 60 * 24; //24시간
+		int limitTime = 60 * 60 * 24; // 24시간
 		SimpleDateFormat date = new SimpleDateFormat("HHmmss"); // 현재시간 포맷해서 가져오기
 		String fd = date.format(new Date());
 		Cookie viewCookie = new Cookie("cookie" + fd, cId + "/" + mediId); // 쿠키명에 현재시간을 넣어서 생성
