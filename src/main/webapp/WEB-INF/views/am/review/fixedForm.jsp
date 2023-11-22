@@ -32,10 +32,10 @@
 				</div>
 				
 				<div class="title">
-					<textarea class="rvTitle" style="resize: none;" placeholder="제목를 작성해 주세요" name="rvTitle"></textarea>
+					<textarea class="rvTitle" style="resize: none;" placeholder="제목를 작성해 주세요" name="rvTitle" required="required"></textarea>
 				</div>
 				<div>
-					<textarea class="rvCont" style="resize: none;" placeholder="후기를 작성해 주세요" name="rvCont"></textarea>
+					<textarea class="rvCont" style="resize: none;" placeholder="후기를 작성해 주세요" name="rvCont" required="required"></textarea>
 				</div>
 			</div>
 			<div class="btn_a">

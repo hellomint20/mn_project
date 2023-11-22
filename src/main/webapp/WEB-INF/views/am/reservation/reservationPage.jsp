@@ -19,7 +19,7 @@
 		<div id="reservationSearchWindow">
 			<input class="reservationSearch" id="mediSearch" type="text" placeholder="예약할 병원 이름 검색"> 
 			<a id="mediSearch" onclick="filter()"> 
-				<img src="/am/resources/img/searchIcon.png"	width="25px" height="25px">
+				<img src="/am/resources/img/common/searchIcon.png"	width="25px" height="25px">
 			</a>
 		</div>
 	</div>
@@ -90,7 +90,7 @@
 						</tr>
 						<tr>
 							<td class="detailTd" colspan="2" id="mediPhoto">
-							<img src="/am/resources/img/common/default.jpg" width="230px;" height="200px;"></td>
+							<img src="/am/resources/img/common/mediDefault.jpg" width="230px;" height="200px;"></td>
 						</tr>
 						<tr>
 							<td class="detailTd">이름</td>

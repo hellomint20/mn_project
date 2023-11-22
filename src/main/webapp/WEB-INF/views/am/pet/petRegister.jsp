@@ -52,7 +52,7 @@
 					<br>
 			   	</div>
 				<div class="info-pic">
-					<img id="pPhoto" src="/am/resources/img/petDefault.jpg">
+					<img id="pPhoto" src="/am/resources/img/common/petDefault.jpg">
 					<input type="file" name="file" class="pic-btn" onchange="readURL(this)">
 				</div>
 			</div>
