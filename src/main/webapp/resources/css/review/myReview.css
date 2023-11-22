@@ -1,5 +1,5 @@
 * {
-    margin: 0;y
+    margin: 0;
     padding: 0;
 }
 
@@ -44,29 +44,40 @@
 }
 
 .r_date{
-	width: 34%
+	text-align: center;
+	width: 15%
 }
 .m_name{
-	width: 34%
+	text-align: center;
+	width: 15%
 }
-.rc_date{
-	width: 32%
+.rv_date{
+	text-align: center;
+	width: 15%
+}
+.titleAll{
+	display: flex;
+	border-bottom: 1px dotted;
+}
+.rv_title {
+	width: 10%;
+	text-align: center;
+    border: none;
+    resize: none;
 }
 
-.rvCont {
-    width: 800px;
-    height: 200px;
+div.view {
+	width: 85%;
+	text-align: left;
+}
+
+.rv_cont {
+    min-height: 200px;
     border: none;
     resize: none;
-    padding: 10px 20px; 
+    margin-left: 25px;
 }
-.rvTitle {
-    width: 800px;
-    height: 45px;
-    border: none;
-    resize: none;
-    padding: 10px 20px; 
-}
+
 .flex{
 	display: flex;
 	border-bottom: 1px solid gray;
@@ -105,6 +116,8 @@
 }
 
 .view{
+	text-align: center;
+	width: 20%;
 	font-size: 15px;
-	font-weight:initial
+	font-weight:initial;
 }

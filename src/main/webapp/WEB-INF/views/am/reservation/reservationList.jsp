@@ -11,6 +11,7 @@
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 <script type="text/javascript">
+
 	function selChange() {
 		var sel = document.getElementById('cntPerPage').value;
 		location.href="reservationList?id=${userId}&nowPage=${paging.nowPage}&cntPerPage="+sel;
@@ -53,7 +54,11 @@
 					if(result == '1'){
 						alert("예약 취소 및 예약금이 환불되었습니다.")
 						location.href='/am/reservationList?id='+cId;
-					}else{
+					}else if(result == '98'){
+						alert("환불 중 문제가 생겼어요!")
+						location.href='/am/reservationList?id='+cId;
+					}
+					else{
 						alert("문제 발생")
 						return false;
 					}

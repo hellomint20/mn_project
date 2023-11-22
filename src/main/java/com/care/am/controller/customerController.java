@@ -181,25 +181,24 @@ public class customerController {
 	}
 
 	@PostMapping("customerSearchPw") // 비밀번호 찾기
-	public String customerSearchPw(@RequestParam String inputId, @RequestParam String inputName,
-			@RequestParam String inputTel, HttpServletResponse res, HttpServletRequest req) {
-		customerDTO dto = cs.customerSearchPw(inputId, inputName, inputTel);
-		String tempPwd = "";
-		if (dto != null) {
+	public String customerSearchPw(@RequestParam String inputId, 
+								@RequestParam String inputName, 
+								@RequestParam String inputTel,HttpServletResponse res) {
+		
+		customerDTO dto = cs.customerSearchPw(inputId,inputName,inputTel);
+		String tempPwd ="";
+		if(dto !=null) {
 			tempPwd = cs.makeRandomPw();
-			int result = cs.customerPwChg(tempPwd, dto);
-			if (result == 1) {
+			int result = cs.customerPwChg(tempPwd,dto);
+			if(result ==1) {
 				String toMail = dto.getcEmail();
 				String content = tempPwd;
-				
-				return "redirect:/customerSearchPw/" + toMail + "/" + content + "/";
-				}
-			} else{
-				req.setAttribute("msg", "정보가 일치하지 않습니다.");
-				req.setAttribute("url", "customerSearchIdPw");
-				return "am/common/alert";
+				return "redirect:/customerSearchPw/"+toMail+"/"+content+"/";
 			}
-		return "redirect:/am/customerLogin";
+			System.out.println(tempPwd);
+		}
+		return "redirect:/customerSearchIdPw";
+		
 	}
 
 	@GetMapping("customerSearchPw") // 보호자 비밀번호 찾기

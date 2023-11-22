@@ -28,28 +28,32 @@ public class paymentServiceImpl implements paymentService{
 	@Autowired paymentMapper pm;
 	@Autowired reservationMapper rm;
 	
-	public int payResRegister(Map<String, Object> map) { // ë³‘ì› ì˜ˆì•½
-		String year = map.get("rDate").toString().replace("ë…„", "-");
-		String month = year.replace("ì›”", "-");
-		String day = month.replace("ì¼", "");
+	public int payResRegister(Map<String, Object> map) { // º´¿ø ¿¹¾à
+		String year = map.get("rDate").toString().replace("³â ", "-");
+		String month = year.replace("¿ù ", "-");
+		String day = month.replace("ÀÏ", "");
 		String time = map.get("rTime").toString().replace(":", "-");
 
 		Map<String, Object> countMap = new HashMap<String, Object>();
 		countMap.put("mId", map.get("mId"));
 		countMap.put("rDate", day);
 		countMap.put("rTime", time);
+		
+		System.out.println(day);
 
 		int result = 0;
 		Integer.parseInt(String.valueOf(rm.peopleCount(countMap).get("count(*)")));
 		
-		if(Integer.parseInt(String.valueOf(rm.peopleCount(countMap).get("count(*)"))) >= 3) { //ì˜ˆì•½ ì¸ì› ë‹¤ ì°¼ì„ ê²½ìš°
+		if(Integer.parseInt(String.valueOf(rm.peopleCount(countMap).get("count(*)"))) >= 3) { //¿¹¾à ÀÎ¿ø ´Ù Ã¡À» °æ¿ì
 			result = 99;
 		} else {
 			map.put("rDate", day);
 			map.put("rTime", time);
 			try {
-				pm.resRegister(map);
-				result = pm.payRegister(map.get("rNum").toString(), map.get("impUid").toString());
+				result = pm.resRegister(map);
+				if(result == 1) {
+					result = pm.payRegister(map.get("rNum").toString(), map.get("impUid").toString());
+				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -64,14 +68,14 @@ public class paymentServiceImpl implements paymentService{
     	String cancle = "";
     	String impUid = pm.getImpUid(rNum);
     	try {
-    		cancle = cancleBuy(impUid, pay); //ê²°ì œ ì·¨ì†Œ
+    		cancle = cancleBuy(impUid, pay); //°áÁ¦ Ãë¼Ò
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
     	return cancle;
     }
     
-    //ê²°ì œ ì·¨ì†Œ
+    //°áÁ¦ Ãë¼Ò
     public String cancleBuy(String impUid, String pay) {
     	String result = "";
     	try {
@@ -90,14 +94,14 @@ public class paymentServiceImpl implements paymentService{
     		RestTemplate restTemplate = new RestTemplate();
     		
     		cancleBuyDTO cancle = restTemplate.postForObject("https://api.iamport.kr/payments/cancel", entity, cancleBuyDTO.class);
-    		result = cancle.getCode(); //0ì¼ë•Œ ì„±ê³µ
+    		result = cancle.getCode(); //0ÀÏ¶§ ¼º°ø
     	} catch (Exception e) {
 			e.printStackTrace();
 		}
     	return result;
     }
     
-	public String getToken() throws Exception { //token ê°€ì ¸ì˜¤ê¸°
+	public String getToken() throws Exception { //token °¡Á®¿À±â
 
 		HttpsURLConnection conn = null;
 		URL url = new URL("https://api.iamport.kr/users/getToken");

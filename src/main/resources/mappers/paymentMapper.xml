@@ -21,5 +21,7 @@
 	<select id="getImpUid" resultType="string">
 		select pay_id from payment where r_num=#{rNum}
 	</select>
+	
+	
 
 </mapper>

@@ -149,7 +149,15 @@ public class reservationController {
 		model.addAttribute("APaging", rs.AListPaging(page, id));
 		return "am/reservation/reservationStateA";
 	}
-	
+
+	@PostMapping("reservationStateA")
+	public String reservationStateA(@RequestParam int r_fix, @RequestParam String id, @RequestParam int r_num,
+			@RequestParam int page) {
+		rs.fix(id, r_fix, r_num);
+
+		return "redirect:/reservationStateA?id=" + id + "&page=" + page;
+	}
+
 	@GetMapping("reservationStateC")
 	public String reservationStateC(@RequestParam String id, Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
 		model.addAttribute("c", rs.CList(id, page));
@@ -157,7 +165,7 @@ public class reservationController {
 		
 		return "am/reservation/reservationStateC";
 	}
-
+	
 	@GetMapping("reserState1") 
 	public String reserState1(@RequestParam int num, @RequestParam String email, @RequestParam String mId) {
 		int result = rs.reserState(num, 1);

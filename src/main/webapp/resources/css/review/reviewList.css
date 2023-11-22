@@ -89,3 +89,14 @@ a.pageLink{
 	text-decoration: none;
 	color: black;
 }
+
+.page{
+	display: block;
+	text-align: center;
+	margin-top: 20px;
+	
+}
+.page > a{
+	text-decoration: none;
+	color: black;
+}

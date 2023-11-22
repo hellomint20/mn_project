@@ -32,6 +32,8 @@
 
 .board_list > div.top {
     border-bottom: 1px solid #999;
+    display: flex;
+    padding: 10px 0;
 }
 
 .board_list > div > div {
@@ -57,7 +59,7 @@
     resize: none;
     padding: 10px 20px; 
 }
-.title{
+.rv{
 	width: 800px;
 	border-bottom: 1px solid gray;
 }

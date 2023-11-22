@@ -45,7 +45,7 @@
 		        <li>
 		        	<a href="/am/reviewList?id=${userId }">
 		        		<span class="icon"></span>
-		        		<span class="title">게시글 관리</span>
+		        		<span class="title">내 글 관리</span>
 		        	</a>
 		        </li>
 		        <li>
@@ -82,7 +82,7 @@
 		        <li>
 		        	<a href="/am/reviewList?id=${userId }">
 		        		<span class="sns_icon"></span>
-		        		<span class="sns_title">게시글 관리</span>
+		        		<span class="sns_title">내 글 관리</span>
 		        	</a>
 		        </li>
 		    </ul>

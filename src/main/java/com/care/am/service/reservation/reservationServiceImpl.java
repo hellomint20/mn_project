@@ -355,4 +355,5 @@ public class reservationServiceImpl implements reservationService{
 		info = rm.getResInfo(num);		
 		return info;
 	}
+
 }
