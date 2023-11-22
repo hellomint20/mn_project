@@ -72,14 +72,16 @@ public class petServiceImpl implements petService {
 	@Override
 	public String petModify(petDTO dto, MultipartFile file) {
 		String dbImg = pm.petInfo(dto.getpNum()).getpPhoto();	// 기존에 있던 이미지
-		pfs.deleteImage(dbImg);
+		
 		String originName = file.getOriginalFilename();		// 새로 들어온 이미지
 		
 		if(originName == "") {
 			dto.setpPhoto(dbImg);
 		}else {
 			dto.setpPhoto(pfs.saveFile(file));
-			pfs.deleteImage(dbImg);
+			if(!dbImg.equals("petDefault.jpg")) {
+				pfs.deleteImage(dbImg);
+			}
 		}
 		
 		int result = pm.petModify(dto);
