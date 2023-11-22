@@ -34,9 +34,8 @@ public class petServiceImpl implements petService {
 		
 		if(originName != "") {
 			dto.setpPhoto(pfs.saveFile(file));
-		}else {
-			dto.setpPhoto("petDefault.jpg");
 		}
+		
 		int result = pm.petRegister(dto);
 		
 		if(result==1) {
@@ -60,7 +59,9 @@ public class petServiceImpl implements petService {
 		result = pm.petDel(num);
 		
 		if (result == 1) {
-			pfs.deleteImage(dbImg);
+			if(!dbImg.equals("petDefault.jpg")) {
+	            pfs.deleteImage(dbImg);
+	         }
 			return GetMessage.getMessage("삭제 성공", "petList?id="+id);
 		}
 		else {
@@ -77,9 +78,7 @@ public class petServiceImpl implements petService {
 			dto.setpPhoto(dbImg);
 		}else {
 			dto.setpPhoto(pfs.saveFile(file));
-			if(!dbImg.equals("petDefault.jpg")) {
-	            pfs.deleteImage(dbImg);
-	         }
+	        pfs.deleteImage(dbImg);
 		}
 		
 		int result = pm.petModify(dto);

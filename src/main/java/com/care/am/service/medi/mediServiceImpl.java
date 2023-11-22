@@ -138,10 +138,7 @@ public class mediServiceImpl implements mediService{
 	public String mediPwdChg(mediDTO dto,String pw, String newPw) {
 		
 		dto = mm.getMedi(dto.getmId());
-		
-		System.out.println("pw: "+pw);
-		System.out.println("getpw : "+dto.getmPw());
-		
+
 		int result = 0;
 		if (encoder.matches(pw, dto.getmPw()) || pw.equals(dto.getmPw())) {
 			dto.setmPw(encoder.encode(newPw));
@@ -190,6 +187,9 @@ public class mediServiceImpl implements mediService{
 		dto = mm.getMedi(dto.getmId());
 		 int result =0 ;
 			if (encoder.matches(pw, dto.getmPw()) || pw.equals(dto.getmPw())) {
+				if(!dto.getmPhoto().equals("mediDefault.jpg")) {
+			         mfs.deleteImage(dto.getmPhoto());
+			      }
 				result =  mm.mediDelete(dto);
 				if(result == 1) {
 					return GetMessage.getMessage("탈퇴가 완료되었습니다", "/am" );
@@ -197,5 +197,4 @@ public class mediServiceImpl implements mediService{
 			}
 		return GetMessage.getMessage("비밀번호가 틀렸습니다", "/am/mediPwdChk?id=" + dto.getmId());
 	}
-		
 }
