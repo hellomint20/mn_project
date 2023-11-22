@@ -105,7 +105,7 @@ public class customerController {
 		customerDTO dto = cs.naverLogin(apiResult);
 		System.out.println("디티오겟아이디:" + dto.getcId());
 		session.setAttribute(LoginSession.cLOGIN, dto.getcId());
-		session.setAttribute(LoginSession.sLOGIN, dto.getcPw());
+		session.setAttribute(LoginSession.sLOGIN, dto.getcId());
 		return "am/customer/naverLoginSuccess";
 
 	}
