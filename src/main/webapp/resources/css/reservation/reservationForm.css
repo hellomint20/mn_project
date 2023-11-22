@@ -169,7 +169,7 @@ td {
 	margin-top: 30px;
 	padding-top: 20px;
 	display: flex;
-	height: 300px;
+	height: 260px;
 	width: 350px;
 	font-size: 20px;
 	line-height: 40px;
@@ -184,10 +184,12 @@ td {
 
 .info-content {
 	width: auto;
+	margin-left: 10px;
+	text-align: center;
 }
 
 .popup-bottom-box {
-	margin: 20px 0 0 190px;
+	margin: 20px 0 0 215px;
 }
 
 #reservationBtn {
@@ -211,4 +213,9 @@ td {
 #btn-close:hover {
 	background: linear-gradient(0deg, #73b4db 0%, #73b4db 100%);
 	opacity: 0.8;
+}
+.mes{
+	margin-top: 20px;
+	color: red;
+	font-size: 12px;
 }

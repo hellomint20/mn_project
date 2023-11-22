@@ -23,15 +23,16 @@
 	<div>
 		<div id="imgHeader">
 			<img src="/am/resources/img/cat.jpg" width="100%" height="350px">
-
+				<span id="headerText"><a href="/am/boardList" id="text">게시판</a> | 
 			<c:if test="${userId == null }">
-				<span id="headerText"><a href="/am/customerInfo" id="text">마이페이지</a>
-					| <a href="/am/customerLogin" id="text">로그인</a></span>
+				<a href="/am/customerInfo" id="text">마이페이지</a>
+					| <a href="/am/customerLogin" id="text">로그인</a>
 			</c:if>
 			<c:if test="${userId != null }">
-				<span id="headerText"><a href="/am/customerInfo?id=${userId}"
-					id="text">마이페이지</a> | <a href="/am/logout" id="text">로그아웃</a></span>
+				<a href="/am/customerInfo?id=${userId}"
+					id="text">마이페이지</a> | <a href="/am/logout" id="text">로그아웃</a>
 			</c:if>
+				</span>
 
 		</div>
 		<div id="headerLogo">

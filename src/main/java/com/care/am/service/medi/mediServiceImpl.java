@@ -131,7 +131,6 @@ public class mediServiceImpl implements mediService{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
 		}
 		return GetMessage.getMessage("비밀번호가 틀렸습니다.", "/am/mediPwdChk?id="+id);
 	}
@@ -155,6 +154,7 @@ public class mediServiceImpl implements mediService{
 	}
 	
 	public String mediModify(mediDTO dto, MultipartFile file, String[] addr) {
+		
 		// 주소
 		String ad ="";
 		for(String a:addr) {
@@ -163,12 +163,13 @@ public class mediServiceImpl implements mediService{
 		dto.setmAddr(ad); //합쳐진 주소 dto에 넣어줘
 		
 		//file 
-		String dbImg = mm.getMedi(dto.getmId()).getmPhoto(); 
-		
-		String originName = file.getOriginalFilename();		 
+		String dbImg = mm.getMedi(dto.getmId()).getmPhoto(); //디비에 저장되어있는 사진 이름
+		mfs.deleteImage(dbImg);
+		String originName = file.getOriginalFilename();	
 		
 		if(originName=="") { //파일 선택이 없다면  //
 			dto.setmPhoto(dbImg); //디비에 있던 원래 파일 저장
+			
 		}else { // 파일 선택이 있다면
 			dto.setmPhoto(mfs.saveFile(file)); //새로운 파일 저장
 		}

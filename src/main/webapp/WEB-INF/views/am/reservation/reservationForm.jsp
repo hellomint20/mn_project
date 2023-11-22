@@ -120,7 +120,6 @@
 		// 오늘 날짜 클릭시 지난 시간 disabled 처리
 		var nowTime = new Date();
 		let time = nowTime.getHours()+1 +":"+nowTime.getMinutes();
-		console.log(time);
 		for(var i=1; i<timeList.length; i+=7){
 			if(timeList.slice(i, i+5) <= time){
 				$("label[for='"+timeList.slice(i, i+5)+"']").css('background-color','#e2e5e8');
@@ -223,7 +222,6 @@
 			data : JSON.stringify(form),
 			contentType : "application/json; charset=utf-8",
 			success : (size) => {
-				console.log("성공");
 				if(size == "1"){
 					alert("이미 예약 하신 시간입니다");
 					location.reload();
@@ -232,7 +230,7 @@
 				}
 			},
 			error : () => {
-				console.log("문제 발생");
+				alert("문제 발생");
 			}
 		}) 	
 	}

@@ -1,13 +1,7 @@
 package com.care.am.controller;
 
-import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
-import java.io.PrintWriter;
-
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,9 +11,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.care.am.common.LoginSession;
+import com.care.am.dto.customerDTO;
 import com.care.am.page.customerPagination;
 import com.care.am.page.reservationPagination;
 import com.care.am.service.customer.customerService;
+import com.care.am.service.payment.paymentService;
 import com.care.am.service.reservation.reservationService;
 
 @Controller
@@ -27,18 +23,23 @@ public class reservationController {
 
 	@Autowired 
 	private reservationService rs;
+	
+	@Autowired
+	private paymentService as;
+	
+	@Autowired
+	private customerService cs;
 
-//병원 예약 관련(손님 기준)
-	@GetMapping("reservation") //병원 예약 기본 페이지
+	@GetMapping("reservation")
 	public String reservation(Model model, reservationPagination pag
 			, @RequestParam(value="nowPage", required=false)String nowPage
 			, @RequestParam(value="cntPerPage", required=false)String cntPerPage)  {
 		
-		int mediCnt = rs.mediList().size();  // 전체 병원 갯수
+		int mediCnt = rs.mediList().size();
      
     	if (nowPage == null && cntPerPage == null) { 
     		nowPage = "1";
-    		cntPerPage = "10";  // 한 페이지에 노출되는 글 갯수
+    		cntPerPage = "10";
     	} else if (nowPage == null) {
     		nowPage = "1";
     	} else if (cntPerPage == null) { 
@@ -57,11 +58,11 @@ public class reservationController {
 	public String reservationSearch(@RequestParam String mName, Model model, reservationPagination pag,
 									@RequestParam(value = "nowPage", required = false)String nowPage,
 									@RequestParam(value = "cntPerPage", required = false)String cntPerPage) {
-		int mediCnt = rs.mediSearch(mName); //검색한 이름 리스트 갯수 가져오기
+		int mediCnt = rs.mediSearch(mName);
 		
 		if(nowPage == null && cntPerPage == null) {
 			nowPage = "1";
-			cntPerPage = "10"; //한 페이지에 노출되는 갯수
+			cntPerPage = "10";
 		}else if(nowPage == null) {
 			nowPage = "1";
 		}else if(cntPerPage == null) {
@@ -77,46 +78,47 @@ public class reservationController {
 	}
 	
 	@ResponseBody
-	@PostMapping("reservation/mediInfo") //병원 상세정보 팝업
+	@PostMapping("reservation/mediInfo")
 	public Map<String, Object> mediInfo(@RequestBody String mediId){
 		return rs.mediInfo(mediId);
 	}
 	
-	
-
-	@PostMapping("reservationForm/page") //병원 예약 페이지
+	@PostMapping("reservationForm/page")
 	public String reservationFormPage(@RequestParam String mediId, Model model, HttpSession session ) {
 		
-		//선택된 병원
 		model.addAttribute("mediInfo", rs.mediInfo(mediId));
 
-		// 영업시간 가져오기 
 		model.addAttribute("timeList", rs.mediTime(mediId));
 		
-		// 로그인한 사람 동물 리스트 가져오기
 		model.addAttribute("p_list", rs.petList(session.getAttribute(LoginSession.cLOGIN).toString()));
 		
 		return "am/reservation/reservationForm";
 	}
 
-	@GetMapping("reservationPopup")//예약완료후팝업창
+	@GetMapping("reservationPopup")
 	public String reservationPopup(Model model, HttpSession session) {
+	
+		customerDTO dto = cs.getCustomerInfo(session.getAttribute(LoginSession.cLOGIN).toString());
+		String email1 = dto.getcEmail().split("@")[0];
+		String email2 = dto.getcEmail().split("@")[1];
 		//로그인한 사람 정보
-		model.addAttribute("cId", session.getAttribute(LoginSession.cLOGIN));
+		model.addAttribute("customer", dto);
+		model.addAttribute("email1", email1);
+		model.addAttribute("email2", email2);
 		
 		return "am/reservation/reservationPopup";
 	}
-
-	@GetMapping("reservationList") //손님 예약 리스트
+	
+	@GetMapping("reservationList")
 	public String reservationList(@RequestParam String id, Model model, customerPagination pag
 			, @RequestParam(value="nowPage", required=false)String nowPage
 			, @RequestParam(value="cntPerPage", required=false)String cntPerPage) {
 				
-		int customerCnt = rs.reservationList(id).size();  // 전체 병원 갯수
+		int customerCnt = rs.reservationList(id).size(); 
 			     
     	if (nowPage == null && cntPerPage == null) { 
     		nowPage = "1";
-    		cntPerPage = "4";  // 한 페이지에 노출되는 글 갯수
+    		cntPerPage = "4"; 
     	} else if (nowPage == null) {
     		nowPage = "1";
     	} else if (cntPerPage == null) { 
@@ -127,36 +129,34 @@ public class reservationController {
     	
     	model.addAttribute("paging", pag);
     	model.addAttribute("viewAll", rs.customerResList(id, pag));
+    	System.out.println(rs.customerResList(id, pag));
 		
 		return "am/reservation/reservationList";
 	}
 	
-	//병원 예약상태 관련(병원 기준 - 새로운 접수)
-	@GetMapping("reservationStateWait") //병원 예약상태
+	@GetMapping("reservationStateWait")
 	public String reservationState(@RequestParam String id, Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
 		
-		model.addAttribute("wait", rs.waitList(id, page)); //새로운접수
+		model.addAttribute("wait", rs.waitList(id, page));
 		model.addAttribute("waitPaging", rs.waitListPaging(page, id));
 		
 		return "am/reservation/reservationStateWait";
 	}
 	
-	//병원 예약상태 관련(병원기준 - 승인취소)
-	@GetMapping("reservationStateAC")
-	public String reservationStateAC(@RequestParam String id, Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
-		model.addAttribute("ac", rs.ACList(id, page)); //승인취소
-		model.addAttribute("ACPaging", rs.ACListPaging(page, id));
-		
-		return "am/reservation/reservationStateAC";
+	@GetMapping("reservationStateA")
+	public String reservationStateA(@RequestParam String id, Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
+		model.addAttribute("a", rs.AList(id, page));
+		model.addAttribute("APaging", rs.AListPaging(page, id));
+		return "am/reservation/reservationStateA";
 	}
 	
-	@GetMapping("reservationCancel")  //병원예약취소
-	public void reservationCancel(@RequestParam String id, @RequestParam int num,
-								HttpServletResponse res) throws Exception {
-		String msg = rs.reserCancel(id, num);
-		res.setContentType("text/html; charset=utf-8");
-		PrintWriter out = res.getWriter();
-		out.print(msg);
+	
+	@GetMapping("reservationStateC")
+	public String reservationStateC(@RequestParam String id, Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
+		model.addAttribute("c", rs.CList(id, page));
+		model.addAttribute("CPaging", rs.CListPaging(page, id));
+		
+		return "am/reservation/reservationStateC";
 	}
 	
 	@GetMapping("reserState1") 
@@ -170,26 +170,32 @@ public class reservationController {
 	}
 	
 	@PostMapping("reserState2")
-    public String reserState2(@RequestParam String email,@RequestParam int num,
-        @RequestParam String mId, @RequestParam String cont) {
-		int result = rs.reserState(num, 0);
-		if(result == 1) {
-			String toMail = email;
-			return "redirect:/reserState2/"+toMail+"/"+cont+"/"+mId+"/";
+	public String reserState2(@RequestParam String email, @RequestParam int num, @RequestParam String mId,
+			@RequestParam String cont) {
+		String cancle = "";
+		String payment = "5000";
+		// 결제 취소
+		cancle = as.payCancle(Integer.toString(num), payment);
+		if ("0".equals(cancle)) {
+			int result = 0;
+			result = rs.reserState(num, 0);
+			if (result == 1) {
+				String toMail = email;
+				return "redirect:/reserState2/" + toMail + "/" + cont + "/" + mId + "/"+ payment + "/";
+			}
 		}
 		return "redirect:/reservationState";
 	}
 
 	@GetMapping("reservationApplyPopup") 
 	public String reservationApplyPopup(@RequestParam int rNum, Model model) {
-		System.out.println(rNum);
 		model.addAttribute("info", rs.reservationInfo(rNum));
 		model.addAttribute("num", rNum);
 		return "am/reservation/reservationApplyPopup";
 	}
 	
 	@ResponseBody
-	@PostMapping("reservationCount") //시간별 예약자 수 확인
+	@PostMapping("reservationCount")
 	public Map<String, String> reservationCount(@RequestBody Map<String, Object> map) {
 		return rs.reservationCount(map);
 	}
@@ -202,9 +208,7 @@ public class reservationController {
 		if(rs.reservationCheck(map) != null) {
 			size = "1";
 		} 
-		
 		map.put("cId", session.getAttribute(LoginSession.cLOGIN).toString());
-		
 		return size;
 	}
 }
