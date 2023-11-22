@@ -164,7 +164,9 @@ public class mediServiceImpl implements mediService{
 		
 		//file 
 		String dbImg = mm.getMedi(dto.getmId()).getmPhoto(); //디비에 저장되어있는 사진 이름
-		mfs.deleteImage(dbImg);
+		if(!dbImg.equals("mediDefault.jpg")) {
+	         mfs.deleteImage(dbImg);
+	      }
 		String originName = file.getOriginalFilename();	
 		
 		if(originName=="") { //파일 선택이 없다면  //
@@ -176,7 +178,6 @@ public class mediServiceImpl implements mediService{
 		
 		//text정보
 		int result = mm.mediModify(dto);
-		String msg ="", url="";
 		if(result==1) {
 			mfs.deleteImage(originName);
 			return GetMessage.getMessage("정보가 수정되었습니다!", "/am/mediInfo?id=" + dto.getmId());

@@ -30,5 +30,4 @@ public class petFileServiceImpl implements petFileService{
 		File file = new File(IMAGE_REPO + "/" + fileName);
 		file.delete();
 	}
-	
 }

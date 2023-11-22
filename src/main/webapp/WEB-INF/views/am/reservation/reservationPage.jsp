@@ -90,7 +90,7 @@
 						</tr>
 						<tr>
 							<td class="detailTd" colspan="2" id="mediPhoto">
-							<img src="/am/resources/img/common/default.jpg" width="230px;" height="200px;"></td>
+							<img src="/am/resources/img/common/mediDefault.jpg" width="230px;" height="200px;"></td>
 						</tr>
 						<tr>
 							<td class="detailTd">이름</td>

@@ -52,7 +52,7 @@
 								<img src="/am/resources/img/${list.pPhoto }" width="250px" height="250px">
 							</c:when>
 							<c:otherwise>
-								<img src="/am/resources/img/petDefault.jpg" width="250px" height="250px">
+								<img src="/am/resources/img/common/petDefault.jpg" width="250px" height="250px">
 							</c:otherwise>
 						</c:choose>
 					</div>

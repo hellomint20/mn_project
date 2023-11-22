@@ -176,8 +176,6 @@ public class reservationServiceImpl implements reservationService{
 		
 		try {
 			for (int i = 0; i < waitList.size(); i++) {
-				Map<String, String> map = new HashMap<String, String>();
-
 				waitList.get(i).put("year", waitList.get(i).get("r_date").toString().split("-")[0]);
 				waitList.get(i).put("month", waitList.get(i).get("r_date").toString().split("-")[1]);
 				waitList.get(i).put("day", waitList.get(i).get("r_date").toString().split("-")[2]);
@@ -232,8 +230,6 @@ public class reservationServiceImpl implements reservationService{
 		
 		try {
 			for (int i = 0; i < AList.size(); i++) {
-				Map<String, String> map = new HashMap<String, String>();
-
 				AList.get(i).put("year", AList.get(i).get("r_date").toString().split("-")[0]);
 				AList.get(i).put("month", AList.get(i).get("r_date").toString().split("-")[1]);
 				AList.get(i).put("day", AList.get(i).get("r_date").toString().split("-")[2]);
@@ -289,8 +285,6 @@ public class reservationServiceImpl implements reservationService{
 			
 			try {
 				for (int i = 0; i < CList.size(); i++) {
-					Map<String, String> map = new HashMap<String, String>();
-
 					CList.get(i).put("year", CList.get(i).get("r_date").toString().split("-")[0]);
 					CList.get(i).put("month", CList.get(i).get("r_date").toString().split("-")[1]);
 					CList.get(i).put("day", CList.get(i).get("r_date").toString().split("-")[2]);
@@ -346,7 +340,7 @@ public class reservationServiceImpl implements reservationService{
 	}
 	
 	public void fix(String mId, int r_fix, int r_num) {
-		int result = rm.fix(mId, r_fix, r_num);
+		rm.fix(mId, r_fix, r_num);
 	}
 
 	@Override
