@@ -166,7 +166,7 @@ public class mediServiceImpl implements mediService{
 	      }
 		String originName = file.getOriginalFilename();	
 		
-		if(originName=="") { //파일 선택이 없다면  //
+		if(originName=="") { //파일 선택이 없다면
 			dto.setmPhoto(dbImg); //디비에 있던 원래 파일 저장
 			
 		}else { // 파일 선택이 있다면

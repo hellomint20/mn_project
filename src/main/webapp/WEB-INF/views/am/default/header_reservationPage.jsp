@@ -22,7 +22,7 @@
 <body>
 	<div>
 		<div id="imgHeader">
-			<img src="/am/resources/img/cat.jpg" width="100%" height="350px">
+			<img src="/am/resources/img/common/cat.jpg" width="100%" height="350px">
 				<span id="headerText"><a href="/am/boardList" id="text">게시판</a> | 
 			<c:if test="${userId == null }">
 				<a href="/am/customerInfo" id="text">마이페이지</a>

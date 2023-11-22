@@ -72,7 +72,7 @@
 				<label for="inputName" class="col-sm-3 col-form-label">병원명</label>
 				<div class="col-sm-7">
 					<input  type="text" name="mName" class="form-control" id="inputName"
-						placeholder="input Name">
+						placeholder="input Name"  autofocus>
 				</div>
 			</div>
 			<div id="registerFormContent" class="form-group row">
@@ -110,7 +110,7 @@
 				<label for="inputId" class="col-sm-3 col-form-label">아이디</label>
 				<div class="col-sm-7">
 					<input type="text" name="mId" class="form-control" id="id"
-						placeholder="inputId" autofocus>
+						placeholder="inputId">
 					<label id="label1" style="text-align: left"></label>
 				</div>
 			</div>

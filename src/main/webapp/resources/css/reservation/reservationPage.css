@@ -9,7 +9,8 @@
 	margin-top: 70px;
   	width: 650px;
   	height: 50px;
-  	padding-top: 7px;
+  	/*padding-top: 7px;*/
+  	display: flex;
 }
 .reservationSearch{
 	border: none;
@@ -127,7 +128,10 @@ td.detailnameTd{
 	text-align: center;
 	padding-bottom: 50px;
 }
-
+#mediSearch{
+	background-color: white;
+	border: none;
+}
 
 
 

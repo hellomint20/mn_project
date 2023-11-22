@@ -25,7 +25,7 @@
 	<div class="all">
 		<div class="all_title">
 			<strong>펫 관리</strong>
-			<p>반려동물의 정보를 관리해주세요</p>
+			<p>이름 클릭 시 정보 수정할 수 있습니다</p>
 		</div>
 
 		<%-- 등록된 펫 있는경우 --%>

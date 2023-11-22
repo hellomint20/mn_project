@@ -99,11 +99,7 @@ public class reservationController {
 	public String reservationPopup(Model model, HttpSession session) {
 	
 		customerDTO dto = cs.getCustomerInfo(session.getAttribute(LoginSession.cLOGIN).toString());
-		String email1 = dto.getcEmail().split("@")[0];
-		String email2 = dto.getcEmail().split("@")[1];
 		model.addAttribute("customer", dto);
-		model.addAttribute("email1", email1);
-		model.addAttribute("email2", email2);
 		
 		return "am/reservation/reservationPopup";
 	}
@@ -150,10 +146,9 @@ public class reservationController {
 	}
 
 	@PostMapping("reservationStateA")
-	public String reservationStateA(@RequestParam int r_fix, @RequestParam String id, @RequestParam int r_num, @RequestParam int page) {
-		rs.fix(id, r_fix, r_num);
-		
-		return "redirect:/reservationStateA?id="+id+"&page="+page;
+	   public String reservationStateA(@RequestParam int r_fix, @RequestParam String id, @RequestParam int r_num, @RequestParam int page) {
+	      rs.fix(id, r_fix, r_num);
+	      return "redirect:/reservationStateA?id="+id+"&page="+page;
 	}
 	
 	@GetMapping("reservationStateC")
