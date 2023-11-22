@@ -3,5 +3,56 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.care.am.mapper.mediMapper">
+	<resultMap type="com.care.am.dto.mediDTO" id="medi">
+		<id property="mName" column="m_name" />
+		<result property="mAddr" column="m_addr" />
+		<result property="mTel" column="m_tel" />
+		<result property="mId" column="m_id" />
+		<result property="mPw" column="m_pw" />
+		<result property="mPhoto" column="m_photo" />
+		<result property="openTime" column="open_time" />
+		<result property="lunchStartTime" column="lunch_start_time" />
+		<result property="lunchEndTime" column="lunch_end_time" />
+		<result property="closeTime" column="close_time" />
+		<result property="mSession" column="m_session" />
+	</resultMap>
 
+	<select id="getMedi" resultMap="medi">
+		select * from medi where m_id=#{mId}
+	</select>
+	
+	<select id="mediIdCheck" resultType="boolean">
+		select count(*) from medi where m_id= #{id}
+	</select>
+	<update id="keepLogin">
+		update medi set m_session=#{mSession} where m_id=#{mId}
+	</update>
+
+   <select id="getMediSession" resultMap="medi">
+      select * from medi where m_session = #{mSession}
+   </select>
+   
+   <update id="mediModify">
+   		update medi set m_name=#{mName}, m_addr=#{mAddr}, m_tel=#{mTel}, m_photo=#{mPhoto},open_time=#{openTime}, 
+   		close_time=#{closeTime}, lunch_start_time=#{lunchStartTime}, lunch_end_time=#{lunchEndTime} where m_id=#{mId}
+   </update>
+	
+	<insert id="mediRegister">
+		insert into medi(m_name,m_addr,m_tel,m_id,m_pw) 
+				values (#{mName},#{mAddr},#{mTel},#{mId},#{mPw})
+	</insert>
+
+	<select id="mediSearchId" resultMap="medi">
+		select * from medi where m_name=#{inputName} and m_tel=#{inputTel}
+	</select>
+	<update id="mediPwdChg">
+		update medi set m_pw = #{mPw} where m_id = #{mId}
+	</update>
+	<delete id="mediDelete">
+    	delete from medi where m_id=#{mId};
+    </delete>
+    
+    <select id="getPhoto" resultMap="medi">
+    	select m_photo from medi where m_id=#{mId}
+    </select>
 </mapper>

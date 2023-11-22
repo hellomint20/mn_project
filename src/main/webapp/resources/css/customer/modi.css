@@ -1,6 +1,6 @@
 .all {
 	width: 70%;
-	margin : 100px 350px;
+	margin : 100px 400px;
 }
 
 .all_title {
@@ -11,41 +11,66 @@ p {
 	font-size: 1rem;
 }
 
-
 .info {
-	font-size: 1.2rem;
+	text-align : center;
 	display: flex;
-	width: 100%;
-	padding: 20px 0;
+	padding: 30px 130px;
 	border-top: 2px solid #000;
-   	width: 530px;
+   	width: 700px;
 }
 
 .info .info-title{
-	display: flex;
+	margin-left: 80px;
 	display: inline-block;
-	margin: auto;
-	width: 200px;
+	font-size: 1.2rem;
 	line-height: 50px;
+	width: 90px;
+	text-align: left;
 }
-
 #t_b {
 	height: 35px;
+	width: 250px;
+}
+.t_b {
+	height: 35px;
+	width: 250px;
+}
+.t_b_post{
+	height: 35px;
+	width: 170px;
+}
+.rb {
+	word-spacing: 50px;
 }
 
+
 .info .info-content{
-	display: flex;
+	margin-left: 80px;
 	display: inline-block;
-	margin: auto;
-	width: 200px;
+	font-size: 1rem;
 	line-height: 50px;
+	width: 300px;
 }
+
+
+.info-pic {
+	display: inline-block;
+	width: 180px;
+	height: 180px;
+	margin-left: 35px;
+}
+
+.pic-btn {
+	margin-top: 15px;
+}
+
 
 
 .btn_a {
 	margin-top: 20px;
-	margin-left: 120px;
+	margin-left: 180px;
 }
+
 .btn_a .cancel{
 	margin-right: 50px;
 	border: none;
@@ -84,4 +109,16 @@ p {
 .btn_a .completed:hover {
    	background: linear-gradient(0deg, #73b4db 0%, #73b4db 100%);
 	opacity: 0.8;
+}
+.btn btn-dark{
+	background-color: #EAEAEA;
+}
+#photo{
+	width: 250px;
+	height: 250px;
+	border : 1px solid black;
+}
+.t_b_time{
+	height: 35px;
+	width: 114px;
 }

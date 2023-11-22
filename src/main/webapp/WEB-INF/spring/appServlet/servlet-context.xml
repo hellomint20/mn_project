@@ -7,23 +7,66 @@
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
-	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
-	
+	<!-- DispatcherServlet Context: defines this servlet's request-processing 
+		infrastructure -->
+
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
 
-	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
+		up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 	<resources mapping="/css/**" location="/resources/css/" />
 
-	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
-	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
+		in the /WEB-INF/views directory -->
+	<beans:bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.care.am" />
+
+	<context:component-scan	base-package="com.care.am" />
+	<beans:bean id="naverLoginBO" class="com.care.am.naver.NaverLoginBO"></beans:bean>
+
 	
+	<beans:bean id="autoLogin" class="com.care.am.common.AutoLoginInterceptor" />
+	<beans:bean id="customInter" class="com.care.am.common.CustomerInterceptor" />
+	<beans:bean id="mediInter" class="com.care.am.common.MediInterceptor" />
+	<!-- NaverLoginBO Class에 대한 Bean설정 추가 -->
+	<beans:bean id="reserInter" class="com.care.am.common.ReservationInterceptor" />
+	<interceptors>
+		<interceptor>
+			<mapping path="/" />
+			<beans:ref bean="autoLogin" />
+		</interceptor>
+	</interceptors>
 	
+	<interceptors>
+		<interceptor>
+			<mapping path="/customerInfo" />
+			<mapping path="/pet/petList" />
+			<mapping path="/reservationList" />
+			<mapping path="/customerDelete" />
+			<mapping path="/customerModify" />
+			<beans:ref bean="customInter" />
+		</interceptor>
+	</interceptors>
 	
+	<interceptors>
+		<interceptor>
+			<mapping path="/mediInfo" />
+			<mapping path="/mediModify" />
+			<mapping path="/reservationState" />
+			<beans:ref bean="mediInter" />
+		</interceptor>
+	</interceptors>
+	
+		<interceptors>
+		<interceptor>
+			<mapping path="/reservationForm/page" />
+			<beans:ref bean="reserInter" />
+		</interceptor>
+	</interceptors>
 </beans:beans>

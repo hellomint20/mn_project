@@ -9,7 +9,7 @@
 	top: 240px;
 	position: fixed;
 	width: 60px;
-	height: 300px;
+	height: 240px;
 	background: #1b4c68;
 	opacity: 0.8;
 	transition: 0.5s;
@@ -91,7 +91,6 @@
 
 .menu li:nth-child(1) a::before{ content: '\e5d2'; }
 .menu li:nth-child(2) a::before{ content: '\f02e'; }
-.menu li:nth-child(3) a::before{ content: '\e91d'; }
-.menu li:nth-child(4) a::before{ content: '\e614'; }
-.menu li:nth-child(5) a::before{ content: '\e9ba'; }
+.menu li:nth-child(3) a::before{ content: '\e614'; }
+.menu li:nth-child(4) a::before{ content: '\e9ba'; }
 

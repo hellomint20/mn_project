@@ -68,3 +68,29 @@ html,body {
 b.mainBtag{
 	font-size: 35px;
 }
+
+/*mypage 관련 css*/
+#rightMainMypage{
+	margin-top: 20px;
+	width: 100%;
+}
+#rightMainMypageCotainer{
+	display: flex;
+	display: inline-block;
+	width: 700px;
+	height: 200px;
+	margin-top: 20px;
+}
+#rightMainMypageContent{
+	display: inline-block;
+	height: 150px;
+	width: 300px;
+	margin-right: 20px;
+}
+#mediContent{
+	margin-top: 90px;
+	padding-bottom: 50px;
+}
+#mediMypage{
+	
+}
