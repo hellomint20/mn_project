@@ -42,7 +42,7 @@
 						</c:forEach>
 					</table>
 					<br>
-					<div style="display: block; text-align: center; margin-top: 20px;">
+					<div class="resPage">
 						<c:if test="${paging.startPage != 1 }">
 							<c:choose>
 								<c:when test="${ search == 0 }">

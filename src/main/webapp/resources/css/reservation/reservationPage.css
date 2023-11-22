@@ -122,6 +122,11 @@ td.detailnameTd{
 	padding-top: 10px;
     padding-bottom: 10px;
 }
+.resPage{
+	display: block;
+	text-align: center;
+	padding-bottom: 50px;
+}
 
 
 
