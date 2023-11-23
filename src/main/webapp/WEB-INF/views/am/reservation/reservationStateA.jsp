@@ -23,9 +23,9 @@
 		let msg = confirm("진료를 완료하셨다면 완료 버튼을\n진료를 하지 않으셨다면 취소를 눌려주세요");
 		let rFixInput = document.getElementsByName("r_fix")[0];
 	    if (msg == true) {
-	        rFixInput.value = 1;
+	        rFixInput.value = 1; //진료완료
 	    } else {
-	        rFixInput.value = 2;
+	        rFixInput.value = 2; //진료취소(노쇼이거나 잘못눌럿거나)
 	    }
 	}
 </script>

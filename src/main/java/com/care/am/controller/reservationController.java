@@ -148,6 +148,10 @@ public class reservationController {
 	@PostMapping("reservationStateA")
 	   public String reservationStateA(@RequestParam int r_fix, @RequestParam String id, @RequestParam int r_num, @RequestParam int page) {
 	      rs.fix(id, r_fix, r_num);
+	      System.out.println("A: "+ id);
+	      System.out.println("A: "+ page);
+	      System.out.println("A: "+ r_fix);
+	      System.out.println("A: "+ r_num);
 	      return "redirect:/reservationStateA?id="+id+"&page="+page;
 	}
 	
@@ -157,6 +161,11 @@ public class reservationController {
 		model.addAttribute("CPaging", rs.CListPaging(page, id));
 		
 		return "am/reservation/reservationStateC";
+	}
+	
+	@PostMapping("reservationStateC")
+	public String reservationStateC(@RequestParam int r_fix, @RequestParam String id, @RequestParam int r_num, @RequestParam int page) {
+		return "redirect:/reservationStateC?id="+id+"&page="+page;
 	}
 	
 	@GetMapping("reserState1") 

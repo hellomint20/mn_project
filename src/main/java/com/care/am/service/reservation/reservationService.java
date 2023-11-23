@@ -31,5 +31,6 @@ public interface reservationService {
 	public int reserState(int num, int state);
 	public Map<String, String> getResInfo(int num); // 후기작성 페이지 정보
 	public void fix(String mId, int r_fix, int r_num); //진료여부 확정
+	public void resReturn(int r_fix, int r_num); // 진료취소 변경
 
 }
