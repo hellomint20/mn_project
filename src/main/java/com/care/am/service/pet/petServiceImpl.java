@@ -58,7 +58,7 @@ public class petServiceImpl implements petService {
 		result = pm.petDel(num);
 		
 		if (result == 1) {
-			if(!dbImg.equals("petDefault.jpg")) {
+			if(dbImg != null) {
 	            pfs.deleteImage(dbImg);
 	         }
 			return GetMessage.getMessage("삭제 성공", "petList?id="+id);
