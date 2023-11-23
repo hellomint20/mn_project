@@ -12,7 +12,6 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.xml.crypto.Data;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -105,7 +104,7 @@ public class customerController {
 		customerDTO dto = cs.naverLogin(apiResult);
 		System.out.println("디티오겟아이디:" + dto.getcId());
 		session.setAttribute(LoginSession.cLOGIN, dto.getcId());
-		session.setAttribute(LoginSession.sLOGIN, dto.getcPw());
+		session.setAttribute(LoginSession.sLOGIN, dto.getcId());
 		return "am/customer/naverLoginSuccess";
 
 	}
@@ -232,6 +231,7 @@ public class customerController {
 			getViewList = cs.getRecentlyView(recentlyViewed, cId);
 			session.setAttribute("recentlyViewList", getViewList);
 			// model.addAttribute("recentlyViewList", getViewList);
+			
 
 		} else {
 			System.out.println("null");

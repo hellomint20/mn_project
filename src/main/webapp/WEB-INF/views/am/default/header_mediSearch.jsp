@@ -20,7 +20,7 @@
 <body>
 	<div>
 		<div id="imgHeader">
-			<img src="/am/resources/img/dog.jpg" width="100%" height="350px">
+			<img src="/am/resources/img/common/dog.jpg" width="100%" height="350px">
 				<span id="headerText"><a href="/am/boardList" id="text">게시판</a> | 
 					<c:if test="${userId == null}">
 						<a href="/am/customerInfo" id="text">마이페이지</a>
@@ -34,7 +34,7 @@
 
 		</div>
 		<div id="headerLogo">
-			<a href="/am"><img src="/am/resources/img/logo2.png"
+			<a href="/am"><img src="/am/resources/img/common/logo2.png"
 				width="250px" height="100px"></a>
 		</div>
 	</div>
