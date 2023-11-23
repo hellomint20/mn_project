@@ -27,7 +27,7 @@ import com.siot.IamportRestClient.response.Payment;
 @Controller
 public class paymentController {
 	
-	@Autowired paymentService as;
+	@Autowired paymentService ps;
 	@Autowired reservationService rs;
 	
 	private IamportClient api;
@@ -53,7 +53,7 @@ public class paymentController {
 		Map<String, Object> result = new HashMap<String, Object>();
 		
 		try {
-			result.put("result", Integer.toString(as.payResRegister(map)));
+			result.put("result", Integer.toString(ps.payResRegister(map)));
 			result.put("userId", session.getAttribute(LoginSession.cLOGIN).toString());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -68,13 +68,16 @@ public class paymentController {
 		String num = map.get("num");
 		String payment = map.get("payment");
 		try {
-			result = as.payCancle(num, payment);	//결제 취소
+			result = ps.payCancle(num, payment);	//결제 취소
 			if("0".equals(result)) {
 				result = Integer.toString(rs.reserCancel(Integer.parseInt(num))); //예약 취소
+			}else {
+				result = "98";
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		result = "98";
 		return result;
 	}
 }

@@ -3,7 +3,6 @@ package com.care.am.controller;
 import java.io.PrintWriter;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,9 +47,6 @@ public class petController implements LoginSession{
 							 @RequestParam String pSec,
 							 @RequestParam(value="file",required = false)  MultipartFile file,
 							 petDTO dto, HttpServletResponse res) throws Exception {
-		System.out.println("2: "+pSec);
-		System.out.println("2: "+pType);
-		System.out.println("2: "+writeType);
 		
 		if(pSec.equals("3")) {
 			dto.setpType(writeType);
@@ -58,6 +54,7 @@ public class petController implements LoginSession{
 			dto.setpType(pType);
 		}
 		dto.setpSection(pSec);
+		
 		String msg = ps.petRegister(dto, file);
 		res.setContentType("text/html; charset=utf-8");
 		PrintWriter out = res.getWriter();
@@ -72,18 +69,8 @@ public class petController implements LoginSession{
 	}
 	
 	@PostMapping("petModify") //펫 정보 수정 적용
-	public void petModify(@RequestParam(value="pType", required=false) String pType,
-							@RequestParam(value="writeType", required=false) String writeType,
-							@RequestParam String pSec,
-							@RequestParam(value="file",required = false)  MultipartFile file,
+	public void petModify(@RequestParam(value="file",required = false)  MultipartFile file,
 							petDTO dto, HttpServletResponse res) throws Exception {
-		
-		if(pSec.equals("3")) {
-			dto.setpType(writeType);
-		}else {
-			dto.setpType(pType);
-		}
-		dto.setpSection(pSec);
 		
 		String msg = ps.petModify(dto, file);
 		res.setContentType("text/html; charset=utf-8");

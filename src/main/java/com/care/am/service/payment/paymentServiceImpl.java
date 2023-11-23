@@ -29,8 +29,8 @@ public class paymentServiceImpl implements paymentService{
 	@Autowired reservationMapper rm;
 	
 	public int payResRegister(Map<String, Object> map) { // 병원 예약
-		String year = map.get("rDate").toString().replace("년", "-");
-		String month = year.replace("월", "-");
+		String year = map.get("rDate").toString().replace("년 ", "-");
+		String month = year.replace("월 ", "-");
 		String day = month.replace("일", "");
 		String time = map.get("rTime").toString().replace(":", "-");
 
@@ -38,6 +38,8 @@ public class paymentServiceImpl implements paymentService{
 		countMap.put("mId", map.get("mId"));
 		countMap.put("rDate", day);
 		countMap.put("rTime", time);
+		
+		System.out.println(day);
 
 		int result = 0;
 		Integer.parseInt(String.valueOf(rm.peopleCount(countMap).get("count(*)")));
@@ -48,8 +50,10 @@ public class paymentServiceImpl implements paymentService{
 			map.put("rDate", day);
 			map.put("rTime", time);
 			try {
-				pm.resRegister(map);
-				result = pm.payRegister(map.get("rNum").toString(), map.get("impUid").toString());
+				result = pm.resRegister(map);
+				if(result == 1) {
+					result = pm.payRegister(map.get("rNum").toString(), map.get("impUid").toString());
+				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

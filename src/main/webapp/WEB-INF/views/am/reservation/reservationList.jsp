@@ -54,7 +54,11 @@
 					if(result == '1'){
 						alert("예약 취소 및 예약금이 환불되었습니다.")
 						location.href='/am/reservationList?id='+cId;
-					}else{
+					}else if(result == '98'){
+						alert("환불 중 문제가 생겼어요!")
+						location.href='/am/reservationList?id='+cId;
+					}
+					else{
 						alert("문제 발생")
 						return false;
 					}

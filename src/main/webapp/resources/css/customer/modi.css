@@ -20,13 +20,17 @@ p {
 }
 
 .info .info-title{
+	margin-left: 80px;
 	display: inline-block;
 	font-size: 1.2rem;
 	line-height: 50px;
 	width: 90px;
 	text-align: left;
 }
-
+#t_b {
+	height: 35px;
+	width: 250px;
+}
 .t_b {
 	height: 35px;
 	width: 250px;
@@ -41,6 +45,7 @@ p {
 
 
 .info .info-content{
+	margin-left: 80px;
 	display: inline-block;
 	font-size: 1rem;
 	line-height: 50px;
