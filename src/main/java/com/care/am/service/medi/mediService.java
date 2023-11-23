@@ -1,5 +1,6 @@
 package com.care.am.service.medi;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -14,7 +15,7 @@ public interface mediService {
 	public Map<String, Object> getMedi(String id);
 	public String mediModify(mediDTO dto, MultipartFile fileName, String[] addr);
 	public mediDTO getMediSessionId(String mSession);
-	public String mediSearchId(String inputName, String inputTel);
+	public List<Map<String, String>> mediSearchId(String inputName, String inputTel);
 	public mediDTO mediSearchPw(String inputId, String inputName, String inputTel);
 	public String mediNewPwd(String newPw, String id);
 	public String mediPwdChk(String id, String pw);

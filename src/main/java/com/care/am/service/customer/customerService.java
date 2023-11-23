@@ -9,7 +9,7 @@ import com.care.am.dto.customerDTO;
 public interface customerService {
 	public String register(customerDTO dto);
 	public boolean idCheck(String id);
-	public String customerSearchId(String inputName, String inputEmail);
+	public List<Map<String, String>> customerSearchId(String inputName, String inputEmail);
 	public customerDTO naverLogin(String apiResult) throws Exception;
 	public customerDTO customerSearchPw(String inputId, String inputName, String inputTel);
 	public String makeRandomPw();

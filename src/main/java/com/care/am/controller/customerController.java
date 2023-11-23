@@ -162,9 +162,9 @@ public class customerController {
 	@RequestMapping("customerSearchId") // 아이디찾기
 	public String customerSearchId(@RequestParam String inputName, @RequestParam String inputEmail, Model model,
 			HttpServletResponse res) {
-		String cId = cs.customerSearchId(inputName, inputEmail);
-		if (cId.length() >= 1) {
-			model.addAttribute("id", cId);
+		List<Map<String, String>> idList = cs.customerSearchId(inputName, inputEmail);
+		if (idList.size() >= 1) {
+			model.addAttribute("idList", idList);
 			return "am/customer/customerSearchId";
 		} else {
 			PrintWriter out = null;

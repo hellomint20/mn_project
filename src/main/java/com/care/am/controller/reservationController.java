@@ -159,6 +159,12 @@ public class reservationController {
 		return "am/reservation/reservationStateC";
 	}
 	
+	@PostMapping("reservationStateC")
+	public String reservationStateC(@RequestParam int r_fix, @RequestParam String id, @RequestParam int r_num, @RequestParam int page) {
+		rs.resReturn(r_fix, r_num);
+		return "redirect:/reservationStateC?id="+id+"&page="+page;
+	}
+	
 	@GetMapping("reserState1") 
 	public String reserState1(@RequestParam int num, @RequestParam String email, @RequestParam String mId) {
 		int result = rs.reserState(num, 1);

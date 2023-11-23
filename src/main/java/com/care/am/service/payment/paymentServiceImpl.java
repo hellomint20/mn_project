@@ -39,8 +39,6 @@ public class paymentServiceImpl implements paymentService{
 		countMap.put("rDate", day);
 		countMap.put("rTime", time);
 		
-		System.out.println(day);
-
 		int result = 0;
 		Integer.parseInt(String.valueOf(rm.peopleCount(countMap).get("count(*)")));
 		
@@ -52,12 +50,14 @@ public class paymentServiceImpl implements paymentService{
 			try {
 				result = pm.resRegister(map);
 				if(result == 1) {
+					result = 98;
 					result = pm.payRegister(map.get("rNum").toString(), map.get("impUid").toString());
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		} 
+		System.out.println("98 "+result);
 		return result;
 	}
 	

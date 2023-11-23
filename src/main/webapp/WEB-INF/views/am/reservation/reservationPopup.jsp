@@ -119,6 +119,9 @@
 			    					alert("이미 예약이 꽉 찼습니다");
 			    					window.opener.location.href="/am/reservation";
 			    					window.close();
+			    				}else if(result['result'] == '98'){
+			    					alert("결제 중 문제가 발생했어요!");
+			    					window.close();
 			    				}
 			    			},
 			    			error : () => {
