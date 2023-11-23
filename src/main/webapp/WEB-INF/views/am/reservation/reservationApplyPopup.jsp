@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -114,7 +115,12 @@
 		</table>
 
 		<div class="ani_pic">
-			<img id="photo" src="/am/resources/img/${info.p_photo}">
+			<c:if test="${info.p_photo == null }">
+				<img id="photo" src="/am/resources/img/common/petDefault.jpg">
+			</c:if>
+			<c:if test="${info.p_photo != null }">
+				<img id="photo" src="/am/resources/img/${info.p_photo}">
+			</c:if>
 		</div>
 	</div>
 
