@@ -59,7 +59,7 @@
 					<img id="pPhoto" src="/am/resources/img/${dto.pPhoto }">
 				</c:if>
 				<c:if test="${dto.pPhoto}">
-					<img id="pPhoto" src="/am/resources/img/petDefault.jpg">
+					<img id="pPhoto" src="/am/resources/img/common/petDefault.jpg">
 				</c:if>
 					<input type="file" name="file" class="pic-btn" onchange="readURL(this)">
 				</div>

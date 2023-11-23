@@ -44,7 +44,7 @@
 	  					<img id="photo" src="/am/resources/img/${info.dto.mPhoto}" >
 	  				</c:when>
 	  				<c:when test="${info.dto.mPhoto == null }">
-	  					<img id="photo" src="/am/resources/img/default.jpg" >
+	  					<img id="photo" src="/am/resources/img/common/default.jpg" >
 	  				</c:when>
 	  			</c:choose>
 			</div>
