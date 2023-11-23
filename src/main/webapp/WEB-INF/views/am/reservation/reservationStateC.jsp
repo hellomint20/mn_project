@@ -18,6 +18,17 @@
 		var popup = window.open(reserv, '예약수락',
 				'width=600px,height=700px,scrollbars=yes,resizable=no');
 	}
+	
+	function show(num) {
+	    console.log(num);
+	    let msg = confirm("취소상태를 승인으로 바꾸고 싶다면 확인을 눌러주세요");
+	    let rFixInput = document.getElementsByName("r_fix")[0];
+	    if (msg == true){
+	        rFixInput.value = 0;
+	        console.log(rFixInput.value);
+	    }
+	    else rFixInput.value = num;
+	}
 </script>
 
 
@@ -61,8 +72,23 @@
 								<td>${c.year }년${c.month }월${c.day }일</td>
 								<td>${c.hour }시${c.min }분</td>
 								<td>${c.p_type }</td>
-								<td>${c.r_content }</td>
-								<td>${c.r_apply }</td>
+								<td>${c.r_content }${mediId }${c.r_num }${CPaging.page }</td>
+								<td>
+								<form action="reservationStateC" method="post">
+									<input type="hidden" name="r_fix">
+									<input type="hidden" name="id" value="${mediId }">
+									<input type="hidden" name="r_num" value="${c.r_num }">
+									<input type="hidden" name="page" value="${CPaging.page }">
+									<c:choose>
+										<c:when test="${c.r_apply.equals('취소')}">
+											<button id="fix" disabled="disabled">취소</button>
+										</c:when>
+										<c:otherwise>								
+											<button id="fix" onclick="show(${c.r_fix})">취소</button>
+										</c:otherwise>
+									</c:choose>
+								</form>
+								</td>
 							</tr>
 						</c:forEach>
 					</tbody>
