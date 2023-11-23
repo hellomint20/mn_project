@@ -1,6 +1,7 @@
 package com.care.am.service.medi;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,13 +77,8 @@ public class mediServiceImpl implements mediService{
 		return mm.getMediSession(mSession);
 	}
 	
-	public String mediSearchId(String inputName, String inputTel) {
-		String result ="";
-		mediDTO dto = mm.mediSearchId(inputName,inputTel);
-		if(dto!=null) {
-				result=dto.getmId();
-		}
-		return result;
+	public List<Map<String, String>> mediSearchId(String inputName, String inputTel) {
+		return mm.mediSearchId(inputName,inputTel);
 	}
 		
 	public mediDTO mediSearchPw(String inputId, String inputName, String inputTel) {

@@ -2,6 +2,8 @@ package com.care.am.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -137,9 +139,9 @@ public class mediController {
 	public String mediSearchId(@RequestParam String inputName, 
 								@RequestParam String inputTel,
 								Model model, HttpServletResponse res) {
-		String mId = ms.mediSearchId(inputName, inputTel);
-		if(mId.length() >=1) {
-			model.addAttribute("id",mId);
+		List<Map<String, String>> idList = ms.mediSearchId(inputName, inputTel);
+		if(idList.size() >=1) {
+			model.addAttribute("idList",idList);
 			return "am/medi/mediSearchId";
 		}else {
 			PrintWriter out = null;
