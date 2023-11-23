@@ -68,7 +68,7 @@
 					</tbody>
 				</table>
 				<c:if test="${c.size()==0 }">
-					<div id="size">승인/취소 내역이 없습니다.</div>
+					<div id="size">취소 내역이 없습니다.</div>
 				</c:if>
 			</div>
 			<!-- 승인 취소 테이블div -->
