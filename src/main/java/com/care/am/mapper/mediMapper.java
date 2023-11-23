@@ -1,5 +1,6 @@
 package com.care.am.mapper;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
@@ -13,7 +14,7 @@ public interface mediMapper {
 		  public int mediRegister(mediDTO dto);
 		  public boolean mediIdCheck(String id);
 		  public mediDTO getMediSession( String mSession );
-		  public mediDTO mediSearchId(@Param("inputName") String inputName,@Param("inputTel") String inputTel);
+		  public List<Map<String, String>> mediSearchId(@Param("inputName") String inputName,@Param("inputTel") String inputTel);
 		  public int mediModify(mediDTO dto);
 		  public int mediPwdChg(mediDTO dto);
 		  public int mediDelete(mediDTO dto);

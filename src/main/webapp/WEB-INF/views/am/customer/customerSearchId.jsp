@@ -25,9 +25,11 @@
 	<div id="searchIdForm">
 		<a href="/am"><img src="/am/resources/img/common/logoLogin.png"></a>
 		<h6 style="text-align: center; margin-bottom: 20px;">다음 아이디로 가입한 계정이 있습니다.</h6>
-			
 				<div id="searchIdFormContent" class="form-group row">
-					 <p class="searchId"><c:out value="${fn:substring(id, 0, fn:length(id) - 3)}" />***</p>
+					 <p class="searchId">
+					 <c:forEach var="idList" items="${idList}">
+					 	<c:out value="${fn:substring(idList.cId, 0, fn:length(idList.cId) - 3)}" />***<br></c:forEach>
+					 </p>
 				</div>
 			<div  class="bottombtn">
 			<button type="button" onclick="location.href ='customerSearchIdPw'" class="btn" style="background-color: #0B1F54; color: white;">비밀번호 찾기</button>

@@ -11,7 +11,7 @@ import com.care.am.dto.recentlyViewDTO;
 public interface customerMapper {
 	public customerDTO getCustomer(String id);
 	public boolean idCheck(String id);
-	public customerDTO customerSearchId(@Param("inputName") String inputName,@Param("inputEmail") String inputEmail);
+	public List<Map<String, String>> customerSearchId(@Param("inputName") String inputName,@Param("inputEmail") String inputEmail);
 	public int customerPwChg(customerDTO dto);
 	public void keepLogin(Map<String, Object> map);
 	public int register(customerDTO dto);
