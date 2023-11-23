@@ -165,10 +165,10 @@ public class reservationController {
 	
 	@PostMapping("reservationStateC")
 	public String reservationStateC(@RequestParam int r_fix, @RequestParam String id, @RequestParam int r_num, @RequestParam int page) {
-		System.out.println(r_fix);
-		System.out.println(id);
-		System.out.println(r_num);
-		System.out.println(page);
+		System.out.println("C: "+ r_fix);
+		System.out.println("C: "+ id);
+		System.out.println("C: "+ r_num);
+		System.out.println("C: "+ page);
 		rs.resReturn(r_fix, r_num);
 		return "redirect:/reservationStateC?id="+id+"&page="+page;
 	}
