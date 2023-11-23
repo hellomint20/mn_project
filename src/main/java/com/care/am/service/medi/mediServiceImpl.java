@@ -1,6 +1,7 @@
 package com.care.am.service.medi;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,13 +77,8 @@ public class mediServiceImpl implements mediService{
 		return mm.getMediSession(mSession);
 	}
 	
-	public String mediSearchId(String inputName, String inputTel) {
-		String result ="";
-		mediDTO dto = mm.mediSearchId(inputName,inputTel);
-		if(dto!=null) {
-				result=dto.getmId();
-		}
-		return result;
+	public List<Map<String, String>> mediSearchId(String inputName, String inputTel) {
+		return mm.mediSearchId(inputName,inputTel);
 	}
 		
 	public mediDTO mediSearchPw(String inputId, String inputName, String inputTel) {
@@ -138,10 +134,7 @@ public class mediServiceImpl implements mediService{
 	public String mediPwdChg(mediDTO dto,String pw, String newPw) {
 		
 		dto = mm.getMedi(dto.getmId());
-		
-		System.out.println("pw: "+pw);
-		System.out.println("getpw : "+dto.getmPw());
-		
+
 		int result = 0;
 		if (encoder.matches(pw, dto.getmPw()) || pw.equals(dto.getmPw())) {
 			dto.setmPw(encoder.encode(newPw));
@@ -167,10 +160,9 @@ public class mediServiceImpl implements mediService{
 		if(!dbImg.equals("mediDefault.jpg")) {
 			mfs.deleteImage(dbImg);
 		}
-		
 		String originName = file.getOriginalFilename();	
 		
-		if(originName=="") { //파일 선택이 없다면  //
+		if(originName=="") { //파일 선택이 없다면
 			dto.setmPhoto(dbImg); //디비에 있던 원래 파일 저장
 			
 		}else { // 파일 선택이 있다면
@@ -179,7 +171,6 @@ public class mediServiceImpl implements mediService{
 		
 		//text정보
 		int result = mm.mediModify(dto);
-		String msg ="", url="";
 		if(result==1) {
 			mfs.deleteImage(originName);
 			System.out.println("=-=-=-=-=-==-삭제할 파일이름: "+originName);
@@ -194,6 +185,9 @@ public class mediServiceImpl implements mediService{
 		dto = mm.getMedi(dto.getmId());
 		 int result =0 ;
 			if (encoder.matches(pw, dto.getmPw()) || pw.equals(dto.getmPw())) {
+				if(!dto.getmPhoto().equals("mediDefault.jpg")) {
+			         mfs.deleteImage(dto.getmPhoto());
+			      }
 				result =  mm.mediDelete(dto);
 				if(result == 1) {
 					return GetMessage.getMessage("탈퇴가 완료되었습니다", "/am" );
@@ -201,5 +195,4 @@ public class mediServiceImpl implements mediService{
 			}
 		return GetMessage.getMessage("비밀번호가 틀렸습니다", "/am/mediPwdChk?id=" + dto.getmId());
 	}
-		
 }

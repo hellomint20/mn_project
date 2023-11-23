@@ -104,6 +104,7 @@
 			    		map['rContent'] = document.getElementById("rContent").innerText;
 			    		map['rTel'] = document.getElementById("rTel").innerText;
 			    		map['impUid'] = rsp.imp_uid;
+			    		console.log(map);
 			    		
 			        	$.ajax({
 			    			url : "/am/payResRegister", type : "post",
@@ -117,6 +118,9 @@
 			    				}else if(result['result'] == '99'){
 			    					alert("이미 예약이 꽉 찼습니다");
 			    					window.opener.location.href="/am/reservation";
+			    					window.close();
+			    				}else if(result['result'] == '98'){
+			    					alert("결제 중 문제가 발생했어요!");
 			    					window.close();
 			    				}
 			    			},

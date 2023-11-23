@@ -18,9 +18,10 @@
 	<div id="searchDiv">
 		<div id="reservationSearchWindow">
 			<input class="reservationSearch" id="mediSearch" type="text" placeholder="예약할 병원 이름 검색"> 
-			<a id="mediSearch" onclick="filter()"> 
+			<!-- <a id="mediSearch" onclick="filter()"> 
 				<img src="/am/resources/img/common/searchIcon.png"	width="25px" height="25px">
-			</a>
+			</a> -->
+			<button id="mediSearch" onclick="filter()" ><img src="/am/resources/img/common/searchIcon.png"	width="30px" height="30px"></button>
 		</div>
 	</div>
 	<div id="tableDiv">
@@ -42,7 +43,7 @@
 						</c:forEach>
 					</table>
 					<br>
-					<div style="display: block; text-align: center; margin-top: 20px;">
+					<div class="resPage">
 						<c:if test="${paging.startPage != 1 }">
 							<c:choose>
 								<c:when test="${ search == 0 }">

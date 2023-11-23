@@ -27,8 +27,7 @@
 						<input type="hidden" name="rvDate" value="${list.rvDate }">
 					</div>
 				</div>
-				
-				<div class="title">
+				<div class="rv">
 					<textarea class="rvTitle" name="rvTitle" required="required">${list.rvTitle }</textarea>
 				</div>
 				<div>

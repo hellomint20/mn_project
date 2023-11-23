@@ -30,8 +30,7 @@
 						<input type="hidden" name="mName" value="${info.m_name }">
 					</div>
 				</div>
-				
-				<div class="title">
+				<div class="rv">
 					<textarea class="rvTitle" style="resize: none;" placeholder="제목를 작성해 주세요" name="rvTitle" required="required"></textarea>
 				</div>
 				<div>

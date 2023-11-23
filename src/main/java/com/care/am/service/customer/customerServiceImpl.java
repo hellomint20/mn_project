@@ -81,13 +81,9 @@ public class customerServiceImpl implements customerService {
       return dto;
    }
 
-   public String customerSearchId(String inputName, String inputEmail) { // 보호자 아이디 찾기
-      customerDTO dto = cm.customerSearchId(inputName, inputEmail);
-      String result = "";
-      if (dto != null) {
-         result = dto.getcId();
-      }
-      return result;
+   public List<Map<String, String>> customerSearchId(String inputName, String inputEmail) { // 보호자 아이디 찾기
+      return cm.customerSearchId(inputName, inputEmail);
+    
    }
 
    public customerDTO customerSearchPw(String inputId, String inputName, String inputTel) { //보호자 비밀번호 찾기

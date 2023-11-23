@@ -32,6 +32,4 @@ public class mediFileServiceImpl implements mediFileService {
 		System.out.println("=====================삭제할 파일이름: "+file);
 		file.delete();
 	}
-	
-	
 }

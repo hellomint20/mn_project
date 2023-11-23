@@ -41,8 +41,7 @@
 	</delete>
 	
 	<update id="petModify">
-		update pet set p_name=#{pName},p_age=#{pAge}, p_section=#{pSection}, p_type=#{pType}, p_sex=#{pSex}, p_photo=#{pPhoto}
-		 where p_num=#{pNum}
+		update pet set p_name=#{pName},p_age=#{pAge},p_photo=#{pPhoto} where p_num=#{pNum}
 	</update>
 	
 	
