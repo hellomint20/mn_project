@@ -99,12 +99,7 @@ public class reservationController {
 	public String reservationPopup(Model model, HttpSession session) {
 	
 		customerDTO dto = cs.getCustomerInfo(session.getAttribute(LoginSession.cLOGIN).toString());
-		String email1 = dto.getcEmail().split("@")[0];
-		String email2 = dto.getcEmail().split("@")[1];
-		//로그인한 사람 정보
 		model.addAttribute("customer", dto);
-		model.addAttribute("email1", email1);
-		model.addAttribute("email2", email2);
 		
 		return "am/reservation/reservationPopup";
 	}
@@ -149,7 +144,12 @@ public class reservationController {
 		model.addAttribute("APaging", rs.AListPaging(page, id));
 		return "am/reservation/reservationStateA";
 	}
-	
+
+	@PostMapping("reservationStateA")
+	   public String reservationStateA(@RequestParam int r_fix, @RequestParam String id, @RequestParam int r_num, @RequestParam int page) {
+	      rs.fix(id, r_fix, r_num);
+	      return "redirect:/reservationStateA?id="+id+"&page="+page;
+	}
 	
 	@GetMapping("reservationStateC")
 	public String reservationStateC(@RequestParam String id, Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
@@ -174,7 +174,6 @@ public class reservationController {
 			@RequestParam String cont) {
 		String cancle = "";
 		String payment = "5000";
-		// 결제 취소
 		cancle = as.payCancle(Integer.toString(num), payment);
 		if ("0".equals(cancle)) {
 			int result = 0;

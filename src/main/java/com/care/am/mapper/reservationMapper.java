@@ -6,7 +6,6 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import com.care.am.dto.mediDTO;
 import com.care.am.dto.petDTO;
-import com.care.am.dto.reservationDTO;
 import com.care.am.page.reservationPagination;
 
 @Mapper

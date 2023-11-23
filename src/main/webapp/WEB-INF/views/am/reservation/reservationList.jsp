@@ -37,8 +37,14 @@
 
 	function reserCancel(num) {
 		let payment = get_Date(num);
+		let msg = "";
 		
-		let msg = confirm("예약 접수일이 내일입니다. \n취소 시 "+payment+"원이 환불됩니다. \n정말로 취소하시겠습니까?");
+		if(payment == 2500){
+			msg = confirm("예약 접수일이 내일입니다. \n취소 시 "+payment+"원이 환불됩니다. \n정말로 취소하시겠습니까?");
+		}else if(payment == 5000){
+			msg = confirm("예약 취소 시 "+payment+"원이 환불됩니다. \n정말로 취소하시겠습니까?");
+		}
+		
 		if (msg == true){	
 			let cId = document.getElementById("cId").value;
 			
@@ -54,7 +60,11 @@
 					if(result == '1'){
 						alert("예약 취소 및 예약금이 환불되었습니다.")
 						location.href='/am/reservationList?id='+cId;
-					}else{
+					}else if(result == '98'){
+						alert("환불 중 문제가 생겼어요!")
+						location.href='/am/reservationList?id='+cId;
+					}
+					else{
 						alert("문제 발생")
 						return false;
 					}

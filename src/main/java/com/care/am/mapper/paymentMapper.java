@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface paymentMapper {
-	public void resRegister(Map<String, Object> map); //병원 예약 
-	public int payRegister(@Param(value = "rNum") String rNum, @Param(value = "payId") String payId);
+	public int resRegister(Map<String, Object> map); //병원 예약 
+	public int payRegister(@Param(value = "rNum") String rNum, @Param(value = "payId") String payId); //결제정보 등록
 	public String getImpUid(String rNum);
 }
