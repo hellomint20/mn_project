@@ -77,6 +77,8 @@ public class petServiceImpl implements petService {
 		
 		if(originName == "") {
 			dto.setpPhoto(dbImg);
+
+			System.out.println("디비에 있던 원래 파일 저장===="+dbImg);
 		}else {
 			dto.setpPhoto(pfs.saveFile(file));
 			if(!dbImg.equals("petDefault.jpg")) {
