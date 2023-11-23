@@ -122,7 +122,7 @@ public class reservationServiceImpl implements reservationService{
 		List<Map<String, String>> listmap = new ArrayList<Map<String, String>>();
 		listmap = rm.customerResList(id,start, end );
 		try {
-			for (int i = 0; i <= listmap.size(); i++) {
+			for (int i = 0; i < listmap.size(); i++) {
 				//r_date=2023- 12- 06 str1.trim()
 				listmap.get(i).put("year", listmap.get(i).get("r_date").split("-")[0].trim());
 				listmap.get(i).put("month", listmap.get(i).get("r_date").split("-")[1].trim());

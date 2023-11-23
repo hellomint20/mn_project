@@ -77,7 +77,6 @@ public class paymentController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		result = "98";
 		return result;
 	}
 }

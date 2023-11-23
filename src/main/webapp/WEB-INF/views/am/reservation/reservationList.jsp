@@ -37,8 +37,14 @@
 
 	function reserCancel(num) {
 		let payment = get_Date(num);
+		let msg = "";
 		
-		let msg = confirm("예약 접수일이 내일입니다. \n취소 시 "+payment+"원이 환불됩니다. \n정말로 취소하시겠습니까?");
+		if(payment == 2500){
+			msg = confirm("예약 접수일이 내일입니다. \n취소 시 "+payment+"원이 환불됩니다. \n정말로 취소하시겠습니까?");
+		}else if(payment == 5000){
+			msg = confirm("예약 취소 시 "+payment+"원이 환불됩니다. \n정말로 취소하시겠습니까?");
+		}
+		
 		if (msg == true){	
 			let cId = document.getElementById("cId").value;
 			
