@@ -353,7 +353,6 @@ public class reservationServiceImpl implements reservationService{
 	@Override
 	public void resReturn(int r_fix, int r_num) {	// 진료취소 변경
 		rm.resReturn(r_fix, r_num);
-		System.out.println("ser"+rm.resReturn(r_fix, r_num));
 	}
 
 }

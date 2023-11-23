@@ -148,10 +148,6 @@ public class reservationController {
 	@PostMapping("reservationStateA")
 	   public String reservationStateA(@RequestParam int r_fix, @RequestParam String id, @RequestParam int r_num, @RequestParam int page) {
 	      rs.fix(id, r_fix, r_num);
-	      System.out.println("A: "+ id);
-	      System.out.println("A: "+ page);
-	      System.out.println("A: "+ r_fix);
-	      System.out.println("A: "+ r_num);
 	      return "redirect:/reservationStateA?id="+id+"&page="+page;
 	}
 	
@@ -165,10 +161,6 @@ public class reservationController {
 	
 	@PostMapping("reservationStateC")
 	public String reservationStateC(@RequestParam int r_fix, @RequestParam String id, @RequestParam int r_num, @RequestParam int page) {
-		System.out.println("C: "+ r_fix);
-		System.out.println("C: "+ id);
-		System.out.println("C: "+ r_num);
-		System.out.println("C: "+ page);
 		rs.resReturn(r_fix, r_num);
 		return "redirect:/reservationStateC?id="+id+"&page="+page;
 	}
