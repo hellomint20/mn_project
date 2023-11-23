@@ -75,6 +75,7 @@ div.view {
     min-height: 200px;
     border: none;
     resize: none;
+    margin-left: 25px;
 }
 
 .flex{

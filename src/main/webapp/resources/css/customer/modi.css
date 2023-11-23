@@ -14,7 +14,7 @@ p {
 .info {
 	text-align : center;
 	display: flex;
-	padding: 10px;
+	padding: 30px 130px;
 	border-top: 2px solid #000;
    	width: 700px;
 }

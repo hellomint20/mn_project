@@ -104,6 +104,7 @@
 			    		map['rContent'] = document.getElementById("rContent").innerText;
 			    		map['rTel'] = document.getElementById("rTel").innerText;
 			    		map['impUid'] = rsp.imp_uid;
+			    		console.log(map);
 			    		
 			        	$.ajax({
 			    			url : "/am/payResRegister", type : "post",

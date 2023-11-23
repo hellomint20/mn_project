@@ -27,12 +27,11 @@
 						<input type="hidden" name="rvDate" value="${list.rvDate }">
 					</div>
 				</div>
-				
-				<div class="title">
-					<textarea class="rvTitle" name="rvTitle">${list.rvTitle }</textarea>
+				<div class="rv">
+					<textarea class="rvTitle" name="rvTitle" required="required">${list.rvTitle }</textarea>
 				</div>
 				<div>
-					<textarea class="rvCont" name="rvCont">${list.rvCont }</textarea>
+					<textarea class="rvCont" name="rvCont" required="required">${list.rvCont }</textarea>
 				</div>
 			</div>
 			<div class="btn_a">
