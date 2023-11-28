@@ -32,14 +32,14 @@
 	         <c:when test="${userId != null}">
 		      	<span id="headerText">
 		      		<a href="/am/boardList" id="text">게시판</a> | 
-		           	<a href="/am/customerInfo?id=${userId }" id="text">마이페이지</a> | 
+		           	<a href="/am/reservation" id="text">병원 예약</a> | 
 		           	<a href="/am/logout" id="text">로그아웃</a>
 				</span>
 	         </c:when>
 	         <c:otherwise>
 	         	<span id="headerText">
 			      	<a href="/am/boardList" id="text">게시판</a> |
-		           	<a href="/am/customerInfo" id="text">마이페이지</a> | 
+			      	<a href="/am/reservation" id="text">병원 예약</a> | 
 		           	<a href="/am" id="text">로그인</a>
 				</span>
 	         </c:otherwise>

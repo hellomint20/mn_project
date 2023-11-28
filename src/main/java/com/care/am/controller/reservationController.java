@@ -208,12 +208,12 @@ public class reservationController {
 	@ResponseBody
 	@PostMapping("reservationCheck")
 	public String reservationCheck(HttpSession session, @RequestBody Map<String, String> map ) {
-		String size = "";
+		map.put("cId", session.getAttribute(LoginSession.cLOGIN).toString());
 		
+		String size = "";
 		if(rs.reservationCheck(map) != null) {
 			size = "1";
 		} 
-		map.put("cId", session.getAttribute(LoginSession.cLOGIN).toString());
 		return size;
 	}
 }
