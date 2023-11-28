@@ -165,6 +165,7 @@ public class reservationController {
 	
 	@PostMapping("reservationStateC")
 	public String reservationStateC(@RequestParam int r_fix, @RequestParam String id, @RequestParam int r_num, @RequestParam int page) {
+		rs.resReturn(r_fix, r_num);
 		return "redirect:/reservationStateC?id="+id+"&page="+page;
 	}
 	
