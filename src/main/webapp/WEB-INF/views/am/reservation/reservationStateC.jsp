@@ -19,12 +19,17 @@
 				'width=600px,height=700px,scrollbars=yes,resizable=no');
 	}
 	
-	function show(num) {
+	function show(button, num) {
 	    console.log(num);
 	    let msg = confirm("취소상태를 승인으로 바꾸고 싶다면 확인을 눌러주세요");
-	    let rFixInput = document.getElementsByName("r_fix")[0];
-	    if (msg == true) rFixInput.value = 0;
-	    else	rFixInput.value = num;
+
+	    if (msg) {
+	        let rFixInput = button.parentElement.querySelector("[name='r_fix']");
+	        rFixInput.value = 0;
+	    } else {
+	        let rFixInput = button.parentElement.querySelector("[name='r_fix']");
+	        rFixInput.value = num;
+	    }
 	}
 </script>
 </head>
@@ -79,7 +84,7 @@
 											<button id="fix" disabled="disabled">취소</button>
 										</c:when>
 										<c:otherwise>								
-											<button id="fix" onclick="show(${c.r_fix})">취소</button>
+											<button id="fix" onclick="show(this, ${c.r_fix})">취소</button>
 										</c:otherwise>
 									</c:choose>
 								</form>
