@@ -19,17 +19,13 @@ public class mediServiceImpl implements mediService{
 	@Autowired mediMapper mm;
 	@Autowired mediFileService mfs;
 	
-	BCryptPasswordEncoder encoder;
+	BCryptPasswordEncoder encoder; // 암호화
 	public mediServiceImpl() {
 		encoder = new BCryptPasswordEncoder();
 	}
 	
-	
-	public String register(mediDTO dto) {
-		return null;
-	}
-	
-	public String mediRegister(mediDTO dto, String[] addr) {
+	// 병원 회원가입
+	public String mediRegister(mediDTO dto, String[] addr) { 
 		String ad ="";
 		for(String a:addr) {
 			ad += a+"/";
@@ -50,10 +46,13 @@ public class mediServiceImpl implements mediService{
 			return GetMessage.getMessage("회원가입 실패", "/am/mediRegister");
 		}
 	}
-	public boolean mediIdCheck(String id) {
+	
+	// 병원 아이디확인
+	public boolean mediIdCheck(String id) { 
 		return mm.mediIdCheck(id);
 	}
-	public int logChk(String id, String pw) {
+	// 병원 로그인확인
+	public int logChk(String id, String pw) { 
 	      mediDTO dto = mm.getMedi(id);
 	      int result =1;
 	      if(dto != null) {
@@ -65,22 +64,22 @@ public class mediServiceImpl implements mediService{
 	      }
 	      return result;
 	   }
-	
-	public void keepLogin(String mSession, String mId) {
+	// 병원 자동로그인
+	public void keepLogin(String mSession, String mId) { 
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("mSessionId", mSession);
 		map.put("mId", mId);
 		mm.keepLogin( map );
 	}
-	
+	// 병원 세션
 	public mediDTO getMediSessionId(String mSession) {
 		return mm.getMediSession(mSession);
 	}
-	
-	public List<Map<String, String>> mediSearchId(String inputName, String inputTel) {
+	// 병원 아이디찾기
+	public List<Map<String, String>> mediSearchId(String inputName, String inputTel) { 
 		return mm.mediSearchId(inputName,inputTel);
 	}
-		
+	// 병원 비밀번호 찾기	
 	public mediDTO mediSearchPw(String inputId, String inputName, String inputTel) {
 		mediDTO dto = mm.getMedi(inputId);
 		if(dto!=null) {
@@ -90,7 +89,7 @@ public class mediServiceImpl implements mediService{
 		}
 		return null;
 	}
-	
+	// 병원 새로운 비밀번호
 	public String mediNewPwd(String newPw, String id) {
 		mediDTO dto = mm.getMedi(id);
 		dto.setmPw(encoder.encode(newPw));
@@ -102,19 +101,8 @@ public class mediServiceImpl implements mediService{
 			return GetMessage.getMessage("비밀번호 변경 실패", "/am/mediSearchPw");
 		}
 	}
-	public Map<String, Object> getMedi(String id){  
-		mediDTO dto = mm.getMedi(id);
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("dto", dto);
-		String[] addr = dto.getmAddr().split("/");
-		if(addr.length>1) {
-			map.put("addr1", addr[0]);
-			map.put("addr2", addr[1]);
-			map.put("addr3", addr[2]);
-		}
-		return map;
-	}
 	
+	// 병원 비밀번호 찾기
 	public String mediPwdChk(String id, String pw) {
 		mediDTO dto = mm.getMedi(id);
 		
@@ -131,6 +119,7 @@ public class mediServiceImpl implements mediService{
 		return GetMessage.getMessage("비밀번호가 틀렸습니다.", "/am/mediPwdChk?id="+id);
 	}
 	
+	// 병원 비밀번호 변경
 	public String mediPwdChg(mediDTO dto,String pw, String newPw) {
 		
 		dto = mm.getMedi(dto.getmId());
@@ -145,7 +134,20 @@ public class mediServiceImpl implements mediService{
 		}
 	return GetMessage.getMessage("비밀번호가 틀렸습니다", "/am/mediPwdChg?id=" + dto.getmId());
 	}
-	
+	// 병원 정보가져오기
+	public Map<String, Object> getMedi(String id){  
+		mediDTO dto = mm.getMedi(id);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("dto", dto);
+		String[] addr = dto.getmAddr().split("/");
+		if(addr.length>1) {
+			map.put("addr1", addr[0]);
+			map.put("addr2", addr[1]);
+			map.put("addr3", addr[2]);
+		}
+		return map;
+	}
+	// 병원 정보 수정
 	public String mediModify(mediDTO dto, MultipartFile file, String[] addr) {
 		
 		// 주소
@@ -181,6 +183,7 @@ public class mediServiceImpl implements mediService{
 		}
 	}
 	
+	// 병원 회원 탈퇴
 	public String mediDelete(mediDTO dto, String pw) {
 		dto = mm.getMedi(dto.getmId());
 		 int result =0 ;

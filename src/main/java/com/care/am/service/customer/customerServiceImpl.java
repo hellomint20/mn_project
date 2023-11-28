@@ -83,7 +83,6 @@ public class customerServiceImpl implements customerService {
 
    public List<Map<String, String>> customerSearchId(String inputName, String inputEmail) { // 보호자 아이디 찾기
       return cm.customerSearchId(inputName, inputEmail);
-    
    }
 
    public customerDTO customerSearchPw(String inputId, String inputName, String inputTel) { //보호자 비밀번호 찾기
@@ -115,7 +114,7 @@ public class customerServiceImpl implements customerService {
 
    public int customerPwChg(String tempPwd, customerDTO dto) { // 보호자 비밀번호 변경
       dto.setcPw(encoder.encode(tempPwd));
-      int result = cm.customerPwChg(dto);
+      int result = cm.customerPwdChg(dto);
       return result;
    }
 
@@ -191,7 +190,7 @@ public class customerServiceImpl implements customerService {
       return GetMessage.getMessage("비밀번호가 틀렸습니다", "/am/customerPwdChk?id=" + dto.getcId());
    }
 
-   public void addrecentlyView(String mediCookie) { // 최근 본 병원추가
+   public void addrecentlyView(String mediCookie) { // 최근 본 병원 추가
       recentlyViewDTO rvDTO = new recentlyViewDTO();
       String cId = mediCookie.split("/")[0];
       String mId = mediCookie.split("/")[1];

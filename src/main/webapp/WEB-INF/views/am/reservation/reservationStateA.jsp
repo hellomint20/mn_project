@@ -19,13 +19,14 @@
 				'width=600px,height=700px,scrollbars=yes,resizable=no');
 	}
 	
-	function show() {
+	function show(button) {
 		let msg = confirm("진료를 완료하셨다면 완료 버튼을\n진료를 하지 않으셨다면 취소를 눌려주세요");
-		let rFixInput = document.getElementsByName("r_fix")[0];
-	    if (msg == true) {
-	        rFixInput.value = 1; //진료완료
+	    if (msg) {
+	        let rFixInput = button.parentElement.querySelector("[name='r_fix']");
+	        rFixInput.value = 1;
 	    } else {
-	        rFixInput.value = 2; //진료취소(노쇼이거나 잘못눌럿거나)
+	        let rFixInput = button.parentElement.querySelector("[name='r_fix']");
+	        rFixInput.value = 2;
 	    }
 	}
 </script>
@@ -77,7 +78,6 @@
 								<td>${a.r_apply }</td>
 								<td>
 								<form action="reservationStateA" method="post">
-									<input type="hidden" name="r_fix">
 									<input type="hidden" name="id" value="${mediId }">
 									<input type="hidden" name="r_num" value="${a.r_num }">
 									<input type="hidden" name="page" value="${APaging.page}">
@@ -86,7 +86,8 @@
 											<button id="fix" disabled="disabled">완료</button>
 										</c:when>
 										<c:otherwise>
-											<button id="fix" onclick="show()">완료</button>
+											<input type="hidden" name="r_fix" value="${a.r_fix }">
+											<button id="fix" onclick="show(this)">완료</button>
 										</c:otherwise>
 									</c:choose>
 								</form>
