@@ -23,15 +23,10 @@
 	    console.log(num);
 	    let msg = confirm("취소상태를 승인으로 바꾸고 싶다면 확인을 눌러주세요");
 	    let rFixInput = document.getElementsByName("r_fix")[0];
-	    if (msg == true){
-	        rFixInput.value = 0;
-	        console.log(rFixInput.value);
-	    }
-	    else rFixInput.value = num;
+	    if (msg == true) rFixInput.value = 0;
+	    else	rFixInput.value = num;
 	}
 </script>
-
-
 </head>
 <body>
 

@@ -19,7 +19,7 @@
 				'width=600px,height=700px,scrollbars=yes,resizable=no');
 	}
 	
-	function show(num) {
+	function show() {
 		let msg = confirm("진료를 완료하셨다면 완료 버튼을\n진료를 하지 않으셨다면 취소를 눌려주세요");
 		let rFixInput = document.getElementsByName("r_fix")[0];
 	    if (msg == true) {

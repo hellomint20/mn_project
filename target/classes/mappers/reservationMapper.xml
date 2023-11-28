@@ -207,7 +207,7 @@
 	<select id="CList" parameterType="hashMap" resultType="map">
 		select r.r_num, r.r_time, r.r_content, r.r_apply, r.r_date, r_fix, p.p_type
 		from reservation r, pet p
-		where r.m_id = #{mId} and r_apply="취소" or r_fix= 2
+		where r.m_id = #{mId} and (r_apply="취소" or r_fix= 2)
 		and r.p_num = p.p_num
 		order by r.r_date
 		limit #{start}, #{limit}
