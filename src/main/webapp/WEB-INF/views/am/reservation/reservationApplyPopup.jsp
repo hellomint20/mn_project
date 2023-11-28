@@ -93,7 +93,7 @@
 			</tr>
 			<tr>
 				<td>보호자(예약자) 전화번호</td>
-				<td>${info.c_tel }</td>
+				<td>${info.r_tel }</td>
 			</tr>
 			<tr>
 				<td>진료동물</td>
