@@ -17,6 +17,7 @@
 	   <property name="jdbcUrl" value="jdbc:mysql://192.168.0.32:3306/mn_test" />
 	   <property name="username" value="myung" />
 	   <property name="password" value="wlsgml00!@" />
+
 	</bean>
 	
 	<!-- hikariConfig를 설정된 값을 토대로 DB에 연결된 bean얻어옴 -->
@@ -34,4 +35,3 @@
 	<mybatis-spring:scan base-package="com.care.am.mapper"/>
 	
 </beans>
-

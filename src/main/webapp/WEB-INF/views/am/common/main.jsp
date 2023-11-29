@@ -62,6 +62,11 @@
 											src="/am/resources/img/main/mypage.png" width="270px;"
 											height="120px;" style="border: solid white;"></a>
 									</div>
+									<div id="leftMainMypageContent">
+										<a href="/am/logout"><img
+											src="/am/resources/img/main/logout.png" width="270px;"
+											height="120px;" style="border: solid white;"></a>
+									</div>
 								</div>
 							</div>
 						</c:when>
