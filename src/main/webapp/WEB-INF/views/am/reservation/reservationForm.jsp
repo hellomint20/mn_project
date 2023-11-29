@@ -217,6 +217,8 @@
 		form['rDate'] = checkDay;
 		form['rTime'] = $("input[name=vbtn-radio]:radio:checked").val()
 		
+		console.log(form)
+		
 		$.ajax({
 			url : "/am/reservationCheck", type : "post",
 			data : JSON.stringify(form),
