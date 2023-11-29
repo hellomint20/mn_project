@@ -36,15 +36,14 @@
 	<select id = "getCustomer" resultMap="customer">
 		select * from customer where c_id=#{cId}
 	</select>
+	
 	<select id="idCheck" resultType="boolean">
 		select count(*) from customer where c_id= #{id}
 	</select>
 	<select id="customerSearchId" resultMap="customer">
 		select * from customer where c_name=#{inputName} and c_email=#{inputEmail}
 	</select>
-	<update id="customerPwChg">
-		update customer set c_pw =#{cPw} where c_id=#{cId}
-	</update>
+
 	<update id="keepLogin">
 		update customer set c_session=#{cSessionId} where c_id=#{cId}
 	</update>

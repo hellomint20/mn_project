@@ -19,7 +19,6 @@ public interface reservationMapper {
 	public Map<String, Object> mediTime(String mediId); //병원 Time
 	public List<Map<String, petDTO>> petList(String id); //사용자 pet list
 	public List<Map<String, petDTO>> petList(); //사용자 pet list
-	public int reservationRegister(Map<String, Object> map); //병원 예약 
 	public List<Map<String, Object>> reservationCount(Map<String, Object> map); ////시간별 예약자 수 확인
 	public Map<String, Object> peopleCount(Map<String, Object> map);
 	public List<Map<String, String>> mediSelectList(reservationPagination pag);
@@ -32,7 +31,12 @@ public interface reservationMapper {
 	public Map<String, String> reservationInfo(int rNum); //병원 팝업 예약 정보
 	public List<Map<String, Object>> waitList(Map<String, Object> pageMap); //병원 새로운 접수 리스트
 	public Integer waitListPaging(String mId); //병원 새로운 접수 페이징
-	public List<Map<String, Object>> ACList(Map<String, Object> pageMap); //병원 승인취소 리스트
-	public Integer ACListPaging(String mId); // 병원 승인취소 페이징
+	public Map<String, String> getResInfo(int num);
+	public List<Map<String, Object>> AList(Map<String, Object> pageMap); //병원 승인 리스트
+	public Integer AListPaging(String mId); // 병원 승인 페이징
+	public List<Map<String, Object>> CList(Map<String, Object> pageMap); //병원 취소 리스트
+	public Integer CListPaging(String mId); // 병원 취소 페이징
+	public int fix(@Param("mId") String mId,  @Param("rFix") int r_fix, @Param("Rnum") int Rnum); //진료여부 확정
+	public int resReturn(@Param("rFix") int r_fix, @Param("Rnum") int r_num);	// 진료취소 변경
 }
 

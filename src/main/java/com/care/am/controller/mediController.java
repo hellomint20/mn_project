@@ -2,6 +2,8 @@ package com.care.am.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -122,7 +124,7 @@ public class mediController {
 			res.addCookie(loginCookie);
 			ms.keepLogin(session.getId(), id);
 		}
-		session.setAttribute(LoginSession.mLOGIN,id); // 체크안했으면 그냥 세션만 만들어줘
+		session.setAttribute(LoginSession.mLOGIN,id); // 체크안했으면 세션생성만
 		System.out.println("세션값"+LoginSession.mLOGIN);
 		System.out.println("세션값22:"+session.getAttribute(LoginSession.mLOGIN));
 		
@@ -137,9 +139,9 @@ public class mediController {
 	public String mediSearchId(@RequestParam String inputName, 
 								@RequestParam String inputTel,
 								Model model, HttpServletResponse res) {
-		String mId = ms.mediSearchId(inputName, inputTel);
-		if(mId.length() >=1) {
-			model.addAttribute("id",mId);
+		List<Map<String, String>> idList = ms.mediSearchId(inputName, inputTel);
+		if(idList.size() >=1) {
+			model.addAttribute("idList",idList);
 			return "am/medi/mediSearchId";
 		}else {
 			PrintWriter out = null;
@@ -198,9 +200,6 @@ public class mediController {
 	    out.print( msg );	
 	}
 	
-
-
-	// 개인정보 관련
 	@GetMapping("mediInfo") // 병원 개인정보 페이지
 	public String info(@RequestParam String id, Model model) {
 		model.addAttribute("info", ms.getMedi(id));
@@ -264,6 +263,7 @@ public class mediController {
 		System.out.println("file: "+file.getOriginalFilename());
 		String msg = ms.mediModify(dto, file, req.getParameterValues("mAddr"));
 		model.addAttribute("info", ms.getMedi(dto.getmId()));
+		System.out.println("병원아디이: "+dto.getmId());
 		res.setContentType("text/html; charset=utf-8");
 		PrintWriter out = res.getWriter();
 		out.print(msg);

@@ -22,20 +22,22 @@
 <body>
 	<div>
 		<div id="imgHeader">
-			<img src="/am/resources/img/cat.jpg" width="100%" height="350px">
-
+			<img src="/am/resources/img/common/cat.jpg" width="100%" height="350px">
+				<span id="headerText">
+					<a href="/am/boardList" id="text">게시판</a> |
 			<c:if test="${userId == null }">
-				<span id="headerText"><a href="/am/customerInfo" id="text">마이페이지</a>
-					| <a href="/am/customerLogin" id="text">로그인</a></span>
+				<a href="/am/customerInfo" id="text">마이페이지</a>
+					| <a href="/am/customerLogin" id="text">로그인</a>
 			</c:if>
 			<c:if test="${userId != null }">
-				<span id="headerText"><a href="/am/customerInfo?id=${userId}"
-					id="text">마이페이지</a> | <a href="/am/logout" id="text">로그아웃</a></span>
+				<a href="/am/customerInfo?id=${userId}"
+					id="text">마이페이지</a> | <a href="/am/logout" id="text">로그아웃</a>
 			</c:if>
+				</span>
 
 		</div>
 		<div id="headerLogo">
-			<a href="/am"><img src="/am/resources/img/logo2.png"
+			<a href="/am"><img src="/am/resources/img/common/logo2.png"
 				width="250px" height="100px"></a>
 		</div>
 	</div>

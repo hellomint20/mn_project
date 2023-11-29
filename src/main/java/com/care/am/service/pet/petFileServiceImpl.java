@@ -30,12 +30,4 @@ public class petFileServiceImpl implements petFileService{
 		File file = new File(IMAGE_REPO + "/" + fileName);
 		file.delete();
 	}
-
-	@Override
-	public String getMessage(String msg, String url) {
-		String message = "<script>alert('" + msg + "');";
-		message += "location.href='" + url + "';</script>";
-		return message;
-	}
-	
 }

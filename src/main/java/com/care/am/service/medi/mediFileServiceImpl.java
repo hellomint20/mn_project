@@ -19,6 +19,7 @@ public class mediFileServiceImpl implements mediFileService {
 		File saveFile = new File(IMAGE_REPO + "/" + sysFileName);
 		try {
 			image_file_name.transferTo(saveFile);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -29,6 +30,4 @@ public class mediFileServiceImpl implements mediFileService {
 		File file = new File(IMAGE_REPO + "/" + fileName);
 		file.delete();
 	}
-	
-	
 }

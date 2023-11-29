@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,8 +18,6 @@
 		
 		function ok_Form(num) {
 			let email = document.getElementById("cemail").value;
-			console.log(num);
-			console.log(email);
 			location.href="/am/reserState1?num="+num+"&email="+email+"&mId="+'${mediId}';
 			setTimeout(function() {
 				window.close();
@@ -27,6 +26,7 @@
 		}
 		
 		function nook_Form(num) {
+			
 		    var form = document.createElement('form');
 		    form.method = 'POST';
 		    form.action = '/am/reserState2'; // POST 요청을 처리할 엔드포인트 URL
@@ -54,6 +54,7 @@
 		    contInput.name = 'cont';
 		    contInput.value = encodeURIComponent(document.getElementById("reason").value);
 		    form.appendChild(contInput);
+		    
 		    document.body.appendChild(form);
 		    form.submit();
 		    setTimeout(function() {
@@ -61,7 +62,6 @@
 				window.opener.location.reload();
 			  }, 3000);
 		}
-		
 		
 		$(function (){
 			$("#btn_no").click(function (){
@@ -93,7 +93,7 @@
 			</tr>
 			<tr>
 				<td>보호자(예약자) 전화번호</td>
-				<td>${info.c_tel }</td>
+				<td>${info.r_tel }</td>
 			</tr>
 			<tr>
 				<td>진료동물</td>
@@ -115,7 +115,12 @@
 		</table>
 
 		<div class="ani_pic">
-			<img id="photo" src="/am/resources/img/${info.p_photo}">
+			<c:if test="${info.p_photo == null }">
+				<img id="photo" src="/am/resources/img/common/petDefault.jpg">
+			</c:if>
+			<c:if test="${info.p_photo != null }">
+				<img id="photo" src="/am/resources/img/${info.p_photo}">
+			</c:if>
 		</div>
 	</div>
 

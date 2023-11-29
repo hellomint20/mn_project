@@ -1,6 +1,6 @@
 .all {
 	width: 70%;
-	margin : 100px 450px;
+	margin : 100px 400px;
 }
 
 .all_title {
@@ -15,7 +15,7 @@ p {
 .info {
 	font-size: 1.2rem;
 	display: flex;
-	padding:30px 0 30px 180px;
+	padding:30px 0 30px 150px;
 	border-top: 2px solid #000;
    	width: 700px;
    	margin-bottom:30px;

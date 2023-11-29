@@ -34,11 +34,8 @@ public class petServiceImpl implements petService {
 		
 		if(originName != "") {
 			dto.setpPhoto(pfs.saveFile(file));
-		}else {
-			dto.setpPhoto("petDefault.jpg");
 		}
 		int result = pm.petRegister(dto);
-		String msg ="", url="";
 		
 		if(result==1) {
 			return GetMessage.getMessage("등록 성공", "/am/pet/petList?id="+dto.getcId());
@@ -61,7 +58,9 @@ public class petServiceImpl implements petService {
 		result = pm.petDel(num);
 		
 		if (result == 1) {
-			pfs.deleteImage(dbImg);
+			if(dbImg != null) {
+	            pfs.deleteImage(dbImg);
+	         }
 			return GetMessage.getMessage("삭제 성공", "petList?id="+id);
 		}
 		else {
@@ -78,11 +77,10 @@ public class petServiceImpl implements petService {
 			dto.setpPhoto(dbImg);
 		}else {
 			dto.setpPhoto(pfs.saveFile(file));
-			pfs.deleteImage(dbImg);
+	        pfs.deleteImage(dbImg);
 		}
 		
 		int result = pm.petModify(dto);
-		String msg ="", url="";
 		
 		if(result==1) {
 			return GetMessage.getMessage("정보가 수정되었습니다!", "/am/pet/petList?id=" + dto.getcId());

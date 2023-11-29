@@ -12,7 +12,6 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.xml.crypto.Data;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -48,7 +47,7 @@ public class customerController {
 	private String apiResult = null;
 
 	@Autowired
-	private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
+	private void setNaverLoginBO(NaverLoginBO naverLoginBO) { // 네이버로그인 호출
 		this.naverLoginBO = naverLoginBO;
 	}
 
@@ -58,7 +57,7 @@ public class customerController {
 		return "am/customer/customerRegister";
 	}
 
-	@PostMapping("/idCheck") //회원가입시 아이디 중복확인
+	@PostMapping("/idCheck") // 회원가입시 아이디 중복확인
 	@ResponseBody
 	public ResponseEntity<Boolean> idCheck(String id) {
 		System.out.println("ConfirmId.........");
@@ -105,7 +104,7 @@ public class customerController {
 		customerDTO dto = cs.naverLogin(apiResult);
 		System.out.println("디티오겟아이디:" + dto.getcId());
 		session.setAttribute(LoginSession.cLOGIN, dto.getcId());
-		session.setAttribute(LoginSession.sLOGIN, dto.getcPw());
+		session.setAttribute(LoginSession.sLOGIN, dto.getcId());
 		return "am/customer/naverLoginSuccess";
 
 	}
@@ -163,9 +162,9 @@ public class customerController {
 	@RequestMapping("customerSearchId") // 아이디찾기
 	public String customerSearchId(@RequestParam String inputName, @RequestParam String inputEmail, Model model,
 			HttpServletResponse res) {
-		String cId = cs.customerSearchId(inputName, inputEmail);
-		if (cId.length() >= 1) {
-			model.addAttribute("id", cId);
+		List<Map<String, String>> idList = cs.customerSearchId(inputName, inputEmail);
+		if (idList.size() >= 1) {
+			model.addAttribute("idList", idList);
 			return "am/customer/customerSearchId";
 		} else {
 			PrintWriter out = null;
@@ -181,24 +180,27 @@ public class customerController {
 	}
 
 	@PostMapping("customerSearchPw") // 비밀번호 찾기
-	public String customerSearchPw(@RequestParam String inputId, @RequestParam String inputName,
-			@RequestParam String inputTel, HttpServletResponse res) {
-		customerDTO dto = cs.customerSearchPw(inputId, inputName, inputTel);
-		String tempPwd = "";
-		if (dto != null) {
+	public String customerSearchPw(@RequestParam String inputId, 
+								@RequestParam String inputName, 
+								@RequestParam String inputTel,HttpServletResponse res) {
+		
+		customerDTO dto = cs.customerSearchPw(inputId,inputName,inputTel);
+		String tempPwd ="";
+		if(dto !=null) {
 			tempPwd = cs.makeRandomPw();
-			int result = cs.customerPwChg(tempPwd, dto);
-			if (result == 1) {
+			int result = cs.customerPwChg(tempPwd,dto);
+			if(result ==1) {
 				String toMail = dto.getcEmail();
 				String content = tempPwd;
-				return "redirect:/customerSearchPw/" + toMail + "/" + content + "/";
+				return "redirect:/customerSearchPw/"+toMail+"/"+content+"/";
 			}
+			System.out.println(tempPwd);
 		}
 		return "redirect:/customerSearchIdPw";
-
+		
 	}
 
-	@GetMapping("customerSearchPw") //보호자 비밀번호 찾기
+	@GetMapping("customerSearchPw") // 보호자 비밀번호 찾기
 	public String customerSearchPw() {
 		return "am/customer/customerSearchPw";
 	}
@@ -213,8 +215,7 @@ public class customerController {
 		Cookie[] cookies = req.getCookies();
 		String cId = session.getAttribute(LoginSession.cLOGIN).toString();
 		System.out.println(cookies);
-		
-		
+
 		// 가져온 쿠키를 기반으로 최근에 본 병원 목록 생성
 		List<String> recentlyViewed = new ArrayList<>();
 		List<Map<String, String>> getViewList = new ArrayList<Map<String, String>>();
@@ -229,7 +230,7 @@ public class customerController {
 			session.removeAttribute("recentlyViewList");
 			getViewList = cs.getRecentlyView(recentlyViewed, cId);
 			session.setAttribute("recentlyViewList", getViewList);
-			//model.addAttribute("recentlyViewList", getViewList);
+			// model.addAttribute("recentlyViewList", getViewList);
 			
 
 		} else {
@@ -331,7 +332,7 @@ public class customerController {
 			@CookieValue(value = "recentlyCookie", required = false) Cookie cookie, HttpServletResponse res,
 			HttpServletRequest req) {
 		String cId = session.getAttribute(LoginSession.cLOGIN).toString();
-		int limitTime = 60 * 60 * 24; //24시간
+		int limitTime = 60 * 60 * 24; // 24시간
 		SimpleDateFormat date = new SimpleDateFormat("HHmmss"); // 현재시간 포맷해서 가져오기
 		String fd = date.format(new Date());
 		Cookie viewCookie = new Cookie("cookie" + fd, cId + "/" + mediId); // 쿠키명에 현재시간을 넣어서 생성

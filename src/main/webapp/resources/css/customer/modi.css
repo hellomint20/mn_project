@@ -14,19 +14,23 @@ p {
 .info {
 	text-align : center;
 	display: flex;
-	padding: 10px;
+	padding: 30px 130px;
 	border-top: 2px solid #000;
    	width: 700px;
 }
 
 .info .info-title{
+	margin-left: 20px;
 	display: inline-block;
 	font-size: 1.2rem;
 	line-height: 50px;
 	width: 90px;
 	text-align: left;
 }
-
+#t_b {
+	height: 35px;
+	width: 250px;
+}
 .t_b {
 	height: 35px;
 	width: 250px;
@@ -41,6 +45,7 @@ p {
 
 
 .info .info-content{
+	margin-left: 80px;
 	display: inline-block;
 	font-size: 1rem;
 	line-height: 50px;

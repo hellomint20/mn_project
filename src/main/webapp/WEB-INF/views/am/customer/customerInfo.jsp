@@ -18,23 +18,43 @@
 	<div class="all">
 		<div class="all_title">
 			<strong>회원 정보</strong>
-			<p>${dto.cName} 회원님의 정보입니다</p>
+			<p>${dto.cName}님의 회원 정보입니다</p>
 		</div>
-		<div class="info">
-			<div class="info-title">
-		    		아이디 : <br>
-		    		이름 : <br>
-		    		전화번호 :<br>
-		    		e-mail : <br>
-			</div>
+		
+		<c:choose>
+			<c:when test="${dto.cTel != 'null'}">
+				<div class="info">
+					<div class="info-title">
+		    			아이디 : <br>
+		    			이름 : <br>
+		    			전화번호 :<br>
+		    			e-mail : <br>
+					</div>
 			
-	  		<div class="info-content">
-	  			${dto.cId}<br>
-	  			${dto.cName}<br>
-	  			${dto.cTel}<br>
-	  			${dto.cEmail}<br>
-	  		</div>
-		</div>
+	  				<div class="info-content">
+	  					${dto.cId}<br>
+	  					${dto.cName}<br>
+	  					${dto.cTel}<br>
+	  					${dto.cEmail}<br>
+	  				</div>
+				</div>
+			</c:when>
+			<c:otherwise>
+				<div class="info">
+					<div class="info-title">
+		    			아이디 : <br>
+		    			이름 : <br>
+		    			e-mail : <br>
+					</div>
+			
+	  				<div class="info-content">
+	  					${dto.cId}<br>
+	  					${dto.cName}<br>
+	  					${dto.cEmail}<br>
+	  				</div>
+				</div>
+			</c:otherwise>
+		</c:choose>
 		
 		<c:if test="${sns eq null }">
 		    <button type="button" class="b" onclick="location.href='/am/customerPwdChk?id=${userId}'">수정</button>

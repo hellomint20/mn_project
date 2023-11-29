@@ -31,10 +31,9 @@
 
 	<div class="r_table">
 		<div class="buttonbox">
-			<a href="/am/reservationStateWait?id=${mediId }"><button
-					type="button" id="wait">새로운접수</button></a> <a
-				href="/am/reservationStateAC?id=${mediId }"><button
-					type="button" id="ac">승인/취소</button></a>
+			<a href="/am/reservationStateWait?id=${mediId }"><button type="button" id="wait">새로운접수</button></a> 
+			<a href="/am/reservationStateA?id=${mediId }"><button type="button" id="wait">승인</button></a>
+			<a href="/am/reservationStateC?id=${mediId }"><button type="button" id="wait">취소</button></a>
 
 		</div>
 		<div style="clear: both;"></div>
@@ -59,7 +58,7 @@
 					<tbody>
 						<c:forEach var="wait" items="${wait }">
 							<tr>
-								<td><a href="#" onclick="Popup(${wait.r_num})">${wait.year }년 ${wait.month }월 ${wait.day }일</a></td>
+								<td><a onclick="Popup(${wait.r_num})">${wait.year }년 ${wait.month }월 ${wait.day }일</a></td>
 								<td>${wait.hour }시${wait.min }분</td>
 								<td>${wait.p_type }</td>
 								<td>${wait.r_content }</td>

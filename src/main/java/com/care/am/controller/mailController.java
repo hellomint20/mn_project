@@ -1,5 +1,6 @@
 package com.care.am.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ public class mailController implements LoginSession{
 	@Autowired mailService mails;
 	
 	@RequestMapping(value="/customerSearchPw/{toMail}/{content}/", method=RequestMethod.GET)
-	String tempPwdSendMail(@PathVariable String toMail, @PathVariable String content, HttpServletResponse res)throws Exception{
+	String tempPwdSendMail(@PathVariable String toMail, @PathVariable String content, HttpServletResponse res, HttpServletRequest req)throws Exception{
 		String title = "임시비밀번호 발급 메일입니다.";
 		String pwd = content;
 		
@@ -27,8 +28,9 @@ public class mailController implements LoginSession{
 		
 		mails.tempPwdSendMail(toMail,title,msg);
 						// 받는사람 메일 / 제목 / 내용
-		
-		return "redirect:/customerLogin";
+		req.setAttribute("msg","등록된 메일주소로 임시비밀번호 발송했습니다.");
+		req.setAttribute("url","/am/customerLogin");
+		return "am/common/alert";
 	}
 	@RequestMapping(value="/reserState1/{toMail}/{mId}/", method=RequestMethod.GET)
 	String sendMail(@PathVariable String toMail, @PathVariable String mId, 
@@ -46,14 +48,15 @@ public class mailController implements LoginSession{
 		return "redirect:/reservationStateWait?id="+ mId;
 	}
 	
-	@RequestMapping(value="/reserState2/{toMail}/{cont}/{mId}/", method=RequestMethod.GET)
-	String sendMail(@PathVariable String toMail, @PathVariable String cont,@PathVariable String mId, 
+	@RequestMapping(value="/reserState2/{toMail}/{cont}/{mId}/{payment}/", method=RequestMethod.GET)
+	String sendMail(@PathVariable String toMail, @PathVariable String cont,@PathVariable String mId, @PathVariable String payment,
 						HttpServletResponse res)throws Exception{
 		
 		String title = "AniMedi 예약현황입니다.";
 		String msg = "AniMedi에서 발송된 메일입니다.\n\n";
 		msg += "고객님의 예약이 취소되어 연락드립니다\n";
-		msg += "예약 취소 사유: "+ cont+ "\n\n";
+		msg += "예약 취소 사유: "+ cont+ "\n";
+		msg += "예약금 "+ payment+ "원이 환불되었습니다.\n\n";
 		msg += "죄송합니다 다음에 이용해주시길 바랍니다.\n\n";
 		msg += "오늘도 좋은 하루 보내세요";
 		

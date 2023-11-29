@@ -33,10 +33,10 @@
 			</div>
 			
 			<div class="info-content">
-		   		<input type="text" id="t_b" name="cId" value="${userId}" readonly ><br>
-		   		<input type="text" id="t_b" name="cName" value="${dto.cName}" required><br>
-		   		<input type="text" id="t_b" name="cTel"  oninput="hypenAdd(this)" maxlength="13" value="${dto.cTel}" required><br>
-		   		<input type="text" id="t_b" name="cEmail" value="${dto.cEmail}" required><br>
+		   		<input type="text" class="t_b" name="cId" value="${userId}" readonly ><br>
+		   		<input type="text" class="t_b" name="cName" value="${dto.cName}" required><br>
+		   		<input type="text" class="t_b" name="cTel"  oninput="hypenAdd(this)" maxlength="13" value="${dto.cTel}" required><br>
+		   		<input type="text" class="t_b" name="cEmail" value="${dto.cEmail}" required><br>
 		   	</div>
 		</div>
 	    

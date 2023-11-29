@@ -31,7 +31,7 @@
 				<div class="info-content">
 					<input type="hidden" name="cId" value="${userId }">
 			   		<input type="text" id="t_b" name="pName" placeholder="이름"><br>
-			   		<input type="text" id="t_b" name="pAge" placeholder="나이"><br>
+			   		<input type="number" id="t_b" name="pAge" placeholder="나이"><br>
 			   		<div class="rb">
 				   		<input type="radio" id="m" name="pSex" value="남">남
 				   		<input type="radio" id="f" name="pSex" value="여">여<br>
@@ -52,7 +52,7 @@
 					<br>
 			   	</div>
 				<div class="info-pic">
-					<img id="pPhoto" src="/am/resources/img/petDefault.jpg">
+					<img id="pPhoto" src="/am/resources/img/common/petDefault.jpg">
 					<input type="file" name="file" class="pic-btn" onchange="readURL(this)">
 				</div>
 			</div>
