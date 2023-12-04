@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+#registerFormBody{
+	background: #0B1F54;
+	margin-top: 5%;
+}
+
+#registerForm{
+	background:white;
+	margin: 30px 30%;
+	padding: 30px 50px;
+	text-align: center;
+}
+img{
+	margin: 0 auto;
+	width: 250px;
+	height: 100px;
+}
+#registerFormContent{
+	margin-bottom: 10px;
+}
+
+.post-btn{
+	background:white;
+	border-color:#0B1F54;
+	border-radius: 4px;
+	font-size:13px;
+	margin: 5px 0 0 -10px;
+}
+

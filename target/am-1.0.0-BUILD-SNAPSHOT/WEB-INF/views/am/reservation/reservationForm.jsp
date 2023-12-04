@@ -260,7 +260,7 @@
 				</div>
 				<div class="input-form">
 					<input type="text" id="rName" name="cId" placeholder="홍길동" required><br> <input type="tel" id="rTel" name="cPhone"
-						oninput="hypenAdd(this)" placeholder="010-1234-5678" maxlength="13"><br> <select id="pName" required>
+						oninput="hypenAdd(this)" placeholder="010-1234-5678"><br> <select id="pName" required>
 						<option value="">선택하세요</option>
 						<c:forEach var="list" items="${p_list}">
 							<option value="connecting" id="p_name">${list['p_name']}</option>

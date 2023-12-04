@@ -198,7 +198,7 @@ public class customerController {
 		}
 		return "redirect:/customerSearchIdPw";
 		
-	}
+	} 
 
 	@GetMapping("customerSearchPw") // 보호자 비밀번호 찾기
 	public String customerSearchPw() {
