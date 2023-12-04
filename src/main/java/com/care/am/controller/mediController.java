@@ -124,7 +124,7 @@ public class mediController {
 			res.addCookie(loginCookie);
 			ms.keepLogin(session.getId(), id);
 		}
-		session.setAttribute(LoginSession.mLOGIN,id); // 체크안했으면 그냥 세션만 만들어줘
+		session.setAttribute(LoginSession.mLOGIN,id); // 체크안했으면 세션생성만
 		System.out.println("세션값"+LoginSession.mLOGIN);
 		System.out.println("세션값22:"+session.getAttribute(LoginSession.mLOGIN));
 		
@@ -200,9 +200,6 @@ public class mediController {
 	    out.print( msg );	
 	}
 	
-
-
-	// 개인정보 관련
 	@GetMapping("mediInfo") // 병원 개인정보 페이지
 	public String info(@RequestParam String id, Model model) {
 		model.addAttribute("info", ms.getMedi(id));
