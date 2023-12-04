@@ -1,0 +1,118 @@
+.all {
+	width: 70%;
+	margin : 100px 400px;
+}
+
+.all_title {
+    font-size: 3rem;
+    border-bottom: 2px solid #000;
+    width: 700px;
+}
+
+p {
+	font-size: 1rem;
+}
+
+	
+.add-pet-box{
+	font-size:25px;
+	width: 530px;
+	margin :50px 0 0 300px;
+	
+}	
+.addButton {
+	box-shadow: 0px 0px 4px 1px #3a4970;
+	background:linear-gradient(0deg, #1b4c68 0%, #1b4c68 100%);
+	background-color:#0b1e54;
+	border-radius: 50%;
+	display:inline-block;
+	cursor: pointer;
+	color:#fafafa;
+	font-size:28px;
+	padding:8px 18px;
+	text-decoration : none;
+}
+.addText {
+  width:200px;
+  margin-top : 15px;
+  margin-left : 0;
+  border-radius: 5px;
+  color: black;
+  display: none;
+  font-size: 20px;
+}
+.addButton:hover + .addText {
+  display: block;
+}
+
+.box-all{
+	display: flex;
+}
+.box1{
+	width: 700px;
+	display: flex;
+	margin: 50px 0;
+	padding-bottom: 50px;
+	border-bottom: solid 1px black;
+}
+.box2{
+	width: 700px;
+	display: flex;
+	margin: 50px 0;
+	padding-bottom: 50px;
+	border-bottom: solid 1px black;
+}
+
+.pet-List-box{
+	width: 300px;
+    margin-left: 70px;
+
+}
+.petNameBtn{
+	border-bottom:2px solid #0B1F54;
+	color : #0B1F54;
+	text-align: center;
+	font-size:30px;
+	text-decoration: none;
+	
+}
+.pet-info-box{
+	font-size:22px;
+	margin-top:30px;
+	display: flex;
+	line-height :50px;
+}
+.pet-info-title{
+	
+}
+.pet-info-content{
+	margin-left : 30px;
+	
+}
+.pet-info-image{
+	margin-botton:20px;
+	margin-right: 20px;
+}
+.pet-list-del{
+	margin-top:30px;
+	margin-left:150px;
+}
+.delBtn{
+	border: none;
+	width: 65px;
+	height: 35px;
+	color: #fff;
+	border-radius: 5px;
+	font-weight: 500;
+	transition: all 0.3s ease;
+	position: relative;
+	display: inline-block;
+	box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5), 7px 7px 20px
+		0px rgba(0, 0, 0, .1), 4px 4px 5px 0px rgba(0, 0, 0, .1);
+	background: linear-gradient(0deg, #1b4c68 0%, #1b4c68 100%);
+	
+}
+.delBtn:hover{
+	background: linear-gradient(0deg, #73b4db 0%, #73b4db 100%);
+	opacity: 0.8;
+}
