@@ -263,7 +263,7 @@ public class mediController {
 		System.out.println("file: "+file.getOriginalFilename());
 		String msg = ms.mediModify(dto, file, req.getParameterValues("mAddr"));
 		model.addAttribute("info", ms.getMedi(dto.getmId()));
-		System.out.println("병원아디이: "+dto.getmId());
+		System.out.println("병원아이디: "+dto.getmId());
 		res.setContentType("text/html; charset=utf-8");
 		PrintWriter out = res.getWriter();
 		out.print(msg);

@@ -39,14 +39,7 @@
 	  		</div>
   		
 	  		<div class="pic">
-	  			<c:choose>
-	  				<c:when test="${info.dto.mPhoto != null }">
-	  					<img id="photo" src="/am/resources/img/${info.dto.mPhoto}" >
-	  				</c:when>
-	  				<c:when test="${info.dto.mPhoto == null }">
-	  					<img id="photo" src="/am/resources/img/common/mediDefault.jpg" >
-	  				</c:when>
-	  			</c:choose>
+	  			<img id="photo" src="/am/resources/img/${info.dto.mPhoto}" >
 			</div>
 		</div>
 	
