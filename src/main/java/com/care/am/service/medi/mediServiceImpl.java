@@ -160,8 +160,8 @@ public class mediServiceImpl implements mediService{
 		//file 
 		String dbImg = mm.getMedi(dto.getmId()).getmPhoto(); //디비에 저장되어있는 사진 이름
 		if(!dbImg.equals("mediDefault.jpg")) {
-	         mfs.deleteImage(dbImg);
-	      }
+			mfs.deleteImage(dbImg);
+		}
 		String originName = file.getOriginalFilename();	
 		
 		if(originName=="") { //파일 선택이 없다면
@@ -175,12 +175,14 @@ public class mediServiceImpl implements mediService{
 		int result = mm.mediModify(dto);
 		if(result==1) {
 			mfs.deleteImage(originName);
+			System.out.println("=-=-=-=-=-==-삭제할 파일이름: "+originName);
 			return GetMessage.getMessage("정보가 수정되었습니다!", "/am/mediInfo?id=" + dto.getmId());
 		}else {
 			mfs.deleteImage(dto.getmPhoto());
 			return GetMessage.getMessage( "정보 수정에 실패했습니다.", "/am/mediModify?id=" + dto.getmId());
 		}
 	}
+	
 	// 병원 회원 탈퇴
 	public String mediDelete(mediDTO dto, String pw) {
 		dto = mm.getMedi(dto.getmId());

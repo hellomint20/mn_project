@@ -25,10 +25,11 @@
 			<c:when test="${dto.cTel != 'null'}">
 				<div class="info">
 					<div class="info-title">
+					
 		    			아이디 : <br>
 		    			이름 : <br>
 		    			전화번호 :<br>
-		    			e-mail : <br>
+		    			e-mail : <br> 
 					</div>
 			
 	  				<div class="info-content">
