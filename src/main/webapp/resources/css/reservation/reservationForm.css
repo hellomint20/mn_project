@@ -13,7 +13,7 @@
 }
 
 .box-hospital-name {
-	font-size: 3rem;
+	font-size: 2.3rem;
 	border-bottom: 2px solid #000;
 	width: 450px;
 }
@@ -122,14 +122,19 @@ td {
 	margin-left: 20px;
 }
 
-#name {
+#rName {
 	margin-top: 50px;
 	height: 35px;
 }
 
-#phone {
+#rTel {
 	height: 35px;
 }
+#reservationTime{
+	width: 100px; 
+	margin-bottom: 10px;
+}
+
 
 .box-container-bottom {
 	margin: 0 0 50px 600px;
@@ -156,8 +161,7 @@ td {
 
 /*popup css*/
 #title {
-	margin-top: 70px;
-	text-align: center;
+	margin: 70px 0 0 200px;
 }
 
 .popup-main-box {
@@ -165,11 +169,11 @@ td {
 	margin-top: 30px;
 	padding-top: 20px;
 	display: flex;
-	height: 300px;
+	height: 260px;
 	width: 350px;
 	font-size: 20px;
 	line-height: 40px;
-	margin-left: 80px;
+	margin-left: 25%;
 }
 
 .info-title {
@@ -180,14 +184,15 @@ td {
 
 .info-content {
 	width: auto;
-}
-
-.popup-bottom-box {
-	padding-top: 20px;
+	margin-left: 10px;
 	text-align: center;
 }
 
-#btn-close {
+.popup-bottom-box {
+	margin: 20px 0 0 215px;
+}
+
+#reservationBtn {
 	width: 130px;
 	height: 40px;
 	color: #fff;
@@ -208,4 +213,9 @@ td {
 #btn-close:hover {
 	background: linear-gradient(0deg, #73b4db 0%, #73b4db 100%);
 	opacity: 0.8;
+}
+.mes{
+	margin-top: 20px;
+	color: red;
+	font-size: 12px;
 }

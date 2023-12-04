@@ -8,7 +8,7 @@
     border-collapse: collapse;
 }
 
-button {
+#wait {
     background-color: #0B1F54;
     padding: 8px 30px !important;
     width: 150px;
@@ -21,10 +21,11 @@ button {
     float: left;
 }
 
-button:hover {
+#wait:hover {
     background-color: #0b1f5430;
     color : black;
 }
+
 
 .col-100 {
     width: 100%;
@@ -33,6 +34,7 @@ button:hover {
 .r_table{
 	 margin-top: 80px;
 	 margin-left : 340px;
+	 margin-bottom: 40px;
 }
 
 table {
@@ -49,8 +51,6 @@ th {
     height: 50px;
     color: black;
     font-size: 17px;
-    border : 1px solid black;
-    
 }
 
 tr,
@@ -63,6 +63,29 @@ td {
 a{
 	text-decoration: none;
 	color: black;
+}
+#waitTable{
+	margin-bottom: 40px;
+}
+#ACTable{
+	margin-bottom: 40px;
+}
+.acPage{
+	margin-left: 340px;
+}
+.waitPage{
+	margin-left: 340px;
+}
+#size{
+	text-align: center;
+	margin-top: 50px;
+	font-size: 20px;
+}
+#fix{
+	width: 50px;
+	height: 30px;
+	border: none;
+	background-color: none;
 }
 
 
@@ -148,11 +171,12 @@ a{
 
 .rap_button{
 	margin-top:10x;
+	display: flex;
 }
 
 .popup_table{
 	margin-top:25px;
-	width:273px;
+	width:350px;
 	
 }
 
@@ -170,7 +194,6 @@ a{
 	display:inline-block;
 	width:200px;
 	height: 200px;
-	border : 1px solid black;
 	margin: auto;	
 
 }
@@ -220,4 +243,8 @@ textarea {
 	margin-left: 200px;
 	margin-top : 20px;
 }
-
+#photo{
+	width: 200px;
+	height: 200px;
+	border : 1px solid black;
+}

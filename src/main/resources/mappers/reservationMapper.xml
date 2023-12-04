@@ -4,4 +4,232 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.care.am.mapper.reservationMapper">
 
+	<resultMap type="com.care.am.dto.reservationDTO" id="reservation">
+		<id property="rNum" column="r_num"/>
+		<result property="mId" column="m_id"/>
+		<result property="cId" column="c_id"/>
+		<result property="rContent" column="r_content"/>
+		<result property="rDate" column="r_date"/>
+		<result property="rTime" column="r_time"/>
+		<result property="rApply" column="r_apply"/>
+		<result property="rName" column="r_name"/>
+		<result property="rTel" column="r_tel"/>
+		<result property="r_fix" column="r_fix"/>
+	</resultMap>
+	
+	<resultMap type="com.care.am.dto.petDTO" id="pet">
+		<id property="pNum" column="p_num"/>
+		<result property="pName" column="p_name" />
+		<result property="pSection" column="p_section" />
+		<result property="pType" column="p_type" />
+		<result property="pAge" column="p_age" />
+		<result property="pSex" column="p_sex" />
+		<result property="cId" column="c_id" />
+		<result property="pPhoto" column="pPhoto" />
+	</resultMap>
+	
+	<resultMap type="com.care.am.dto.customerDTO" id="customer">
+		<id property="cId" column="c_id"/>
+		<result property="cPw" column="c_pw"/>
+		<result property="cName" column="c_name"/>
+		<result property="cTel" column="c_tel"/>
+		<result property="cEmail" column="c_email"/>
+		<result property="cSessionId" column="c_session"/>
+	</resultMap>
+	
+	
+	
+	
+	<select id="reservationList" resultType="map">
+		select reservation.r_num, reservation.r_date, reservation.r_time, pet.p_name, medi.m_name, reservation.r_apply, reservation.r_content
+		from reservation
+		join medi ON reservation.m_id = medi.m_id
+		join pet ON reservation.p_num = pet.p_num where reservation.c_id=#{cId} order by reservation.r_date asc, reservation.r_time asc 
+	</select>
+	
+	<select id="customerResList" resultType="map">
+		SELECT *
+			FROM (
+				SELECT format(@rownum:= @rownum+1, 0) as RN, A.*
+					FROM (
+						select reservation.r_num, reservation.r_date, reservation.r_time, pet.p_name, medi.m_name,
+								reservation.r_apply, reservation.r_content, reservation.r_fix
+									from reservation
+											join medi ON reservation.m_id = medi.m_id
+											join pet ON reservation.p_num = pet.p_num where reservation.c_id=#{id} 
+											order by reservation.r_fix asc, reservation.r_date asc
+							) A, (select @rownum :=0,0) R
+				) B
+		WHERE RN BETWEEN ${start} AND ${end}
+	</select> 
+
+	<select id="mediList" resultType="map">
+		select * from medi
+	</select>
+	
+	<select id="mediSearch" resultType="int">
+		select count(*) from medi where m_name like CONCAT('%', #{mName}, '%')
+	</select>
+	
+	<select id="mediSelectSearch" resultType="map">
+		<![CDATA[
+		SELECT *
+   			FROM (
+      				SELECT format(@rownum:= @rownum+1, 0) as RN, A.* 
+         				FROM (
+               				SELECT * 
+              					 FROM medi 
+              					 	WHERE m_name LIKE CONCAT('%', #{mName}, '%')
+                  						ORDER BY m_name ASC 
+               					) A, (select @rownum :=0,0) R
+         		) B
+		WHERE RN BETWEEN ${start} AND ${end}
+		]]>
+	</select>
+	
+	<select id="mediInfo" resultType="map">
+		select * from medi where m_id = #{mediId}
+	</select>
+	
+	<select id="mediTime" resultType="map">
+		select open_time, lunch_start_time, close_time, lunch_end_time
+			from medi 
+		where m_id = #{mediId}
+	</select>
+
+	<select id="petList" resultType="map">
+		select * from pet where c_id = #{c_id}
+	</select>
+	
+	<select id="reservationTime" resultType="map">
+		select count(r_time) 
+			from reservation 
+		where r_date=#{date} order by r_time asc
+	</select>
+	
+	<select id="reservationCount" resultType="map">
+		select r_time, count(*) 
+			from reservation 
+		where m_id=#{mId} and 
+				r_date =#{rDate} group by r_time
+	</select>
+	
+	<select id="peopleCount" resultType="map">
+		select count(*) 
+			from reservation 
+		where m_id=#{mId} 
+				and r_date = #{rDate} and r_time = #{rTime}
+	</select>
+	
+	<select id="mediSelectList" resultType="map">
+	<![CDATA[
+		SELECT *
+   			FROM (
+      				SELECT format(@rownum:= @rownum+1, 0) as RN, A.* 
+         				FROM (
+               				SELECT * 
+              					 FROM medi 
+                  					ORDER BY m_name ASC 
+               					) A, (select @rownum :=0,0) R
+         		) B
+		WHERE RN BETWEEN ${start} AND ${end}
+		]]>
+	</select>
+	
+	<select id="reservationCheck" resultType="map">
+		     select reservation.m_id, reservation.r_date, reservation.r_time,pet.p_num
+         from reservation join pet on reservation.p_num = pet.p_num and pet.c_id=#{cId}
+         where m_id=#{mId} and r_date = #{rDate} and r_time = #{rTime} and p_name=#{pName};
+   
+	</select>
+
+	<update id="reserCancel">
+		update reservation set r_apply="취소" where r_num=#{rNum}
+	</update>
+	
+	<update id="reserState">
+		update reservation set r_apply=#{apply} where r_num=#{num}
+	</update>
+
+	<!-- 병원 팝업 예약 정보 -->
+	<select id="reservationInfo" resultType="map">
+		select customer.c_email, reservation.r_date, reservation.r_time, reservation.r_name, reservation.r_tel, pet.p_section, pet.p_type, pet.p_name, pet.p_sex, pet.p_age, reservation.r_content, pet.p_photo
+		from reservation 
+		join customer on reservation.c_id = customer.c_id
+    	join pet on reservation.p_num = pet.p_num
+		where reservation.r_num = #{rNum}
+	</select>
+	
+	<!-- 병원 새로운 접수 리스트 -->
+	<select id="waitList" parameterType="hashMap" resultType="map">
+		select r.r_time, r.r_content, r.r_apply, r.r_date, p.p_type, r.r_num
+		from reservation r, pet p
+		where r.m_id = #{mId} and r_apply="대기"
+		and r.p_num = p.p_num
+		order by r.r_date
+		limit #{start}, #{limit}
+	</select>
+	
+	<!-- 병원 새로운 접수 페이징 -->
+	<select id="waitListPaging" resultType="Integer">
+		select count(*)
+		from reservation r, pet p
+		where r.m_id = #{mId} and r_apply="대기"
+		and r.p_num = p.p_num
+		order by r.r_date;
+	</select>
+	
+	<!-- 병원 승인 리스트 -->
+	<select id="AList" parameterType="hashMap" resultType="map">
+		select r.r_time, r.r_content, r.r_apply, r.r_date, p.p_type,r_num,r_fix
+		from reservation r, pet p
+		where r.m_id = #{mId} and r_apply="확정"
+		and r.p_num = p.p_num
+		order by r.r_fix asc, r.r_date asc
+		limit #{start}, #{limit}
+	</select>
+	
+	<!-- 병원 승인 페이징 -->
+	<select id="AListPaging" resultType="Integer">
+		select count(*)
+		from reservation r, pet p
+		where r.m_id = #{mId} and r_apply="확정"
+		and r.p_num = p.p_num
+		order by r.r_date;
+	</select>
+	
+	<select id="getResInfo" resultType="map">
+		select reservation.r_date, reservation.r_num, medi.m_name from reservation
+			join medi on reservation.m_id = medi.m_id
+				where r_num=#{rNum};
+	</select>
+	<!-- 병원 취소 리스트 -->
+	<select id="CList" parameterType="hashMap" resultType="map">
+		select r.r_num, r.r_time, r.r_content, r.r_apply, r.r_date, r_fix, p.p_type
+		from reservation r, pet p
+		where r.m_id = #{mId} and (r_apply="취소" or r_fix= 2)
+		and r.p_num = p.p_num
+		order by r.r_date
+		limit #{start}, #{limit}
+	</select>
+	
+	<!-- 병원 취소 페이징 -->
+	<select id="CListPaging" resultType="Integer">
+		select count(*)
+		from reservation r, pet p
+		where r.m_id = #{mId} and r_apply="취소"
+		and r.p_num = p.p_num
+		order by r.r_date;
+	</select>
+	
+	<!-- 진료여부  -->
+	<update id="fix">
+		update reservation set r_fix = #{rFix} where m_id = #{mId} and r_num = #{Rnum}
+	</update>
+	
+	<!-- 진료취소 변경 -->
+	<update id="resReturn">
+		update reservation set r_fix=#{rFix} where r_num =#{Rnum};
+	</update>
+
 </mapper>

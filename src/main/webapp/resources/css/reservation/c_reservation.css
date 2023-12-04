@@ -4,12 +4,12 @@
 }
 
 .board_wrap {
-    width: 50%;
-    margin: 100px 350px;
+    width: 52%;
+    margin: 100px 300px;
 }
 
 .board_title {
-    margin-bottom: 30px;
+    margin-bottom: 18px;
 }
 
 .board_title strong {
@@ -17,12 +17,11 @@
 }
 
 .board_title p {
-    margin-top: 5px;
     font-size: 1rem;
 }
 
 .board_list {
-    width: 100%;
+    width: 900px;
     border-top: 2px solid #000;
 }
 
@@ -35,10 +34,6 @@
     border-bottom: 1px solid #999;
 }
 
-.board_list > div:last-child {
-    border-bottom: 1px solid #000;
-}
-
 .board_list > div > div {
     display: inline-block;
     padding: 15px 0;
@@ -47,35 +42,83 @@
 }
 
 .board_list > div.top > div {
-    font-weight: 600;
+    font-weight: 650;
 }
 
 .board_list .r_date {
-    width: 15%;
+    width: 18%;
     text-align: center;
 }
 
 .board_list .r_time {
-    width: 10%;
+    width: 14%;
     text-align: center;
 }
 
 .board_list .p_name {
-	width: 15%;
+	width: 13%;
     text-align: center;
 }
 
 .board_list .m_name {
-    width: 30%;
+    width: 13%;
     text-alingn: left;
 }
 
 .board_list .r_content {
-    width: 15%;
+    width: 10%;
     text-align: center;
 }
 
 .board_list .r_apply {
-    width: 15%;
+    width: 10%;
     text-align: center;
+}
+
+.board_list .r_cancel {
+	width: 10%;
+    text-align: center;
+}
+
+.board_list .r_fix {
+	width: 10%;
+    text-align: center;
+}
+
+.board_list .r_cancel button{
+	border: 0;
+	border-bottom: 1px solid;
+  	background-color: transparent;
+}
+
+.board_list .r_fix button{
+	border: 0;
+  	background-color: transparent;
+}
+
+.board_list .listIsNull{
+	width:100%;
+	text-align: center;
+}
+.board_list .listbox{
+	width:100%;
+	text-align: center;
+}
+.board_list .listbox:last-child{
+	 border-bottom: 1px solid #000;
+}
+
+a.pageLink{
+	text-decoration: none;
+	color: black;
+}
+.nowCancle{
+	color: red;
+	font-size: 1rem;
+	font-weight: bold;
+}
+.mesCancle{
+	color: red;
+	font-size: 12px;
+	font-weight: bold;
 }
