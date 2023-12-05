@@ -157,7 +157,6 @@ public class reservationServiceImpl implements reservationService{
 	@Override
 	public Map<String, String> reservationCheck(Map<String, String> map) {
 		map.put("rTime", map.get("rTime").replace(":", "-"));
-		
 		return rm.reservationCheck(map);
 	}
 	

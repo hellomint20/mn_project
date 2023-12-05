@@ -32,12 +32,12 @@ $(document).ready(function () {
 			<div class="recently_box">
 				<c:forEach items="${sessionScope.recentlyViewList}" var="view">
 		                <div>
-			                <form action="/am/reservationForm/page" method="post">
-				                <input type="hidden" name="mediId" value="${view.m_id}" id="mId">
-				                <button type="submit"><img src="/am/resources/img/${view.m_photo}" width="100px" height="100px"><br>
-				                <b>${view.m_name}</b>
-				                </button>
-			                </form>
+		                	<form action="/am/reservationForm/page" method="post">
+		                		<input type="hidden" name="mediId" value="${view.m_id}" id="mId">
+		                		<button type="submit"><img src="/am/resources/img/${view.m_photo}" width="100px" height="100px"><br>
+		                			<b>${view.m_name}</b>
+		                		</button>
+		                	</form>
 		                </div>
 		            </c:forEach>
 			</div>

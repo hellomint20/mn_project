@@ -217,11 +217,14 @@
 		form['rDate'] = checkDay;
 		form['rTime'] = $("input[name=vbtn-radio]:radio:checked").val()
 		
+		console.log(form)
+		
 		$.ajax({
 			url : "/am/reservationCheck", type : "post",
 			data : JSON.stringify(form),
 			contentType : "application/json; charset=utf-8",
 			success : (size) => {
+				console.log(size)
 				if(size == "1"){
 					alert("이미 예약 하신 시간입니다");
 					location.reload();

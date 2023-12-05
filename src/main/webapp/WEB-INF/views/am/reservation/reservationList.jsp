@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
@@ -12,72 +12,73 @@
 
 <script type="text/javascript">
 
-	function selChange() {
-		var sel = document.getElementById('cntPerPage').value;
-		location.href="reservationList?id=${userId}&nowPage=${paging.nowPage}&cntPerPage="+sel;
-	}
-	
-	function get_Date(num){
-		let date = document.getElementById(num).innerHTML;
-		
-		var nowTime = new Date();
-		var year = nowTime.getFullYear(); //현재 년도
-		var month = nowTime.getMonth()+1; //현재 월	
-		var day = nowTime.getDate(); //현재 일
-		<!-- ///////////////////////////////////// -->
-		var checkYear = date.slice(0, 4);
-		var checkMonth = date.slice(6, 8);
-		var checkDay = date.slice(10, 12);
-		if(checkYear-year == 0 && checkMonth-month == 0 && checkDay-day == 1){ //전 날일 때
-			return 2500;
-		}else {
-			return 5000;
-		}
-	}
+   function selChange() {
+      var sel = document.getElementById('cntPerPage').value;
+      location.href="reservationList?id=${userId}&nowPage=${paging.nowPage}&cntPerPage="+sel;
+   }
+   
+   function get_Date(num){
+      let date = document.getElementById(num).innerHTML;
+      
+      var nowTime = new Date();
+      var year = nowTime.getFullYear(); //현재 년도
+      var month = nowTime.getMonth()+1; //현재 월   
+      var day = nowTime.getDate(); //현재 일
+      <!-- ///////////////////////////////////// -->
+      var checkYear = date.slice(0, 4);
+      var checkMonth = date.slice(6, 8);
+      var checkDay = date.slice(10, 12);
+      if(checkYear-year == 0 && checkMonth-month == 0 && checkDay-day == 1){ //전 날일 때
+         return 2500;
+      }else {
+         return 5000;
+      }
+   }
 
-	function reserCancel(num) {
-		let payment = get_Date(num);
-		let msg = "";
-		
-		if(payment == 2500){
-			msg = confirm("예약 접수일이 내일입니다. \n취소 시 "+payment+"원이 환불됩니다. \n정말로 취소하시겠습니까?");
-		}else if(payment == 5000){
-			msg = confirm("예약 취소 시 "+payment+"원이 환불됩니다. \n정말로 취소하시겠습니까?");
-		}
-		
-		if (msg == true){	
-			let cId = document.getElementById("cId").value;
-			
-			var map = {};
-			map['num'] = num;
-			map['payment'] = payment;
-			
-			$.ajax({
-				url : "/am/payResRefund", type: "post",
-				data : JSON.stringify(map),
-				contentType : "application/json; charset=utf-8",
-				success : (result) => {
-					if(result == '1'){
-						alert("예약 취소 및 예약금이 환불되었습니다.")
-						location.href='/am/reservationList?id='+cId;
-					}else if(result == '98'){
-						alert("환불 중 문제가 생겼어요!")
-						location.href='/am/reservationList?id='+cId;
-					}
-					else{
-						alert("문제 발생")
-						return false;
-					}
-				},
-				error : () => {
-					alert("문제 발생")
-				}
-			})
-		}
-	}
+   function reserCancel(num) {
+      let payment = get_Date(num);
+      let msg = "";
+      
+      if(payment == 2500){
+         msg = confirm("예약 접수일이 내일입니다. \n취소 시 "+payment+"원이 환불됩니다. \n정말로 취소하시겠습니까?");
+      }else if(payment == 5000){
+         msg = confirm("예약 취소 시 "+payment+"원이 환불됩니다. \n정말로 취소하시겠습니까?");
+      }
+      
+      if (msg == true){   
+         let cId = document.getElementById("cId").value;
+         
+         var map = {};
+         map['num'] = num;
+         map['payment'] = payment;
+         
+         $.ajax({
+            url : "/am/payResRefund", type: "post",
+            data : JSON.stringify(map),
+            contentType : "application/json; charset=utf-8",
+            success : (result) => {
+               if(result == '1'){
+                  alert("예약 취소 및 예약금이 환불되었습니다.")
+                  location.href='/am/reservationList?id='+cId;
+               }else if(result == '98'){
+                  alert("환불 중 문제가 생겼어요!")
+                  location.href='/am/reservationList?id='+cId;
+               }
+               else{
+                  alert("문제 발생")
+                  return false;
+               }
+            },
+            error : () => {
+               alert("문제 발생")
+            }
+         })
+      }
+   }
 </script>
 </head>
 <body>
+<<<<<<< HEAD
 	<%@ include file = "../default/header_page.jsp" %>
 	<%@ include file = "../common/customerSidebar.jsp" %>
 	<%@ include file="../common/recentlyView.jsp" %>
