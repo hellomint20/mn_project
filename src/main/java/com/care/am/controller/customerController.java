@@ -47,7 +47,7 @@ public class customerController {
 	private String apiResult = null;
 
 	@Autowired
-	private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
+	private void setNaverLoginBO(NaverLoginBO naverLoginBO) { // 네이버로그인 호출
 		this.naverLoginBO = naverLoginBO;
 	}
 

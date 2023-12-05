@@ -57,7 +57,7 @@
 									from reservation
 											join medi ON reservation.m_id = medi.m_id
 											join pet ON reservation.p_num = pet.p_num where reservation.c_id=#{id} 
-											order by reservation.r_num desc
+											order by reservation.r_fix asc, reservation.r_date asc
 							) A, (select @rownum :=0,0) R
 				) B
 		WHERE RN BETWEEN ${start} AND ${end}
@@ -153,7 +153,7 @@
 
 	<!-- 병원 팝업 예약 정보 -->
 	<select id="reservationInfo" resultType="map">
-		select customer.c_email, reservation.r_date, reservation.r_time, reservation.r_name, customer.c_tel, pet.p_section, pet.p_type, pet.p_name, pet.p_sex, pet.p_age, reservation.r_content, pet.p_photo
+		select customer.c_email, reservation.r_date, reservation.r_time, reservation.r_name, reservation.r_tel, pet.p_section, pet.p_type, pet.p_name, pet.p_sex, pet.p_age, reservation.r_content, pet.p_photo
 		from reservation 
 		join customer on reservation.c_id = customer.c_id
     	join pet on reservation.p_num = pet.p_num

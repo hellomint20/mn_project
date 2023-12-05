@@ -34,4 +34,3 @@
 	<mybatis-spring:scan base-package="com.care.am.mapper"/>
 	
 </beans>
-

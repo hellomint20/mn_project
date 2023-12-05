@@ -87,6 +87,12 @@ b.mainBtag{
 	width: 300px;
 	margin-right: 20px;
 }
+#leftMainMypageContent{
+	display: inline-block;
+	height: 150px;
+	width: 300px;
+	margin-right: 20px;
+}
 #mediContent{
 	margin-top: 90px;
 	padding-bottom: 50px;

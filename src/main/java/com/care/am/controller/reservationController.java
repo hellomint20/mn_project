@@ -210,13 +210,11 @@ public class reservationController {
 	public String reservationCheck(HttpSession session, @RequestBody Map<String, String> map ) {
 		
 		map.put("cId", session.getAttribute(LoginSession.cLOGIN).toString());
-		
+
 		String size = "";
 		if(rs.reservationCheck(map) != null) {
 			size = "1";
 		} 
-		
-		System.out.println("controller ====================" + size);
 		return size;
 	}
 }
