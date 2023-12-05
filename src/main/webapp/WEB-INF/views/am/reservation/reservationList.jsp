@@ -102,13 +102,12 @@
 				</div>
 				<!-- for문으로 리스트 뽑아오기 -->
 				<c:choose>
-					<c:when test="${list.size() == 0}">
+					<c:when test="${list == null}">
 						<div>
 							<div class="listIsNull">예약내역이 없습니다.</div>
 						</div>
 					</c:when>
-					<c:when test="${list.size()!=0 }">
-
+					<c:when test="${list != null }">
 						<c:forEach items="${viewAll }" var="list">
 							<div class="listbox">
 								<div class="r_date">
