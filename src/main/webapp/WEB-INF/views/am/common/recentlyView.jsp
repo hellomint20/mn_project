@@ -38,7 +38,6 @@ $(document).ready(function () {
 		                			<b>${view.m_name}</b>
 		                		</button>
 		                	</form>
-
 		                </div>
 		            </c:forEach>
 			</div>
