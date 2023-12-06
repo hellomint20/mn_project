@@ -217,11 +217,14 @@
 		form['rDate'] = checkDay;
 		form['rTime'] = $("input[name=vbtn-radio]:radio:checked").val()
 		
+		console.log(form)
+		
 		$.ajax({
 			url : "/am/reservationCheck", type : "post",
 			data : JSON.stringify(form),
 			contentType : "application/json; charset=utf-8",
 			success : (size) => {
+				console.log(size)
 				if(size == "1"){
 					alert("이미 예약 하신 시간입니다");
 					location.reload();
@@ -260,7 +263,7 @@
 				</div>
 				<div class="input-form">
 					<input type="text" id="rName" name="cId" placeholder="홍길동" required><br> <input type="tel" id="rTel" name="cPhone"
-						oninput="hypenAdd(this)" placeholder="010-1234-5678"><br> <select id="pName" required>
+						oninput="hypenAdd(this)" placeholder="010-1234-5678" maxlength="13"><br> <select id="pName" required>
 						<option value="">선택하세요</option>
 						<c:forEach var="list" items="${p_list}">
 							<option value="connecting" id="p_name">${list['p_name']}</option>

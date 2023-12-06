@@ -157,7 +157,6 @@ public class reservationServiceImpl implements reservationService{
 	@Override
 	public Map<String, String> reservationCheck(Map<String, String> map) {
 		map.put("rTime", map.get("rTime").replace(":", "-"));
-		
 		return rm.reservationCheck(map);
 	}
 	
@@ -174,19 +173,7 @@ public class reservationServiceImpl implements reservationService{
 		List<Map<String, Object>> waitList = new ArrayList<Map<String, Object>>();
 		waitList = rm.waitList(pageMap);
 		
-		try {
-			for (int i = 0; i < waitList.size(); i++) {
-				waitList.get(i).put("year", waitList.get(i).get("r_date").toString().split("-")[0]);
-				waitList.get(i).put("month", waitList.get(i).get("r_date").toString().split("-")[1]);
-				waitList.get(i).put("day", waitList.get(i).get("r_date").toString().split("-")[2]);
-
-				waitList.get(i).put("hour", waitList.get(i).get("r_time").toString().split("-")[0]);
-				waitList.get(i).put("min", waitList.get(i).get("r_time").toString().split("-")[1]);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return waitList;
+		return listDayTime(waitList);
 	}	
 		
 	// 병원 새로운접수 페이징
@@ -194,30 +181,14 @@ public class reservationServiceImpl implements reservationService{
 
 		// 전체 글 갯수 조회
 		int listCount = rm.waitListPaging(mId); // 13
-
-		// 전체 페이지 갯수 계산(10/3=3.33333 => 4)
-		int maxPage = (int) (Math.ceil((double) listCount / pagingLimit));
 		
-		// 시작 페이지 값 계산(1, 4, 7, 10, ~~~~)
-		int startPage = (((int) (Math.ceil((double) page / blockLimit))) - 1) * blockLimit + 1;
-		
-		// 끝 페이지 값 계산(3, 6, 9, 12, ~~~~)
-		int endPage = startPage + blockLimit - 1;
-		
-		if (endPage > maxPage) {
-			endPage = maxPage;
-		}
-		pageDTO pageDTO = new pageDTO();
-		pageDTO.setPage(page);
-		pageDTO.setMaxPage(maxPage);
-		pageDTO.setStartPage(startPage);
-		pageDTO.setEndPage(endPage);
-		return pageDTO;
+		return paging(page, listCount);
 	}
+	
 	
 	// 병원 승인 리스트
 	public List<Map<String, Object>> AList(String mId, int page) { 
-
+		
 		int pagingStart = (page - 1) * pagingLimit;
 
 		Map<String, Object> pageMap = new HashMap<String, Object>();
@@ -228,20 +199,7 @@ public class reservationServiceImpl implements reservationService{
 		List<Map<String, Object>> AList = new ArrayList<Map<String, Object>>();
 		AList = rm.AList(pageMap);
 		
-		try {
-			for (int i = 0; i < AList.size(); i++) {
-				AList.get(i).put("year", AList.get(i).get("r_date").toString().split("-")[0]);
-				AList.get(i).put("month", AList.get(i).get("r_date").toString().split("-")[1]);
-				AList.get(i).put("day", AList.get(i).get("r_date").toString().split("-")[2]);
-
-				AList.get(i).put("hour", AList.get(i).get("r_time").toString().split("-")[0]);
-				AList.get(i).put("min", AList.get(i).get("r_time").toString().split("-")[1]);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			}
-		return AList;
-		
+		return listDayTime(AList);
 	}
 	
 	// 병원 승인 페이징
@@ -249,16 +207,62 @@ public class reservationServiceImpl implements reservationService{
 
 		// 전체 글 갯수 조회
 		int listCount = rm.AListPaging(mId); // 13
+		return paging(page, listCount);
+	}
+	
+	// 병원 취소 리스트
+	public List<Map<String, Object>> CList(String mId, int page) { 
+
+		int pagingStart = (page - 1) * pagingLimit;
+
+		Map<String, Object> pageMap = new HashMap<String, Object>();
+		pageMap.put("start", pagingStart);
+		pageMap.put("limit", pagingLimit);
+		pageMap.put("mId", mId);
+
+		List<Map<String, Object>> CList = new ArrayList<Map<String, Object>>();
+		CList = rm.CList(pageMap);
+			
+		return listDayTime(CList);
+	}
 		
+	// 병원 취소 페이징
+	public pageDTO CListPaging(int page, String mId) { 
+
+		// 전체 글 갯수 조회
+		int listCount = rm.CListPaging(mId); 
+					
+		return paging(page, listCount);
+	}
+	
+	//병원 리스트 날짜 시간
+	public List<Map<String, Object>> listDayTime(List<Map<String, Object>> list){
+		try {
+			for(int i = 0; i < list.size(); i++ ) {
+				list.get(i).put("year", list.get(i).get("r_date").toString().split("-")[0]);
+				list.get(i).put("month", list.get(i).get("r_date").toString().split("-")[1]);
+				list.get(i).put("day", list.get(i).get("r_date").toString().split("-")[2]);
+
+				list.get(i).put("hour", list.get(i).get("r_time").toString().split("-")[0]);
+				list.get(i).put("min", list.get(i).get("r_time").toString().split("-")[1]);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	//병원 리스트 페이징
+	public pageDTO paging(int page, int listCount) {
 		// 전체 페이지 갯수 계산(10/3=3.33333 => 4)
 		int maxPage = (int) (Math.ceil((double) listCount / pagingLimit));
-		
+					
 		// 시작 페이지 값 계산(1, 4, 7, 10, ~~~~)
 		int startPage = (((int) (Math.ceil((double) page / blockLimit))) - 1) * blockLimit + 1;
-		
+					
 		// 끝 페이지 값 계산(3, 6, 9, 12, ~~~~)
 		int endPage = startPage + blockLimit - 1;
-		
+					
 		if (endPage > maxPage) {
 			endPage = maxPage;
 		}
@@ -269,62 +273,7 @@ public class reservationServiceImpl implements reservationService{
 		pageDTO.setEndPage(endPage);
 		return pageDTO;
 	}
-	
-	// 병원 취소 리스트
-		public List<Map<String, Object>> CList(String mId, int page) { 
-
-			int pagingStart = (page - 1) * pagingLimit;
-
-			Map<String, Object> pageMap = new HashMap<String, Object>();
-			pageMap.put("start", pagingStart);
-			pageMap.put("limit", pagingLimit);
-			pageMap.put("mId", mId);
-
-			List<Map<String, Object>> CList = new ArrayList<Map<String, Object>>();
-			CList = rm.CList(pageMap);
-			
-			try {
-				for (int i = 0; i < CList.size(); i++) {
-					CList.get(i).put("year", CList.get(i).get("r_date").toString().split("-")[0]);
-					CList.get(i).put("month", CList.get(i).get("r_date").toString().split("-")[1]);
-					CList.get(i).put("day", CList.get(i).get("r_date").toString().split("-")[2]);
-
-					CList.get(i).put("hour", CList.get(i).get("r_time").toString().split("-")[0]);
-					CList.get(i).put("min", CList.get(i).get("r_time").toString().split("-")[1]);
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			return CList;
-			
-		}
 		
-		// 병원 취소 페이징
-		public pageDTO CListPaging(int page, String mId) { 
-
-			// 전체 글 갯수 조회
-			int listCount = rm.CListPaging(mId); // 13
-			
-			// 전체 페이지 갯수 계산(10/3=3.33333 => 4)
-			int maxPage = (int) (Math.ceil((double) listCount / pagingLimit));
-			
-			// 시작 페이지 값 계산(1, 4, 7, 10, ~~~~)
-			int startPage = (((int) (Math.ceil((double) page / blockLimit))) - 1) * blockLimit + 1;
-			
-			// 끝 페이지 값 계산(3, 6, 9, 12, ~~~~)
-			int endPage = startPage + blockLimit - 1;
-			
-			if (endPage > maxPage) {
-				endPage = maxPage;
-			}
-			pageDTO pageDTO = new pageDTO();
-			pageDTO.setPage(page);
-			pageDTO.setMaxPage(maxPage);
-			pageDTO.setStartPage(startPage);
-			pageDTO.setEndPage(endPage);
-			return pageDTO;
-		}
-
 	public Map<String, String> reservationInfo(int rNum) {
 		Map<String, String> info = new HashMap<String, String>();
 		info = rm.reservationInfo(rNum);
