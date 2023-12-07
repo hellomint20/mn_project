@@ -31,6 +31,7 @@ public class commonController {
 
 	@GetMapping("mediSearch") //병원 찾기 페이지
 	public String mediSearch() {
+		System.out.println("갑자기 안돼는 이유는???");
 		return "am/common/mediSearch";
 	}
 	
